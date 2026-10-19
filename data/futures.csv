@@ -1,0 +1,5 @@
+snapshot_date,exchange,contract,expiry,delivery_month,last,prev_close,open,high,low,change_pct,volume_lots,turnover_rs,open_interest
+2026-10-19,NSE,ELECMBL,2026-10-30,2026-10,4776,4655,4656,4809,4621,2.599,2044,485793392,371
+2026-10-19,NSE,ELECMBL,2026-11-27,2026-11,4325,4360,4382,4382,4310,-0.803,848,183627192,32
+2026-10-19,NSE,ELECMBL,2026-12-30,2026-12,,4472,,,,0,0,0,0
+2026-10-19,NSE,ELECMBL,2027-01-29,2027-01,,,,,,0,0,0,0

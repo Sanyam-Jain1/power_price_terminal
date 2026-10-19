@@ -1,0 +1,54 @@
+name: Daily refresh
+
+on:
+  schedule:
+    # 08:40 UTC = 14:10 IST, after IEX publishes D+1 DAM results (~13:00 IST).
+    - cron: "40 8 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["site/**", "dhruva/**", "docs/METHODOLOGY.md"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt pytest
+      - run: python -m pytest -q
+      - name: Ingest, derive, draft weekly note, build site data
+        if: github.event_name != 'push'
+        run: python -m dhruva -v daily
+      - name: Build site data
+        if: github.event_name == 'push'
+        run: python -m dhruva build
+      - name: Commit data
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "dhruva-bot"
+          git config user.email "dhruva-bot@users.noreply.github.com"
+          git add data notes site/data
+          git diff --cached --quiet || git commit -m "data: daily refresh $(date -u +%F)"
+          git push
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}

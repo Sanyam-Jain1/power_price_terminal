@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dhruva Terminal</title>
+  <meta name="description" content="Every Indian power price in one place: IEX DAM, RTM, G-DAM and HP-DAM by 15-minute block, futures against the month-to-date index, DSM, RECs, tenders, open-access landed cost, and the Dhruva BESS-IN battery revenue index.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232a78d6' d='M12 1l2.2 8.3L22 12l-7.8 2.7L12 23l-2.2-8.3L2 12l7.8-2.7z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand-row">
+        <a class="brand" href="#/overview" aria-label="Dhruva home">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1l2.2 8.3L22 12l-7.8 2.7L12 23l-2.2-8.3L2 12l7.8-2.7z"/></svg>
+          <b>DHRUVA</b><span>India power terminal</span>
+        </a>
+        <div class="status">
+          <span id="asof"></span>
+          <div class="seg" role="group" aria-label="Plan view">
+            <button data-tier="free" aria-pressed="true">Free</button>
+            <button data-tier="pro" aria-pressed="false">Pro preview</button>
+          </div>
+          <button class="iconbtn" id="theme" aria-label="Toggle light or dark theme">◐ Theme</button>
+        </div>
+      </div>
+      <nav class="tabs" aria-label="Sections"></nav>
+    </div>
+  </header>
+  <main><p class="empty">Loading…</p></main>
+  <footer>
+    Source data: Indian Energy Exchange (IEX) public market data, NSE, IEX landed-cost calculator; tenders curated from public announcements.
+    Dhruva indices are simulated benchmarks; see Methodology. Not investment advice.
+  </footer>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
