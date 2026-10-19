@@ -525,7 +525,7 @@ async function openAccessPage(root) {
     body.replaceChildren();
     const rows = L.rows.filter((r) => r.category === cat && r.voltage_kv === volt)
       .map((r) => ({ ...r, landed: r.intercept_rs_kwh + r.slope * price }))
-      .map((r) => ({ ...r, saving: r.discom_tariff_rs_kwh - r.landed }))
+      .map((r) => ({ ...r, saving: r.discom_tariff_rs_kwh - r.landed, breakeven: (r.discom_tariff_rs_kwh - r.intercept_rs_kwh) / r.slope }))
       .sort((a, b) => b.saving - a.saving);
     if (!rows.length) { body.append(h("p", { class: "empty" }, "No discoms publish this category at this voltage.")); return; }
     const c = card("Saving vs discom tariff", `₹/kWh at ₹${price.toFixed(2)} exchange price · positive = open access is cheaper`);
@@ -538,10 +538,13 @@ async function openAccessPage(root) {
       h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s8)" } }), "discom cheaper")));
     body.append(c);
     const t = card("By discom", `${rows.length} discoms · ${cat} · ${volt} kV`);
-    t.append(table(["Discom", "Landed ₹/kWh", "Discom tariff", "Saving", "CSS", "Add'l surcharge", "Wheeling", "STU", "ISTS", "Losses %"],
-      rows.map((r) => [r.state, f.fixed(r.landed), f.fixed(r.discom_tariff_rs_kwh), f.fixed(r.saving), f.fixed(r.css), f.fixed(r.additional_surcharge),
+    const cheaper = rows.filter((r) => r.saving > 0).length;
+    c.append(h("p", { class: "note" }, `At ₹${price.toFixed(2)}/kWh, open access beats the discom in ${cheaper} of ${rows.length} discoms. `
+      + "Round-the-clock exchange power includes the capped evening blocks; buyers who schedule into solar hours pay far less. The break-even column gives the exchange price below which open access wins."));
+    t.append(table(["Discom", "Landed ₹/kWh", "Discom tariff", "Saving", "Break-even price", "CSS", "Add'l surcharge", "Wheeling", "STU", "ISTS", "Losses %"],
+      rows.map((r) => [r.state, f.fixed(r.landed), f.fixed(r.discom_tariff_rs_kwh), f.fixed(r.saving), r.breakeven > 0 ? f.fixed(r.breakeven) : "never", f.fixed(r.css), f.fixed(r.additional_surcharge),
         f.fixed(r.wheeling_charge), f.fixed(r.stu_charge), f.fixed(r.ists_charge), f.fixed((r.ists_loss_pct || 0) + (r.stu_loss_pct || 0) + (r.wheeling_loss_pct || 0), 1)]),
-      [1, 2, 3, 4, 5, 6, 7, 8, 9]));
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
     t.append(h("p", { class: "note" }, "Landed cost = fixed charges + exchange price grossed up for ISTS, STU and wheeling losses. It is fitted exactly from two calculator runs per discom (the calculation is linear in price). The discom tariff is energy + fuel/FSA + ToD charges for the RTC slot. Green-OA banking, demand charges and electricity duty are excluded."));
     t.style.marginTop = "14px";
     body.append(t);
