@@ -171,7 +171,7 @@ async function overview(root) {
   const nc = card("The Dhruva Weekly", note ? `week ending ${f.dLong(note.week_ending)}` : "");
   if (note) {
     const md = note.markdown.split("\n## ").slice(1, 2).map((x) => `## ${x}`).join("");
-    nc.append(markdown(md), h("a", { href: "#/weekly" }, "Read the full note →"));
+    nc.append(markdown(md), h("a", { href: "#weekly" }, "Read the full note →"));
   } else nc.append(h("p", { class: "empty" }, "First note publishes Monday."));
   grid.append(h("div", { class: "c6" }, nc));
 
@@ -554,7 +554,7 @@ async function bessPage(root) {
   const I = bess.indices;
   root.append(pageHead("Dhruva BESS-IN battery revenue index",
     `What a 1 MW battery would have earned from exchange arbitrage. Perfect-foresight daily optimisation on IEX 15-minute prices, ${(I["DBX-2H"].rte * 100).toFixed(0)}% round-trip efficiency, ₹${I["DBX-2H"].fee}/MWh exchange fee per side. Methodology v${bess.method_version}.`),
-  h("a", { href: "#/methodology", class: "btn ghost small" }, "Methodology"));
+  h("a", { href: "#methodology", class: "btn ghost small" }, "Methodology"));
   const grid = h("div", { class: "grid" });
   root.append(grid);
   const two = I["DBX-2H"], lastM = two.monthly[two.monthly.length - 1];
@@ -641,7 +641,7 @@ function pricingPage(root) {
     plan("Pro", "₹6,000", "per seat / month · billed annually", ["Full history from April 2024", "CSV downloads for every chart", "D+1 baseline forecast (ML forecasts next)", "Price and basis alerts (coming)", "Regional market-split history"],
       h("button", { class: "btn", onclick: () => setTier("pro", true) }, "Preview Pro"), true),
     plan("Enterprise", "Talk to us", "lenders, funds, developers", ["Licence to reference DBX and DBI-M in PPAs, loans and hedges", "Regional and custom-spec battery indices", "API and daily delivery", "Methodology consultation seat"],
-      h("a", { class: "btn ghost", href: "#/methodology" }, "Read the methodology"), false)));
+      h("a", { class: "btn ghost", href: "#methodology" }, "Read the methodology"), false)));
   root.append(h("p", { class: "note" }, "This build has no payments. \"Preview Pro\" unlocks the Pro views in your browser so you can evaluate them."));
 }
 
@@ -674,7 +674,7 @@ function setTier(t, rerender) {
 
 let routing = 0;
 async function route() {
-  const id = (location.hash.replace(/^#\/?/, "").split("?")[0]) || "overview";
+  const id = (location.hash.replace(/^#\/?/, "").split(/[?/]/)[0]) || "overview";
   const r = ROUTES.find((x) => x[0] === id) || ROUTES[0];
   document.querySelectorAll("nav.tabs a").forEach((a) => a.toggleAttribute("aria-current", a.dataset.id === r[0]));
   document.querySelector("nav.tabs a[aria-current]")?.setAttribute("aria-current", "page");
@@ -696,7 +696,7 @@ async function route() {
 
 async function init() {
   const nav = document.querySelector("nav.tabs");
-  nav.replaceChildren(...ROUTES.map(([id, label]) => h("a", { href: `#/${id}`, "data-id": id }, label)));
+  nav.replaceChildren(...ROUTES.map(([id, label]) => h("a", { href: `#${id}`, "data-id": id }, label)));
   document.querySelectorAll("[data-tier]").forEach((b) => b.addEventListener("click", () => setTier(b.dataset.tier, true)));
   setTier(state.tier, false);
   const themeBtn = document.getElementById("theme");

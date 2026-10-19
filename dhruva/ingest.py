@@ -82,21 +82,33 @@ def ingest_futures(snapshot: date | None = None) -> int:
 
 
 def ingest_landed_cost(max_age_days: int = 30, force: bool = False) -> int:
-    existing = store.read_table("reference/open_access_landed_cost")
+    """Crawl IEX's calculator for every discom. Checkpoints after each discom and
+    resumes a same-day partial run, because the full crawl takes ~30 minutes."""
+    final, partial = "reference/open_access_landed_cost", "reference/open_access_landed_cost.partial"
+    existing = store.read_table(final)
     if existing and not force:
         age = (date.today() - date.fromisoformat(existing[0]["fetched"])).days
         if age < max_age_days:
             log.info("landed cost is %d days old; skipping", age)
             return 0
-    rows = iex.fetch_landed_cost()
     today = date.today().isoformat()
-    for r in rows:
-        r["fetched"] = today
-    path = "reference/open_access_landed_cost"
+    done_rows = [r for r in store.read_table(partial) if r.get("fetched") == today]
+    done = {r["state"] for r in done_rows}
+    key = ["state", "category", "voltage_kv"]
+    for state in iex.oa_states():
+        if state in done:
+            continue
+        rows = iex.fetch_landed_cost([state])
+        for r in rows:
+            r["fetched"] = today
+        # A discom with no published categories still counts as done.
+        rows = rows or [{"state": state, "category": "", "voltage_kv": "", "fetched": today}]
+        store.upsert_table(partial, rows, key, iex.LANDED_FIELDS)
+    rows = [r for r in store.read_table(partial) if r.get("fetched") == today and r["category"]]
     if rows:
-        # Replace wholesale so discontinued discoms drop out.
-        (store.DATA_DIR / f"{path}.csv").unlink(missing_ok=True)
-        store.upsert_table(path, rows, ["state", "category", "voltage_kv"], iex.LANDED_FIELDS)
+        (store.DATA_DIR / f"{final}.csv").unlink(missing_ok=True)
+        store.upsert_table(final, rows, key, iex.LANDED_FIELDS)
+    (store.DATA_DIR / f"{partial}.csv").unlink(missing_ok=True)
     return len(rows)
 
 

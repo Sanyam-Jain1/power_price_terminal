@@ -186,7 +186,7 @@ def fetch_rec(year: int) -> list[dict]:
 # ------------------------------------------------------------- landed cost
 
 OA_PREFERRED_SLOT = "RTC (24 hrs)"
-OA_VOLTAGES = (11, 33, 66, 132, 220)
+OA_VOLTAGES = (11, 33, 132)
 OA_PROBE_PRICES = (2.0, 6.0)   # Rs/kWh; landed cost is linear in exchange price
 
 FALLBACK_STATES = [
