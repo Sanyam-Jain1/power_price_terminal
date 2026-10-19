@@ -7,24 +7,36 @@ Dhruva (ध्रुव, the pole star) tracks Indian power prices from public d
 Modo Energy (battery indices) and Pexapark / Platts 3Pi (PPA benchmarks) are
 the models.
 
+The terminal has two sections.
+
+### Markets (source data only)
+
+Nothing on these pages is modelled.
+
 - **Spot.** IEX Day-Ahead, Real-Time, Green Day-Ahead and High-Price DAM, by
   15-minute block, from April 2024.
 - **Regions.** DAM prices for all 13 IEX bid areas, and how often the grid
   splits.
-- **Futures.** NSE electricity futures (MCX via a manual hook) against the
-  **Dhruva Base Index (DBI-M)**, the month-to-date volume-weighted DAM UMCP
-  these contracts settle on. Also IEX term-ahead monthly auctions.
-- **Balancing.** The block-wise DSM Normal Rate, computed under the CERC DSM
-  Regulations 2024.
+- **Futures.** NSE electricity futures (MCX via a manual hook) and IEX
+  term-ahead monthly auctions.
 - **RECs.** Every IEX session.
 - **Tenders.** BESS, FDRE, solar, solar+storage and wind awards, each with its
   source.
-- **Open access.** Landed cost against the discom tariff for about 39 discoms,
-  by category and voltage.
-- **Dhruva BESS-IN (DBX).** What a 2-hour and a 4-hour battery would have
-  earned each day. It is stated in ₹ lakh/MW/month, the unit Indian BESS
-  tenders use.
-- **The Dhruva Weekly.** A Monday note drafted from the data.
+- **Open access.** Landed cost against the discom tariff for 39 discoms, by
+  category and voltage, from IEX's calculator.
+
+### Dhruva (our own indices and models)
+
+Every page in this section carries a "Dhruva research" banner.
+
+- **Battery index (DBX).** What a 2-hour and a 4-hour battery would have
+  earned each day, in ₹ lakh/MW/month (the unit Indian BESS tenders use).
+  Includes regional variants and a comparison with tender tariffs.
+- **Base index (DBI-M).** The month-to-date volume-weighted DAM UMCP that
+  futures settle on, shown against the NSE contract.
+- **Analytics.** An indicative DSM Normal Rate under the CERC DSM
+  Regulations 2024, and a D+1 baseline forecast with its backtest.
+- **The Dhruva Weekly, Methodology, Plans.**
 
 ## Run it
 

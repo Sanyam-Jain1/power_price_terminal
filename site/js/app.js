@@ -90,15 +90,22 @@ function pageHead(title, blurb, ...extra) {
   return h("div", { class: "page-head" }, h("div", {}, h("h1", {}, title), blurb ? h("p", {}, blurb) : null), ...extra);
 }
 
+function dhruvaHead(title, blurb, ...extra) {
+  return h("div", {},
+    h("div", { class: "dhruva-banner" }, h("span", { class: "dhruva-chip" }, "Dhruva research"),
+      h("span", {}, "Modelled by Dhruva from public exchange data. These are not exchange-published prices. "),
+      h("a", { href: "#methodology" }, "Methodology")),
+    pageHead(title, blurb, ...extra));
+}
+
 const mount = (el, fn, ...args) => { const host = h("div"); el.append(host); fn(host, ...args); return host; };
 
 // ------------------------------------------------------------------ pages
 
 async function overview(root) {
-  const [spot, fut, bess, ref, notes] = await Promise.all([load("spot.json"), load("futures.json"),
-    load("bess.json"), load("reference.json"), load("notes.json")]);
+  const [spot, fut, ref] = await Promise.all([load("spot.json"), load("futures.json"), load("reference.json")]);
   root.append(pageHead("Every Indian power price, one screen",
-    "Day-ahead, real-time, green and high-price markets by 15-minute block, futures against the month-to-date index, balancing rates, RECs, tenders, open-access landed cost, and the Dhruva battery revenue index."));
+    "Exchange and published data only: IEX day-ahead, real-time, green and high-price markets by 15-minute block, bid-area prices, NSE futures, term-ahead auctions, RECs, tender awards and open-access landed cost."));
 
   const dam = spot.dam.daily;
   const i = lastIdx(dam.vwap);
@@ -123,22 +130,21 @@ async function overview(root) {
     f.delta(f.pct(rtm.vwap[fullRtm], rtm.vwap[fullRtm - 1]), "d/d")));
   const g = spot.gdam.daily, k = lastIdx(g.vwap);
   addTile(tile(`G-DAM · ${f.dShort(g.dates[k])}`, f.kwh(g.vwap[k]), "/kWh", f.delta(f.pct(g.vwap[k], g.vwap[k - 1]), "d/d")));
-  const cur = fut.dbi[fut.dbi.length - 1];
-  const front = fut.contracts.find((c) => c.delivery_month === cur?.month);
+  const hp = spot.hpdam.daily, hi = hp.dates.length - 1;
+  addTile(tile(`HP-DAM · ${f.dShort(hp.dates[hi])}`, f.int(hp.volume_mwh[hi] ?? 0), "MWh cleared", null,
+    hp.vwap[hi] != null ? `at ${f.kwh(hp.vwap[hi])}/kWh` : "Nothing cleared above the cap"));
+  const front = fut.contracts.find((c) => c.last || c.prev_close);
   const frontPx = front ? (front.last || front.prev_close) : null;
-  addTile(tile(`Dhruva Base Index · ${cur ? f.monthLong(cur.month) : "–"} MTD`, cur ? f.kwh(cur.vwap) : "–", "/kWh", null,
-    frontPx ? `NSE ${f.monthLabel(cur.month)} future ${f.kwh(frontPx)} · basis ${f.mwh(frontPx - cur.vwap)}/MWh` : "Futures snapshot pending"));
-  const bx = bess.indices["DBX-2H"].monthly, last = bx[bx.length - 1];
-  addTile(tile(`DBX-2H · ${last ? f.monthLong(last.month) : ""} run-rate`, last ? f.fixed(last.run_rate) : "–", "₹ lakh/MW/mo", null,
-    "Merchant DAM arbitrage ceiling vs ₹2.10–2.32 in 2026 GUVNL 2h tenders"));
-  const bx4 = bess.indices["DBX-4H"].monthly, last4 = bx4[bx4.length - 1];
-  addTile(tile(`DBX-4H · ${last4 ? f.monthLong(last4.month) : ""} run-rate`, last4 ? f.fixed(last4.run_rate) : "–", "₹ lakh/MW/mo", null,
-    "vs ₹3.47–4.39 in 2026 WBSEDCL 4h tenders"));
+  addTile(tile(`NSE future · ${front ? f.monthLong(front.delivery_month) : ""}`, frontPx ? f.mwh(frontPx) : "–", "/MWh",
+    front ? f.delta(front.change_pct, "today") : null, front ? `OI ${f.int(front.open_interest)} lots · snapshot ${f.dShort(fut.latest_snapshot)}` : "No snapshot yet"));
+  const tam = fut.tam.find((r) => r.instrument.startsWith("MTH-BAS"));
+  addTile(tile(`TAM monthly base · ${tam ? tam.delivery_month : ""}`, tam ? f.mwh(tam.price_rs_mwh) : "–", "/MWh", null,
+    tam ? `auction ${f.dShort(tam.auction_date)} · ${f.fixed(tam.volume_mu, 1)} MU` : null));
   const rec = ref.rec[ref.rec.length - 1];
   addTile(tile(`REC · session ${rec ? f.dShort(rec.session_date) : ""}`, rec ? `₹${rec.price_rs_per_rec}` : "–", "/REC", null,
     rec ? `${f.int(rec.cleared_volume)} cleared` : null));
 
-  // Latest common delivery day across DAM/RTM/G-DAM.
+  // Latest delivery day that RTM has completed, so all three markets are comparable.
   const days = spot.rtm.recent.dates;
   let di = days.length - 1;
   while (di > 0 && spot.rtm.recent.mcp[di].filter((v) => v != null).length < 96) di--;
@@ -152,11 +158,9 @@ async function overview(root) {
     titleFmt: (i) => blockLabel(i), height: 280, label: "Block prices by market" }));
   tableToggle(c1, () => table(["Block", ...series.map((s) => s.short)], [...Array(96).keys()].map((b) =>
     [blockLabel(b), ...series.map((s) => f.kwh(s.values[b]))]), [1, 2, 3]));
-  const wrap1 = h("div", { class: "c8" }, c1);
-  grid.append(wrap1);
+  grid.append(h("div", { class: "c8" }, c1));
 
-  const n = 30;
-  const ds = sliceLast(spot.dam.daily, ["dates"], n).dates;
+  const ds = sliceLast(spot.dam.daily, ["dates"], 30).dates;
   const dser = ["dam", "rtm", "gdam"].map((m) => {
     const dd = spot[m].daily, idx = new Map(dd.dates.map((x, ii) => [x, ii]));
     return { name: spot[m].label, short: SHORT[m], color: COLORS[m], values: ds.map((x) => (idx.has(x) && dd.blocks[idx.get(x)] >= 96 ? dd.vwap[idx.get(x)] : null)) };
@@ -167,31 +171,29 @@ async function overview(root) {
   tableToggle(c2, () => table(["Date", ...dser.map((s) => s.short)], ds.map((x, ii) => [x, ...dser.map((s) => f.kwh(s.values[ii]))]).reverse(), [1, 2, 3]));
   grid.append(h("div", { class: "c4" }, c2));
 
-  const note = notes.notes[0];
-  const nc = card("The Dhruva Weekly", note ? `week ending ${f.dLong(note.week_ending)}` : "");
-  if (note) {
-    const md = note.markdown.split("\n## ").slice(1, 2).map((x) => `## ${x}`).join("");
-    nc.append(markdown(md), h("a", { href: "#weekly" }, "Read the full note →"));
-  } else nc.append(h("p", { class: "empty" }, "First note publishes Monday."));
-  grid.append(h("div", { class: "c6" }, nc));
+  const tc = card("Latest tender awards", "discovered tariffs");
+  tc.classList.add("nowrap1");
+  tc.append(table(["Date", "Authority", "Category", "Tariff"], ref.tenders.slice(0, 6).map((t) => [f.dShort(t.result_date), t.authority,
+    h("span", { class: "tag" }, t.category),
+    `${t.tariff_low === t.tariff_high ? f.fixed(t.tariff_low) : `${f.fixed(t.tariff_low)}–${f.fixed(t.tariff_high)}`} ${t.unit}`])),
+  h("a", { href: "#tenders" }, "All tenders →"));
+  grid.append(h("div", { class: "c6" }, tc));
 
-  const cov = card("Coverage", "what the terminal tracks and how");
+  const cov = card("Coverage", "market data and where it comes from");
   const rows = [
     ["IEX DAM, RTM, G-DAM, HP-DAM", "15-min blocks, from Apr 2024", "live"],
     ["DAM bid-area prices (13 areas)", "15-min blocks", "live"],
-    ["DAM unconstrained MCP (futures settlement basis)", "daily, from Jan 2026", "live"],
     ["NSE electricity futures", "daily snapshot", "live"],
     ["MCX electricity futures", "manual CSV hook (MCX blocks data-centre IPs)", "manual"],
-    ["Term-ahead monthly auctions", "each auction", "live"],
-    ["DSM Normal Rate", "computed per block (DAM/RTM)", "live"],
-    ["SRAS / TRAS ancillary clearing", "Grid-India weekly accounts", "planned"],
-    ["REC sessions", "each session", "live"],
+    ["IEX term-ahead monthly auctions", "each auction", "live"],
+    ["IEX REC sessions", "each session", "live"],
     ["Tenders: BESS, FDRE, solar, wind", "curated, every row sourced", "manual"],
-    ["Open-access landed cost", "~39 discoms × category × voltage", "live"],
-    ["Dhruva BESS-IN (DBX) index", "daily, methodology v1.0", "live"],
+    ["Open-access landed cost (IEX calculator)", "39 discoms × category × voltage", "live"],
+    ["DSM and SRAS/TRAS settlement rates", "RPC weekly accounts", "planned"],
   ];
   cov.append(table(["Dataset", "Granularity", "Status"], rows.map(([a, b, s]) =>
-    [a, b, h("span", { class: `status-dot${s === "live" ? "" : " warn"}` }, s)])));
+    [a, b, h("span", { class: `status-dot${s === "live" ? "" : " warn"}` }, s)])),
+  h("p", { class: "note" }, "Dhruva's own indices and models are kept separately, in the Dhruva section."));
   grid.append(h("div", { class: "c6" }, cov));
 }
 
@@ -292,7 +294,7 @@ async function spotPage(root) {
 }
 
 async function regionsPage(root) {
-  const [reg, meta] = await Promise.all([load("regions.json"), load("meta.json")]);
+  const reg = await load("regions.json");
   root.append(pageHead("Regions", "DAM prices for IEX's 13 bid areas. When transmission corridors congest, India splits and areas clear at different prices. Since market coupling began in January 2026, that split is the regional signal."));
   const grid = h("div", { class: "grid" });
   root.append(grid);
@@ -332,108 +334,48 @@ async function regionsPage(root) {
   lc.append(h("p", { class: "note" }, "Where the lines separate, a transmission corridor was congested and that area cleared at its own price."));
   grid.append(h("div", { class: "c6" }, lc));
 
-  const bc = card("Regional battery index", "DBX-2H spec on each bid area's DAM price · ₹ lakh/MW/month");
-  if (isPro()) {
-    const bm = reg.bess_monthly;
-    bc.append(table(["Area", ...bm.months.slice(-6).map(f.monthLabel)], areas.map((a) => [a, ...bm.areas[a].slice(-6).map((v) => f.fixed(v))]),
-      [1, 2, 3, 4, 5, 6]));
-    bc.append(h("p", { class: "note" }, "The latest month is month-to-date. Areas only diverge when the grid splits."));
-  } else bc.append(lockCard("Enterprise: regional battery indices", "Battery revenue by bid area, for siting and for lenders' location-specific models."));
-  grid.append(h("div", { class: "c6" }, bc));
 }
 
 async function futuresPage(root) {
   const fut = await load("futures.json");
-  root.append(pageHead("Futures and the Dhruva Base Index",
-    "MCX and NSE list monthly base-load electricity futures (50 MWh lots). They are cash-settled on the month's volume-weighted DAM unconstrained MCP. The Dhruva Base Index (DBI-M) computes that settlement number to date, every day."));
+  root.append(pageHead("Futures and term-ahead",
+    "NSE and MCX list monthly base-load electricity futures (50 MWh lots), cash-settled on the month's volume-weighted IEX DAM unconstrained MCP. IEX's term-ahead market auctions physical monthly contracts."));
   const grid = h("div", { class: "grid" });
   root.append(grid);
-  const cur = fut.dbi[fut.dbi.length - 1];
-  const front = fut.contracts.find((c) => c.delivery_month === cur?.month);
-  const frontPx = front ? (front.last || front.prev_close) : null;
-  const add = (t, cls = "c3") => { t.classList.add(cls); grid.append(t); };
-  add(tile(`DBI-M ${f.monthLong(cur.month)} · ${cur.days}/${cur.days_in_month} days`, f.mwh(cur.vwap), "/MWh", null, `basis: ${cur.basis === "UMCP" ? "IEX unconstrained MCP × MCV" : cur.basis === "MCP" ? "IEX MCP × MCV (no UMCP files)" : `${cur.basis}; MCP × MCV on days IEX's UMCP file is missing`}`));
-  add(tile(`NSE ${f.monthLabel(cur.month)} future`, frontPx ? f.mwh(frontPx) : "–", "/MWh",
-    front ? f.delta(front.change_pct, "today") : null, fut.latest_snapshot ? `snapshot ${f.dShort(fut.latest_snapshot)} · OI ${f.int(front?.open_interest)} lots` : "no snapshot yet"));
-  add(tile("Futures − index", frontPx ? f.mwh(frontPx - cur.vwap) : "–", "/MWh", null,
-    "Futures above the MTD index means the market expects the rest of the month to clear higher."));
-  const prev = fut.dbi[fut.dbi.length - 2];
-  add(tile(`Last settled · ${prev ? f.monthLong(prev.month) : ""}`, prev ? f.mwh(prev.vwap) : "–", "/MWh", null, prev ? `${prev.days} delivery days · ${prev.basis}` : ""));
-
-  const pc = card(`Month-to-date index path · ${f.monthLong(cur.month)}`, "₹/MWh");
-  const xs = cur.mtd.map((p) => p[0]);
-  const series = [{ name: "DBI-M (month to date)", short: "DBI-M", color: "var(--s1)", values: cur.mtd.map((p) => p[1]) }];
-  const fs = fut.series.find((s) => s.exchange === "NSE" && s.month === cur.month);
-  if (fs) {
-    const m = new Map(fs.points);
-    series.push({ name: `NSE ${f.monthLabel(cur.month)} future`, short: "NSE", color: "var(--s2)", values: xs.map((x) => m.get(x) ?? null) });
-  }
-  mount(pc, (el) => lineChart(el, { x: xs, series, yFmt: (v) => f.compact(v), tipFmt: (v) => `${f.mwh(v)}/MWh`, zero: false,
-    xFmt: (i) => f.dShort(xs[i]), titleFmt: (i) => f.dLong(xs[i]), height: 260 }));
-  pc.append(h("p", { class: "note" }, "The futures series starts from Dhruva's first daily snapshot, because NSE publishes no history for these contracts."));
-  grid.append(h("div", { class: "c7" }, pc));
+  const traded = fut.contracts.filter((c) => c.last || c.prev_close);
+  const span = `c${12 / Math.max(1, Math.min(4, traded.length))}`;
+  traded.slice(0, 4).forEach((c) => {
+    const t = tile(`NSE ${f.monthLong(c.delivery_month)}`, f.mwh(c.last || c.prev_close), "/MWh", f.delta(c.change_pct, "today"),
+      `expiry ${f.dShort(c.expiry)} · ${f.int(c.volume_lots)} lots · OI ${f.int(c.open_interest)}`);
+    t.classList.add(span);
+    grid.append(t);
+  });
 
   const cc = card("Listed contracts", fut.latest_snapshot ? `NSE ELECMBL · ${f.dLong(fut.latest_snapshot)}` : "");
   cc.append(table(["Exchange", "Delivery", "Expiry", "Last ₹/MWh", "Prev close", "Chg %", "Lots", "OI"],
     fut.contracts.map((c) => [c.exchange, f.monthLong(c.delivery_month), f.dShort(c.expiry), f.int(c.last), f.int(c.prev_close), f.fixed(c.change_pct, 2), f.int(c.volume_lots), f.int(c.open_interest)]),
     [3, 4, 5, 6, 7]));
   cc.append(h("p", { class: "note" }, "MCX blocks automated access from data-centre IPs. Drop a CSV at data/manual/mcx_futures.csv (same columns) to include it."));
-  grid.append(h("div", { class: "c5" }, cc));
+  grid.append(h("div", { class: "c6" }, cc));
 
-  const hc = card("Index history", "DBI-M by month · ₹/MWh");
-  const months = fut.dbi.slice(isPro() ? 0 : -6);
-  mount(hc, (el) => barChart(el, { labels: months.map((m) => m.month), series: [{ name: "DBI-M", color: "var(--s1)", values: months.map((m) => m.vwap) }],
-    yFmt: f.compact, tipFmt: (v, s, i) => `${f.mwh(v)}/MWh · ${months[i].days} days · ${months[i].basis}`, xFmt: (i) => f.monthLabel(months[i].month),
-    titleFmt: (i) => f.monthLong(months[i].month), height: 240, capLabels: months.length <= 12, capFmt: (v) => f.int(v) }));
-  tableToggle(hc, () => table(["Month", "DBI-M ₹/MWh", "Days", "Basis"], fut.dbi.slice().reverse().map((m) => [f.monthLong(m.month), f.int(m.vwap), `${m.days}/${m.days_in_month}`, m.basis]), [1]));
-  csvButton(hc, "dhruva_dbi_monthly.csv", () => [["month", "dbi_m_rs_mwh", "days", "basis"], ...fut.dbi.map((m) => [m.month, m.vwap, m.days, m.basis])]);
-  if (!isPro()) hc.append(h("p", { class: "note" }, "Free view: last 6 months. Pro: from April 2024."));
-  grid.append(h("div", { class: "c6" }, hc));
+  const pc = card("Futures price by snapshot", "₹/MWh, last or previous close");
+  const months = [...new Set(fut.series.map((s) => s.month))].sort().slice(0, 4);
+  const xs = [...new Set(fut.series.flatMap((s) => s.points.map((p) => p[0])))].sort();
+  if (xs.length >= 2) {
+    mount(pc, (el) => lineChart(el, { x: xs, series: months.map((m, i) => {
+      const pts = new Map(fut.series.find((s) => s.month === m).points);
+      return { name: `NSE ${f.monthLabel(m)}`, color: `var(--s${i + 1})`, values: xs.map((x) => pts.get(x) ?? null) };
+    }), yFmt: f.compact, tipFmt: (v) => `${f.mwh(v)}/MWh`, zero: false, xFmt: (i) => f.dShort(xs[i]), titleFmt: (i) => f.dLong(xs[i]), height: 240 }));
+  } else {
+    pc.append(h("p", { class: "empty" }, `One snapshot so far (${f.dLong(xs[0])}). NSE publishes no history for these contracts, so the series grows by one point each trading day.`));
+  }
+  grid.append(h("div", { class: "c6" }, pc));
 
   const tc = card("Term-ahead market: monthly auctions", "IEX TAM, physical delivery");
   tc.append(table(["Auction", "Instrument", "Delivery", "Volume MU", "Price ₹/MWh"],
     fut.tam.slice(0, 12).map((r) => [f.dShort(r.auction_date), r.instrument, r.delivery_month, f.fixed(r.volume_mu, 2), f.int(r.price_rs_mwh)]), [3, 4]));
   tc.append(h("p", { class: "note" }, "TAM contracts are physical and often peak-shaped or round-the-clock. They are not directly comparable to cash-settled base-load futures."));
-  grid.append(h("div", { class: "c6" }, tc));
-}
-
-async function balancingPage(root) {
-  const dsm = await load("dsm.json");
-  root.append(pageHead("Balancing: DSM and ancillary",
-    "Under the CERC DSM Regulations 2024, deviations are priced off a block-wise Normal Rate. It is an equal-thirds blend of the DAM price, the RTM price and the Ancillary Service Charge, and it falls back to 50:50 DAM/RTM when no ancillary service is dispatched."));
-  const grid = h("div", { class: "grid" });
-  root.append(grid);
-  const lt = dsm.latest;
-  if (lt) {
-    const c = card(`Normal Rate by block · ${f.dLong(lt.date)}`, "₹/kWh");
-    mount(c, (el) => lineChart(el, { x: [...Array(96).keys()], series: [
-      { name: "Normal Rate (indicative)", short: "NR", color: "var(--s7)", values: lt.nr },
-      { name: "DAM", color: COLORS.dam, values: lt.dam, width: 1.5 },
-      { name: "RTM", color: COLORS.rtm, values: lt.rtm, width: 1.5 },
-    ], yFmt: f.kwhAxis, tipFmt: (x) => f.kwh(x), xFmt: hours, titleFmt: blockLabel, height: 280 }));
-    tableToggle(c, () => table(["Block", "NR", "DAM", "RTM"], lt.nr.map((x, b) => [blockLabel(b), f.kwh(x), f.kwh(lt.dam[b]), f.kwh(lt.rtm[b])]), [1, 2, 3]));
-    grid.append(h("div", { class: "c8" }, c));
-  }
-  const d = dsm.daily, n = Math.min(rangeDays(), d.dates.length);
-  const sl = sliceLast(d, ["dates", "avg", "max", "min"], n);
-  const s = card("Status", "");
-  s.append(table(["Component", "Source", "Status"], [
-    ["DAM ACP", "IEX, every block", h("span", { class: "status-dot" }, "live")],
-    ["RTM ACP", "IEX, every block", h("span", { class: "status-dot" }, "live")],
-    ["Ancillary Service Charge (SRAS/TRAS)", "RPC weekly DSM/SRAS/TRAS accounts", h("span", { class: "status-dot warn" }, "planned")],
-  ]), h("p", { class: "note" }, dsm.method),
-  h("p", { class: "note" }, "Using IEX prices only. The regulation uses the weighted ACP across all exchanges; with DAM coupling the DAM leg is the same, and the RTM leg can differ slightly."));
-  grid.append(h("div", { class: "c4" }, s));
-  const c2 = card("Daily Normal Rate", `average and range · last ${sl.dates.length} days`);
-  mount(c2, (el) => lineChart(el, { x: sl.dates, series: [
-    { name: "Max block", short: "Max", color: "var(--s2)", values: sl.max },
-    { name: "Daily average", short: "Avg", color: "var(--s7)", values: sl.avg },
-    { name: "Min block", short: "Min", color: "var(--s3)", values: sl.min },
-  ], yFmt: f.kwhAxis, tipFmt: (x) => f.kwh(x), xFmt: (i) => f.dShort(sl.dates[i]),
-    titleFmt: (i) => f.dLong(sl.dates[i]), height: 240 }));
-  csvButton(c2, "dhruva_dsm_normal_rate_daily.csv", () => [["date", "avg", "max", "min"], ...sl.dates.map((x, i) => [x, sl.avg[i], sl.max[i], sl.min[i]])]);
-  root.append(h("div", { class: "controls", style: { marginTop: "14px" } }, rangeControl(() => route())));
-  root.append(c2);
+  grid.append(h("div", { class: "c12" }, tc));
 }
 
 async function recPage(root) {
@@ -462,7 +404,7 @@ async function recPage(root) {
 }
 
 async function tendersPage(root) {
-  const [ref, bess] = await Promise.all([load("reference.json"), load("bess.json")]);
+  const ref = await load("reference.json");
   root.append(pageHead("Tender results", "Discovered tariffs from central and state auctions for standalone batteries, firm and dispatchable RE (FDRE), solar, solar-plus-storage and wind. Every row links to its source."));
   const cats = ["All", ...new Set(ref.tenders.map((t) => t.category))];
   let cat = "All";
@@ -476,18 +418,15 @@ async function tendersPage(root) {
     body.append(grid);
     if (cat === "All" || cat === "BESS") {
       const b = ref.tenders.filter((t) => t.category === "BESS").sort((x, y) => x.result_date.localeCompare(y.result_date));
-      const two = bess.indices["DBX-2H"].trailing_365_lakh_per_mw_month, four = bess.indices["DBX-4H"].trailing_365_lakh_per_mw_month;
-      const c = card("Battery tenders vs the merchant ceiling", "₹ lakh/MW/month");
       const dur = (t) => Math.round(t.energy_mwh / t.capacity_mw);
+      const c = card("Standalone battery tenders", "lowest discovered tariff · ₹ lakh/MW/month");
       mount(c, (el) => barChart(el, { labels: b.map((t) => `${t.authority} ${dur(t)}h · ${f.dShort(t.result_date)}`),
         series: [{ name: "Discovered tariff", color: "var(--s1)", colors: b.map((t) => (dur(t) >= 4 ? "var(--s7)" : "var(--s1)")), values: b.map((t) => t.tariff_low) }],
-        refLines: [{ y: two, label: `DBX-2H trailing 12m ${f.fixed(two)}` }, { y: four, label: `DBX-4H trailing 12m ${f.fixed(four)}` }],
-        yFmt: (x) => f.fixed(x, 1), tipFmt: (v, s, i) => `₹${f.fixed(v)} L/MW/mo · ${b[i].energy_mwh / b[i].capacity_mw}h · ${b[i].title}`,
-        titleFmt: (i) => b[i].authority, height: 260, capLabels: true, capFmt: (v) => f.fixed(v) }));
+        yFmt: (x) => f.fixed(x, 1), tipFmt: (v, s, i) => `₹${f.fixed(v)} L/MW/mo · ${dur(b[i])}h · ${b[i].title}`,
+        titleFmt: (i) => b[i].authority, height: 240, capLabels: true, capFmt: (v) => f.fixed(v) }));
       c.append(h("div", { class: "legend", style: { marginTop: "6px" } },
-        h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s1)" } }), "2-hour tender (compare with DBX-2H)"),
-        h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s7)" } }), "4-hour tender (compare with DBX-4H)")));
-      c.append(h("p", { class: "note" }, "DBX is a perfect-foresight DAM arbitrage ceiling with 1 cycle a day. A tender tariff is a contracted capacity payment. Where the tariff sits below the merchant ceiling, the buyer keeps the arbitrage value; the gap is what a merchant or hybrid model competes for."));
+        h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s1)" } }), "2-hour"),
+        h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s7)" } }), "4-hour")));
       grid.append(h("div", { class: "c12" }, c));
     }
     const tc = card("Results", `${rows.length} awards`);
@@ -555,9 +494,9 @@ async function openAccessPage(root) {
 async function bessPage(root) {
   const bess = await load("bess.json");
   const I = bess.indices;
-  root.append(pageHead("Dhruva BESS-IN battery revenue index",
-    `What a 1 MW battery would have earned from exchange arbitrage. Perfect-foresight daily optimisation on IEX 15-minute prices, ${(I["DBX-2H"].rte * 100).toFixed(0)}% round-trip efficiency, ₹${I["DBX-2H"].fee}/MWh exchange fee per side. Methodology v${bess.method_version}.`),
-  h("a", { href: "#methodology", class: "btn ghost small" }, "Methodology"));
+  const [ref, reg] = await Promise.all([load("reference.json"), load("regions.json")]);
+  root.append(dhruvaHead("Battery revenue index (DBX)",
+    `What a 1 MW battery would have earned from exchange arbitrage. Perfect-foresight daily optimisation on IEX 15-minute prices, ${(I["DBX-2H"].rte * 100).toFixed(0)}% round-trip efficiency, ₹${I["DBX-2H"].fee}/MWh exchange fee per side. Methodology v${bess.method_version}.`));
   const grid = h("div", { class: "grid" });
   root.append(grid);
   const two = I["DBX-2H"], lastM = two.monthly[two.monthly.length - 1];
@@ -616,11 +555,155 @@ async function bessPage(root) {
       h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s2)" } }), "charge (buy)")));
     g2.append(h("div", { class: "c6" }, p), h("div", { class: "c6" }, s));
   }
+
+  const g3 = h("div", { class: "grid", style: { marginTop: "14px" } });
+  root.append(g3);
+  const b = ref.tenders.filter((t) => t.category === "BESS").sort((x, y) => x.result_date.localeCompare(y.result_date));
+  const dur = (t) => Math.round(t.energy_mwh / t.capacity_mw);
+  const twoT = I["DBX-2H"].trailing_365_lakh_per_mw_month, fourT = I["DBX-4H"].trailing_365_lakh_per_mw_month;
+  const tc = card("Tender tariffs vs the DBX ceiling", "₹ lakh/MW/month");
+  mount(tc, (el) => barChart(el, { labels: b.map((t) => `${t.authority} ${dur(t)}h · ${f.dShort(t.result_date)}`),
+    series: [{ name: "Discovered tariff", color: "var(--s1)", colors: b.map((t) => (dur(t) >= 4 ? "var(--s7)" : "var(--s1)")), values: b.map((t) => t.tariff_low) }],
+    refLines: [{ y: twoT, label: `DBX-2H trailing 12m ${f.fixed(twoT)}` }, { y: fourT, label: `DBX-4H trailing 12m ${f.fixed(fourT)}` }],
+    yFmt: (x) => f.fixed(x, 1), tipFmt: (v, s, i) => `₹${f.fixed(v)} L/MW/mo · ${dur(b[i])}h · ${b[i].title}`,
+    titleFmt: (i) => b[i].authority, height: 260, capLabels: true, capFmt: (v) => f.fixed(v) }));
+  tc.append(h("div", { class: "legend", style: { marginTop: "6px" } },
+    h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s1)" } }), "2-hour tender (compare with DBX-2H)"),
+    h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s7)" } }), "4-hour tender (compare with DBX-4H)")),
+  h("p", { class: "note" }, "Bars are actual discovered tariffs (see Tenders). Lines are Dhruva's modelled merchant ceiling. A tender tariff is a contracted capacity payment; where it sits below the ceiling, the buyer keeps the arbitrage value."));
+  g3.append(h("div", { class: "c12" }, tc));
+
+  const areas = Object.keys(reg.areas);
+  const bc = card("Regional battery index", "DBX-2H spec on each bid area's DAM price · ₹ lakh/MW/month");
+  if (isPro()) {
+    const bm = reg.bess_monthly;
+    bc.append(table(["Area", "Region", ...bm.months.slice(-6).map(f.monthLabel)],
+      areas.map((a) => [a, reg.areas[a].region, ...bm.areas[a].slice(-6).map((v) => f.fixed(v))]), [2, 3, 4, 5, 6, 7]));
+    bc.append(h("p", { class: "note" }, "The latest month is month-to-date. Areas only diverge when the grid splits."));
+  } else bc.append(lockCard("Enterprise: regional battery indices", "Battery revenue by bid area, for siting and for lenders' location-specific models."));
+  g3.append(h("div", { class: "c12" }, bc));
+}
+
+async function dhruvaHome(root) {
+  const [bess, fut] = await Promise.all([load("bess.json"), load("futures.json")]);
+  root.append(dhruvaHead("Dhruva indices and analytics",
+    "Everything on these pages is Dhruva's own work: benchmarks and models built on top of the market data, with open code and a versioned methodology. The Markets pages show the source data alone."));
+  const grid = h("div", { class: "grid" });
+  root.append(grid);
+  const add = (t) => { t.classList.add("c3"); grid.append(t); };
+  for (const name of ["DBX-2H", "DBX-4H"]) {
+    const ix = bess.indices[name], m = ix.monthly.at(-1);
+    add(tile(`${name} · ${f.monthLong(m.month)} run-rate`, f.fixed(m.run_rate), "₹ lakh/MW/mo", null,
+      `trailing 12 months ₹${f.fixed(ix.trailing_365_lakh_per_mw_month)} lakh/MW/mo`));
+  }
+  const cur = fut.dbi.at(-1), prev = fut.dbi.at(-2);
+  add(tile(`DBI-M · ${f.monthLong(cur.month)} to date`, f.mwh(cur.vwap), "/MWh", null, `${cur.days}/${cur.days_in_month} days · ${cur.basis}`));
+  add(tile(`DBI-M · ${f.monthLong(prev.month)}`, f.mwh(prev.vwap), "/MWh", null, `${prev.days} delivery days · ${prev.basis}`));
+  const products = card("What Dhruva publishes", "");
+  products.append(table(["Product", "What it is", "Page"], [
+    [h("b", {}, "DBX battery index"), "Daily perfect-foresight arbitrage revenue for a 2h and 4h battery, in the unit tenders use (₹ lakh/MW/month)", h("a", { href: "#bess" }, "Battery index")],
+    [h("b", {}, "DBI-M base index"), "Month-to-date volume-weighted DAM unconstrained price: the number NSE and MCX futures settle on, computed daily", h("a", { href: "#base-index" }, "Base index")],
+    [h("b", {}, "Indicative DSM Normal Rate"), "Block-wise rate per the CERC DSM Regulations 2024, from DAM and RTM prices (ancillary component pending)", h("a", { href: "#analytics" }, "Analytics")],
+    [h("b", {}, "D+1 baseline forecast"), "Per-block median of the last 7 days, published with its backtest error", h("a", { href: "#analytics" }, "Analytics")],
+    [h("b", {}, "The Dhruva Weekly"), "Monday note drafted from the data, with an analyst view", h("a", { href: "#weekly" }, "Weekly")],
+  ]));
+  grid.append(h("div", { class: "c12" }, products));
+}
+
+async function baseIndexPage(root) {
+  const fut = await load("futures.json");
+  root.append(dhruvaHead("Base index (DBI-M)",
+    "NSE and MCX monthly electricity futures settle on the month's volume-weighted IEX DAM unconstrained MCP. DBI-M computes that number to date, every day, so the expiring contract can be read against it."));
+  const grid = h("div", { class: "grid" });
+  root.append(grid);
+  const cur = fut.dbi[fut.dbi.length - 1];
+  const front = fut.contracts.find((c) => c.delivery_month === cur?.month);
+  const frontPx = front ? (front.last || front.prev_close) : null;
+  const add = (t) => { t.classList.add("c3"); grid.append(t); };
+  add(tile(`DBI-M ${f.monthLong(cur.month)} · ${cur.days}/${cur.days_in_month} days`, f.mwh(cur.vwap), "/MWh", null, `basis: ${cur.basis === "UMCP" ? "IEX unconstrained MCP × MCV" : cur.basis === "MCP" ? "IEX MCP × MCV (no UMCP files)" : `${cur.basis}; MCP × MCV on days IEX's UMCP file is missing`}`));
+  add(tile(`NSE ${f.monthLabel(cur.month)} future`, frontPx ? f.mwh(frontPx) : "–", "/MWh",
+    front ? f.delta(front.change_pct, "today") : null, fut.latest_snapshot ? `exchange price · snapshot ${f.dShort(fut.latest_snapshot)}` : "no snapshot yet"));
+  add(tile("Futures − index", frontPx ? f.mwh(frontPx - cur.vwap) : "–", "/MWh", null,
+    "Futures above the index means the market expects the rest of the month to clear higher."));
+  const prev = fut.dbi[fut.dbi.length - 2];
+  add(tile(`DBI-M · ${prev ? f.monthLong(prev.month) : ""}`, prev ? f.mwh(prev.vwap) : "–", "/MWh", null, prev ? `${prev.days} delivery days · ${prev.basis}` : ""));
+
+  const pc = card(`Month-to-date path · ${f.monthLong(cur.month)}`, "₹/MWh");
+  const xs = cur.mtd.map((p) => p[0]);
+  const series = [{ name: "DBI-M (month to date)", short: "DBI-M", color: "var(--s1)", values: cur.mtd.map((p) => p[1]) }];
+  const fs = fut.series.find((s) => s.exchange === "NSE" && s.month === cur.month);
+  if (fs) {
+    const m = new Map(fs.points);
+    series.push({ name: `NSE ${f.monthLabel(cur.month)} future (exchange)`, short: "NSE", color: "var(--s2)", values: xs.map((x) => m.get(x) ?? null) });
+  }
+  mount(pc, (el) => lineChart(el, { x: xs, series, yFmt: (v) => f.compact(v), tipFmt: (v) => `${f.mwh(v)}/MWh`, zero: false,
+    xFmt: (i) => f.dShort(xs[i]), titleFmt: (i) => f.dLong(xs[i]), height: 260 }));
+  pc.append(h("p", { class: "note" }, "The futures line starts from the first daily snapshot, because NSE publishes no history for these contracts."));
+  grid.append(h("div", { class: "c7" }, pc));
+
+  const hc = card("DBI-M by month", "₹/MWh");
+  const months = fut.dbi.slice(isPro() ? 0 : -6);
+  mount(hc, (el) => barChart(el, { labels: months.map((m) => m.month), series: [{ name: "DBI-M", color: "var(--s1)", values: months.map((m) => m.vwap) }],
+    yFmt: f.compact, tipFmt: (v, s, i) => `${f.mwh(v)}/MWh · ${months[i].days} days · ${months[i].basis}`, xFmt: (i) => f.monthLabel(months[i].month),
+    titleFmt: (i) => f.monthLong(months[i].month), height: 260, capLabels: months.length <= 12, capFmt: (v) => f.int(v) }));
+  tableToggle(hc, () => table(["Month", "DBI-M ₹/MWh", "Days", "Basis"], fut.dbi.slice().reverse().map((m) => [f.monthLong(m.month), f.int(m.vwap), `${m.days}/${m.days_in_month}`, m.basis]), [1]));
+  csvButton(hc, "dhruva_dbi_monthly.csv", () => [["month", "dbi_m_rs_mwh", "days", "basis"], ...fut.dbi.map((m) => [m.month, m.vwap, m.days, m.basis])]);
+  if (!isPro()) hc.append(h("p", { class: "note" }, "Free view: last 6 months. Pro: from April 2024."));
+  grid.append(h("div", { class: "c5" }, hc));
+}
+
+async function analyticsPage(root) {
+  const [dsm, fc] = await Promise.all([load("dsm.json"), load("forecast.json")]);
+  root.append(dhruvaHead("Analytics",
+    "Calculations Dhruva runs on exchange prices: an indicative DSM Normal Rate under the CERC DSM Regulations 2024, and a D+1 baseline price forecast."));
+  const grid = h("div", { class: "grid" });
+  root.append(grid);
+  const lt = dsm.latest;
+  if (lt) {
+    const c = card(`Indicative DSM Normal Rate · ${f.dLong(lt.date)}`, "₹/kWh by block");
+    mount(c, (el) => lineChart(el, { x: [...Array(96).keys()], series: [
+      { name: "Normal Rate (indicative)", short: "NR", color: "var(--s7)", values: lt.nr },
+      { name: "DAM", color: COLORS.dam, values: lt.dam, width: 1.5 },
+      { name: "RTM", color: COLORS.rtm, values: lt.rtm, width: 1.5 },
+    ], yFmt: f.kwhAxis, tipFmt: (x) => f.kwh(x), xFmt: hours, titleFmt: blockLabel, height: 280 }));
+    tableToggle(c, () => table(["Block", "NR", "DAM", "RTM"], lt.nr.map((x, b) => [blockLabel(b), f.kwh(x), f.kwh(lt.dam[b]), f.kwh(lt.rtm[b])]), [1, 2, 3]));
+    grid.append(h("div", { class: "c8" }, c));
+  }
+  const s = card("How the rate is built", "");
+  s.append(table(["Component", "Source", "Status"], [
+    ["DAM ACP", "IEX, every block", h("span", { class: "status-dot" }, "live")],
+    ["RTM ACP", "IEX, every block", h("span", { class: "status-dot" }, "live")],
+    ["Ancillary Service Charge (SRAS/TRAS)", "RPC weekly DSM/SRAS/TRAS accounts", h("span", { class: "status-dot warn" }, "planned")],
+  ]), h("p", { class: "note" }, "The regulation blends DAM, RTM and the Ancillary Service Charge in equal thirds, and falls back to 50:50 DAM/RTM when no ancillary service is dispatched. Until the ancillary charge is ingested, the fallback is applied to every block, using IEX prices only. Official settlement rates are published weekly by the RPCs."));
+  grid.append(h("div", { class: "c4" }, s));
+
+  const d = dsm.daily, n = Math.min(rangeDays(), d.dates.length);
+  const sl = sliceLast(d, ["dates", "avg", "max", "min"], n);
+  const c2 = card("Daily indicative Normal Rate", `average and range · last ${sl.dates.length} days`);
+  mount(c2, (el) => lineChart(el, { x: sl.dates, series: [
+    { name: "Max block", short: "Max", color: "var(--s2)", values: sl.max },
+    { name: "Daily average", short: "Avg", color: "var(--s7)", values: sl.avg },
+    { name: "Min block", short: "Min", color: "var(--s3)", values: sl.min },
+  ], yFmt: f.kwhAxis, tipFmt: (x) => f.kwh(x), xFmt: (i) => f.dShort(sl.dates[i]),
+    titleFmt: (i) => f.dLong(sl.dates[i]), height: 240 }));
+  csvButton(c2, "dhruva_dsm_normal_rate_daily.csv", () => [["date", "avg", "max", "min"], ...sl.dates.map((x, i) => [x, sl.avg[i], sl.max[i], sl.min[i]])]);
+  grid.append(h("div", { class: "c12" }, h("div", { class: "controls" }, rangeControl(() => route())), c2));
+
+  const fcard = card(`D+1 baseline forecast · ${fc.target_date ? f.dLong(fc.target_date) : ""}`, fc.method || "");
+  if (!isPro()) fcard.append(lockCard("Pro: forecasts", "A per-block D+1 DAM baseline with its published backtest; ML forecasts next."));
+  else {
+    mount(fcard, (el) => lineChart(el, { x: [...Array(96).keys()], series: [
+      { name: "Baseline forecast", short: "Forecast", color: "var(--s7)", values: fc.forecast },
+      { name: `Actual ${f.dShort(fc.last_actual.date)}`, short: "Last", color: "var(--muted)", values: fc.last_actual.mcp, width: 1.5 },
+    ], yFmt: f.kwhAxis, tipFmt: (x) => f.kwh(x), xFmt: hours, titleFmt: blockLabel, height: 240 }));
+    fcard.append(h("p", { class: "note" }, `Backtest over the last ${fc.backtest.days} days: mean absolute error ${f.kwh(fc.backtest.mae)}/kWh per block. A naive benchmark to beat, not a trading signal.`));
+  }
+  grid.append(h("div", { class: "c12" }, fcard));
 }
 
 async function weeklyPage(root) {
   const notes = await load("notes.json");
-  root.append(pageHead("The Dhruva Weekly", "A free Monday note on what moved Indian power prices. The numbers are generated from the data; the analyst view is written by hand."));
+  root.append(dhruvaHead("The Dhruva Weekly", "A free Monday note on what moved Indian power prices. The numbers are generated from the data; the analyst view is written by hand."));
   if (!notes.notes.length) { root.append(h("p", { class: "empty" }, "No notes yet.")); return; }
   const sel = h("select", { onchange: () => show() }, notes.notes.map((n) => h("option", { value: n.week_ending }, `Week ending ${f.dLong(n.week_ending)}`)));
   const body = h("div", { class: "card" });
@@ -631,7 +714,8 @@ async function weeklyPage(root) {
 
 async function methodologyPage(root) {
   const md = await load("methodology.md");
-  root.append(h("div", { class: "card" }, markdown(md)));
+  root.append(dhruvaHead("Methodology", "How every Dhruva index and model is defined, what it excludes, and how it is governed."),
+    h("div", { class: "card" }, markdown(md.split("\n").slice(1).join("\n"))));
 }
 
 function pricingPage(root) {
@@ -639,7 +723,7 @@ function pricingPage(root) {
   const plan = (name, price, sub, items, cta, featured) => h("div", { class: `card plan${featured ? " featured" : ""}` },
     h("h2", {}, name), h("div", { class: "muted small" }, sub), h("div", { class: "price" }, price), h("ul", {}, items.map((i) => h("li", {}, i))), cta);
   root.append(h("div", { class: "pricing" },
-    plan("Free", "₹0", "for everyone", ["Every market, today and last 30 days", "Dhruva BESS-IN headline index", "Futures vs month-to-date index", "Tenders, RECs, open-access calculator", "The Dhruva Weekly by email"],
+    plan("Free", "₹0", "for everyone", ["Every market, today and last 30 days", "Tenders, RECs, open-access calculator", "Dhruva DBX and DBI-M headline values", "The Dhruva Weekly by email"],
       h("button", { class: "btn ghost", onclick: () => setTier("free", true) }, "Use free"), false),
     plan("Pro", "₹6,000", "per seat / month · billed annually", ["Full history from April 2024", "CSV downloads for every chart", "D+1 baseline forecast (ML forecasts next)", "Price and basis alerts (coming)", "Regional market-split history"],
       h("button", { class: "btn", onclick: () => setTier("pro", true) }, "Preview Pro"), true),
@@ -648,24 +732,14 @@ function pricingPage(root) {
   root.append(h("p", { class: "note" }, "This build has no payments. \"Preview Pro\" unlocks the Pro views in your browser so you can evaluate them."));
 }
 
-async function forecastCard(root) {
-  const fc = await load("forecast.json");
-  const c = card(`D+1 baseline forecast · ${fc.target_date ? f.dLong(fc.target_date) : ""}`, fc.method);
-  if (!isPro()) { c.append(lockCard("Pro: forecasts", "A per-block D+1 DAM baseline with its published backtest; ML forecasts next.")); root.append(c); return; }
-  mount(c, (el) => lineChart(el, { x: [...Array(96).keys()], series: [
-    { name: "Baseline forecast", short: "Forecast", color: "var(--s7)", values: fc.forecast },
-    { name: `Actual ${f.dShort(fc.last_actual.date)}`, short: "Last", color: "var(--muted)", values: fc.last_actual.mcp, width: 1.5 },
-  ], yFmt: f.kwhAxis, tipFmt: (x) => f.kwh(x), xFmt: hours, titleFmt: blockLabel, height: 240 }));
-  c.append(h("p", { class: "note" }, `Backtest over the last ${fc.backtest.days} days: mean absolute error ${f.kwh(fc.backtest.mae)}/kWh per block. A naive benchmark to beat, not a trading signal.`));
-  root.append(c);
-}
-
 // ------------------------------------------------------------------ router
 const ROUTES = [
-  ["overview", "Overview", overview], ["spot", "Spot", async (r) => { await spotPage(r); await forecastCard(r.appendChild(h("div", { style: { marginTop: "14px" } }))); }],
-  ["regions", "Regions", regionsPage], ["futures", "Futures", futuresPage], ["balancing", "DSM & ancillary", balancingPage],
-  ["rec", "RECs", recPage], ["tenders", "Tenders", tendersPage], ["open-access", "Open access", openAccessPage],
-  ["bess", "BESS index", bessPage], ["weekly", "Weekly", weeklyPage], ["methodology", "Methodology", methodologyPage], ["pricing", "Plans", pricingPage],
+  ["overview", "Overview", overview, "Markets"], ["spot", "Spot", spotPage, "Markets"], ["regions", "Regions", regionsPage, "Markets"],
+  ["futures", "Futures", futuresPage, "Markets"], ["rec", "RECs", recPage, "Markets"], ["tenders", "Tenders", tendersPage, "Markets"],
+  ["open-access", "Open access", openAccessPage, "Markets"],
+  ["dhruva", "Indices", dhruvaHome, "Dhruva"], ["bess", "Battery index", bessPage, "Dhruva"], ["base-index", "Base index", baseIndexPage, "Dhruva"],
+  ["analytics", "Analytics", analyticsPage, "Dhruva"], ["weekly", "Weekly", weeklyPage, "Dhruva"],
+  ["methodology", "Methodology", methodologyPage, "Dhruva"], ["pricing", "Plans", pricingPage, "Dhruva"],
 ];
 
 function setTier(t, rerender) {
@@ -678,9 +752,12 @@ function setTier(t, rerender) {
 let routing = 0;
 async function route() {
   const id = (location.hash.replace(/^#\/?/, "").split(/[?/]/)[0]) || "overview";
-  const r = ROUTES.find((x) => x[0] === id) || ROUTES[0];
+  const alias = { balancing: "analytics" };
+  const r = ROUTES.find((x) => x[0] === (alias[id] || id)) || ROUTES[0];
   document.querySelectorAll("nav.tabs a").forEach((a) => a.toggleAttribute("aria-current", a.dataset.id === r[0]));
-  document.querySelector("nav.tabs a[aria-current]")?.setAttribute("aria-current", "page");
+  const active = document.querySelector("nav.tabs a[aria-current]");
+  active?.setAttribute("aria-current", "page");
+  active?.scrollIntoView({ block: "nearest", inline: "nearest" });
   const main = document.querySelector("main");
   const token = ++routing;
   const fresh = h("div");
@@ -699,7 +776,13 @@ async function route() {
 
 async function init() {
   const nav = document.querySelector("nav.tabs");
-  nav.replaceChildren(...ROUTES.map(([id, label]) => h("a", { href: `#${id}`, "data-id": id }, label)));
+  let group = null;
+  nav.replaceChildren(...ROUTES.flatMap(([id, label, , g]) => {
+    const out = [];
+    if (g !== group) { group = g; out.push(h("span", { class: `navgroup${g === "Dhruva" ? " dhruva" : ""}`, "aria-hidden": "true" }, g)); }
+    out.push(h("a", { href: `#${id}`, "data-id": id, class: g === "Dhruva" ? "dhruva" : null }, label));
+    return out;
+  }));
   document.querySelectorAll("[data-tier]").forEach((b) => b.addEventListener("click", () => setTier(b.dataset.tier, true)));
   setTier(state.tier, false);
   const themeBtn = document.getElementById("theme");
