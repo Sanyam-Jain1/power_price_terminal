@@ -788,7 +788,7 @@ async function dhruvaHome(root) {
   products.append(table(["Product", "What it is", "Page"], [
     [h("b", {}, "DBX battery index"), "Daily perfect-foresight arbitrage revenue for a 2h and 4h battery, in the unit tenders use (₹ lakh/MW/month)", h("a", { href: "#bess" }, "Battery index")],
     [h("b", {}, "DBI-M base index"), "Month-to-date volume-weighted DAM unconstrained price: the number NSE and MCX futures settle on, computed daily", h("a", { href: "#base-index" }, "Base index")],
-    [h("b", {}, "Indicative DSM Normal Rate"), "Block-wise rate per the CERC DSM Regulations 2024, from DAM and RTM prices (ancillary component pending)", h("a", { href: "#analytics" }, "Analytics")],
+    [h("b", {}, "DSM Normal Rate"), "Block-wise rate per the CERC DSM Regulations 2024: highest of DAM, RTM and (DAM + RTM + ancillary charge)/3, checked against the rate the RPCs publish", h("a", { href: "#analytics" }, "Analytics")],
     [h("b", {}, "D+1 baseline forecast"), "Per-block median of the last 7 days, published with its backtest error", h("a", { href: "#analytics" }, "Analytics")],
     [h("b", {}, "The Dhruva Weekly"), "Monday note drafted from the data, with an analyst view", h("a", { href: "#weekly" }, "Weekly")],
   ]));

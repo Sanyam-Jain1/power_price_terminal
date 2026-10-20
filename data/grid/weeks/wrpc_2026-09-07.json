@@ -20,8 +20,8 @@
    "url": "https://www.wrpc.gov.in/allfile/220920261537304125trassep26.1.pdf"
   }
  },
- "fetched": "2026-10-20T15:45+05:30",
- "parser_version": "1.2",
+ "fetched": "2026-10-20T17:48+05:30",
+ "parser_version": "1.3",
  "dsm": {
   "status": "source_mismatch",
   "message": "Each entity row reconciles (payable − receivable = printed net), but WRPC's printed total differs from the sum of its rows by ₹14,441,953 payable and ₹34,038,253 receivable. Rows are shown as printed.",

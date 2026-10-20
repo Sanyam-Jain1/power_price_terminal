@@ -20,8 +20,8 @@
    "url": "https://nerpc.gov.in/wp-content/uploads/2026/10/DSM-SRAS-TRAS-and-SCUC_DATA_FILE28-Sep-26-to-04-Oct-26.zip"
   }
  },
- "fetched": "2026-10-20T15:45+05:30",
- "parser_version": "1.2",
+ "fetched": "2026-10-20T17:48+05:30",
+ "parser_version": "1.3",
  "dsm": {
   "status": "ok",
   "message": "",
@@ -2397,7 +2397,7 @@
  },
  "tras_market": {
   "status": "ok",
-  "message": "aggregated from block-wise TRAS data file",
+  "message": "aggregated from block-wise TRAS data files",
   "rows": [
    {
     "name": "AGTCCPP_APM",

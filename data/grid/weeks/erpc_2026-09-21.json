@@ -9,15 +9,15 @@
  "documents": {
   "account_pdf": {
    "title": "DSM, SRAS, TRAS and SCUC Settlement Account for the period from 21.09.2026 to 27.09.2026 (PDF)",
-   "url": "https://www.erpc.gov.in/commercials/multiple-document/download/eyJpdiI6IkIrVnBpbkpCNGdlVmtiTXQ4SUVZbHc9PSIsInZhbHVlIjoiREdETkxrNzFUVHFrcENsN1k1bDJPdz09IiwibWFjIjoiNTI5ZjUzYjBhMjFiZjA5Y2Y3ZjZlMmNkMzVkNWZhNDkzZTJkYWVmM2UwMmFkYzBkNjM3NDc5OTE2NjRhMGU1OCIsInRhZyI6IiJ9"
+   "url": "https://www.erpc.gov.in/commercials/multiple-document/download/eyJpdiI6IkpaOFdzZTYzbkYxS3I3OU1odTlYY1E9PSIsInZhbHVlIjoiMkQramZSY3M2K1lKdW0rV0o5b3duZz09IiwibWFjIjoiYjc0OTA2YTE3NTViNzMyODQ5ODhjMzIxZjJmNDM2ZjkyNzk1ZTVmYmFhOGM0ODE5NzBiYTllZGNlYzNlZmM1MiIsInRhZyI6IiJ9"
   },
   "blocks_xlsx": {
    "title": "DSM, SRAS, TRAS and SCUC Settlement Account for the period from 21.09.2026 to 27.09.2026 – block-wise data",
-   "url": "https://www.erpc.gov.in/commercials/upload-doc/download/eyJpdiI6IlVSbysvL0RrRi91cGVESEQ1UFZuMGc9PSIsInZhbHVlIjoidnU2QUR5elduMmcrSmVlenVBc0I0dz09IiwibWFjIjoiYmMxODRjMzk0N2M3YjIxZDg5MTE1NjMyYjA4YTQ5MmYwMTdjNTRjNGY2NTE5OTIzZDU3OGNmNjljYjIyNzdlZCIsInRhZyI6IiJ9/0"
+   "url": "https://www.erpc.gov.in/commercials/upload-doc/download/eyJpdiI6IlVscGM2dXU2ZzRXdjh0YUVjbS9mOVE9PSIsInZhbHVlIjoianE1VEFCRkhhRXg5ZHl1aXZsRmsvdz09IiwibWFjIjoiOTFkYzk0MTQ4ZTMxZWFkNWJjMDVmZjA3YWYyMjlkMjQ3ZjVhMjBlMDdhYzEwZGFjNjlkZTlmZmFiZGJkYTk1YyIsInRhZyI6IiJ9/0"
   }
  },
- "fetched": "2026-10-20T15:44+05:30",
- "parser_version": "1.2",
+ "fetched": "2026-10-20T17:48+05:30",
+ "parser_version": "1.3",
  "dsm": {
   "status": "ok",
   "message": "",

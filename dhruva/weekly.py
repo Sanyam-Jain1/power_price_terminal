@@ -95,6 +95,8 @@ def draft(week_ending: date | None = None) -> tuple[date, str]:
                 lines.append(f"- NSE {m}: ₹{px:,.0f}/MWh at {pts[-1]['snapshot_date']}.")
         lines.append("")
 
+    lines += _grid_lines(start, end)
+
     rec = [r for r in store.read_table("rec_sessions") if start.isoformat() <= r["session_date"] <= end.isoformat()]
     tenders = [r for r in store.read_table("reference/tenders") if start.isoformat() <= r["result_date"] <= end.isoformat()]
     if rec or tenders:
@@ -106,6 +108,46 @@ def draft(week_ending: date | None = None) -> tuple[date, str]:
         lines.append("")
     lines += ["## Analyst view", "", "_Two paragraphs from the desk go here before publishing._", ""]
     return end, "\n".join(lines)
+
+
+def _grid_lines(start: date, end: date) -> list[str]:
+    """Frequency and the biggest DSM payer from the latest RPC accounts on or before the week.
+
+    RPC accounts arrive about two weeks late, so the note quotes the latest
+    published week and says which one it is.
+    """
+    from . import grid
+    from .sources.rpc import group_of
+    weeks = [w for w in grid.load_weeks() if w["period"]["from"] <= end.isoformat()]
+    if not weeks:
+        return []
+    days: dict[str, list[float]] = {}
+    for w in weeks:
+        b = w.get("blocks") or {}
+        if b.get("status") in ("ok", "partial"):
+            for d, f in zip(b["dates"], b["frequency_hz"]):
+                if d <= end.isoformat():
+                    days[d] = [x for x in f if x is not None]
+    out = []
+    recent = sorted(days)[-7:]
+    if recent:
+        allf = [x for d in recent for x in days[d]]
+        inband = sum(49.90 <= x <= 50.05 for x in allf) / len(allf) * 100
+        out.append(f"- **Frequency, {recent[0]} to {recent[-1]}** (latest published RPC data): {inband:.0f}% of 15-minute "
+                   f"blocks within 49.90–50.05 Hz; lowest block {min(allf):.2f} Hz, highest {max(allf):.2f} Hz.")
+    latest_to = max(w["period"]["to"] for w in weeks)
+    payers = []
+    for w in weeks:
+        sec = w.get("dsm") or {}
+        if w["period"]["to"] == latest_to and sec.get("status") in ("ok", "source_mismatch"):
+            for r in sec["rows"]:
+                if group_of(r.get("category")) not in ("Inter-regional", "Cross-border"):
+                    payers.append(((r.get("payable_rs") or 0) - (r.get("receivable_rs") or 0), r["name"], w["rpc"]))
+    if payers:
+        net, name, rpc_name = max(payers)
+        out.append(f"- **Biggest DSM payer, week to {latest_to}:** {name} ({rpc_name}), ₹{net / 1e7:.2f} crore net payable "
+                   "to the deviation pool (ERPC, WRPC and NERPC accounts).")
+    return ["## Grid & balancing", "", *out, ""] if out else []
 
 
 def write(week_ending: date | None = None) -> str:

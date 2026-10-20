@@ -7,7 +7,7 @@ Dhruva (ध्रुव, the pole star) tracks Indian power prices from public d
 Modo Energy (battery indices) and Pexapark / Platts 3Pi (PPA benchmarks) are
 the models.
 
-The terminal has two sections.
+The terminal has three sections.
 
 ### Markets (source data only)
 

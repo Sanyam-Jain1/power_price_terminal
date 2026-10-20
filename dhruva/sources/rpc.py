@@ -176,12 +176,12 @@ def wrpc_blocks(path: Path) -> dict:
 
 def nerpc_blocks(members: dict[str, bytes]) -> dict:
     import openpyxl
-    data = next((b for n, b in members.items() if n.startswith("DeviationDetails")), None)
-    if data is None:
+    books = [b for n, b in sorted(members.items()) if n.startswith("DeviationDetails")]
+    if not books:
         return {"status": "parse_error", "message": "DeviationDetails workbook missing from the data file"}
-    wb = openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True)
     series: dict[str, dict[int, list]] = defaultdict(lambda: defaultdict(list))
-    for ws in wb.worksheets:
+    sheets = [ws for data in books for ws in openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True).worksheets]
+    for ws in sheets:
         day = None
         for row in ws.iter_rows(values_only=True):
             if not row:
@@ -402,35 +402,43 @@ def _merge_tras3(parts: list[dict]) -> dict:
 # ------------------------------------------------------------------ NERPC
 
 def nerpc_weeks(limit: int = 4) -> list[Week]:
+    """Group NERPC's files by DSM statement period.
+
+    A DSM statement can cover two weeks while data zips stay weekly, and the
+    AS statement sometimes starts a day early, so files are matched to the
+    DSM period they fall inside rather than by start date.
+    """
     s = http.get_text(NERPC_PAGE)
     links = re.findall(r'href="(https://nerpc\.gov\.in/wp-content/uploads/[^"#]+?)\s*(?:#[^"]*)?"', s)
-    weeks: dict[str, Week] = {}
-
-    def add(kind: str, url: str, a: date, b: date):
-        w = weeks.setdefault(f"nerpc_{a.isoformat()}", Week("NERPC", a, b, NERPC_PAGE))
-        w.docs.setdefault(kind, {"title": f"NERPC {Path(url).name}", "url": url})
-
-    for url in links:
+    dsm: list[Week] = []
+    others: list[tuple[str, str, date, date]] = []
+    for url in dict.fromkeys(links):                        # page order is newest first; drop repeats
         fn = Path(url).name
         m = re.search(r"Provisional-DSM-statement-from-(\d{6})-to-(\d{6})", fn)
         if m:
-            add("dsm_pdf", url, _d(m.group(1)), _d(m.group(2)))
+            a, b = _d(m.group(1)), _d(m.group(2))
+            if not any(w.start == a for w in dsm):
+                w = Week("NERPC", a, b, NERPC_PAGE)
+                w.docs["dsm_pdf"] = {"title": f"NERPC {fn}", "url": url}
+                dsm.append(w)
             continue
         m = re.search(r"Provisional-SRAS-and-TRAS-statement-from-(\d{6})-to-(\d{6})", fn)
         if m:
-            add("as_pdf", url, _d(m.group(1)), _d(m.group(2)))
+            others.append(("as_pdf", url, _d(m.group(1)), _d(m.group(2))))
             continue
         m = re.search(r"DATA_FILE[-_ ]*(\d{1,2}-[A-Za-z]{3}-\d{2})-to-(\d{1,2}-[A-Za-z]{3}-\d{2})\.zip", fn)
         if m:
-            add("data_zip", url, _d(m.group(1)), _d(m.group(2)))
-    # The AS statement occasionally starts a day early; attach it to the DSM week ending the same day.
-    for k in [k for k, w in weeks.items() if set(w.docs) == {"as_pdf"}]:
-        lone = weeks.pop(k)
-        for w in weeks.values():
-            if w.end == lone.end:
-                w.docs["as_pdf"] = lone.docs["as_pdf"]
-    good = [w for w in weeks.values() if "dsm_pdf" in w.docs]
-    return sorted(good, key=lambda w: w.start, reverse=True)[:limit]
+            others.append(("data_zip", url, _d(m.group(1)), _d(m.group(2))))
+    for kind, url, a, b in others:
+        for w in dsm:
+            if (kind == "as_pdf" and b == w.end) or (kind == "data_zip" and w.start <= a and b <= w.end):
+                n = sum(1 for k in w.docs if k.startswith(kind))
+                key = kind if n == 0 else f"{kind}_{n + 1}"
+                if kind == "as_pdf" and n:
+                    break
+                w.docs[key] = {"title": f"NERPC {Path(url).name}", "url": url}
+                break
+    return sorted(dsm, key=lambda w: w.start, reverse=True)[:limit]
 
 
 def nerpc_parse(week: Week) -> dict:
@@ -473,28 +481,69 @@ def nerpc_parse(week: Week) -> dict:
             out["tras_shortfall"] = t3
         except Exception as exc:  # noqa: BLE001
             out["sras"] = _fail("AS PDF", exc)
-    if "data_zip" in week.docs:
+    zips = sorted(k for k in week.docs if k.startswith("data_zip"))
+    if zips:
         try:
-            z = zipfile.ZipFile(download(week.docs["data_zip"]["url"]))
-            members = {n: z.read(n) for n in z.namelist() if n.lower().endswith(".xlsx")}
-            out["blocks"] = nerpc_blocks(members)
-            out["tras_market"], out["tras_prices"] = nerpc_tras(members)
+            parts = []
+            for k in zips:
+                z = zipfile.ZipFile(download(week.docs[k]["url"]))
+                members = {n: z.read(n) for n in z.namelist() if n.lower().endswith(".xlsx")}
+                parts.append((nerpc_blocks(members), *nerpc_tras(members)))
+            out["blocks"] = _merge_days([p[0] for p in parts], ("frequency_hz", "normal_rate_rs_mwh", "normal_rate_agreement"))
+            out["tras_market"] = _sum_tras_market([p[1] for p in parts])
+            prices = [p[2] for p in parts if p[2].get("status") == "ok"]
+            out["tras_prices"] = {"status": "ok", "dates": [d for p in prices for d in p["dates"]],
+                                  "rs_mwh": {k: [row for p in prices for row in p["rs_mwh"][k]] for k in ("da_up", "da_down", "rt_up", "rt_down")},
+                                  "blocks_with_clearing": sum(p["blocks_with_clearing"] for p in prices),
+                                  "message": "" if any(p["blocks_with_clearing"] for p in prices) else
+                                  "no TRAS cleared for NER providers in the DAM/RTM AS markets this period"} if prices else parts[0][2]
         except Exception as exc:  # noqa: BLE001
             out["blocks"] = _fail("data zip", exc)
     return out
 
 
+def _merge_days(parts: list[dict], keys: tuple[str, ...]) -> dict:
+    ok = [p for p in parts if p.get("status") == "ok"]
+    if not ok:
+        return parts[0]
+    merged = {"status": "ok", "message": "", "dates": []}
+    for k in keys:
+        merged[k] = []
+    for p in sorted(ok, key=lambda p: p["dates"][0]):
+        merged["dates"] += p["dates"]
+        for k in keys:
+            merged[k] += p[k]
+    if len(ok) < len(parts):
+        merged["status"], merged["message"] = "partial", "one of the period's data files could not be read"
+    return merged
+
+
+def _sum_tras_market(parts: list[dict]) -> dict:
+    ok = [p for p in parts if p.get("status") == "ok"]
+    if not ok:
+        return parts[0]
+    rows: dict[str, dict] = {}
+    for p in ok:
+        for r in p["rows"]:
+            acc = rows.setdefault(r["name"], {"name": r["name"], **dict.fromkeys(TRAS_MARKET_FIELDS, 0.0)})
+            for f in TRAS_MARKET_FIELDS:
+                acc[f] = round(acc[f] + (r.get(f) or 0), 3)
+    return {"status": "ok", "message": "aggregated from block-wise TRAS data files", "rows": list(rows.values()),
+            "total": {f: round(sum(r[f] for r in rows.values()), 3) for f in TRAS_MARKET_FIELDS}}
+
+
 def nerpc_tras(members: dict[str, bytes]) -> tuple[dict, dict]:
     """Provider totals and block prices for the DAM/RTM ancillary markets from the TRAS data file."""
     import openpyxl
-    data = next((b for n, b in members.items() if n.upper().startswith("TRAS")), None)
-    if data is None:
+    books = [b for n, b in sorted(members.items()) if n.upper().startswith("TRAS")]
+    if not books:
         miss = {"status": "parse_error", "message": "TRAS workbook missing from the data file", "rows": []}
         return miss, miss
-    wb = openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True)
-    rows, prices = [], defaultdict(lambda: defaultdict(lambda: [None, None, None, None]))
-    for ws in wb.worksheets:
-        acc = dict.fromkeys(TRAS_MARKET_FIELDS, 0.0)
+    totals: dict[str, dict] = {}
+    prices = defaultdict(lambda: defaultdict(lambda: [None, None, None, None]))
+    sheets = [ws for data in books for ws in openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True).worksheets]
+    for ws in sheets:
+        acc = totals.setdefault(ws.title, dict.fromkeys(TRAS_MARKET_FIELDS, 0.0))
         for r in ws.iter_rows(min_row=3, values_only=True):
             if not r or not isinstance(r[1], (int, float)) or not isinstance(r[0], str):
                 continue
@@ -509,9 +558,11 @@ def nerpc_tras(members: dict[str, bytes]) -> tuple[dict, dict]:
             for k, (qty, px) in enumerate(((2, 5), (4, 7), (11, 14), (13, 16))):
                 if g(qty) > 0 and g(px) > 0:
                     slot[k] = max(slot[k] or 0, g(px))
+    rows = []
+    for name, acc in totals.items():
         acc["up_total_rs"] = acc["da_up_energy_rs"] + acc["da_up_commit_rs"] + acc["rt_up_energy_rs"] + acc["rt_up_commit_rs"]
         acc["net_rs"] = acc["up_total_rs"] - acc["da_down_rs"] - acc["rt_down_rs"]
-        rows.append({"name": ws.title, **{k: round(v, 3) for k, v in acc.items()}})
+        rows.append({"name": name, **{k: round(v, 3) for k, v in acc.items()}})
     market = {"status": "ok", "message": "aggregated from block-wise TRAS data file", "rows": rows,
               "total": {k: round(sum(r[k] for r in rows), 3) for k in TRAS_MARKET_FIELDS}}
     days = sorted(prices)
