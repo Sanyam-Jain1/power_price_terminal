@@ -8,7 +8,6 @@ Amounts are stored in rupees, energy in MWh, prices in Rs/MWh.
 """
 from __future__ import annotations
 
-import csv
 import hashlib
 import html as htmllib
 import io
@@ -19,11 +18,12 @@ import statistics
 import zipfile
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from .. import http
 from ..config import DATA_DIR
+from . import rpc_blocks as B
 from . import tables as T
 
 log = logging.getLogger(__name__)
@@ -140,59 +140,17 @@ def _blocks_out(series: dict[str, dict[int, list]], unit_nr: float) -> dict:
             "dates": dates, "frequency_hz": freq, "normal_rate_rs_mwh": nr, "normal_rate_agreement": agree}
 
 
-def erpc_blocks(path: Path) -> dict:
-    import openpyxl
-    # Cached downloads carry no extension, which openpyxl rejects for paths; a buffer is fine.
-    wb = openpyxl.load_workbook(io.BytesIO(path.read_bytes()), read_only=True, data_only=True)
+def blocks_from(res: dict) -> dict:
+    """Frequency and Normal Rate per block from a block-level DSM parse (rpc_blocks)."""
+    if res.get("status") != "ok":
+        return {"status": "parse_error", "message": res.get("message", "no block rows")}
     series: dict[str, dict[int, list]] = defaultdict(lambda: defaultdict(list))
-    for ws in wb.worksheets:
-        hdr = None
-        for row in ws.iter_rows(values_only=True):
-            if hdr is None:
-                if row and row[0] == "Date":
-                    hdr = [str(h or "") for h in row]
-                    fi = next(i for i, h in enumerate(hdr) if h.startswith("Freq"))
-                    ni = next(i for i, h in enumerate(hdr) if h.startswith("Normal DSM Rate"))
-                continue
-            if not row or not row[0] or not re.match(r"\d{4}-\d{2}-\d{2}", str(row[0])):
-                continue
-            series[str(row[0])[:10]][int(row[2])].append((row[fi], row[ni]))
-    return _blocks_out(series, unit_nr=10.0)          # p/kWh -> Rs/MWh
-
-
-def wrpc_blocks(path: Path) -> dict:
-    z = zipfile.ZipFile(path)
-    series: dict[str, dict[int, list]] = defaultdict(lambda: defaultdict(list))
-    for name in z.namelist():
-        if not name.endswith("_DSM-2024_Data.csv"):
-            continue
-        for r in csv.DictReader(io.StringIO(z.read(name).decode("utf-8", errors="replace"))):
-            try:
-                series[r["Date"]][int(r["Block"])].append((float(r["Freq(Hz)"]), float(r["Normal Rate (p/Kwh)"])))
-            except (KeyError, ValueError):
-                continue
-    return _blocks_out(series, unit_nr=10.0)
-
-
-def nerpc_blocks(members: dict[str, bytes]) -> dict:
-    import openpyxl
-    books = [b for n, b in sorted(members.items()) if n.startswith("DeviationDetails")]
-    if not books:
-        return {"status": "parse_error", "message": "DeviationDetails workbook missing from the data file"}
-    series: dict[str, dict[int, list]] = defaultdict(lambda: defaultdict(list))
-    sheets = [ws for data in books for ws in openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True).worksheets]
-    for ws in sheets:
-        day = None
-        for row in ws.iter_rows(values_only=True):
-            if not row:
-                continue
-            if row[1] == "Total" and isinstance(row[0], str) and re.match(r"\d{2}-\d{2}-\d{4}", row[0]):
-                day = datetime.strptime(row[0], "%d-%m-%Y").date().isoformat()
-                continue
-            if day and isinstance(row[1], (int, float)) and isinstance(row[3], (int, float)):
-                nr = row[22] if len(row) > 22 and isinstance(row[22], (int, float)) else None
-                series[day][int(row[1])].append((row[3], nr))
-    return _blocks_out(series, unit_nr=1.0)           # already Rs/MWh
+    for (d, b), fs in res["freq"].items():
+        series[d][b] += [(f, None) for f in fs]
+    for r in res["rows"]:
+        if r[9]:                                      # 0 means "no rate" in some sheets, never a real rate
+            series[r[0]][r[1]].append((None, r[9]))
+    return _blocks_out(series, unit_nr=1.0)           # rpc_blocks already converts to Rs/MWh
 
 
 # ------------------------------------------------------------------ ERPC
@@ -250,7 +208,9 @@ def erpc_parse(week: Week) -> dict:
         out.setdefault("dsm", _fail("account PDF", exc))
     if "blocks_xlsx" in week.docs:
         try:
-            out["blocks"] = erpc_blocks(download(week.docs["blocks_xlsx"]["url"]))
+            res = B.erpc_dsm(download(week.docs["blocks_xlsx"]["url"]).read_bytes())
+            out["_block_data"] = {"dsm": res}
+            out["blocks"] = blocks_from(res)
         except Exception as exc:  # noqa: BLE001
             out["blocks"] = _fail("block-wise workbook", exc)
     return out
@@ -292,12 +252,17 @@ def wrpc_weeks(limit: int = 4) -> list[Week]:
             w.docs["blocks_zip"] = {"title": f"WRPC all-member block-wise data, {m.group(0)}", "url": nxt[1]}
         weeks[w.key] = w
     try:
-        for text, href in _wrpc_links(WRPC_AS_MENU):
-            m = WEEK_RE.search(text)
-            if m and re.search(r"TRAS", text) and href.lower().endswith(".pdf"):
-                key = f"wrpc_{_d(m.group(1)).isoformat()}"
-                if key in weeks and "as_pdf" not in weeks[key].docs:
-                    weeks[key].docs["as_pdf"] = {"title": f"WRPC {text}", "url": href}
+        links = _wrpc_links(WRPC_AS_MENU)
+        # A revision for one entity ("Revised TRAS SRAS & SCUC of TPCL_Mundra for ...") is not the week's
+        # account, so it is used only when no full account is listed.
+        single = re.compile(r"\bof\s+\S+\s+for\b", re.I)
+        for pass_single in (False, True):
+            for text, href in links:
+                m = WEEK_RE.search(text)
+                if m and re.search(r"TRAS", text) and href.lower().endswith(".pdf") and bool(single.search(text)) == pass_single:
+                    key = f"wrpc_{_d(m.group(1)).isoformat()}"
+                    if key in weeks and "as_pdf" not in weeks[key].docs:
+                        weeks[key].docs["as_pdf"] = {"title": f"WRPC {text}", "url": href}
     except http.FetchError as exc:
         log.warning("WRPC AS list: %s", exc)
     return sorted(weeks.values(), key=lambda w: w.start, reverse=True)[:limit]
@@ -376,7 +341,9 @@ def wrpc_parse(week: Week) -> dict:
             out["sras"] = _fail("AS PDF", exc)
     if "blocks_zip" in week.docs:
         try:
-            out["blocks"] = wrpc_blocks(download(week.docs["blocks_zip"]["url"]))
+            res = B.wrpc_dsm(download(week.docs["blocks_zip"]["url"]).read_bytes())
+            out["_block_data"] = {"dsm": res}
+            out["blocks"] = blocks_from(res)
         except Exception as exc:  # noqa: BLE001
             out["blocks"] = _fail("block-wise zip", exc)
     return out
@@ -402,11 +369,12 @@ def _merge_tras3(parts: list[dict]) -> dict:
 # ------------------------------------------------------------------ NERPC
 
 def nerpc_weeks(limit: int = 4) -> list[Week]:
-    """Group NERPC's files by DSM statement period.
+    """Group NERPC's files into settlement weeks.
 
-    A DSM statement can cover two weeks while data zips stay weekly, and the
-    AS statement sometimes starts a day early, so files are matched to the
-    DSM period they fall inside rather than by start date.
+    A DSM statement sometimes covers two weeks; it then holds one weekly
+    account per week, so it is split into two Weeks that share the PDF. The AS
+    statement can start a day early, and data zips are weekly, so files are
+    matched to the week they cover rather than by start date.
     """
     s = http.get_text(NERPC_PAGE)
     links = re.findall(r'href="(https://nerpc\.gov\.in/wp-content/uploads/[^"#]+?)\s*(?:#[^"]*)?"', s)
@@ -417,9 +385,12 @@ def nerpc_weeks(limit: int = 4) -> list[Week]:
         m = re.search(r"Provisional-DSM-statement-from-(\d{6})-to-(\d{6})", fn)
         if m:
             a, b = _d(m.group(1)), _d(m.group(2))
-            if not any(w.start == a for w in dsm):
-                w = Week("NERPC", a, b, NERPC_PAGE)
-                w.docs["dsm_pdf"] = {"title": f"NERPC {fn}", "url": url}
+            if any(w.start == a for w in dsm):
+                continue
+            starts = [a] if (b - a).days < 13 else [a + timedelta(days=7 * k) for k in range(((b - a).days + 1) // 7)]
+            for st in starts:
+                w = Week("NERPC", st, b if len(starts) == 1 else st + timedelta(days=6), NERPC_PAGE)
+                w.docs["dsm_pdf"] = {"title": f"NERPC {fn}" + ("" if len(starts) == 1 else f" (week from {st:%d.%m.%Y})"), "url": url}
                 dsm.append(w)
             continue
         m = re.search(r"Provisional-SRAS-and-TRAS-statement-from-(\d{6})-to-(\d{6})", fn)
@@ -431,21 +402,28 @@ def nerpc_weeks(limit: int = 4) -> list[Week]:
             others.append(("data_zip", url, _d(m.group(1)), _d(m.group(2))))
     for kind, url, a, b in others:
         for w in dsm:
-            if (kind == "as_pdf" and b == w.end) or (kind == "data_zip" and w.start <= a and b <= w.end):
+            if kind == "as_pdf":
+                if a <= w.start + timedelta(days=1) and b >= w.end and kind not in w.docs:
+                    w.docs[kind] = {"title": f"NERPC {Path(url).name}", "url": url}
+            elif a <= w.end and b >= w.start:
+                # Data zips are usually weekly but can span two weeks; each week reads only its own dates.
                 n = sum(1 for k in w.docs if k.startswith(kind))
-                key = kind if n == 0 else f"{kind}_{n + 1}"
-                if kind == "as_pdf" and n:
-                    break
-                w.docs[key] = {"title": f"NERPC {Path(url).name}", "url": url}
-                break
+                w.docs[kind if n == 0 else f"{kind}_{n + 1}"] = {"title": f"NERPC {Path(url).name}", "url": url}
     return sorted(dsm, key=lambda w: w.start, reverse=True)[:limit]
+
+
+def _week_offset(lines: list[str], pat: str) -> int:
+    """Line where this week's account starts in a multi-week statement (0 if not found)."""
+    i = T.find_index(lines, pat)
+    return max(i, 0)
 
 
 def nerpc_parse(week: Week) -> dict:
     out: dict = {}
     try:
         lines = T.pdf_text(download(week.docs["dsm_pdf"]["url"])).splitlines()
-        i = T.find_index(lines, r"ABT based Deviation Charge Account")
+        off = _week_offset(lines, rf"For the period {week.start:%d\.%m\.%Y} TO")
+        i = T.find_index(lines, r"ABT based Deviation Charge Account", max(off - 3, 0))
         h = T.find_index(lines, r"CONSTITUENTS\s+SCHEDULE", i)
         end = T.find_index(lines, r"Pool Balance", h)
         if min(i, h, end) < 0:
@@ -470,52 +448,43 @@ def nerpc_parse(week: Week) -> dict:
     if "as_pdf" in week.docs:
         try:
             L = T.pdf_text(download(week.docs["as_pdf"]["url"])).splitlines()
-            sras = T.numbered_rows(T.section(L, r"Format SRAS - I:", T.TOTAL_ROW, include_end=True), 6)
+            # Multi-week statements repeat each format per week, headed "... Account for Week: 07-Sep-26 to ...".
+            # The SRAS heading sits two lines above its week line; the TRAS-III one, three.
+            wk = T.find_index(L, rf"Account for Week:\s*{week.start:%d-%b-%y}")
+            sr_at = T.find_index(L, r"Format SRAS - I:", max(wk - 4, 0)) if wk >= 0 else 0
+            t3_at = T.find_index(L, r"Format TRAS - III", max(wk - 4, 0)) if wk >= 0 else 0
+            sras = T.numbered_rows(T.section(L, r"Format SRAS - I:", T.TOTAL_ROW, after=max(sr_at, 0), include_end=True), 6)
             out["sras"] = _table_out(sras, ["up_mwh", "down_mwh", "net_mwh", "energy_rs", "incentive_rs", "total_rs"], range(6))
-            ts = T.numbered_rows(T.section(L, r"Format TRAS - III", T.TOTAL_ROW, include_end=True), 4)
-            t3 = _table_out(ts, ["up_mwh", "down_mwh", "up_rs", "down_rs"], range(4))
-            for r in t3.get("rows", []):
-                r["net_rs"] = round((r["up_rs"] or 0) - (r["down_rs"] or 0), 3)
-            if "total" in t3:
-                t3["total"]["net_rs"] = round(t3["total"]["up_rs"] - t3["total"]["down_rs"], 3)
-            out["tras_shortfall"] = t3
+            # Columns: up MWh, down MWh, up charges (A), down charges paid back (B), net (A - B).
+            ts = T.numbered_rows(T.section(L, r"Format TRAS - III", T.TOTAL_ROW, after=max(t3_at, 0), include_end=True), 5)
+            out["tras_shortfall"] = _table_out(ts, ["up_mwh", "down_mwh", "up_rs", "down_rs", "net_rs"], range(5))
         except Exception as exc:  # noqa: BLE001
             out["sras"] = _fail("AS PDF", exc)
     zips = sorted(k for k in week.docs if k.startswith("data_zip"))
     if zips:
         try:
-            parts = []
+            parts, members = [], {}
             for k in zips:
                 z = zipfile.ZipFile(download(week.docs[k]["url"]))
-                members = {n: z.read(n) for n in z.namelist() if n.lower().endswith(".xlsx")}
-                parts.append((nerpc_blocks(members), *nerpc_tras(members)))
-            out["blocks"] = _merge_days([p[0] for p in parts], ("frequency_hz", "normal_rate_rs_mwh", "normal_rate_agreement"))
-            out["tras_market"] = _sum_tras_market([p[1] for p in parts])
-            prices = [p[2] for p in parts if p[2].get("status") == "ok"]
+                m = {n: z.read(n) for n in z.namelist() if n.lower().endswith(".xlsx")}
+                members.update(m)
+                parts.append(nerpc_tras(m, week))
+            res = B.within(B.nerpc_dsm(members), week.start, week.end)
+            s15, s5 = (B.within(x, week.start, week.end) for x in B.nerpc_sras(members))
+            out["_block_data"] = {"dsm": res, "sras": s15, "sras_5min": s5,
+                                  "tras": B.within(B.nerpc_tras(members), week.start, week.end),
+                                  "scuc": B.within(B.nerpc_scuc(members), week.start, week.end)}
+            out["blocks"] = blocks_from(res)
+            out["tras_market"] = _sum_tras_market([p[0] for p in parts])
+            prices = [p[1] for p in parts if p[1].get("status") == "ok"]
             out["tras_prices"] = {"status": "ok", "dates": [d for p in prices for d in p["dates"]],
                                   "rs_mwh": {k: [row for p in prices for row in p["rs_mwh"][k]] for k in ("da_up", "da_down", "rt_up", "rt_down")},
                                   "blocks_with_clearing": sum(p["blocks_with_clearing"] for p in prices),
                                   "message": "" if any(p["blocks_with_clearing"] for p in prices) else
-                                  "no TRAS cleared for NER providers in the DAM/RTM AS markets this period"} if prices else parts[0][2]
+                                  "no TRAS cleared for NER providers in the DAM/RTM AS markets this period"} if prices else parts[0][1]
         except Exception as exc:  # noqa: BLE001
             out["blocks"] = _fail("data zip", exc)
     return out
-
-
-def _merge_days(parts: list[dict], keys: tuple[str, ...]) -> dict:
-    ok = [p for p in parts if p.get("status") == "ok"]
-    if not ok:
-        return parts[0]
-    merged = {"status": "ok", "message": "", "dates": []}
-    for k in keys:
-        merged[k] = []
-    for p in sorted(ok, key=lambda p: p["dates"][0]):
-        merged["dates"] += p["dates"]
-        for k in keys:
-            merged[k] += p[k]
-    if len(ok) < len(parts):
-        merged["status"], merged["message"] = "partial", "one of the period's data files could not be read"
-    return merged
 
 
 def _sum_tras_market(parts: list[dict]) -> dict:
@@ -532,7 +501,7 @@ def _sum_tras_market(parts: list[dict]) -> dict:
             "total": {f: round(sum(r[f] for r in rows.values()), 3) for f in TRAS_MARKET_FIELDS}}
 
 
-def nerpc_tras(members: dict[str, bytes]) -> tuple[dict, dict]:
+def nerpc_tras(members: dict[str, bytes], week: Week | None = None) -> tuple[dict, dict]:
     """Provider totals and block prices for the DAM/RTM ancillary markets from the TRAS data file."""
     import openpyxl
     books = [b for n, b in sorted(members.items()) if n.upper().startswith("TRAS")]
@@ -546,6 +515,8 @@ def nerpc_tras(members: dict[str, bytes]) -> tuple[dict, dict]:
         acc = totals.setdefault(ws.title, dict.fromkeys(TRAS_MARKET_FIELDS, 0.0))
         for r in ws.iter_rows(min_row=3, values_only=True):
             if not r or not isinstance(r[1], (int, float)) or not isinstance(r[0], str):
+                continue
+            if week and not (week.start <= datetime.strptime(r[0], "%d-%m-%Y").date() <= week.end):
                 continue
             g = lambda i: float(r[i]) if i < len(r) and isinstance(r[i], (int, float)) else 0.0  # noqa: E731
             acc["da_up_cleared_mwh"] += g(2); acc["da_up_sched_mwh"] += g(3); acc["da_down_mwh"] += g(4)

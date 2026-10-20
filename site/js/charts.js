@@ -367,7 +367,7 @@ function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
-/** Days x 96-block price heatmap on canvas; one-hue sequential ramp. */
+/** Days x 96-block heatmap on canvas; one-hue sequential ramp, or blue-gray-red when opts.diverging. */
 export function heatmap(el, opts) {
   const { rows, values, min = 0, max = 10000 } = opts;
   const fmt = opts.fmt || ((v) => String(v));
@@ -380,7 +380,8 @@ export function heatmap(el, opts) {
   const scale = document.createElement("div");
   scale.className = "scale";
   el.append(scale);
-  const ramp = ["--seq-0", "--seq-1", "--seq-2", "--seq-3", "--seq-4", "--seq-5", "--seq-6"].map(cssVar);
+  const ramp = (opts.diverging ? ["--div-n3", "--div-n2", "--div-n1", "--div-mid", "--div-p1", "--div-p2", "--div-p3"]
+    : ["--seq-0", "--seq-1", "--seq-2", "--seq-3", "--seq-4", "--seq-5", "--seq-6"]).map(cssVar);
   const rgb = ramp.map((h) => [1, 3, 5].map((o) => parseInt(h.slice(o, o + 2), 16)));
   const colorAt = (v) => {
     const t = Math.max(0, Math.min(1, (v - min) / (max - min || 1))) * (rgb.length - 1);
@@ -391,7 +392,7 @@ export function heatmap(el, opts) {
   const bar = document.createElement("span"); bar.className = "bar";
   bar.style.background = `linear-gradient(90deg, ${ramp.join(",")})`;
   const hiS = document.createElement("span"); hiS.textContent = fmt(max);
-  const none = document.createElement("span"); none.textContent = "· blank = no trade";
+  const none = document.createElement("span"); none.textContent = opts.blankLabel || "· blank = no trade";
   scale.append(lo, bar, hiS, none);
   const L = 74, T = 16;
   const draw = (W) => {
@@ -417,7 +418,10 @@ export function heatmap(el, opts) {
     g.textAlign = "right";
     const every = Math.max(1, Math.ceil(12 / ch));
     rows.forEach((r, i) => {
-      if (i % every === 0) g.fillText(opts.rowFmt ? opts.rowFmt(r) : r, L - 8, T + ch * i + ch - 1);
+      if (i % every === 0) {
+        g.fillStyle = cssVar("--muted");
+        g.fillText(opts.rowFmt ? opts.rowFmt(r) : r, L - 8, T + ch * i + ch - 1);
+      }
       const vals = values[i] || [];
       for (let j = 0; j < cols; j++) {
         const v = vals[j];
@@ -433,12 +437,18 @@ export function heatmap(el, opts) {
       if (i < 0 || i >= rows.length || j < 0 || j >= cols) { tt.hidden = true; return; }
       const v = values[i]?.[j];
       fillTooltip(tt, `${opts.rowFmt ? opts.rowFmt(rows[i]) : rows[i]} · ${blockLabel(j)}`,
-        [{ color: v == null ? "transparent" : colorAt(v), name: opts.unit || "", value: v == null ? "no trade" : fmt(v) }]);
+        [{ color: v == null ? "transparent" : colorAt(v), name: opts.unit || "", value: v == null ? (opts.blankText || "no trade") : (opts.tipFmt || fmt)(v) }]);
       placeTooltip(tt, host, px, py);
     };
     c.onpointerleave = () => { tt.hidden = true; };
   };
   return observe(host, draw);
+}
+
+/** 5-minute slot label (SRAS is settled per 5 minutes). */
+export function slotLabel(j) {
+  const f = (x) => `${String(Math.floor(x / 60)).padStart(2, "0")}:${String(x % 60).padStart(2, "0")}`;
+  return `${f(j * 5)}–${f(j * 5 + 5)}`;
 }
 
 export function blockLabel(j) {

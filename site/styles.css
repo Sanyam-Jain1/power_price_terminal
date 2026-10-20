@@ -21,6 +21,9 @@
   --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
   --seq-0: #cde2fb; --seq-1: #9ec5f4; --seq-2: #6da7ec; --seq-3: #3987e5;
   --seq-4: #256abf; --seq-5: #184f95; --seq-6: #0d366b;
+  /* diverging: blue (receives) <- gray -> red (pays); same steps per arm */
+  --div-n3: #184f95; --div-n2: #3987e5; --div-n1: #9ec5f4; --div-mid: #f0efec;
+  --div-p1: #f2a9a8; --div-p2: #e34948; --div-p3: #9e2424;
   --radius: 10px;
   --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
@@ -36,6 +39,8 @@
     --wash: rgba(57, 135, 229, 0.14);
     --seq-0: #184f95; --seq-1: #1c5cab; --seq-2: #256abf; --seq-3: #3987e5;
     --seq-4: #6da7ec; --seq-5: #9ec5f4; --seq-6: #cde2fb;
+    --div-n3: #9ec5f4; --div-n2: #3987e5; --div-n1: #1c5cab; --div-mid: #383835;
+    --div-p1: #8f2b2a; --div-p2: #e66767; --div-p3: #f4b0b0;
   }
 }
 :root[data-theme="dark"] {
@@ -49,6 +54,8 @@
   --wash: rgba(57, 135, 229, 0.14);
   --seq-0: #184f95; --seq-1: #1c5cab; --seq-2: #256abf; --seq-3: #3987e5;
   --seq-4: #6da7ec; --seq-5: #9ec5f4; --seq-6: #cde2fb;
+  --div-n3: #9ec5f4; --div-n2: #3987e5; --div-n1: #1c5cab; --div-mid: #383835;
+  --div-p1: #8f2b2a; --div-p2: #e66767; --div-p3: #f4b0b0;
 }
 
 * { box-sizing: border-box; }
@@ -230,3 +237,10 @@ tbody tr:hover { background: var(--surface-2); }
 footer { max-width: 1320px; margin: 0 auto; padding-block: 0 32px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); font-size: 12px; color: var(--ink-3); }
 .empty { color: var(--ink-3); padding: 24px 0; text-align: center; }
 .wide table { min-width: 720px; }
+
+/* Block-level drill-downs */
+.linkbtn { background: none; border: 0; padding: 0; font: inherit; color: var(--accent-ink); cursor: pointer; text-align: left; }
+.linkbtn:hover { text-decoration: underline; }
+.linkbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.minihead { font-size: 13px; font-weight: 600; color: var(--ink-2); margin: 16px 0 4px; }
+.controls input[type="search"] { font: inherit; padding: 5px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface-1); color: var(--ink-1); min-width: 180px; }

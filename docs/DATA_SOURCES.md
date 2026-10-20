@@ -39,10 +39,10 @@ site's Source status page.
 
 | Source | What Dhruva reads | Status (20 Oct 2026) |
 |---|---|---|
-| ERPC weekly accounts: links on `https://www.erpc.gov.in/` (signed, rotating) | "DSM, SRAS, TRAS and SCUC Settlement Account" PDF (₹ lakh) plus a block-wise Excel (frequency, deviation and Normal Rate per entity per block) | ✅ parsed |
-| WRPC DSM accounts: `https://www.wrpc.gov.in/api/TopMenu/custom/342` | DSM PDF (₹) plus an all-member block-wise CSV zip | ⚠️ parsed; WRPC's printed totals differ from the sum of its rows, so the data is flagged "Totals don't tie" |
-| WRPC SRAS/TRAS: `https://www.wrpc.gov.in/api/TopMenu/custom/348` | "TRAS SRAS & SCUC" weekly PDF | ✅ parsed |
-| NERPC: `https://nerpc.gov.in/?page_id=5872` | Provisional DSM and SRAS/TRAS statements (PDF), plus a data zip (block-wise deviation, SRAS and TRAS Excel) | ✅ parsed |
+| ERPC weekly accounts: links on `https://www.erpc.gov.in/` (signed, rotating) | "DSM, SRAS, TRAS and SCUC Settlement Account" PDF (₹ lakh) plus a block-wise Excel: one sheet per entity with frequency, schedule, actual, SRAS, deviation, payable, receivable and Normal Rate for every 15-minute block | ✅ parsed; every entity ties to the PDF |
+| WRPC DSM accounts: `https://www.wrpc.gov.in/api/TopMenu/custom/342` | DSM PDF (₹) plus an all-member zip of per-constituent CSVs (the same block columns, plus the nuclear-station adjustment for states) | ⚠️ parsed. Every account row ties to the block data, but WRPC's printed totals differ from the sum of its rows, so the account is flagged "Totals don't tie" |
+| WRPC SRAS/TRAS: `https://www.wrpc.gov.in/api/TopMenu/custom/348` | "TRAS SRAS & SCUC" weekly PDF. Single-entity revisions ("... of TPCL_Mundra ...") are used only when no full account is listed | ✅ parsed |
+| NERPC: `https://nerpc.gov.in/?page_id=5872` | Provisional DSM and SRAS/TRAS statements (PDF), plus a data zip of DeviationDetails, SRAS (15- and 5-minute), TRAS and SCUC workbooks. Two-week statements are split into their weekly accounts | ✅ parsed; DSM, SRAS and TRAS all tie to the PDFs |
 | NRPC: `https://nrpc.gov.in/` | its document API answers 401 without a login | ❌ flagged; no workaround attempted |
 | SRPC: `https://srpc.kar.nic.in/` | TLS handshake reset from our network | ❌ flagged |
 | Grid-India: `report.grid-india.in`, `grid-india.in` (frequency profile, AS dispatch) | connection refused by the gateway from this network; may need the host allow-listed | ❌ flagged |
@@ -54,6 +54,15 @@ site's Source status page.
 - One JSON file per RPC week: `data/grid/weeks/<rpc>_<week-start>.json`. It
   holds the document titles and URLs, the parse status of every table, and
   the rows.
+- Block-level data, every entity and every 15-minute block (5-minute for
+  NERPC SRAS), is stored as gzip CSV:
+  `data/grid/blocks/{dsm,sras,sras_5min,tras,scuc}/<rpc>_<week-start>.csv.gz`.
+  This is about 1 MB a week across the three RPCs. Each week's JSON records
+  how the block data reconciles with the PDF (Methodology §5.1).
+- The site's per-entity drill-down files (`site/data/grid/`) are rebuilt from
+  those CSVs on every build and are not committed.
+- The last 8 weeks per RPC are checked on each run. Older weeks stay in
+  `data/` once fetched.
 - Original downloads are cached in `data/grid/_raw/`, which is git-ignored.
 - A week is parsed again only when a document's title changes (a revision)
   or the parser version changes.

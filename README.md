@@ -30,13 +30,15 @@ Nothing on these pages is modelled.
 These pages show RPC settlement accounts, each checked against its own
 totals.
 
-- **Frequency.** 15-minute block averages, the share of blocks within
-  49.90–50.05 Hz, and daily minimum and maximum.
-- **Deviations (DSM).** Weekly payable and receivable by entity for ERPC,
-  WRPC and NERPC, grouped into discoms, conventional generators and wind &
-  solar, with a top-10 list of DSM payers.
-- **Ancillary.** SRAS and TRAS up/down MWh and payments by provider, plus
-  TRAS clearing prices by block where an RPC publishes them.
+- **Frequency.** Every 15-minute block of every published day, with a day
+  picker and a days × blocks heatmap, plus the share of blocks within
+  49.90–50.05 Hz and the daily minimum and maximum.
+- **Deviations (DSM).** For ERPC, WRPC and NERPC: pool flows by day, the pool's
+  net by 15-minute block, every entity's net DSM by day, and a drill-down per
+  entity (schedule vs actual, deviation and ₹ in every block). The block data
+  is reconciled with the weekly account entity by entity.
+- **Ancillary.** SRAS and TRAS by provider for the week. Where published, also
+  per block: SRAS every 5 minutes (NERPC), and TRAS and SCUC per block.
 - **Source status.** Every source, whether it parsed, how far its data runs,
   and why the missing ones (NRPC, SRPC, Grid-India, exchange TRAS) are
   missing.

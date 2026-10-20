@@ -112,7 +112,7 @@ def ingest_landed_cost(max_age_days: int = 30, force: bool = False) -> int:
     return len(rows)
 
 
-def ingest_grid(limit_weeks: int = 4) -> dict:
+def ingest_grid(limit_weeks: int = 8) -> dict:
     from . import grid
     return grid.ingest(limit_weeks)
 

@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 data/reference/*.partial.csv
 data/grid/_raw/
+site/data/grid/

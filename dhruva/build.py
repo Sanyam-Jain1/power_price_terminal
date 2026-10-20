@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import shutil
 import math
 from collections import Counter, defaultdict
@@ -300,7 +301,8 @@ def build_grid(end: date) -> dict:
                           "below_49_90_pct": _clean(float((f[ok] < 49.90).mean() * 100), 1),
                           "above_50_05_pct": _clean(float((f[ok] > 50.05).mean() * 100), 1),
                           "sources": official[d]["sources"]})
-    frequency = {"days": freq_days}
+    frequency = {"days": freq_days,
+                 "blocks": {x["date"]: [_clean(v, 3) for v in official[x["date"]]["freq"]] for x in freq_days}}
     if freq_days:
         last = freq_days[-1]["date"]
         frequency["latest"] = {"date": last, "blocks": [_clean(x, 3) if x is not None else None for x in official[last]["freq"]]}
@@ -358,6 +360,173 @@ def build_grid(end: date) -> dict:
                         "tras_shortfall_net_rs": tot("tras_shortfall", "net_rs"), "tras_market_net_rs": tot("tras_market", "net_rs")})
     return {"sources": sources, "frequency": frequency, "dsm": dsm, "top_payers": payers[:10],
             "ancillary": ancillary, "history": history}
+
+
+def _slug(name: str, taken: set[str]) -> str:
+    base = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-") or "entity"
+    s, k = base, 2
+    while s in taken:
+        s, k = f"{base}-{k}", k + 1
+    taken.add(s)
+    return s
+
+
+def _grid96(rows, dates, key, field, scale=1.0, nd=2, n=96):
+    """dates x n-block matrix of one field for rows of one entity (missing blocks stay None)."""
+    di = {d: i for i, d in enumerate(dates)}
+    m = [[None] * n for _ in dates]
+    for r in rows:
+        v = _num(r[field])
+        i = di.get(r["date"])
+        b = int(r[key]) - 1
+        if v is not None and i is not None and 0 <= b < n:
+            m[i][b] = round(v * scale, nd)
+    return m
+
+
+def build_grid_blocks(out: Path) -> dict:
+    """Block-level grid data: per-RPC daily rollups (grid_daily.json) and per-week drill-down files.
+
+    The drill-down files (site/data/grid/blocks/, site/data/grid/as/) are rebuilt from
+    data/grid/blocks/*.csv.gz on every build and are not committed.
+    """
+    for sub in ("blocks", "as"):
+        shutil.rmtree(out / "grid" / sub, ignore_errors=True)
+    weeks = sorted(grid.load_weeks(), key=lambda w: (w["rpc"], w["period"]["from"]))
+    by_rpc: dict[str, list] = defaultdict(list)
+    for w in weeks:
+        by_rpc[w["rpc"]].append(w)
+    rpcs, sizes = [], {}
+    for name, ws in sorted(by_rpc.items()):
+        ents: dict[str, dict] = {}
+        dates: set[str] = set()
+        week_meta = []
+        for w in ws:
+            key = f"{name.lower()}_{w['period']['from']}"
+            bd = (w.get("block_data") or {}).get("dsm") or {}
+            sec = w.get("dsm") or {}
+            meta = {"key": key, "period": w["period"], "status": bd.get("status", "missing"), "message": bd.get("message", ""),
+                    "reconciliation": bd.get("reconciliation"), "day_checks": bd.get("day_checks"),
+                    "dsm_status": sec.get("status"), "dsm_message": sec.get("message", ""),
+                    "documents": [{"kind": k, **v} for k, v in w.get("documents", {}).items()],
+                    "file": bd.get("file"), "ancillary": sorted(k for k, v in (w.get("block_data") or {}).items()
+                                                                if k != "dsm" and v.get("status") in ("ok", "partial", "unvalidated"))}
+            week_meta.append(meta)
+            rows = grid.read_rows("dsm", key) if bd.get("status") in ("ok", "partial", "unvalidated") else []
+            if not rows:
+                continue
+            emap = bd.get("entity_map") or {}
+            wdates = sorted({r["date"] for r in rows})
+            dates.update(wdates)
+            per: dict[str, list] = defaultdict(list)
+            for r in rows:
+                per[r["entity"]].append(r)
+            taken: set[str] = set()
+            index_ents = []
+            pool = {k: [[0.0] * 96 for _ in wdates] for k in ("payable", "receivable", "abs_dev")}
+            di = {d: i for i, d in enumerate(wdates)}
+            for ent, er in sorted(per.items()):
+                m = emap.get(ent, {})
+                settled = bool(m.get("pdf_name"))
+                disp = m.get("pdf_name") or ent
+                e = ents.setdefault(ent, {"block_name": ent, "days": {}})
+                e.update(name=disp, settled=settled, match=m.get("match"), ties=m.get("ties"),
+                         category=m.get("category") if settled else None,
+                         group=rpc.group_of(m.get("category")) if settled else "Not settled separately")
+                for r in er:
+                    pay = (_num(r["payable_rs"]) or 0) + (_num(r.get("nuclear_adj_payable_rs")) or 0)
+                    rec = (_num(r["receivable_rs"]) or 0) + (_num(r.get("nuclear_adj_receivable_rs")) or 0)
+                    dev = abs(_num(r["deviation_mwh"]) or 0)
+                    acc = e["days"].setdefault(r["date"], [0.0, 0.0, 0.0])
+                    acc[0] += pay; acc[1] += rec; acc[2] += dev
+                    if settled:
+                        i, b = di[r["date"]], int(r["block"]) - 1
+                        if 0 <= b < 96:
+                            pool["payable"][i][b] += pay; pool["receivable"][i][b] += rec; pool["abs_dev"][i][b] += dev
+                slug = _slug(ent, taken)
+                e.setdefault("slugs", {})[key] = slug
+                index_ents.append({"slug": slug, "name": disp, "block_name": ent, "settled": settled, "group": e["group"],
+                                   "ties": m.get("ties"), "match": m.get("match")})
+                _write(f"grid/blocks/{key}/{slug}.json", {
+                    "rpc": name, "key": key, "name": disp, "block_name": ent, "dates": wdates,
+                    "schedule_mwh": _grid96(er, wdates, "block", "schedule_mwh"),
+                    "actual_mwh": _grid96(er, wdates, "block", "actual_mwh"),
+                    "deviation_mwh": _grid96(er, wdates, "block", "deviation_mwh"),
+                    "payable_rs": _grid96(er, wdates, "block", "payable_rs", nd=0),
+                    "receivable_rs": _grid96(er, wdates, "block", "receivable_rs", nd=0),
+                    "sras_mwh": _grid96(er, wdates, "block", "sras_mwh", nd=3) if any(_num(r["sras_mwh"]) for r in er) else None,
+                    "normal_rate_rs_mwh": _grid96(er, wdates, "block", "normal_rate_rs_mwh", nd=1),
+                }, out)
+            blk = w.get("blocks") or {}
+            fi = {d: i for i, d in enumerate(blk.get("dates", []))}
+            idx = {"rpc": name, "region": w["region"], "key": key, "period": w["period"], "dates": wdates,
+                   "frequency_hz": [blk["frequency_hz"][fi[d]] if d in fi else None for d in wdates],
+                   "normal_rate_rs_mwh": [blk["normal_rate_rs_mwh"][fi[d]] if d in fi else None for d in wdates],
+                   "pool": {k: [[round(x) if k != "abs_dev" else round(x, 1) for x in row] for row in v] for k, v in pool.items()},
+                   "entities": index_ents, "documents": meta["documents"], "file": meta["file"]}
+            sizes[f"grid/blocks/{key}/index.json"] = _write(f"grid/blocks/{key}/index.json", idx, out)
+            if meta["ancillary"] or any(_num(r["sras_mwh"]) for r in rows):
+                sizes[f"grid/as/{key}.json"] = _write(f"grid/as/{key}.json", _ancillary_blocks(name, key, w, per, wdates), out)
+                meta["ancillary_file"] = f"grid/as/{key}.json"
+        dl = sorted(dates)
+        ent_out = []
+        for e in ents.values():
+            row = {k: e[k] for k in ("block_name", "name", "settled", "match", "ties", "category", "group")}
+            for j, k in enumerate(("payable_rs", "receivable_rs", "abs_deviation_mwh")):
+                row[k] = [None if d not in e["days"] else round(e["days"][d][j], 0 if j < 2 else 1) for d in dl]
+            row["net_rs"] = [None if p is None else round(p - r) for p, r in zip(row["payable_rs"], row["receivable_rs"])]
+            row["slugs"] = e.get("slugs", {})
+            ent_out.append(row)
+        pool_daily = {k: [round(sum((e["days"].get(d) or [0, 0, 0])[j] for e in ents.values() if e["settled"]), 0 if j < 2 else 1)
+                          if any(d in e["days"] for e in ents.values()) else None for d in dl]
+                      for j, k in enumerate(("payable_rs", "receivable_rs", "abs_deviation_mwh"))}
+        rpcs.append({"rpc": name, "region": ws[-1]["region"], "dates": dl, "weeks": week_meta,
+                     "entities": sorted(ent_out, key=lambda e: -sum(abs(x or 0) for x in e["net_rs"])), "pool": pool_daily})
+    sizes["grid_daily.json"] = _write("grid_daily.json", {"rpcs": rpcs}, out)
+    return sizes
+
+
+def _ancillary_blocks(name: str, key: str, w: dict, dsm_per: dict, dates: list[str]) -> dict:
+    """Per-provider ancillary data by block for one RPC week."""
+    out = {"rpc": name, "key": key, "period": w["period"], "dates": dates, "providers": {}, "checks": {}}
+    for ds, b in (w.get("block_data") or {}).items():
+        if ds != "dsm":
+            out["checks"][ds] = {"status": b.get("status"), "message": b.get("message", ""), "checks": b.get("checks", []),
+                                 "file": b.get("file")}
+    prov = out["providers"]
+
+    def slot(p: str) -> dict:
+        return prov.setdefault(p, {"name": p})
+
+    def group(rows, field):
+        g = defaultdict(list)
+        for r in rows:
+            g[r[field]].append(r)
+        return g
+
+    for p, rows in group(grid.read_rows("sras", key), "provider").items():
+        slot(p)["sras"] = {"source": "SRAS data file (15-min)",
+                           "up_mwh": _grid96(rows, dates, "block", "up_mwh", nd=3),
+                           "down_mwh": _grid96(rows, dates, "block", "down_mwh", nd=3),
+                           "energy_rs": _grid96(rows, dates, "block", "energy_rs", nd=0)}
+    for p, rows in group(grid.read_rows("sras_5min", key), "provider").items():
+        slot(p)["sras_5min"] = {"up_mwh": _grid96(rows, dates, "slot", "up_mwh", nd=3, n=288),
+                                "down_mwh": _grid96(rows, dates, "slot", "down_mwh", nd=3, n=288),
+                                "incentive_rs": _grid96(rows, dates, "slot", "incentive_rs", nd=0, n=288)}
+    for p, rows in group(grid.read_rows("tras", key), "provider").items():
+        slot(p)["tras"] = {k: _grid96(rows, dates, "block", k, nd=3 if k.endswith("mwh") else 0)
+                           for k in ("da_up_sched_mwh", "rt_up_sched_mwh", "da_down_mwh", "rt_down_mwh", "sf_up_mwh",
+                                     "sf_down_mwh", "em_up_mwh", "em_down_mwh", "da_up_rs_mwh", "rt_up_rs_mwh")}
+    for p, rows in group(grid.read_rows("scuc", key), "generator").items():
+        slot(p)["scuc"] = {k: _grid96(rows, dates, "block", k, nd=3) for k in ("increment_mwh", "decrement_mwh")}
+    if not prov:
+        # ERPC and WRPC publish no separate AS data file; their DSM files carry each generator's SRAS MWh per block.
+        for ent, rows in dsm_per.items():
+            if any(_num(r["sras_mwh"]) for r in rows):
+                slot(ent)["sras"] = {"source": "SRAS column of the DSM block-wise file (net, + = up)",
+                                     "net_mwh": _grid96(rows, dates, "block", "sras_mwh", nd=3)}
+    out["providers"] = sorted(prov.values(), key=lambda x: x["name"])
+    return out
 
 
 # ------------------------------------------------------------------ BESS index
@@ -460,6 +629,7 @@ def run(out: Path = SITE_DATA_DIR) -> dict:
                      ("bess.json", build_bess), ("forecast.json", build_forecast),
                      ("reference.json", build_reference), ("grid.json", build_grid)):
         sizes[name] = _write(name, fn(end), out)
+    sizes.update(build_grid_blocks(out))
     sizes["notes.json"] = _write("notes.json", build_notes(), out)
     shutil.copyfile(DATA_DIR.parent / "docs" / "METHODOLOGY.md", out / "methodology.md")
     meta = {

@@ -38,6 +38,8 @@ def get_bytes(url: str, params: dict | None = None, headers: dict | None = None,
               retries: int = 4, timeout: float = 60.0) -> bytes:
     if params:
         url = f"{url}?{urllib.parse.urlencode(params)}"
+    # Some publishers link files with literal spaces in the name ("TRAS Upload.pdf"); urllib refuses those.
+    url = urllib.parse.quote(url, safe=":/?&=%#+,;@~!$'()*[]")
     hdrs = {"User-Agent": USER_AGENT, "Accept": "*/*"}
     hdrs.update(headers or {})
     delay = 2.0

@@ -1,4 +1,4 @@
-# Dhruva index methodology (v1.1)
+# Dhruva index methodology (v1.2)
 
 _v1.1, effective 20 Oct 2026. Benchmark administrator: Dhruva. Changes are versioned
 and logged at the end of this document._
@@ -185,7 +185,9 @@ These pages republish RPC settlement accounts; Dhruva computes nothing new excep
     receivable = the printed net) but the printed total still differs, the
     rows are shown as printed and the table is marked "Totals don't tie",
     with the gap stated. WRPC's DSM accounts are in this state: its printed
-    totals differ from the sum of its rows by roughly ₹3 crore a week.
+    totals differ from the sum of its rows by ₹2–5 crore a week (₹322 crore of
+    receivables in the week of 10 Aug 2026). Every row also ties to WRPC's
+    block-wise data (§5.1), so the gap is in the printed total.
 - **Units.** All amounts are converted to rupees: ERPC prints ₹ lakh and WRPC
   prints rupees. Energy is in MWh; WRPC's per-entity weekly totals are printed
   in MU and are converted.
@@ -209,6 +211,60 @@ These pages republish RPC settlement accounts; Dhruva computes nothing new excep
   totals only. Exchange TRAS results are not public on IEX or HPX, and PXIL
   was unreachable.
 
+### 5.1 Block-level data (every entity, every 15 minutes)
+
+The weekly PDFs are computed from block-wise files that each RPC also
+publishes. Dhruva reads those files in full and stores them unchanged under
+`data/grid/blocks/<dataset>/<rpc>_<week-start>.csv.gz`:
+
+| Dataset | Resolution | ERPC | WRPC | NERPC |
+|---|---|---|---|---|
+| `dsm`: schedule, actual, SRAS, deviation (MWh), payable and receivable (₹), Normal Rate | 15 min, per entity | block-wise Excel | per-constituent CSVs | DeviationDetails workbook |
+| `sras`: SRAS up, down and net (MWh), energy charges (₹) | 15 min, per provider | – | – | SRAS data file |
+| `sras_5min`: SRAS up, down and mileage (MWh), incentive (₹) | 5 min, per provider | – | – | SRAS data file (`_5Min` sheets) |
+| `tras`: day-ahead, real-time, shortfall and emergency TRAS (MWh, ₹/MWh, ₹) | 15 min, per provider | – | – | TRAS data file |
+| `scuc`: SCUC increment and decrement (MWh), variable cost | 15 min, per generator | – | – | SCUC data file |
+
+ERPC and WRPC publish SRAS only inside their DSM files (a net SRAS MWh column
+per generator) and TRAS only as weekly PDF totals. Those are shown as they
+are; nothing is apportioned to blocks.
+
+**Reconciliation.**
+
+- **Against the weekly account.** For each entity, the payable and receivable
+  are summed over the week's 672 blocks and compared with that entity's row in
+  the weekly PDF. The tolerance is ₹1,000 or 0.2%, which absorbs ERPC
+  printing ₹ lakh to two decimals.
+  - NERPC prints each entity's weekly *net* on one side, so its rows are
+    compared on net.
+  - WRPC's state rows include each state's share of the nuclear stations'
+    DSM. The CSVs carry this as "Adjusted DSM payable/receivable on account of
+    nuclear stations", and it is added before comparing.
+- **Matching names.** An entity is matched to its PDF row by name, ignoring
+  punctuation, with "&" read as "and". Failing that, it is matched by amount:
+  its block sums equal exactly one remaining row's payable and receivable
+  (for example, ERPC's sheet "NR" is the account's "East-North"). The match
+  method is shown on each entity.
+- **Against the file's own daily totals.** NERPC's workbook opens each day
+  with a Total row, and every entity-day is checked against it.
+- **Ancillary files.** NERPC's SRAS and TRAS block files are summed and
+  compared with the weekly SRAS-I and TRAS-III totals.
+- **Series with no row in the weekly account.** These include plants settled
+  through a QCA aggregator, infirm units, and nuclear stations whose DSM is
+  apportioned to states. They are shown, marked "Not settled separately", and
+  excluded from pool totals so nothing is counted twice.
+- **What counts as "tie".** On the week of 28 Sep 2026, all 43 ERPC entities,
+  all 121 WRPC account rows and all 24 NERPC entities tie. The status of every
+  week is on the Source status page.
+
+**Pool totals** by day and by block are the sums over the entities that have
+their own row in the weekly account (net = payable − receivable; + means the
+entity pays the pool).
+
+**Multi-week statements.** When NERPC publishes one statement for two weeks,
+it contains one account per week. Each week is read from its own section, and
+a data file spanning both weeks is filtered to the week's dates.
+
 ## 6. Governance (roadmap toward IOSCO Principles)
 
 | Stage | Commitment |
@@ -224,3 +280,4 @@ These pages republish RPC settlement accounts; Dhruva computes nothing new excep
 |---|---|---|
 | 1.0 | 2026-10-19 | First publication. DBX-2H/4H (DAM, 1 cycle), sensitivities, regional 2H. DBI-M on UMCP with an MCP fallback |
 | 1.1 | 2026-10-20 | DSM Normal Rate corrected to the notified rule (highest of I-DAM, RTM and the equal-thirds term), with the ASC recovered from RPC-published rates; I-DAM now includes G-DAM and HP-DAM. Grid & balancing data added (section 5) |
+| 1.2 | 2026-10-20 | Block-level grid data (§5.1): every entity's DSM per 15-minute block from ERPC, WRPC and NERPC, plus NERPC SRAS (15- and 5-minute), TRAS and SCUC per block, each reconciled with the weekly account. Fixes: NERPC TRAS-III was read one column out; NERPC Normal Rate came from the wrong column for state sheets; NERPC two-week statements are now split by week; a WRPC subtotal row was being read as an entity |

@@ -210,6 +210,9 @@ def positional_rows(lines: list[str], centers: list[int], total_cols: list[int] 
         if _is_total(line) or _clean_name(head).lower() == "total":
             tbl.total = vals
             continue
+        nxt = next((lines[j].strip() for j in range(i + 1, min(len(lines), i + 3)) if lines[j].strip()), "")
+        if re.fullmatch(r"(?i)(?:[A-Z&() ]+\s)?sub ?total", nxt):
+            continue                             # a subtotal whose label wraps onto the next line
         name = _clean_name(head)
         if not name and re.match(r"^\s*\d{1,3}\s+-?\d", line):
             above = next((lines[j].strip() for j in range(i - 1, max(-1, i - 3), -1) if text_only(lines[j].strip())), "")

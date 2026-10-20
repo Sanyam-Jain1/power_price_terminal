@@ -1,4 +1,4 @@
-import { barChart, blockLabel, heatmap, lineChart, table } from "./charts.js";
+import { barChart, blockLabel, heatmap, lineChart, slotLabel, table } from "./charts.js";
 import { card, download, h, markdown, tile } from "./dom.js";
 import * as f from "./format.js";
 
@@ -624,14 +624,25 @@ async function gridFrequencyPage(root) {
   [tile(`Lowest block · ${f.dShort(lt.date)}`, f.fixed(lt.min, 2), "Hz"), tile("Highest block", f.fixed(lt.max, 2), "Hz"),
     tile("Blocks within 49.90–50.05 Hz", f.fixed(lt.in_band_pct, 1), "%", null, `${f.fixed(lt.below_49_90_pct, 1)}% below · ${f.fixed(lt.above_50_05_pct, 1)}% above`),
     tile("Daily mean", f.fixed(lt.mean, 3), "Hz")].forEach((t) => { t.classList.add("c3"); grid.append(t); });
-  const c = card(`Frequency by block · ${f.dLong(F.latest.date)}`, "Hz, 15-minute average");
-  mount(c, (el) => lineChart(el, { x: [...Array(96).keys()], series: [{ name: "Frequency", color: "var(--s1)", values: F.latest.blocks }],
-    refLines: [{ y: 50.05, label: "50.05 Hz" }, { y: 49.9, label: "49.90 Hz" }], zero: false,
-    yMin: Math.min(49.85, lt.min - 0.02), yMax: Math.max(50.1, lt.max + 0.02),
-    yFmt: (x) => x.toFixed(2), tipFmt: (x) => `${x.toFixed(3)} Hz`, xFmt: hours, titleFmt: blockLabel, height: 280 }));
-  tableToggle(c, () => table(["Block", "Hz"], F.latest.blocks.map((x, b) => [blockLabel(b), f.fixed(x, 3)]), [1]));
-  c.append(h("p", { class: "note" }, "Source: ", ...lt.sources.flatMap((x, i) => [i ? ", " : "", h("a", { href: x.url, target: "_blank", rel: "noopener" }, `${x.rpc} block-wise DSM data`)]),
-    ". These are 15-minute block averages, so they understate true minima and maxima. Grid-India's daily frequency profile (10-second data, % of time in band) is not reachable from Dhruva's servers; see Source status."));
+  const c = card("Frequency by block", "Hz, 15-minute average");
+  let day = F.latest.date;
+  const fsel = h("select", { onchange: (e) => { day = e.target.value; drawDay(); } },
+    F.days.slice().reverse().map((x) => h("option", { value: x.date }, f.dLong(x.date))));
+  const fhost = h("div");
+  const fnote = h("p", { class: "note" });
+  c.append(h("div", { class: "controls" }, h("label", {}, "Day", fsel)), fhost, fnote);
+  tableToggle(c, () => table(["Block", "Hz"], F.blocks[day].map((x, b) => [blockLabel(b), f.fixed(x, 3)]), [1]));
+  function drawDay() {
+    const dd = F.days.find((x) => x.date === day);
+    lineChart(fhost, { x: [...Array(96).keys()], series: [{ name: "Frequency", color: "var(--s1)", values: F.blocks[day] }],
+      refLines: [{ y: 50.05, label: "50.05 Hz" }, { y: 49.9, label: "49.90 Hz" }], zero: false,
+      yMin: Math.min(49.85, dd.min - 0.02), yMax: Math.max(50.1, dd.max + 0.02),
+      yFmt: (x) => x.toFixed(2), tipFmt: (x) => `${x.toFixed(3)} Hz`, xFmt: hours, titleFmt: blockLabel, height: 280 });
+    fnote.replaceChildren(`${f.dLong(day)}: ${f.fixed(dd.in_band_pct, 1)}% of blocks in band, low ${f.fixed(dd.min, 2)} Hz, high ${f.fixed(dd.max, 2)} Hz. Source: `,
+      ...dd.sources.flatMap((x, i) => [i ? ", " : "", h("a", { href: x.url, target: "_blank", rel: "noopener" }, `${x.rpc} block-wise DSM data`)]),
+      ". These are 15-minute block averages, the finest resolution the RPCs publish, so they understate true minima and maxima. Grid-India's 10-second frequency profile is not reachable from Dhruva's servers; see Source status.");
+  }
+  drawDay();
   grid.append(h("div", { class: "c8" }, c));
   const d = card("Daily summary", `${F.days.length} days with published data`);
   d.append(h("div", { style: { maxHeight: "330px", overflowY: "auto" } },
@@ -642,64 +653,184 @@ async function gridFrequencyPage(root) {
     yMax: 100, yFmt: (x) => `${x}%`, tipFmt: (x, s2, i) => `${f.fixed(x, 1)}% in band · min ${f.fixed(F.days[i].min, 2)} Hz · max ${f.fixed(F.days[i].max, 2)} Hz`,
     xFmt: (i) => f.dShort(F.days[i].date), titleFmt: (i) => f.dLong(F.days[i].date), height: 220 }));
   grid.append(h("div", { class: "c12" }, b));
+  const hm = card("Every block, every day", `${F.days.length} days × 96 blocks · Hz, centred on 50.00`);
+  const fdays = F.days.map((x) => x.date);
+  mount(hm, (el) => heatmap(el, { rows: fdays, values: fdays.map((d) => F.blocks[d]), min: 49.85, max: 50.15, diverging: true, rowFmt: f.dShort,
+    fmt: (v) => `${v.toFixed(2)} Hz`, tipFmt: (v) => `${v.toFixed(3)} Hz`, unit: "Frequency", blankText: "no data",
+    blankLabel: "· blue: below 50 Hz (generation short) · red: above (surplus)", label: "frequency by block and day" }));
+  grid.append(h("div", { class: "c12" }, hm));
   root.append(h("div", { style: { marginTop: "14px" } }, sourcesCard(G, ["rpc", "GRID_INDIA_FREQ"])));
 }
 
+// Net DSM colours: red = pays the pool, blue = receives from it (same poles as the diverging heatmap).
+const PAYS = "var(--div-p2)", RECEIVES = "var(--div-n2)";
+const signColor = (v) => (v >= 0 ? PAYS : RECEIVES);
+const dayOpts = (dates, all = "Whole week") => [h("option", { value: "all" }, all), ...dates.map((d) => h("option", { value: d }, f.dLong(d)))];
+const flat = (m) => m.flat();
+// x-axis labels for a run of 15-minute blocks over one or more days.
+const blockAxis = (dates) => (dates.length === 1 ? hours : (i) => (i % 96 === 0 ? f.dShort(dates[i / 96]) : null));
+const blockTitle = (dates, per = 96, lab = blockLabel) => (i) => `${dates.length > 1 ? `${f.dShort(dates[Math.floor(i / per)])} · ` : ""}${lab(i % per)}`;
+
+function reconBanner(W, settled) {
+  const rc = W.reconciliation;
+  const parts = [];
+  if (rc) {
+    parts.push(`${rc.ties} of ${rc.ties + rc.differs} entities in the weekly account tie to the rupee with the sum of their 15-minute blocks (payable and receivable).`);
+    if (rc.unmatched) parts.push(`${rc.unmatched} further series in the block files have no row of their own in the weekly account (plants settled through an aggregator or QCA, infirm units, nuclear stations apportioned to states); they are shown, marked "Not settled separately", and left out of pool totals.`);
+    if (rc.pdf_rows_without_block_data?.length) parts.push(`Account rows with no block data: ${rc.pdf_rows_without_block_data.join(", ")}.`);
+  } else parts.push(W.message || "Block data could not be reconciled with the weekly account.");
+  if (W.day_checks) parts.push(`${W.day_checks.checked - W.day_checks.failed} of ${W.day_checks.checked} entity-days also match the file's own daily totals.`);
+  if (W.dsm_status === "source_mismatch") parts.push(`Note: ${W.dsm_message}`);
+  return h("div", { class: `dhruva-banner ${W.status === "ok" ? "" : "warn"}` }, statusChip(W.status), h("span", {}, parts.join(" ")));
+}
+
 async function gridDsmPage(root) {
-  const G = await load("grid.json");
-  root.append(gridHead("Deviations (DSM)", "Weekly deviation settlement accounts from each Regional Power Committee: how far each entity deviated from schedule and what it pays into, or receives from, the regional Deviation & Ancillary Service Pool."));
-  const D = G.dsm.filter((x) => x.entities.length);
-  if (!D.length) { root.append(h("p", { class: "empty" }, "No DSM accounts parsed yet."), sourcesCard(G, ["rpc"])); return; }
-  const grid = h("div", { class: "grid" });
-  root.append(grid);
+  const [G, GD] = await Promise.all([load("grid.json"), load("grid_daily.json")]);
+  root.append(gridHead("Deviations (DSM)", "How far each entity strayed from schedule and what it paid into, or received from, the regional Deviation & Ancillary Service Pool, day by day and in every 15-minute block. Block data comes from each RPC's block-wise settlement files and is reconciled with its weekly account before it is shown."));
+  const RS = GD.rpcs.filter((r) => r.dates.length);
+  if (!RS.length) { root.append(h("p", { class: "empty" }, "No block-wise DSM data parsed yet."), sourcesCard(G, ["rpc"])); return; }
   const top = card("Biggest DSM payers", "net payable to the pool, latest week of each RPC · excludes inter-regional and cross-border lines");
   top.append(table(["Entity", "RPC · week", "Group", "Deviation MWh", "Payable", "Receivable", "Net payable"],
     G.top_payers.map((e) => [h("b", {}, e.name), `${e.rpc} · ${periodLabel(e.period)}`, e.group, f.int(e.deviation_mwh), lakhCr(e.payable_rs), lakhCr(e.receivable_rs), lakhCr(e.net_rs)]), [3, 4, 5, 6]));
-  top.append(h("p", { class: "note" }, "Ranked across the three RPCs whose accounts are parsed (ERPC, WRPC, NERPC); NRPC and SRPC are missing (see Source status)."));
-  grid.append(h("div", { class: "c12" }, top));
+  top.append(h("p", { class: "note" }, "Ranked across the three RPCs whose accounts are parsed (ERPC, WRPC, NERPC); NRPC and SRPC are missing (see Source status). Pick a region below for the day-by-day and block-by-block view."));
+  root.append(h("div", { class: "grid" }, h("div", { class: "c12" }, top)));
 
-  let which = D[0].rpc;
-  const body = h("div", { class: "c12" });
-  const sel = h("select", { onchange: (e) => { which = e.target.value; draw(); } }, D.map((x) => h("option", { value: x.rpc }, `${x.rpc} · ${periodLabel(x.period)}`)));
-  grid.append(h("div", { class: "c12 controls", style: { margin: 0 } }, h("label", {}, "Regional account", sel)), body);
-  function draw() {
+  const st = { rpc: RS[0].rpc, week: null, day: "all", entity: null, group: "All", q: "" };
+  const rsel = h("select", { onchange: (e) => { st.rpc = e.target.value; st.week = null; st.day = "all"; st.entity = null; draw(); } },
+    RS.map((r) => h("option", { value: r.rpc }, `${r.rpc} · ${r.region}`)));
+  const wsel = h("select", { onchange: (e) => { st.week = e.target.value; st.day = "all"; draw(); } });
+  const dsel = h("select", { onchange: (e) => { st.day = e.target.value; draw(); } });
+  root.append(h("div", { class: "controls", style: { marginTop: "14px" } }, h("label", {}, "Region", rsel), h("label", {}, "Week", wsel), h("label", {}, "Day", dsel)));
+  const body = h("div");
+  root.append(body);
+
+  async function draw() {
+    const R = RS.find((r) => r.rpc === st.rpc);
+    const weeks = R.weeks.filter((w) => w.status !== "missing" && w.status !== "parse_error").slice().reverse();
+    if (!st.week || !weeks.some((w) => w.key === st.week)) st.week = weeks[0].key;
+    wsel.replaceChildren(...weeks.map((w) => h("option", { value: w.key, selected: w.key === st.week }, periodLabel(w.period))));
+    const W = weeks.find((w) => w.key === st.week);
+    const idx = await load(`grid/blocks/${W.key}/index.json`);
+    dsel.replaceChildren(...dayOpts(idx.dates));
+    dsel.value = st.day;
+    const dates = st.day === "all" ? idx.dates : [st.day];
+    const scope = st.day === "all" ? periodLabel(W.period) : f.dLong(st.day);
+    const di = Object.fromEntries(R.dates.map((d, i) => [d, i]));
+    const sumOver = (arr) => dates.reduce((a, d) => a + (arr[di[d]] || 0), 0);
     body.replaceChildren();
-    const R = D.find((x) => x.rpc === which);
     const g = h("div", { class: "grid" });
     body.append(g);
-    if (R.status !== "ok") g.append(h("div", { class: "c12 dhruva-banner warn" }, statusChip(R.status), h("span", {}, R.message)));
-    const pay = R.entities.reduce((a, e) => a + (e.payable_rs || 0), 0), rec = R.entities.reduce((a, e) => a + (e.receivable_rs || 0), 0);
-    [tile("Charges payable to pool", lakhCr(pay), ""), tile("Charges receivable from pool", lakhCr(rec), ""),
-      tile("Pool balance", lakhCr(pay - rec), "", null, "payable − receivable, as printed"),
-      tile("Entities", f.int(R.entities.length), "", null, `${R.region} region · ${periodLabel(R.period)}`)].forEach((t) => { t.classList.add("c3"); g.append(t); });
-    const groups = Object.entries(R.groups).sort((a, b2) => b2[1].payable_rs - a[1].payable_rs);
-    const gc = card("By entity group", "₹ and gross |deviation| MWh summed over the week");
-    gc.append(table(["Group", "Entities", "|Deviation| MWh", "Payable", "Receivable", "Net"], groups.map(([k, x]) => [k, x.entities, f.int(x.abs_deviation_mwh), lakhCr(x.payable_rs), lakhCr(x.receivable_rs), lakhCr(x.payable_rs - x.receivable_rs)]), [1, 2, 3, 4, 5]));
-    g.append(h("div", { class: "c5" }, gc));
-    const chartRows = R.entities.filter((e) => e.group !== "Inter-regional" && e.group !== "Cross-border").sort((a, b2) => b2.net_rs - a.net_rs);
-    const pick = [...chartRows.slice(0, 8), ...chartRows.slice(-4)];
-    const cc = card("Net DSM by entity", "largest payers and receivers · ₹ lakh");
-    mount(cc, (el) => barChart(el, { labels: pick.map((e) => e.name), series: [{ name: "Net", color: "var(--s2)", colors: pick.map((e) => (e.net_rs >= 0 ? "var(--s2)" : "var(--s1)")), values: pick.map((e) => e.net_rs / 1e5) }],
-      yFmt: (x) => f.compact(x), tipFmt: (x, s2, i) => `${lakhCr(pick[i].net_rs)} net · ${f.int(pick[i].deviation_mwh)} MWh`, xFmt: () => null, titleFmt: (i) => `${pick[i].name} · ${pick[i].group}`, height: 240 }));
-    cc.append(h("div", { class: "legend", style: { marginTop: "6px" } },
-      h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s2)" } }), "pays the pool"),
-      h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s1)" } }), "receives from the pool")));
-    g.append(h("div", { class: "c7" }, cc));
-    const groupsList = ["All", ...new Set(R.entities.map((e) => e.group))];
-    let grp = "All";
-    const tc = card("All entities", `${R.rpc} · ${periodLabel(R.period)}`);
-    const tbl = h("div");
-    const gsel = h("select", { onchange: (e) => { grp = e.target.value; fill(); } }, groupsList.map((x) => h("option", { value: x }, x)));
-    const fill = () => tbl.replaceChildren(table(["Entity", "Group", "As listed by RPC", "Deviation MWh", "Payable", "Receivable", "Net"],
-      R.entities.filter((e) => grp === "All" || e.group === grp).sort((a, b2) => b2.net_rs - a.net_rs)
-        .map((e) => [e.name, e.group, e.category || "–", e.deviation_mwh == null ? "–" : f.int(e.deviation_mwh), lakhCr(e.payable_rs), lakhCr(e.receivable_rs), lakhCr(e.net_rs)]), [3, 4, 5, 6]));
+    g.append(h("div", { class: "c12" }, reconBanner(W)));
+    const pay = sumOver(R.pool.payable_rs), rec = sumOver(R.pool.receivable_rs);
+    const settled = idx.entities.filter((e) => e.settled).length;
+    [tile("Charges payable to pool", lakhCr(pay), "", null, scope), tile("Charges receivable from pool", lakhCr(rec), ""),
+      tile("Pool balance", lakhCr(pay - rec), "", null, "payable − receivable, settled entities"),
+      tile("Gross |deviation|", f.int(sumOver(R.pool.abs_deviation_mwh)), "MWh", null, `${settled} settled entities · ${R.region} region`)].forEach((t) => { t.classList.add("c3"); g.append(t); });
+
+    const pc = card("Pool flows by day", `${R.rpc} · every day with published block data · ₹ crore`);
+    mount(pc, (el) => barChart(el, { labels: R.dates, series: [
+      { name: "Payable to pool", color: PAYS, values: R.pool.payable_rs.map((x) => (x == null ? null : x / 1e7)) },
+      { name: "Receivable from pool", color: RECEIVES, values: R.pool.receivable_rs.map((x) => (x == null ? null : x / 1e7)) }],
+    yFmt: (x) => f.fixed(x, 0), tipFmt: (x) => `₹${f.fixed(x, 2)} Cr`, xFmt: (i) => f.dShort(R.dates[i]), titleFmt: (i) => f.dLong(R.dates[i]), height: 220 }));
+    tableToggle(pc, () => table(["Day", "Payable", "Receivable", "Balance", "|Deviation| MWh"], R.dates.map((d, i) => [f.dLong(d), lakhCr(R.pool.payable_rs[i]), lakhCr(R.pool.receivable_rs[i]), lakhCr(R.pool.payable_rs[i] - R.pool.receivable_rs[i]), f.int(R.pool.abs_deviation_mwh[i])]), [1, 2, 3, 4]));
+    g.append(h("div", { class: "c12" }, pc));
+
+    const hc = card("Pool net by block", `${R.rpc} · ${periodLabel(W.period)} · payable − receivable per 15-minute block, ₹ lakh`);
+    const net = idx.pool.payable.map((row, i) => row.map((p, b) => (p - idx.pool.receivable[i][b]) / 1e5));
+    const absv = net.flat().map(Math.abs).sort((a, b2) => a - b2);
+    const M = Math.max(1, absv[Math.floor(absv.length * 0.98)] || 1);
+    mount(hc, (el) => heatmap(el, { rows: idx.dates, values: net, min: -M, max: M, diverging: true, rowFmt: f.dShort, rowHeight: 16,
+      fmt: (v) => `${v < 0 ? "−" : "+"}${f.fixed(Math.abs(v), 0)} L`, tipFmt: (v) => lakhCr(v * 1e5), unit: "Net to pool",
+      blankLabel: "· red: entities pay the pool on balance · blue: the pool pays out", label: "DSM pool net by block" }));
+    g.append(h("div", { class: "c12" }, hc));
+
+    // Entities: daily nets, a check mark, and a drill-down per entity.
+    const ents = R.entities.filter((e) => idx.entities.some((x) => x.block_name === e.block_name));
+    const groups = ["All", ...new Set(ents.map((e) => e.group))];
+    const tc = card("Entities", `${R.rpc} · ${scope} · net DSM (₹ lakh, + pays the pool) · pick one for its 15-minute blocks`);
+    const gsel = h("select", { onchange: (e) => { st.group = e.target.value; fill(); } }, groups.map((x) => h("option", { value: x, selected: x === st.group }, x)));
+    const search = h("input", { type: "search", placeholder: "Find entity", value: st.q, oninput: (e) => { st.q = e.target.value; fill(); } });
+    const tbl = h("div", { style: { maxHeight: "460px", overflow: "auto" } });
+    const check = (e) => (e.settled ? h("span", { class: "status-dot", title: e.match === "amount" ? "matched to its account row by amount" : "matched by name" }, e.ties ? "Ties" : "Differs")
+      : h("span", { class: "status-dot muted", title: "No separate row in the weekly account" }, "Not settled separately"));
+    const fill = () => {
+      const rows = ents.filter((e) => (st.group === "All" || e.group === st.group) && (!st.q || `${e.name} ${e.block_name}`.toLowerCase().includes(st.q.toLowerCase())))
+        .map((e) => ({ e, tot: dates.reduce((a, d) => a + (e.net_rs[di[d]] || 0), 0), dev: dates.reduce((a, d) => a + (e.abs_deviation_mwh[di[d]] || 0), 0) }))
+        .sort((a, b2) => b2.tot - a.tot);
+      const dayCols = dates.length > 1 ? dates.map((d) => f.dShort(d)) : [];
+      tbl.replaceChildren(table(["Entity", "Group", ...dayCols, dates.length > 1 ? "Week net" : "Net", "|Deviation| MWh", "Check"],
+        rows.map(({ e, tot, dev }) => [
+          h("button", { class: "linkbtn", onclick: () => { st.entity = e.block_name; drill(); dc.scrollIntoView({ behavior: "smooth", block: "start" }); } }, e.name),
+          e.group, ...(dates.length > 1 ? dates.map((d) => (e.net_rs[di[d]] == null ? "–" : f.fixed(e.net_rs[di[d]] / 1e5, 1))) : []),
+          lakhCr(tot), f.int(dev), check(e)]),
+        [...dayCols.map((_, i) => i + 2), dayCols.length + 2, dayCols.length + 3]));
+    };
     fill();
-    tc.append(h("div", { class: "controls" }, h("label", {}, "Group", gsel)), tbl,
-      h("p", { class: "note" }, "Deviation MWh is actual minus schedule as each RPC states it; sign conventions for drawal differ between RPCs, so compare entities on rupees. Documents: ",
-        ...R.documents.flatMap((d, i) => [i ? " · " : "", docLink(d)])));
-    csvButton(tc, `dhruva_dsm_${R.rpc}_${R.period.from}.csv`, () => [["entity", "group", "rpc_category", "deviation_mwh", "payable_rs", "receivable_rs", "net_rs"],
-      ...R.entities.map((e) => [e.name, e.group, e.category, e.deviation_mwh, e.payable_rs, e.receivable_rs, e.net_rs])]);
+    tc.append(h("div", { class: "controls" }, h("label", {}, "Group", gsel), h("label", {}, "Search", search)), tbl,
+      h("p", { class: "note" }, "Names are as printed in the weekly account; where the block files use a different name it is matched by amount and shown on the entity page. Sources: ",
+        ...W.documents.flatMap((d, i) => [i ? " · " : "", docLink(d)])));
+    csvButton(tc, `dhruva_dsm_daily_${R.rpc}_${W.period.from}.csv`, () => [["entity", "name_in_block_file", "group", "settled", "date", "payable_rs", "receivable_rs", "net_rs", "abs_deviation_mwh"],
+      ...ents.flatMap((e) => idx.dates.map((d) => [e.name, e.block_name, e.group, e.settled, d, e.payable_rs[di[d]], e.receivable_rs[di[d]], e.net_rs[di[d]], e.abs_deviation_mwh[di[d]]]))]);
     g.append(h("div", { class: "c12" }, tc));
+
+    const dc = card("Entity detail", "pick an entity in the table above");
+    g.append(h("div", { class: "c12" }, dc));
+    async function drill() {
+      const meta = idx.entities.find((x) => x.block_name === st.entity) || idx.entities.find((x) => x.settled);
+      if (!meta) return;
+      st.entity = meta.block_name;
+      const E = await load(`grid/blocks/${W.key}/${meta.slug}.json`);
+      const ix = dates.map((d) => E.dates.indexOf(d));
+      const pick = (m) => (m ? ix.flatMap((i) => (i < 0 ? Array(96).fill(null) : m[i])) : null);
+      const sch = pick(E.schedule_mwh), act = pick(E.actual_mwh), dev = pick(E.deviation_mwh);
+      const recb = pick(E.receivable_rs);
+      const netb = pick(E.payable_rs).map((p, i) => (p == null ? null : p - (recb[i] || 0)));
+      const sras = pick(E.sras_mwh), nr = pick(E.normal_rate_rs_mwh);
+      const x = [...Array(sch.length).keys()];
+      const xFmt = blockAxis(dates), titleFmt = blockTitle(dates);
+      dc.querySelector("h2").textContent = `${E.name}${E.block_name !== E.name ? ` (${E.block_name} in the block files)` : ""}`;
+      dc.querySelector(".sub").textContent = `${R.rpc} · ${scope} · 15-minute blocks`;
+      dc.querySelectorAll(":scope > :not(.card-head)").forEach((n) => n.remove());
+      dc.actions.replaceChildren();
+      const tot = netb.reduce((a, v) => a + (v || 0), 0);
+      const dg = h("div", { class: "grid" });
+      [tile("Net DSM", lakhCr(tot), "", null, tot >= 0 ? "pays the pool" : "receives from the pool"),
+        tile("Gross |deviation|", f.int(dev.reduce((a, v) => a + Math.abs(v || 0), 0)), "MWh"),
+        tile("Scheduled", f.int(sch.reduce((a, v) => a + (v || 0), 0)), "MWh", null, R.rpc === "ERPC" ? "ERPC states drawal as negative" : "as scheduled by the RLDC"),
+        tile("Account check", meta.settled ? (meta.ties ? "Ties" : "Differs") : "Not settled separately", "", null,
+          meta.settled ? `week's block sums vs the weekly account (matched by ${meta.match})` : "no separate row in the weekly account")].forEach((t) => { t.classList.add("c3"); dg.append(t); });
+      dc.append(dg);
+      const c1 = h("div", { style: { marginTop: "12px" } });
+      dc.append(h("h3", { class: "minihead" }, "Schedule and actual, MWh per block"), c1);
+      lineChart(c1, { x, series: [{ name: "Schedule", color: "var(--s1)", values: sch, dash: true }, { name: "Actual", color: "var(--s2)", values: act }],
+        yFmt: f.compact, tipFmt: (v) => `${f.fixed(v, 2)} MWh`, xFmt, titleFmt, height: 240 });
+      const c2 = h("div");
+      dc.append(h("h3", { class: "minihead" }, "Deviation, MWh per block (actual − schedule)"), c2);
+      const c3 = h("div");
+      dc.append(h("h3", { class: "minihead" }, "Net DSM charge, ₹ per block (+ pays the pool)"), c3);
+      if (dates.length === 1) {
+        barChart(c2, { labels: x, series: [{ name: "Deviation", color: "var(--s7)", colors: dev.map((v) => (v >= 0 ? "var(--s7)" : "var(--s4)")), values: dev }],
+          yFmt: f.compact, tipFmt: (v) => `${f.fixed(v, 2)} MWh`, xFmt, titleFmt, height: 200 });
+        barChart(c3, { labels: x, series: [{ name: "Net ₹", color: PAYS, colors: netb.map(signColor), values: netb }],
+          yFmt: f.compact, tipFmt: (v, s2, i) => `₹${f.int(v)}${nr && nr[i] != null ? ` · Normal Rate ₹${f.int(nr[i])}/MWh` : ""}`, xFmt, titleFmt, height: 200 });
+      } else {
+        lineChart(c2, { x, series: [{ name: "Deviation", color: "var(--s7)", values: dev, area: true }], yFmt: f.compact, tipFmt: (v) => `${f.fixed(v, 2)} MWh`, xFmt, titleFmt, height: 200 });
+        lineChart(c3, { x, series: [{ name: "Net ₹", color: PAYS, values: netb, area: true }], yFmt: f.compact,
+          tipFmt: (v) => `₹${f.int(v)}`, xFmt, titleFmt, height: 200 });
+      }
+      if (sras && sras.some((v) => v)) {
+        const c4 = h("div");
+        dc.append(h("h3", { class: "minihead" }, "SRAS (AGC) energy, MWh per block (+ up)"), c4);
+        lineChart(c4, { x, series: [{ name: "SRAS", color: "var(--s3)", values: sras }], yFmt: f.compact, tipFmt: (v) => `${f.fixed(v, 3)} MWh`, xFmt, titleFmt, height: 160 });
+      }
+      dc.append(h("p", { class: "note" }, "As published in the RPC's block-wise file: ", docLink(W.documents.find((d) => /block|data_zip/.test(d.kind)) || W.documents[0]),
+        ". Deviation sign follows the RPC (actual − schedule; ERPC states drawal as negative). Charges are the block's payable or receivable at the Normal Rate and any volume-limit multipliers the RPC applied."));
+      const rows = () => x.map((i) => [dates[Math.floor(i / 96)], (i % 96) + 1, sch[i], act[i], dev[i], netb[i], sras?.[i] ?? null, nr?.[i] ?? null]);
+      tableToggle(dc, () => table(["Day", "Block", "Schedule MWh", "Actual MWh", "Deviation MWh", "Net ₹", "SRAS MWh", "Normal Rate ₹/MWh"],
+        rows().map((r) => [f.dShort(r[0]), blockLabel(r[1] - 1), f.fixed(r[2], 2), f.fixed(r[3], 2), f.fixed(r[4], 2), f.int(r[5]), r[6] == null ? "–" : f.fixed(r[6], 3), f.int(r[7])]), [2, 3, 4, 5, 6, 7]));
+      csvButton(dc, `dhruva_dsm_blocks_${R.rpc}_${meta.slug}_${dates[0]}.csv`, () => [["date", "block", "schedule_mwh", "actual_mwh", "deviation_mwh", "net_rs", "sras_mwh", "normal_rate_rs_mwh"], ...rows()]);
+    }
+    if (st.entity) drill();
   }
   draw();
   root.append(h("div", { style: { marginTop: "14px" } }, sourcesCard(G, ["rpc", "NRPC", "SRPC"])));
@@ -756,7 +887,85 @@ async function gridAncillaryPage(root) {
     g.append(h("p", { class: "note c12" }, "Documents: ", ...R.documents.flatMap((d, i) => [i ? " · " : "", docLink(d)])));
   }
   draw();
+  root.append(h("div", { style: { marginTop: "14px" } }, await ancillaryBlocks()));
   root.append(h("div", { style: { marginTop: "14px" } }, sourcesCard(G, ["rpc", "GRID_INDIA_AS", "IEX_TRAS", "PXIL_TRAS", "HPX_TRAS", "NRPC", "SRPC"])));
+}
+
+async function ancillaryBlocks() {
+  const GD = await load("grid_daily.json");
+  const RS = GD.rpcs.map((r) => ({ ...r, weeks: r.weeks.filter((w) => w.ancillary_file).reverse() })).filter((r) => r.weeks.length);
+  const c = card("By provider, block by block", "deployed energy per 15-minute block, and per 5-minute slot where the RPC publishes it");
+  if (!RS.length) { c.append(h("p", { class: "empty" }, "No block-wise ancillary data parsed yet.")); return c; }
+  const st = { rpc: RS.find((r) => r.rpc === "NERPC")?.rpc || RS[0].rpc, week: null, prov: null, day: null };
+  const rsel = h("select", { onchange: (e) => { st.rpc = e.target.value; st.week = st.prov = st.day = null; draw(); } }, RS.map((r) => h("option", { value: r.rpc, selected: r.rpc === st.rpc }, r.rpc)));
+  const wsel = h("select", { onchange: (e) => { st.week = e.target.value; st.prov = st.day = null; draw(); } });
+  const psel = h("select", { onchange: (e) => { st.prov = e.target.value; draw(); } });
+  const dsel = h("select", { onchange: (e) => { st.day = e.target.value; draw(); } });
+  const body = h("div");
+  c.append(h("div", { class: "controls" }, h("label", {}, "Region", rsel), h("label", {}, "Week", wsel), h("label", {}, "Provider", psel), h("label", {}, "Day", dsel)), body);
+  async function draw() {
+    const R = RS.find((r) => r.rpc === st.rpc);
+    if (!st.week) st.week = R.weeks[0].key;
+    wsel.replaceChildren(...R.weeks.map((w) => h("option", { value: w.key, selected: w.key === st.week }, periodLabel(w.period))));
+    const W = R.weeks.find((w) => w.key === st.week);
+    const A = await load(W.ancillary_file);
+    if (!A.providers.length) { body.replaceChildren(h("p", { class: "empty" }, "No provider data this week.")); return; }
+    if (!st.prov || !A.providers.some((p) => p.name === st.prov)) st.prov = (A.providers.find((p) => p.sras_5min || p.sras) || A.providers[0]).name;
+    psel.replaceChildren(...A.providers.map((p) => h("option", { value: p.name, selected: p.name === st.prov }, p.name)));
+    if (!st.day || !A.dates.includes(st.day)) st.day = A.dates[A.dates.length - 1];
+    dsel.replaceChildren(...dayOpts(A.dates, "Whole week").slice(1));
+    dsel.value = st.day;
+    const P = A.providers.find((p) => p.name === st.prov);
+    const k = A.dates.indexOf(st.day);
+    body.replaceChildren();
+    const bad = Object.entries(A.checks).filter(([, v]) => v.status !== "ok");
+    const okc = Object.values(A.checks).flatMap((v) => v.checks || []).filter((x) => x.ok);
+    if (Object.keys(A.checks).length) body.append(h("div", { class: `dhruva-banner ${bad.length ? "warn" : ""}` }, statusChip(bad.length ? "partial" : "ok"),
+      h("span", {}, okc.length ? `Block sums checked against the weekly AS account: ${okc.map((x) => x.check.replace(" vs weekly account", "")).join(", ")} agree. ` : "",
+        bad.map(([ds, v]) => `${ds}: ${v.message || v.status}`).join(" "))));
+    const sec = (title, el) => { body.append(h("h3", { class: "minihead" }, title), el); return el; };
+    const line = (el, series, unit, nd = 2, per = 96, lab = blockLabel, empty = "Nothing deployed on this day.") => {
+      const live = series.filter((x) => x.values && x.values.some((v) => v));
+      if (!live.length) { el.replaceChildren(h("p", { class: "empty" }, empty)); return; }
+      lineChart(el, { x: [...Array(per).keys()], series: live, yFmt: f.compact, tipFmt: (v) => `${f.fixed(v, nd)} ${unit}`,
+        xFmt: per === 96 ? hours : (i) => (i % 36 === 0 ? `${String(i / 12).padStart(2, "0")}:00` : null), titleFmt: (i) => lab(i), height: 200 });
+    };
+    let any = false;
+    if (P.sras_5min) {
+      any = true;
+      const inc = P.sras_5min.incentive_rs[k] || [];
+      sec(`SRAS, every 5 minutes · ${f.dLong(st.day)} · MWh`, h("div"));
+      line(body.lastChild, [{ name: "Up", color: "var(--s2)", values: P.sras_5min.up_mwh[k] }, { name: "Down", color: "var(--s1)", values: P.sras_5min.down_mwh[k] }], "MWh", 3, 288, slotLabel);
+      body.append(h("p", { class: "note" }, `Mileage incentive for the day: ₹${f.int(inc.reduce((a, v) => a + (v || 0), 0))}. SRAS is dispatched by AGC and settled on 5-minute mileage.`));
+    }
+    if (P.sras) {
+      any = true;
+      sec(`SRAS, per 15-minute block · ${f.dLong(st.day)} · MWh`, h("div"));
+      if (P.sras.net_mwh) line(body.lastChild, [{ name: "Net SRAS (+ up)", color: "var(--s3)", values: P.sras.net_mwh[k] }], "MWh", 3);
+      else line(body.lastChild, [{ name: "Up", color: "var(--s2)", values: P.sras.up_mwh[k] }, { name: "Down", color: "var(--s1)", values: P.sras.down_mwh[k] }], "MWh", 3);
+      body.append(h("p", { class: "note" }, P.sras.source + "."));
+    }
+    if (P.tras) {
+      any = true;
+      const T = P.tras;
+      sec(`TRAS scheduled, per block · ${f.dLong(st.day)} · MWh`, h("div"));
+      line(body.lastChild, [
+        { name: "DA up", color: "var(--s1)", values: T.da_up_sched_mwh[k] }, { name: "RT up", color: "var(--s2)", values: T.rt_up_sched_mwh[k] },
+        { name: "Shortfall up", color: "var(--s3)", values: T.sf_up_mwh[k] }, { name: "Emergency up", color: "var(--s4)", values: T.em_up_mwh[k] },
+        { name: "DA down", color: "var(--s5)", values: T.da_down_mwh[k] }, { name: "RT down", color: "var(--s6)", values: T.rt_down_mwh[k] },
+        { name: "Shortfall down", color: "var(--s7)", values: T.sf_down_mwh[k] }], "MWh", 2, 96, blockLabel, "No TRAS scheduled for this provider on this day.");
+    }
+    if (P.scuc) {
+      any = true;
+      sec(`SCUC (security-constrained unit commitment) · ${f.dLong(st.day)} · MWh`, h("div"));
+      line(body.lastChild, [{ name: "Increment", color: "var(--s2)", values: P.scuc.increment_mwh[k] }, { name: "Decrement", color: "var(--s1)", values: P.scuc.decrement_mwh[k] }], "MWh", 2, 96, blockLabel, "No SCUC schedule changes for this generator on this day.");
+    }
+    if (!any) body.append(h("p", { class: "empty" }, "No block data for this provider."));
+    body.append(h("p", { class: "note" }, "Documents: ", ...W.documents.flatMap((d, i) => [i ? " · " : "", docLink(d)]),
+      R.rpc === "NERPC" ? "" : `. ${R.rpc} publishes SRAS and TRAS only as weekly PDF totals; the per-block SRAS here comes from the SRAS column of its DSM block files, and TRAS is not available per block.`));
+  }
+  draw();
+  return c;
 }
 
 async function gridSourcesPage(root) {
@@ -767,6 +976,18 @@ async function gridSourcesPage(root) {
   hc.append(table(["RPC", "Week", "DSM", "DSM payable", "DSM receivable", "SRAS total ₹", "TRAS shortfall net ₹", "TRAS market net ₹"],
     G.history.slice().reverse().map((x) => [x.rpc, periodLabel(x.period), statusChip(x.dsm_status), lakhCr(x.payable_rs), lakhCr(x.receivable_rs), lakhCr(x.sras_total_rs), lakhCr(x.tras_shortfall_net_rs), lakhCr(x.tras_market_net_rs)]), [3, 4, 5, 6, 7]));
   root.append(h("div", { style: { marginTop: "14px" } }, hc));
+  const GD = await load("grid_daily.json");
+  const rc = card("Block-level data and how it reconciles", "every RPC week · block files summed and checked against the weekly account");
+  const n = (x) => (x == null ? "–" : f.int(x));
+  rc.append(table(["RPC", "Week", "Status", "Entities in account", "Tie to the rupee", "Other series", "Entity-days vs file totals", "Ancillary block files", "Notes"],
+    GD.rpcs.flatMap((r) => r.weeks.map((w) => ({ r, w }))).sort((a, b) => (b.w.period.from > a.w.period.from ? 1 : -1)).map(({ r, w }) => {
+      const x = w.reconciliation;
+      return [r.rpc, periodLabel(w.period), statusChip(w.status), x ? n(x.ties + x.differs) : "–", x ? n(x.ties) : "–", x ? n(x.unmatched) : "–",
+        w.day_checks ? `${n(w.day_checks.checked - w.day_checks.failed)} / ${n(w.day_checks.checked)}` : "no daily totals in file",
+        w.ancillary.length ? w.ancillary.join(", ") : "–", w.message || (w.file ? `stored as ${w.file}` : "")];
+    }), [3, 4, 5]));
+  rc.append(h("p", { class: "note" }, "Block data is published as each RPC's own files (ERPC: block-wise Excel; WRPC: per-constituent CSVs; NERPC: DeviationDetails, SRAS, TRAS and SCUC workbooks) and stored unchanged in data/grid/blocks/ as gzip CSV. \"Other series\" are in the block files but have no row of their own in the weekly account (QCA member plants, infirm units, nuclear stations apportioned to states) and are kept out of pool totals."));
+  root.append(h("div", { style: { marginTop: "14px" } }, rc));
 }
 
 async function dhruvaHome(root) {
