@@ -5,15 +5,16 @@ import csv
 import json
 import shutil
 import math
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import numpy as np
 
-from . import __version__, derive, store
+from . import __version__, derive, grid, store
 from .analytics import indices
 from .analytics.bess import Spec, optimise_day
+from .sources import rpc
 from .config import (BESS_FEE_RS_PER_MWH, BESS_REGIONAL_SPEC, BESS_RTE, BESS_VARIANTS, BID_AREA_STATES,
                      BID_AREAS, DATA_DIR, HISTORY_START, MARKETS, NOTES_DIR, SITE_DATA_DIR)
 
@@ -186,27 +187,177 @@ def build_futures(end: date) -> dict:
 
 # ------------------------------------------------------------------ DSM
 
-def build_dsm(end: date) -> dict:
-    d_days, dam = store.block_matrix("dam", "mcp", HISTORY_START, end)
-    r_days, rtm = store.block_matrix("rtm", "mcp", HISTORY_START, end)
-    r_idx = {d: i for i, d in enumerate(r_days)}
-    cols = defaultdict(list)
-    last = None
-    for i, d in enumerate(d_days):
-        j = r_idx.get(d)
-        if j is None or not np.isfinite(rtm[j]).all():
+def official_blocks() -> dict[str, dict]:
+    """Per date: frequency and the published Normal Rate from RPC block-wise files.
+
+    RPCs publish area-specific rates; where they differ the most common value
+    across RPCs is used (WRPC breaks ties, as the largest bid area).
+    """
+    per_date: dict[str, dict] = {}
+    order = {"WRPC": 0, "ERPC": 1, "NERPC": 2}
+    for w in sorted(grid.load_weeks(), key=lambda w: order.get(w["rpc"], 9)):
+        blk = w.get("blocks") or {}
+        if blk.get("status") != "ok":
             continue
-        nr = indices.dsm_normal_rate(dam[i], rtm[j])
+        for k, d in enumerate(blk["dates"]):
+            e = per_date.setdefault(d, {"nr": [], "freq": [], "sources": []})
+            e["nr"].append(blk["normal_rate_rs_mwh"][k])
+            e["freq"].append(blk["frequency_hz"][k])
+            e["sources"].append({"rpc": w["rpc"], "title": next(iter(w["documents"].values()))["title"],
+                                 "url": (w["documents"].get("blocks_xlsx") or w["documents"].get("blocks_zip")
+                                         or w["documents"].get("data_zip") or {}).get("url")})
+    out = {}
+    for d, e in per_date.items():
+        nr, fr = [], []
+        for b in range(96):
+            vals = [row[b] for row in e["nr"] if row[b] is not None]
+            nr.append(Counter(vals).most_common(1)[0][0] if vals else None)
+            fs = [row[b] for row in e["freq"] if row[b] is not None]
+            fr.append(float(np.median(fs)) if fs else None)
+        out[d] = {"nr": nr, "freq": fr, "sources": e["sources"]}
+    return out
+
+
+def build_dsm(end: date) -> dict:
+    """Normal Rate per the notified CERC DSM Regulations 2024, with the ASC where it can be recovered."""
+    mats = {}
+    for m in ("dam", "gdam", "hpdam", "rtm"):
+        days, p = store.block_matrix(m, "mcp", HISTORY_START, end)
+        _, v = store.block_matrix(m, "scheduled_mw", HISTORY_START, end)
+        mats[m] = ({d: i for i, d in enumerate(days)}, p, v)
+    official = official_blocks()
+    cols = defaultdict(list)
+    latest = latest_official = None
+    nonbind = matched = binding = 0
+    asc_all = []
+    for d, i in sorted(mats["dam"][0].items()):
+        j = mats["rtm"][0].get(d)
+        if j is None or not np.isfinite(mats["rtm"][1][j]).all():
+            continue
+        segs = [(mats[m][1][mats[m][0][d]], mats[m][2][mats[m][0][d]]) for m in ("dam", "gdam", "hpdam") if d in mats[m][0]]
+        idam = indices.integrated_dam([p for p, _ in segs], [v for _, v in segs])
+        rtm = mats["rtm"][1][j]
+        off = official.get(d)
+        off_nr = np.array([np.nan if x is None else x for x in off["nr"]]) if off else None
+        asc = indices.implied_asc(off_nr, idam, rtm) if off else None
+        nr = indices.dsm_normal_rate(idam, rtm, asc)
         cols["dates"].append(d)
         cols["avg"].append(_clean(float(np.nanmean(nr))))
         cols["max"].append(_clean(float(np.nanmax(nr))))
         cols["min"].append(_clean(float(np.nanmin(nr))))
-        last = (d, dam[i], rtm[j], nr)
-    out = {"daily": cols, "method": "CERC DSM Regulations 2024 Normal Rate; ancillary component not yet ingested, "
-                                    "so the regulation's 50:50 DAM/RTM fallback is applied to every block."}
-    if last:
-        out["latest"] = {"date": last[0], "dam": _arr(last[1]), "rtm": _arr(last[2]), "nr": _arr(last[3])}
+        cols["asc_status"].append("published" if off else "pending")
+        cols["official_avg"].append(_clean(float(np.nanmean(off_nr))) if off else None)
+        if off:
+            nb = ~np.isfinite(asc) & np.isfinite(off_nr)
+            nonbind += int(nb.sum())
+            matched += int((np.abs(np.fmax(idam, rtm) - off_nr)[nb] <= 1.0).sum())
+            binding += int(np.isfinite(asc).sum())
+            asc_all.extend(asc[np.isfinite(asc)].tolist())
+            latest_official = (d, idam, rtm, nr, off_nr, asc, off["sources"])
+        latest = (d, idam, rtm, nr)
+    out = {
+        "daily": cols,
+        "method": ("Normal Rate = highest of (i) the integrated day-ahead ACP (DAM, G-DAM, HP-DAM volume-weighted), "
+                   "(ii) the RTM ACP and (iii) (I-DAM + RTM + Ancillary Service Charge) / 3, per the notified CERC DSM "
+                   "Regulations 2024. The ASC is recovered from the Normal Rate the RPCs publish in their block-wise DSM "
+                   "data: where that rate sits above both market prices, ASC = 3 × NR − I-DAM − RTM. Days after the latest "
+                   "published RPC week show a lower bound (market terms only) until the ASC is published."),
+        "validation": {"non_binding_blocks": nonbind, "matched_within_1_rs_mwh": matched,
+                       "match_share": round(matched / nonbind, 4) if nonbind else None,
+                       "asc_binding_blocks": binding,
+                       "asc_median_rs_mwh": _clean(float(np.median(asc_all))) if asc_all else None},
+    }
+    if latest:
+        d, idam, rtm, nr = latest
+        out["latest"] = {"date": d, "idam": _arr(idam), "rtm": _arr(rtm), "nr": _arr(nr),
+                         "asc_status": "published" if d in official else "pending"}
+    if latest_official:
+        d, idam, rtm, nr, off_nr, asc, src = latest_official
+        out["latest_official"] = {"date": d, "idam": _arr(idam), "rtm": _arr(rtm), "nr": _arr(nr),
+                                  "official": _arr(off_nr), "asc": _arr(asc), "sources": src}
     return out
+
+
+# ------------------------------------------------------------------ grid & balancing
+
+EXCLUDE_FROM_PAYERS = ("Inter-regional", "Cross-border")
+
+
+def build_grid(end: date) -> dict:
+    weeks = grid.load_weeks()
+    sources = grid.load_sources()
+    official = official_blocks()
+    # Frequency (15-minute block averages from RPC DSM data).
+    freq_days = []
+    for d in sorted(official):
+        f = np.array([np.nan if x is None else x for x in official[d]["freq"]])
+        ok = np.isfinite(f)
+        if ok.sum() < 90:
+            continue
+        band = (f >= 49.90) & (f <= 50.05)
+        freq_days.append({"date": d, "min": _clean(float(np.nanmin(f)), 3), "max": _clean(float(np.nanmax(f)), 3),
+                          "mean": _clean(float(np.nanmean(f)), 3), "in_band_pct": _clean(float(band[ok].mean() * 100), 1),
+                          "below_49_90_pct": _clean(float((f[ok] < 49.90).mean() * 100), 1),
+                          "above_50_05_pct": _clean(float((f[ok] > 50.05).mean() * 100), 1),
+                          "sources": official[d]["sources"]})
+    frequency = {"days": freq_days}
+    if freq_days:
+        last = freq_days[-1]["date"]
+        frequency["latest"] = {"date": last, "blocks": [_clean(x, 3) if x is not None else None for x in official[last]["freq"]]}
+
+    latest_by_rpc: dict[str, dict] = {}
+    for w in weeks:
+        cur = latest_by_rpc.get(w["rpc"])
+        if cur is None or w["period"]["from"] > cur["period"]["from"]:
+            latest_by_rpc[w["rpc"]] = w
+
+    def doc_list(w):
+        return [{"kind": k, **v} for k, v in w.get("documents", {}).items()]
+
+    dsm, payers, ancillary = [], [], []
+    for name, w in sorted(latest_by_rpc.items()):
+        sec = w.get("dsm") or {}
+        entities = []
+        for r in sec.get("rows", []) if sec.get("status") in ("ok", "source_mismatch", "unvalidated") else []:
+            pay, rec = r.get("payable_rs") or 0, r.get("receivable_rs") or 0
+            ent = {"name": r["name"], "category": r.get("category"), "group": rpc.group_of(r.get("category")),
+                   "payable_rs": _clean(pay), "receivable_rs": _clean(rec), "net_rs": _clean(pay - rec),
+                   "deviation_mwh": _clean(r.get("deviation_mwh"), 1), "scheduled_mwh": _clean(r.get("scheduled_mwh"), 1),
+                   "actual_mwh": _clean(r.get("actual_mwh"), 1)}
+            entities.append(ent)
+            if ent["group"] not in EXCLUDE_FROM_PAYERS:
+                payers.append({**ent, "rpc": name, "period": w["period"]})
+        groups = defaultdict(lambda: {"payable_rs": 0.0, "receivable_rs": 0.0, "abs_deviation_mwh": 0.0, "entities": 0})
+        for e in entities:
+            g = groups[e["group"]]
+            g["payable_rs"] += e["payable_rs"] or 0
+            g["receivable_rs"] += e["receivable_rs"] or 0
+            g["abs_deviation_mwh"] += abs(e["deviation_mwh"] or 0)
+            g["entities"] += 1
+        dsm.append({"rpc": name, "region": w["region"], "period": w["period"], "status": sec.get("status", "missing"),
+                    "message": sec.get("message", ""), "documents": doc_list(w), "fetched": w.get("fetched"),
+                    "entities": entities, "groups": {k: {kk: _clean(vv) for kk, vv in v.items()} for k, v in groups.items()}})
+        anc = {"rpc": name, "region": w["region"], "period": w["period"], "documents": doc_list(w)}
+        for key in ("sras", "tras_market", "tras_shortfall"):
+            t = w.get(key) or {"status": "missing", "message": "not published in this RPC's files", "rows": []}
+            anc[key] = {"status": t.get("status"), "message": t.get("message", ""),
+                        "rows": t.get("rows", []) if t.get("status") != "parse_error" else [], "total": t.get("total")}
+        if w.get("tras_prices"):
+            anc["tras_prices"] = w["tras_prices"]
+        ancillary.append(anc)
+    payers.sort(key=lambda e: e["net_rs"] or 0, reverse=True)
+    history = []
+    for w in sorted(weeks, key=lambda w: (w["rpc"], w["period"]["from"])):
+        sec = w.get("dsm") or {}
+        rows = sec.get("rows", []) if sec.get("status") in ("ok", "source_mismatch", "unvalidated") else []
+        tot = lambda key, f: _clean(((w.get(key) or {}).get("total") or {}).get(f))  # noqa: E731
+        history.append({"rpc": w["rpc"], "period": w["period"], "dsm_status": sec.get("status"),
+                        "payable_rs": _clean(sum(r.get("payable_rs") or 0 for r in rows)) if rows else None,
+                        "receivable_rs": _clean(sum(r.get("receivable_rs") or 0 for r in rows)) if rows else None,
+                        "sras_total_rs": tot("sras", "total_rs"), "sras_up_mwh": tot("sras", "up_mwh"),
+                        "tras_shortfall_net_rs": tot("tras_shortfall", "net_rs"), "tras_market_net_rs": tot("tras_market", "net_rs")})
+    return {"sources": sources, "frequency": frequency, "dsm": dsm, "top_payers": payers[:10],
+            "ancillary": ancillary, "history": history}
 
 
 # ------------------------------------------------------------------ BESS index
@@ -307,7 +458,7 @@ def run(out: Path = SITE_DATA_DIR) -> dict:
         sizes[f"history/{m}.json"] = _write(f"history/{m}.json", h, out)
     for name, fn in (("regions.json", build_regions), ("futures.json", build_futures), ("dsm.json", build_dsm),
                      ("bess.json", build_bess), ("forecast.json", build_forecast),
-                     ("reference.json", build_reference)):
+                     ("reference.json", build_reference), ("grid.json", build_grid)):
         sizes[name] = _write(name, fn(end), out)
     sizes["notes.json"] = _write("notes.json", build_notes(), out)
     shutil.copyfile(DATA_DIR.parent / "docs" / "METHODOLOGY.md", out / "methodology.md")

@@ -189,7 +189,9 @@ async function overview(root) {
     ["IEX REC sessions", "each session", "live"],
     ["Tenders: BESS, FDRE, solar, wind", "curated, every row sourced", "manual"],
     ["Open-access landed cost (IEX calculator)", "39 discoms × category × voltage", "live"],
-    ["DSM and SRAS/TRAS settlement rates", "RPC weekly accounts", "planned"],
+    ["DSM, SRAS and TRAS settlements (ERPC, WRPC, NERPC)", "weekly accounts, ~2 weeks lag", "live"],
+    ["Grid frequency", "15-min block averages from RPC data", "live"],
+    ["NRPC and SRPC accounts, Grid-India reports", "not publicly reachable", "planned"],
   ];
   cov.append(table(["Dataset", "Granularity", "Status"], rows.map(([a, b, s]) =>
     [a, b, h("span", { class: `status-dot${s === "live" ? "" : " warn"}` }, s)])),
@@ -584,6 +586,189 @@ async function bessPage(root) {
   g3.append(h("div", { class: "c12" }, bc));
 }
 
+// ------------------------------------------------------------------ grid & balancing (published data)
+const STATUS = {
+  ok: ["Parsed", ""], partial: ["Partly parsed", "warn"], source_mismatch: ["Totals don't tie", "warn"],
+  unvalidated: ["No total to check", "warn"], parse_error: ["Could not parse", "bad"], unreachable: ["Unreachable", "bad"],
+  blocked: ["Login required", "bad"], not_published: ["Not published", "muted"], missing: ["Not in files", "muted"], check: ["Responding", "warn"],
+};
+const statusChip = (st) => { const [label, cls] = STATUS[st] || [st || "unknown", "muted"]; return h("span", { class: `status-dot ${cls}` }, label); };
+const docLink = (d) => h("a", { href: d.url, target: "_blank", rel: "noopener" }, d.title || d.kind);
+const lakhCr = (rs) => (rs == null ? "–" : `${rs < 0 ? "−" : ""}${Math.abs(rs) >= 1e7 ? `₹${f.fixed(Math.abs(rs) / 1e7, 2)} Cr` : `₹${f.fixed(Math.abs(rs) / 1e5, 2)} L`}`);
+const periodLabel = (p) => `${f.dShort(p.from)} – ${f.dLong(p.to)}`;
+
+function sourcesCard(G, ids, title = "Sources for this page") {
+  const rows = G.sources.sources.filter((x) => ids.includes(x.id) || ids.includes(x.kind));
+  const c = card(title, G.sources.generated ? `checked ${G.sources.generated.replace("T", " ")} IST` : "");
+  c.classList.add("wide");
+  c.append(table(["Source", "Status", "Data through", "Last checked", "Notes"], rows.map((x) => [
+    h("a", { href: x.url, target: "_blank", rel: "noopener" }, x.name), statusChip(x.status), x.data_through ? f.dLong(x.data_through) : "–",
+    (x.last_checked || "").replace("T", " "), x.message || (x.documents ? h("span", {}, ...Object.values(x.documents).flatMap((d, i) => [i ? " · " : "", docLink(d)])) : "")])));
+  return c;
+}
+
+function gridHead(title, blurb) {
+  return h("div", {}, h("div", { class: "dhruva-banner" }, h("span", { class: "dhruva-chip pub" }, "Published data"),
+    h("span", {}, "Figures as published by the Regional Power Committees, parsed and checked against each table's own totals. "), h("a", { href: "#grid-sources" }, "Source status")),
+  pageHead(title, blurb));
+}
+
+async function gridFrequencyPage(root) {
+  const G = await load("grid.json");
+  root.append(gridHead("Grid frequency", "All-India frequency in 15-minute blocks, as recorded in the RPCs' block-wise DSM data. The IEGC operating band is 49.90–50.05 Hz."));
+  const F = G.frequency;
+  if (!F.days.length) { root.append(h("p", { class: "empty" }, "No block-wise frequency data parsed yet."), sourcesCard(G, ["rpc", "GRID_INDIA_FREQ"])); return; }
+  const lt = F.days[F.days.length - 1];
+  const grid = h("div", { class: "grid" });
+  root.append(grid);
+  [tile(`Lowest block · ${f.dShort(lt.date)}`, f.fixed(lt.min, 2), "Hz"), tile("Highest block", f.fixed(lt.max, 2), "Hz"),
+    tile("Blocks within 49.90–50.05 Hz", f.fixed(lt.in_band_pct, 1), "%", null, `${f.fixed(lt.below_49_90_pct, 1)}% below · ${f.fixed(lt.above_50_05_pct, 1)}% above`),
+    tile("Daily mean", f.fixed(lt.mean, 3), "Hz")].forEach((t) => { t.classList.add("c3"); grid.append(t); });
+  const c = card(`Frequency by block · ${f.dLong(F.latest.date)}`, "Hz, 15-minute average");
+  mount(c, (el) => lineChart(el, { x: [...Array(96).keys()], series: [{ name: "Frequency", color: "var(--s1)", values: F.latest.blocks }],
+    refLines: [{ y: 50.05, label: "50.05 Hz" }, { y: 49.9, label: "49.90 Hz" }], zero: false,
+    yMin: Math.min(49.85, lt.min - 0.02), yMax: Math.max(50.1, lt.max + 0.02),
+    yFmt: (x) => x.toFixed(2), tipFmt: (x) => `${x.toFixed(3)} Hz`, xFmt: hours, titleFmt: blockLabel, height: 280 }));
+  tableToggle(c, () => table(["Block", "Hz"], F.latest.blocks.map((x, b) => [blockLabel(b), f.fixed(x, 3)]), [1]));
+  c.append(h("p", { class: "note" }, "Source: ", ...lt.sources.flatMap((x, i) => [i ? ", " : "", h("a", { href: x.url, target: "_blank", rel: "noopener" }, `${x.rpc} block-wise DSM data`)]),
+    ". These are 15-minute block averages, so they understate true minima and maxima. Grid-India's daily frequency profile (10-second data, % of time in band) is not reachable from Dhruva's servers; see Source status."));
+  grid.append(h("div", { class: "c8" }, c));
+  const d = card("Daily summary", `${F.days.length} days with published data`);
+  d.append(h("div", { style: { maxHeight: "330px", overflowY: "auto" } },
+    table(["Day", "Min Hz", "Max Hz", "Mean", "In band %"], F.days.slice().reverse().map((x) => [f.dShort(x.date), f.fixed(x.min, 2), f.fixed(x.max, 2), f.fixed(x.mean, 3), f.fixed(x.in_band_pct, 1)]), [1, 2, 3, 4])));
+  grid.append(h("div", { class: "c4" }, d));
+  const b = card("Share of blocks within 49.90–50.05 Hz", "% of 96 blocks per day");
+  mount(b, (el) => barChart(el, { labels: F.days.map((x) => x.date), series: [{ name: "In band", color: "var(--s3)", values: F.days.map((x) => x.in_band_pct) }],
+    yMax: 100, yFmt: (x) => `${x}%`, tipFmt: (x, s2, i) => `${f.fixed(x, 1)}% in band · min ${f.fixed(F.days[i].min, 2)} Hz · max ${f.fixed(F.days[i].max, 2)} Hz`,
+    xFmt: (i) => f.dShort(F.days[i].date), titleFmt: (i) => f.dLong(F.days[i].date), height: 220 }));
+  grid.append(h("div", { class: "c12" }, b));
+  root.append(h("div", { style: { marginTop: "14px" } }, sourcesCard(G, ["rpc", "GRID_INDIA_FREQ"])));
+}
+
+async function gridDsmPage(root) {
+  const G = await load("grid.json");
+  root.append(gridHead("Deviations (DSM)", "Weekly deviation settlement accounts from each Regional Power Committee: how far each entity deviated from schedule and what it pays into, or receives from, the regional Deviation & Ancillary Service Pool."));
+  const D = G.dsm.filter((x) => x.entities.length);
+  if (!D.length) { root.append(h("p", { class: "empty" }, "No DSM accounts parsed yet."), sourcesCard(G, ["rpc"])); return; }
+  const grid = h("div", { class: "grid" });
+  root.append(grid);
+  const top = card("Biggest DSM payers", "net payable to the pool, latest week of each RPC · excludes inter-regional and cross-border lines");
+  top.append(table(["Entity", "RPC · week", "Group", "Deviation MWh", "Payable", "Receivable", "Net payable"],
+    G.top_payers.map((e) => [h("b", {}, e.name), `${e.rpc} · ${periodLabel(e.period)}`, e.group, f.int(e.deviation_mwh), lakhCr(e.payable_rs), lakhCr(e.receivable_rs), lakhCr(e.net_rs)]), [3, 4, 5, 6]));
+  top.append(h("p", { class: "note" }, "Ranked across the three RPCs whose accounts are parsed (ERPC, WRPC, NERPC); NRPC and SRPC are missing (see Source status)."));
+  grid.append(h("div", { class: "c12" }, top));
+
+  let which = D[0].rpc;
+  const body = h("div", { class: "c12" });
+  const sel = h("select", { onchange: (e) => { which = e.target.value; draw(); } }, D.map((x) => h("option", { value: x.rpc }, `${x.rpc} · ${periodLabel(x.period)}`)));
+  grid.append(h("div", { class: "c12 controls", style: { margin: 0 } }, h("label", {}, "Regional account", sel)), body);
+  function draw() {
+    body.replaceChildren();
+    const R = D.find((x) => x.rpc === which);
+    const g = h("div", { class: "grid" });
+    body.append(g);
+    if (R.status !== "ok") g.append(h("div", { class: "c12 dhruva-banner warn" }, statusChip(R.status), h("span", {}, R.message)));
+    const pay = R.entities.reduce((a, e) => a + (e.payable_rs || 0), 0), rec = R.entities.reduce((a, e) => a + (e.receivable_rs || 0), 0);
+    [tile("Charges payable to pool", lakhCr(pay), ""), tile("Charges receivable from pool", lakhCr(rec), ""),
+      tile("Pool balance", lakhCr(pay - rec), "", null, "payable − receivable, as printed"),
+      tile("Entities", f.int(R.entities.length), "", null, `${R.region} region · ${periodLabel(R.period)}`)].forEach((t) => { t.classList.add("c3"); g.append(t); });
+    const groups = Object.entries(R.groups).sort((a, b2) => b2[1].payable_rs - a[1].payable_rs);
+    const gc = card("By entity group", "₹ and gross |deviation| MWh summed over the week");
+    gc.append(table(["Group", "Entities", "|Deviation| MWh", "Payable", "Receivable", "Net"], groups.map(([k, x]) => [k, x.entities, f.int(x.abs_deviation_mwh), lakhCr(x.payable_rs), lakhCr(x.receivable_rs), lakhCr(x.payable_rs - x.receivable_rs)]), [1, 2, 3, 4, 5]));
+    g.append(h("div", { class: "c5" }, gc));
+    const chartRows = R.entities.filter((e) => e.group !== "Inter-regional" && e.group !== "Cross-border").sort((a, b2) => b2.net_rs - a.net_rs);
+    const pick = [...chartRows.slice(0, 8), ...chartRows.slice(-4)];
+    const cc = card("Net DSM by entity", "largest payers and receivers · ₹ lakh");
+    mount(cc, (el) => barChart(el, { labels: pick.map((e) => e.name), series: [{ name: "Net", color: "var(--s2)", colors: pick.map((e) => (e.net_rs >= 0 ? "var(--s2)" : "var(--s1)")), values: pick.map((e) => e.net_rs / 1e5) }],
+      yFmt: (x) => f.compact(x), tipFmt: (x, s2, i) => `${lakhCr(pick[i].net_rs)} net · ${f.int(pick[i].deviation_mwh)} MWh`, xFmt: () => null, titleFmt: (i) => `${pick[i].name} · ${pick[i].group}`, height: 240 }));
+    cc.append(h("div", { class: "legend", style: { marginTop: "6px" } },
+      h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s2)" } }), "pays the pool"),
+      h("span", { class: "key" }, h("span", { class: "rect", style: { background: "var(--s1)" } }), "receives from the pool")));
+    g.append(h("div", { class: "c7" }, cc));
+    const groupsList = ["All", ...new Set(R.entities.map((e) => e.group))];
+    let grp = "All";
+    const tc = card("All entities", `${R.rpc} · ${periodLabel(R.period)}`);
+    const tbl = h("div");
+    const gsel = h("select", { onchange: (e) => { grp = e.target.value; fill(); } }, groupsList.map((x) => h("option", { value: x }, x)));
+    const fill = () => tbl.replaceChildren(table(["Entity", "Group", "As listed by RPC", "Deviation MWh", "Payable", "Receivable", "Net"],
+      R.entities.filter((e) => grp === "All" || e.group === grp).sort((a, b2) => b2.net_rs - a.net_rs)
+        .map((e) => [e.name, e.group, e.category || "–", e.deviation_mwh == null ? "–" : f.int(e.deviation_mwh), lakhCr(e.payable_rs), lakhCr(e.receivable_rs), lakhCr(e.net_rs)]), [3, 4, 5, 6]));
+    fill();
+    tc.append(h("div", { class: "controls" }, h("label", {}, "Group", gsel)), tbl,
+      h("p", { class: "note" }, "Deviation MWh is actual minus schedule as each RPC states it; sign conventions for drawal differ between RPCs, so compare entities on rupees. Documents: ",
+        ...R.documents.flatMap((d, i) => [i ? " · " : "", docLink(d)])));
+    csvButton(tc, `dhruva_dsm_${R.rpc}_${R.period.from}.csv`, () => [["entity", "group", "rpc_category", "deviation_mwh", "payable_rs", "receivable_rs", "net_rs"],
+      ...R.entities.map((e) => [e.name, e.group, e.category, e.deviation_mwh, e.payable_rs, e.receivable_rs, e.net_rs])]);
+    g.append(h("div", { class: "c12" }, tc));
+  }
+  draw();
+  root.append(h("div", { style: { marginTop: "14px" } }, sourcesCard(G, ["rpc", "NRPC", "SRPC"])));
+}
+
+async function gridAncillaryPage(root) {
+  const G = await load("grid.json");
+  root.append(gridHead("Ancillary services", "Secondary (SRAS) and tertiary (TRAS) reserve settlements by provider, from the RPC weekly accounts: energy deployed up and down, and what the pool paid or recovered."));
+  const A = G.ancillary;
+  if (!A.length) { root.append(h("p", { class: "empty" }, "No ancillary accounts parsed yet."), sourcesCard(G, ["rpc"])); return; }
+  let which = A[0].rpc;
+  const body = h("div");
+  const sel = h("select", { onchange: (e) => { which = e.target.value; draw(); } }, A.map((x) => h("option", { value: x.rpc }, `${x.rpc} · ${periodLabel(x.period)}`)));
+  root.append(h("div", { class: "controls" }, h("label", {}, "Regional account", sel)), body);
+  const sum = (rows, k) => rows.reduce((a, r) => a + (r[k] || 0), 0);
+  function sectionCard(title, sub, t, headers, row, numeric) {
+    const c = card(title, sub);
+    if (t.status && t.status !== "ok") c.append(h("div", { class: "dhruva-banner warn" }, statusChip(t.status), h("span", {}, t.message || "")));
+    if (!t.rows.length) { c.append(h("p", { class: "empty" }, t.status === "missing" ? "Not published in this RPC's files." : "No rows.")); return c; }
+    c.append(table(headers, t.rows.map(row), numeric));
+    return c;
+  }
+  function draw() {
+    body.replaceChildren();
+    const R = A.find((x) => x.rpc === which);
+    const g = h("div", { class: "grid" });
+    body.append(g);
+    const sr = R.sras.rows, tm = R.tras_market.rows, ts = R.tras_shortfall.rows;
+    [tile("SRAS up / down", `${f.int(sum(sr, "up_mwh"))} / ${f.int(sum(sr, "down_mwh"))}`, "MWh", null, `${sr.length} providers`),
+      tile("SRAS net to providers", lakhCr(sum(sr, "total_rs")), "", null, "energy + incentive; + paid by pool"),
+      tile("TRAS DAM/RTM market", `${f.int(sum(tm, "da_up_sched_mwh") + sum(tm, "rt_up_sched_mwh"))} / ${f.int(sum(tm, "da_down_mwh") + sum(tm, "rt_down_mwh"))}`, "MWh", null, "up scheduled / down scheduled"),
+      tile("TRAS shortfall & emergency", `${f.int(sum(ts, "up_mwh"))} / ${f.int(sum(ts, "down_mwh"))}`, "MWh", null, `net ${lakhCr(sum(ts, "net_rs"))} to providers`)].forEach((t) => { t.classList.add("c3"); g.append(t); });
+    g.append(h("div", { class: "c12" }, sectionCard("SRAS (secondary reserve, AGC)", "by provider · + means paid by the pool to the provider",
+      R.sras, ["Provider", "Up MWh", "Down MWh", "Net MWh", "Energy ₹", "Incentive ₹", "Total ₹"],
+      (r) => [r.name, f.fixed(r.up_mwh, 1), f.fixed(r.down_mwh, 1), f.fixed(r.net_mwh, 1), f.int(r.energy_rs), f.int(r.incentive_rs), f.int(r.total_rs)], [1, 2, 3, 4, 5, 6])));
+    g.append(h("div", { class: "c12" }, sectionCard("TRAS in the day-ahead and real-time AS markets", "by provider",
+      R.tras_market, ["Provider", "DA up cleared", "DA up sched.", "RT up cleared", "RT up sched.", "Up charges ₹", "DA down MWh", "RT down MWh", "Net ₹"],
+      (r) => [r.name, f.fixed(r.da_up_cleared_mwh, 1), f.fixed(r.da_up_sched_mwh, 1), f.fixed(r.rt_up_cleared_mwh, 1), f.fixed(r.rt_up_sched_mwh, 1), f.int(r.up_total_rs), f.fixed(r.da_down_mwh, 1), f.fixed(r.rt_down_mwh, 1), f.int(r.net_rs)], [1, 2, 3, 4, 5, 6, 7, 8])));
+    g.append(h("div", { class: "c12" }, sectionCard("TRAS in shortfall and emergency conditions", "scheduled by the grid operator outside the markets",
+      R.tras_shortfall, ["Provider", "Up MWh", "Up charges ₹", "Down MWh", "Down paid back ₹", "Net ₹"],
+      (r) => [r.name, f.fixed(r.up_mwh, 1), f.int(r.up_rs), f.fixed(r.down_mwh, 1), f.int(r.down_rs), f.int(r.net_rs)], [1, 2, 3, 4, 5])));
+    const P = R.tras_prices;
+    const pc = card("TRAS clearing prices by block", P ? `${R.rpc} providers · ₹/MWh where a provider cleared` : "");
+    if (!P) pc.append(h("p", { class: "empty" }, `${R.rpc} publishes TRAS only as weekly totals, so block prices are not available from its files. NERPC's block-wise TRAS file carries them.`));
+    else if (!P.blocks_with_clearing) pc.append(h("p", { class: "empty" }, `${P.message}. Exchange TRAS results (IEX, PXIL, HPX) are not publicly available; see Source status.`));
+    else {
+      const k = P.dates.length - 1;
+      mount(pc, (el) => lineChart(el, { x: [...Array(96).keys()], series: [
+        { name: "DA TRAS-Up", color: "var(--s2)", values: P.rs_mwh.da_up[k] }, { name: "RT TRAS-Up", color: "var(--s7)", values: P.rs_mwh.rt_up[k] },
+        { name: "DA TRAS-Down", color: "var(--s1)", values: P.rs_mwh.da_down[k] }, { name: "RT TRAS-Down", color: "var(--s3)", values: P.rs_mwh.rt_down[k] }],
+      yFmt: f.compact, tipFmt: (x) => `₹${f.int(x)}/MWh`, xFmt: hours, titleFmt: blockLabel, height: 240 }));
+    }
+    g.append(h("div", { class: "c12" }, pc));
+    g.append(h("p", { class: "note c12" }, "Documents: ", ...R.documents.flatMap((d, i) => [i ? " · " : "", docLink(d)])));
+  }
+  draw();
+  root.append(h("div", { style: { marginTop: "14px" } }, sourcesCard(G, ["rpc", "GRID_INDIA_AS", "IEX_TRAS", "PXIL_TRAS", "HPX_TRAS", "NRPC", "SRPC"])));
+}
+
+async function gridSourcesPage(root) {
+  const G = await load("grid.json");
+  root.append(gridHead("Source status", "Every public source behind the Grid & balancing pages, whether it could be read on the last run, and how far its data runs. Anything that failed to parse is shown here, never filled in."));
+  root.append(sourcesCard(G, G.sources.sources.map((x) => x.id), "All sources"));
+  const hc = card("Parsed weeks", "one row per RPC settlement week · totals as published");
+  hc.append(table(["RPC", "Week", "DSM", "DSM payable", "DSM receivable", "SRAS total ₹", "TRAS shortfall net ₹", "TRAS market net ₹"],
+    G.history.slice().reverse().map((x) => [x.rpc, periodLabel(x.period), statusChip(x.dsm_status), lakhCr(x.payable_rs), lakhCr(x.receivable_rs), lakhCr(x.sras_total_rs), lakhCr(x.tras_shortfall_net_rs), lakhCr(x.tras_market_net_rs)]), [3, 4, 5, 6, 7]));
+  root.append(h("div", { style: { marginTop: "14px" } }, hc));
+}
+
 async function dhruvaHome(root) {
   const [bess, fut] = await Promise.all([load("bess.json"), load("futures.json")]);
   root.append(dhruvaHead("Dhruva indices and analytics",
@@ -655,38 +840,49 @@ async function baseIndexPage(root) {
 async function analyticsPage(root) {
   const [dsm, fc] = await Promise.all([load("dsm.json"), load("forecast.json")]);
   root.append(dhruvaHead("Analytics",
-    "Calculations Dhruva runs on exchange prices: an indicative DSM Normal Rate under the CERC DSM Regulations 2024, and a D+1 baseline price forecast."));
+    "Calculations Dhruva runs on public data: the DSM Normal Rate under the CERC DSM Regulations 2024, using the ancillary charge where it can be recovered, and a D+1 baseline price forecast."));
   const grid = h("div", { class: "grid" });
   root.append(grid);
-  const lt = dsm.latest;
-  if (lt) {
-    const c = card(`Indicative DSM Normal Rate · ${f.dLong(lt.date)}`, "₹/kWh by block");
+  const lo = dsm.latest_official;
+  if (lo) {
+    const c = card(`DSM Normal Rate · ${f.dLong(lo.date)}`, "₹/kWh by block · Dhruva's calculation against the rate the RPCs published");
     mount(c, (el) => lineChart(el, { x: [...Array(96).keys()], series: [
-      { name: "Normal Rate (indicative)", short: "NR", color: "var(--s7)", values: lt.nr },
-      { name: "DAM", color: COLORS.dam, values: lt.dam, width: 1.5 },
-      { name: "RTM", color: COLORS.rtm, values: lt.rtm, width: 1.5 },
-    ], yFmt: f.kwhAxis, tipFmt: (x) => f.kwh(x), xFmt: hours, titleFmt: blockLabel, height: 280 }));
-    tableToggle(c, () => table(["Block", "NR", "DAM", "RTM"], lt.nr.map((x, b) => [blockLabel(b), f.kwh(x), f.kwh(lt.dam[b]), f.kwh(lt.rtm[b])]), [1, 2, 3]));
+      { name: "Published Normal Rate (RPC)", short: "Published", color: "var(--s7)", values: lo.official, width: 3 },
+      { name: "Dhruva: max(I-DAM, RTM, (I-DAM+RTM+ASC)/3)", short: "Dhruva", color: "var(--s1)", values: lo.nr, width: 1.5 },
+      { name: "I-DAM ACP (IEX)", short: "I-DAM", color: "var(--s3)", values: lo.idam, width: 1.5 },
+      { name: "RTM ACP (IEX)", short: "RTM", color: "var(--s2)", values: lo.rtm, width: 1.5 },
+    ], yFmt: f.kwhAxis, tipFmt: (x) => f.kwh(x), xFmt: hours, titleFmt: blockLabel, height: 300 }));
+    tableToggle(c, () => table(["Block", "Published", "Dhruva", "I-DAM", "RTM", "ASC"], lo.official.map((x, b) =>
+      [blockLabel(b), f.kwh(x), f.kwh(lo.nr[b]), f.kwh(lo.idam[b]), f.kwh(lo.rtm[b]), lo.asc[b] == null ? "not binding" : f.kwh(lo.asc[b])]), [1, 2, 3, 4, 5]));
+    c.append(h("p", { class: "note" }, "Published rate: ", ...lo.sources.flatMap((x, i) => [i ? ", " : "", h("a", { href: x.url, target: "_blank", rel: "noopener" }, `${x.rpc} block-wise DSM data`)]),
+      ". Where the published rate sits above both market prices, the ancillary term set it and ASC = 3 × NR − I-DAM − RTM."));
     grid.append(h("div", { class: "c8" }, c));
   }
-  const s = card("How the rate is built", "");
-  s.append(table(["Component", "Source", "Status"], [
-    ["DAM ACP", "IEX, every block", h("span", { class: "status-dot" }, "live")],
-    ["RTM ACP", "IEX, every block", h("span", { class: "status-dot" }, "live")],
-    ["Ancillary Service Charge (SRAS/TRAS)", "RPC weekly DSM/SRAS/TRAS accounts", h("span", { class: "status-dot warn" }, "planned")],
-  ]), h("p", { class: "note" }, "The regulation blends DAM, RTM and the Ancillary Service Charge in equal thirds, and falls back to 50:50 DAM/RTM when no ancillary service is dispatched. Until the ancillary charge is ingested, the fallback is applied to every block, using IEX prices only. Official settlement rates are published weekly by the RPCs."));
+  const v = dsm.validation || {};
+  const s = card("How the rate is built", "CERC DSM Regulations 2024, as notified");
+  s.append(table(["Term", "Source", "Status"], [
+    ["(i) I-DAM ACP: DAM, G-DAM, HP-DAM", "IEX, volume-weighted per block", h("span", { class: "status-dot" }, "live")],
+    ["(ii) RTM ACP", "IEX, every block", h("span", { class: "status-dot" }, "live")],
+    ["(iii) (I-DAM + RTM + ASC) / 3", "ASC recovered from RPC-published Normal Rate", h("span", { class: "status-dot" }, "weekly, ~2 weeks lag")],
+  ]),
+  h("p", { class: "note" }, "The rate is the highest of the three terms. There is no 50:50 fallback in the notified text; that was in the 2024 draft. The draft also proposed equal thirds alone."),
+  h("p", { class: "note" }, v.non_binding_blocks
+    ? `Check: in ${f.int(v.non_binding_blocks)} published blocks where the ancillary term did not bind, max(I-DAM, RTM) from IEX matched the published rate within ₹1/MWh in ${f.fixed(v.match_share * 100, 1)}% of blocks. Misses come from area-wise prices and PXIL/HPX volumes, which Dhruva does not have. The ASC set the rate in ${f.int(v.asc_binding_blocks)} blocks (median ASC ${f.kwh(v.asc_median_rs_mwh)}/kWh).`
+    : "No RPC block-wise data ingested yet, so the ASC is unknown and only a lower bound is shown."));
   grid.append(h("div", { class: "c4" }, s));
 
   const d = dsm.daily, n = Math.min(rangeDays(), d.dates.length);
-  const sl = sliceLast(d, ["dates", "avg", "max", "min"], n);
-  const c2 = card("Daily indicative Normal Rate", `average and range · last ${sl.dates.length} days`);
+  const sl = sliceLast(d, ["dates", "avg", "max", "min", "official_avg", "asc_status"], n);
+  const pend = sl.asc_status.filter((x) => x === "pending").length;
+  const c2 = card("Daily Normal Rate", `average and range · last ${sl.dates.length} days${pend ? ` · ${pend} recent days are a lower bound (ASC not yet published)` : ""}`);
   mount(c2, (el) => lineChart(el, { x: sl.dates, series: [
     { name: "Max block", short: "Max", color: "var(--s2)", values: sl.max },
-    { name: "Daily average", short: "Avg", color: "var(--s7)", values: sl.avg },
+    { name: "Daily average (Dhruva)", short: "Avg", color: "var(--s7)", values: sl.avg },
+    { name: "Daily average (published)", short: "Published", color: "var(--s1)", values: sl.official_avg, width: 1.5 },
     { name: "Min block", short: "Min", color: "var(--s3)", values: sl.min },
   ], yFmt: f.kwhAxis, tipFmt: (x) => f.kwh(x), xFmt: (i) => f.dShort(sl.dates[i]),
-    titleFmt: (i) => f.dLong(sl.dates[i]), height: 240 }));
-  csvButton(c2, "dhruva_dsm_normal_rate_daily.csv", () => [["date", "avg", "max", "min"], ...sl.dates.map((x, i) => [x, sl.avg[i], sl.max[i], sl.min[i]])]);
+    titleFmt: (i) => `${f.dLong(sl.dates[i])}${sl.asc_status[i] === "pending" ? " · lower bound" : ""}`, height: 260 }));
+  csvButton(c2, "dhruva_dsm_normal_rate_daily.csv", () => [["date", "avg", "max", "min", "published_avg", "asc_status"], ...sl.dates.map((x, i) => [x, sl.avg[i], sl.max[i], sl.min[i], sl.official_avg[i], sl.asc_status[i]])]);
   grid.append(h("div", { class: "c12" }, h("div", { class: "controls" }, rangeControl(() => route())), c2));
 
   const fcard = card(`D+1 baseline forecast · ${fc.target_date ? f.dLong(fc.target_date) : ""}`, fc.method || "");
@@ -737,6 +933,8 @@ const ROUTES = [
   ["overview", "Overview", overview, "Markets"], ["spot", "Spot", spotPage, "Markets"], ["regions", "Regions", regionsPage, "Markets"],
   ["futures", "Futures", futuresPage, "Markets"], ["rec", "RECs", recPage, "Markets"], ["tenders", "Tenders", tendersPage, "Markets"],
   ["open-access", "Open access", openAccessPage, "Markets"],
+  ["frequency", "Frequency", gridFrequencyPage, "Grid & balancing"], ["deviations", "Deviations (DSM)", gridDsmPage, "Grid & balancing"],
+  ["ancillary", "Ancillary", gridAncillaryPage, "Grid & balancing"], ["grid-sources", "Source status", gridSourcesPage, "Grid & balancing"],
   ["dhruva", "Indices", dhruvaHome, "Dhruva"], ["bess", "Battery index", bessPage, "Dhruva"], ["base-index", "Base index", baseIndexPage, "Dhruva"],
   ["analytics", "Analytics", analyticsPage, "Dhruva"], ["weekly", "Weekly", weeklyPage, "Dhruva"],
   ["methodology", "Methodology", methodologyPage, "Dhruva"], ["pricing", "Plans", pricingPage, "Dhruva"],
@@ -752,7 +950,7 @@ function setTier(t, rerender) {
 let routing = 0;
 async function route() {
   const id = (location.hash.replace(/^#\/?/, "").split(/[?/]/)[0]) || "overview";
-  const alias = { balancing: "analytics" };
+  const alias = { balancing: "deviations", grid: "frequency" };
   const r = ROUTES.find((x) => x[0] === (alias[id] || id)) || ROUTES[0];
   document.querySelectorAll("nav.tabs a").forEach((a) => a.toggleAttribute("aria-current", a.dataset.id === r[0]));
   const active = document.querySelector("nav.tabs a[aria-current]");
@@ -779,7 +977,7 @@ async function init() {
   let group = null;
   nav.replaceChildren(...ROUTES.flatMap(([id, label, , g]) => {
     const out = [];
-    if (g !== group) { group = g; out.push(h("span", { class: `navgroup${g === "Dhruva" ? " dhruva" : ""}`, "aria-hidden": "true" }, g)); }
+    if (g !== group) { group = g; out.push(h("span", { class: `navgroup${g === "Markets" ? "" : " sep"}${g === "Dhruva" ? " dhruva" : ""}`, "aria-hidden": "true" }, g)); }
     out.push(h("a", { href: `#${id}`, "data-id": id, class: g === "Dhruva" ? "dhruva" : null }, label));
     return out;
   }));

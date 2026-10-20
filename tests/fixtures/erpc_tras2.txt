@@ -1,0 +1,49 @@
+                                             Format-TRAS-II: TRAS Settlement Account by ERPC (Day Ahead & Real Time Market)
+                                                             TRAS Account For Week : 28-09-2026 to 04-10-2026
+Net Charges Payable/Receivable by the TRAS Provider(s) to/from the Regional Deviation and Ancillary Service Pool Account
+
+                                                                                                                                                            Net
+                                                                                                                               TRAS-Down in Day           TRAS-Down in Real
+                                                                                                                                                            Charges
+                  TRAS-Up in Day Ahead AS Market          TRAS-Up in Real Time AS Market
+                                                                                                                               Ahead AS Market            Time AS Market
+                                                                                                                                                            (Rs.)
+                                                                                                                                                            (+)
+                                                                                                   Total Charges/                                           Payable
+                                                                                                   Compensation             TRAS-                           From Pool
+      TRAS                          TRAS-                                    TRAS-                                TRAS-                TRAS-     TRAS-Down
+Sr.               TRAS- TRAS-Up                           TRAS- TRAS-Up                            Charges                  Down                            To AS
+      Provider                      Up      TRAS-Up                          Up      TRAS-Up                      Down                 Down      Charges to Provider
+                  Up      Energy                          Up      Energy                           For TRAS-Up              Charges to
+                                    Energy Commitment                        Energy Commitment (Rs.)              Energy               Energy    be paid    (-)
+                  Cleared Scheduled                       Cleared Scheduled                                                 be paid
+                                    Charges Charges (Rs.)                    Charges Charges (Rs.)                Scheduled            Scheduled back to    Receivable
+                  (MWh) (MWh)                             (MWh) (MWh)                                                       back to
+                                    (Rs.)                                    (Rs.)                                (MWh)                (MWh)     Pool (Rs.) By Pool
+                                                                                                                            Pool (Rs.)
+                                                                                                                                                            From AS
+                                                                                                                                                            Provider
+                  A           B          C           D          E          F           G          H          I = C+D+G+H       J            K             L             M              N = I-K-M
+ 1 BARH-II             0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0        0.00         0.00         2389.53   100905.43         -100905
+ 2 BTPS                0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0        0.00         0.00         1042.50   86850.00          -86850
+ 3 BRBCL               0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0        0.00         0.00         4568.75   254348.04         -254348
+ 4 DARLIPALI           0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0        0.00         0.00         5607.49   61682.89          -61683
+      DSTPS
+ 5                     0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0        0.00         0.00         1700.00   367075.00         -367075
+      I&II
+ 6 JIPL                0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0       464.73       464.73         25.00        25.00           -490
+ 7 JSWEUL              0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0 1857.40 163698.95 1403.02                  40265.19          -203964
+ 8 KHSTPP-II           0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0        0.00         0.00         326.10     7892.33           -7892
+ 9 KTPS 1&2            0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0        0.00         0.00         1240.00   308050.00         -308050
+10 MPL                 0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0        0.00         0.00         3300.75   461962.50         -461963
+      MTPS
+11                     0.00       0.00        0.00       0.00       0.00        0.00       0.00       0.00                 0        0.00         0.00         1090.00   212812.50         -212813
+      7&8
+
+  12 MTPS-II        0.00      0.00    0.00          0.00    0.00      0.00    0.00          0.00             0    0.00       0.00     236.15    11636.14        -11636
+  13 NPGC           0.00      0.00    0.00          0.00    0.00      0.00    0.00          0.00             0    0.00       0.00    2324.07    154963.34   -154963
+  14 PVUNL          0.00      0.00    0.00          0.00    0.00      0.00    0.00          0.00             0    0.00       0.00    2289.80    32057.13        -32057
+  15 TSTPP          0.00      0.00    0.00          0.00    0.00      0.00    0.00          0.00             0    0.00       0.00    3820.71    45848.49        -45848
+  16 KHSTPP-I       0.00      0.00    0.00          0.00    0.00      0.00    0.00          0.00             0    0.00       0.00     103.75     7781.28        -7781
+  17 RTPS           0.00      0.00    0.00          0.00    0.00      0.00    0.00          0.00             0    0.00       0.00      30.00     3000.00        -3000
+     Total             0         0       0            0       0          0       0            0              0 2322.13 164163.68 31497.62 2157155.26 -2321318

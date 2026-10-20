@@ -1,0 +1,71 @@
+
+                           Eastern Regional Power Committee (ERPC)
+                                                            Deviation Settlement Account
+                                                   for the period 28-09-2026 to 04-10-2026
+            As per DSM Regulation, 2024 w.e.f. 16.09.2024, 1st amend. w.e.f. 23.12.2024 and 2nd amend. w.e.f. 01.07.2025
+                                                                                                                 (All figures in Rs. Lakhs)
+                                                               DSM Charges                              Final DSM Charges
+         Name of Entity
+                                                Payable                        Receivable         Payable               Receivable
+                 A                                B                                C                D                        E
+BENEFICIARIES OF EASTERN REGION
+     EAST CENTRAL RAILWAY                      58.53250                         19.56895         38.96355
+            BSPHCL                            2843.27721                        349.93875       2493.33846
+             JBVNL                            1537.07214                        230.59022       1306.48192
+              DVC                             1183.46329                        298.75009        884.71320
+            GRIDCO                             441.30997                        916.80497                               475.49500
+             SIKKIM                             6.04313                         81.05357                                75.01044
+            WBSETCL                            232.02212                       1262.12513                              1030.10301
+         HVDC SASARAM                           0.01825                          7.76321                                 7.74496
+       HVDC ALIPURDUAR                          0.13330                          1.22438                                 1.09108
+GENERATORS (TARIFF UNDER SEC 62 OR 63)
+             BARH-I                            110.10410                        28.89852         81.20558
+              THEP                              0.00531                          1.74460                                 1.73929
+        JORETHANG HEP                           0.70213                          2.33068                                 1.62855
+            NKSTPP                             15.25140                         65.29133                                50.03993
+             PVUNL                             128.59969                        77.87714         50.72255
+          FSTPP - I & II                       51.48140                         91.44810                                39.96670
+            FSTPP-III                          11.39489                         56.08795                                44.69306
+            KHSTPP-I                           69.42999                         21.89755         47.53244
+            KHSTPP-II                          91.65251                         15.53169         76.12082
+             TSTPP                             64.45026                         15.81711         48.63315
+            BARH-II                            56.74314                         42.88674         13.85640
+            MTPS-II                            22.58187                          9.82812         12.75375
+             BRBCL                             45.47719                         38.59697          6.88022
+             TEESTA                             0.12314                          4.99917                                 4.87603
+            RANGIT                              0.57634                          2.71122                                 2.13488
+              MPL                              21.65304                         69.96378                                48.31074
+             NPGC                              78.44192                         28.96004         49.48188
+           DARLIPALI                            8.49650                         58.25810                                49.76160
+          CHUZACHEN                             0.23221                          5.28054                                 5.04833
+GENERATORS (PART TARIFF UNDER SEC 62 OR 63)
+              JIPL                             39.57811                         29.18980         10.38831
+        RONGNICHU HEP                           6.53868                         24.54876                                18.01008
+            JSWEUL                             31.65697                         36.57384                                 4.91687
+             APNRL                             26.86152                         13.35828         13.50324
+            GMRKEL                             35.25619                          2.35811         32.89808
+OTHER GENERATORS
+            DIKCHU                             51.68103                         33.34159         18.33944
+INTER-REGIONAL
+         East-North East                      5859.59628                                        5859.59628
+           East-North                         5777.72369                       6358.97058                               581.24689
+           East-South                         32399.29588                       27.40718        32371.88870
+           East-West                           260.66368                       34314.38533                            34053.72165
+
+                                                       DSM Charges                                       Final DSM Charges
+            Name of Entity
+                                           Payable                   Receivable                    Payable              Receivable
+                   A                         B                           C                           D                       E
+INTER-NATIONAL
+              NEA-Bihar                   141.93600                   155.79179                                         13.85579
+           NVVN_BHUTAN                    30.90807                    302.22925                                         271.32118
+               NVVN-BD                    145.25344                   134.63000                   10.62344
+             NVVN-NEPAL                   374.75327                   443.95497                                         69.20170
+INFIRM GENERATORS
+RE GENERATORS
+           TALCHER SOLAR                   1.35409                     2.38903                                           1.03494
+                 Total                   52262.32584                 45685.35713                 43427.92141           36850.95270
+
+
+
+Payable To The Pool (A) :                                                          43427.92141

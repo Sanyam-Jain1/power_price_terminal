@@ -53,12 +53,16 @@ data is a commodity. The methodology and the track record are the product.
   [Upstox expiry notice](https://upstox.com/announcements/updates/mandatory-square-off-electricity-futures-expiry-august-2026/),
   [Zerodha FAQ](https://support.zerodha.com/category/trading-and-markets/trading-faqs/f-otrading/articles/electricity-futures))
 - **DSM / ancillary.** The CERC DSM Regulations 2024 apply from 16 Sep 2024,
-  amended 23 Dec 2024 and 1 Jul 2025. The **Normal Rate** for each block is an
-  equal-thirds blend of the weighted DAM ACP, the weighted RTM ACP and the
-  Ancillary Service Charge. It falls back to 50/50 DAM/RTM when no ancillary
-  service is dispatched in that block. SRAS/TRAS are settled weekly through RPC
-  accounts (PDFs).
-  ([Powerline on the draft](https://powerline.net.in/2024/07/02/key-amendments-highlights-of-the-draft-dsm-regulations-2024/),
+  amended 23 Dec 2024 and 1 Jul 2025. The **Normal Rate** for each block is
+  the **highest of** three values: the integrated DAM ACP, the RTM ACP, and
+  (DAM + RTM + Ancillary Service Charge)/3. The 2024 draft had proposed the
+  equal-thirds blend alone, with a 50:50 fallback; the notified rule dropped
+  that fallback. In the RPCs' block data for Sep–Oct 2026, the ancillary term
+  set the rate in most evening blocks, taking it to ₹15–17/kWh, above the
+  ₹10 exchange cap. SRAS and TRAS are settled weekly through RPC accounts (PDF
+  and Excel).
+  ([Notified rule as reproduced in AEGCL's DSM procedure](https://www.aegcl.co.in/wp-content/uploads/2025/10/DSM-DP-2024-Final.pdf),
+  [Powerline on the draft](https://powerline.net.in/2024/07/02/key-amendments-highlights-of-the-draft-dsm-regulations-2024/),
   [ERPC weekly accounts](https://erpc.gov.in/wp-content/uploads/2025/09/DSM-SRAS-TRAS-and-SCUC-Accounts-for-the-period-from-01.09.2025-to-07.09.2025..pdf))
 - **RECs.** Twice-monthly sessions on IEX, about ₹333–400/REC in 2026. Sell
   bids fell 77.8% YoY in July 2026, which lifted prices.
@@ -112,5 +116,5 @@ Every row was tested from this environment on 19 Oct 2026. The details are in
 | NSE electricity futures | NSE `liveCommodity-derivatives` JSON | ✅ live snapshot; history builds daily |
 | MCX electricity futures | MCX site | ❌ blocks cloud IPs; a manual CSV hook is provided |
 | Open-access landed cost by state | IEX landed-cost calculator API | ✅ about 45 discoms, by category and voltage |
-| SRAS/TRAS clearing | Grid-India / RPC weekly PDFs | ⚠️ not automated yet (roadmap). The DSM Normal Rate is computed from DAM and RTM |
+| DSM, SRAS and TRAS settlements by entity; block frequency; published Normal Rate | ERPC, WRPC and NERPC weekly accounts (PDF, Excel, CSV) | ✅ parsed and checked against each table's totals. NRPC needs a login; SRPC and Grid-India are unreachable |
 | Tender results | Curated from IEEFA/JMK, Mercom, pv magazine, SECI | ✅ manual, each row sourced |

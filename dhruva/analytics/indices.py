@@ -68,18 +68,46 @@ def monthly_index(dates: list[str], prices: np.ndarray, volumes: np.ndarray) -> 
     return out
 
 
-def dsm_normal_rate(dam: np.ndarray, rtm: np.ndarray, asc: np.ndarray | None = None) -> np.ndarray:
-    """CERC DSM Regulations 2024 Normal Rate per block.
+def integrated_dam(prices: list[np.ndarray], volumes: list[np.ndarray]) -> np.ndarray:
+    """Volume-weighted ACP across the integrated day-ahead segments (DAM, G-DAM, HP-DAM)."""
+    num = np.zeros_like(np.asarray(prices[0], float))
+    den = np.zeros_like(num)
+    for p, v in zip(prices, volumes):
+        p, v = np.asarray(p, float), np.asarray(v, float)
+        ok = np.isfinite(p) & np.isfinite(v) & (v > 0)
+        num += np.where(ok, p * v, 0)
+        den += np.where(ok, v, 0)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        return np.where(den > 0, num / den, np.nan)
 
-    Equal thirds of DAM ACP, RTM ACP and the Ancillary Service Charge; when no
-    ancillary charge is available the rate is the 50:50 DAM/RTM average.
+
+def dsm_normal_rate(idam: np.ndarray, rtm: np.ndarray, asc: np.ndarray | None = None) -> np.ndarray:
+    """Normal Rate per block under the CERC DSM Regulations 2024 (as notified).
+
+    NR = highest of (i) the I-DAM ACP, (ii) the RTM ACP and
+    (iii) (I-DAM ACP + RTM ACP + Ancillary Service Charge) / 3.
+    Where the ASC is unknown (NaN) only (i) and (ii) are compared, which is a
+    lower bound on the true rate.
     """
-    dam, rtm = np.asarray(dam, float), np.asarray(rtm, float)
+    idam, rtm = np.asarray(idam, float), np.asarray(rtm, float)
+    base = np.fmax(idam, rtm)
     if asc is None:
-        return np.round((dam + rtm) / 2, 2)
-    asc = np.asarray(asc, float)
-    with_asc = (dam + rtm + asc) / 3
-    return np.round(np.where(np.isfinite(asc) & (asc > 0), with_asc, (dam + rtm) / 2), 2)
+        return np.round(base, 2)
+    third = (idam + rtm + np.asarray(asc, float)) / 3
+    return np.round(np.where(np.isfinite(third), np.fmax(base, third), base), 2)
+
+
+def implied_asc(nr_official: np.ndarray, idam: np.ndarray, rtm: np.ndarray, tol: float = 1.0) -> np.ndarray:
+    """Ancillary Service Charge recovered from a published Normal Rate.
+
+    Where the official rate sits above both market prices, the third term set
+    it, so ASC = 3·NR − I-DAM − RTM exactly. Elsewhere the ASC did not bind and
+    cannot be recovered (NaN).
+    """
+    nr, idam, rtm = (np.asarray(x, float) for x in (nr_official, idam, rtm))
+    with np.errstate(invalid="ignore"):
+        binding = np.isfinite(nr) & (nr > np.fmax(idam, rtm) + tol)
+    return np.where(binding, np.round(3 * nr - idam - rtm, 2), np.nan)
 
 
 def baseline_forecast(history: np.ndarray, lookback: int = 7) -> np.ndarray:

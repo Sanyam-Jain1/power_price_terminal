@@ -1,6 +1,6 @@
-# Dhruva index methodology (v1.0)
+# Dhruva index methodology (v1.1)
 
-_Effective 19 Oct 2026. Benchmark administrator: Dhruva. Changes are versioned
+_v1.1, effective 20 Oct 2026. Benchmark administrator: Dhruva. Changes are versioned
 and logged at the end of this document._
 
 Dhruva publishes two benchmark families:
@@ -118,10 +118,7 @@ These are deliberate and will be revisited through consultation:
 
 ## 3. Other published measures
 
-- **DSM Normal Rate (indicative).** Per block, (DAM ACP + RTM ACP + ASC) / 3 as
-  in the CERC DSM Regulations 2024. In v1.0 the Ancillary Service Charge is
-  not ingested, so the regulation's 50:50 DAM/RTM fallback is applied to every
-  block, using IEX prices. It is labelled indicative.
+- **DSM Normal Rate.** See section 4.
 - **D+1 baseline forecast.** The per-block median of the last 7 delivered DAM
   days, published with its 60-day out-of-sample mean absolute error. It is a
   benchmark that better models have to beat.
@@ -129,7 +126,90 @@ These are deliberate and will be revisited through consultation:
   run through IEX's public landed-cost calculator at two exchange prices. The
   result is fitted exactly as `landed = a + b × price`.
 
-## 4. Governance (roadmap toward IOSCO Principles)
+## 4. DSM Normal Rate and the ancillary charge
+
+**Rule.** The CERC DSM Regulations 2024, as notified (in force from
+16 Sep 2024, amended 23 Dec 2024 and 1 Jul 2025), set the Normal Rate for each
+15-minute block as the **highest of**:
+
+1. the weighted-average ACP of the integrated day-ahead segments (DAM, G-DAM
+   and HP-DAM) across all exchanges;
+2. the weighted-average RTM ACP across all exchanges;
+3. (I-DAM ACP + RTM ACP + Ancillary Service Charge) / 3.
+
+The ASC is the net charge paid to SRAS-Up and TRAS-Up providers, divided by
+the energy deployed, across all regions. The draft regulation proposed the
+equal-thirds term on its own, with a 50:50 DAM/RTM fallback. Dhruva v1.0
+followed that draft. The notified text does not contain it.
+
+**How Dhruva computes it.**
+
+- **Terms (i) and (ii):** from IEX block prices and cleared volumes. PXIL and
+  HPX volumes are not available, and the exchanges are coupled for DAM.
+- **ASC:** not published as its own number on any source Dhruva can reach.
+  Grid-India's site is unreachable from our servers. The RPCs do publish the
+  resulting Normal Rate for every block in their block-wise DSM data.
+  - Where that published rate is above both market terms, the third term set
+    it, so **ASC = 3 × NR − I-DAM − RTM** exactly.
+  - Where the published rate equals a market term, the ASC did not bind and
+    cannot be recovered. It also does not change the rate.
+- **Published rate per block:** RPC rates are area-specific. Dhruva takes the
+  most common published value across ERPC, WRPC and NERPC for each block,
+  with WRPC breaking ties.
+- **Days after the latest published RPC week (about 2 weeks):** the ASC is
+  unknown, so Dhruva shows max(I-DAM, RTM). This is a lower bound, and it is
+  labelled as one.
+- **Check, published on the Analytics page:** in blocks where the ASC did
+  not bind, the share in which max(I-DAM, RTM) from IEX matches the published
+  rate within ₹1/MWh. It was 79% on first run. Misses come from area-wise
+  prices and from exchange volumes Dhruva lacks.
+
+## 5. Grid & balancing data (published, not modelled)
+
+These pages republish RPC settlement accounts; Dhruva computes nothing new except sums and shares.
+
+- **Sources.** Weekly DSM, SRAS and TRAS settlement accounts:
+  - ERPC: PDF plus block-wise Excel.
+  - WRPC: DSM PDF, all-member block-wise CSVs, and a separate SRAS/TRAS PDF.
+  - NERPC: DSM and SRAS/TRAS PDFs, plus a data zip of block-wise Excel files.
+
+  NRPC requires a login for its document API, and SRPC, Grid-India and PXIL
+  were unreachable when checked. Each source's status, last-checked time and
+  data-through date are shown on the Source status page.
+- **Validation.**
+  - Every table read from a PDF is summed and compared with that table's own
+    TOTAL row. The tolerance is rounding only: ₹0.50 per row, minimum ₹2.
+  - A table that does not reconcile is marked "Could not parse" and left out.
+    Its numbers are never estimated.
+  - **Exception:** when every entity row passes its own arithmetic (payable −
+    receivable = the printed net) but the printed total still differs, the
+    rows are shown as printed and the table is marked "Totals don't tie",
+    with the gap stated. WRPC's DSM accounts are in this state: its printed
+    totals differ from the sum of its rows by roughly ₹3 crore a week.
+- **Units.** All amounts are converted to rupees: ERPC prints ₹ lakh and WRPC
+  prints rupees. Energy is in MWh; WRPC's per-entity weekly totals are printed
+  in MU and are converted.
+- **Deviation MWh** is actual minus schedule, as each RPC prints it. RPCs
+  differ in how they sign drawal, so entities are compared on rupees (net
+  payable = payable − receivable).
+- **Entity groups** come from each account's own section headings:
+  - "Discoms & states": beneficiaries.
+  - "Conventional generators": CERC-regulated, other and infirm generators.
+  - "Wind & solar": RE, wind & solar and QCA headings.
+  - "Inter-regional" and "Cross-border" lines are excluded from the
+    top-payers table.
+- **Frequency** is the 15-minute block average the RPCs record in their
+  block-wise DSM data. It understates true minima and maxima, and "% in band"
+  means the share of the 96 blocks within 49.90–50.05 Hz, not the share of
+  time. Grid-India's 10-second profile is the source to switch to when it
+  becomes reachable.
+- **TRAS clearing prices by block** come from NERPC's block-wise TRAS file:
+  the applicable TRAS-Up/Down price in blocks where a NER provider cleared in
+  the day-ahead or real-time AS market. ERPC and WRPC publish TRAS as weekly
+  totals only. Exchange TRAS results are not public on IEX or HPX, and PXIL
+  was unreachable.
+
+## 6. Governance (roadmap toward IOSCO Principles)
 
 | Stage | Commitment |
 |---|---|
@@ -138,8 +218,9 @@ These are deliberate and will be revisited through consultation:
 | 12–24 months | Oversight committee with external members (a lender, a developer, an academic). Consultation of at least 30 days before any methodology change |
 | 24+ months | Third-party assurance. Co-administration with a price reporting agency |
 
-## 5. Change log
+## 7. Change log
 
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-10-19 | First publication. DBX-2H/4H (DAM, 1 cycle), sensitivities, regional 2H. DBI-M on UMCP with an MCP fallback |
+| 1.1 | 2026-10-20 | DSM Normal Rate corrected to the notified rule (highest of I-DAM, RTM and the equal-thirds term), with the ASC recovered from RPC-published rates; I-DAM now includes G-DAM and HP-DAM. Grid & balancing data added (section 5) |

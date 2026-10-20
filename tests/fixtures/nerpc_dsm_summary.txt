@@ -1,0 +1,41 @@
+                                                       ABT based Deviation Charge Account
+                                             For the period 28.09.2026 TO 04.10.2026
+                                                                                                                                  Page 1 of 4
+
+
+                                                                                                        Receivable from the      Payble to the
+                                                                                                          Deviation and          Deviation and
+               CONSTITUENTS   SCHEDULE (MWH)            ACTUAL (MWH)             DEVIATION (MWH)
+                                                                                                       Ancillary Service Pool  Ancillary Service
+                                                                                                         Account(Rs) (A)      Pool Account(Rs) (B)
+BENEFICIARIES OF NORTH EASTERN REGION
+ARUNACHAL PRADESH                         23,909.71                  22,267.15             -1,642.56                1,31,91,537                     0
+ASSAM                                   2,74,077.00                2,75,720.29              1,643.29                          0           2,43,35,228
+MANIPUR                                   24,839.01                  24,442.20               -396.81                  14,50,591                     0
+MEGHALAYA                                 19,734.06                  18,781.20               -952.86                  86,22,683                     0
+MIZORAM                                    6,155.87                   5,234.71               -921.15                  44,94,446                     0
+NAGALAND                                  20,553.75                  19,611.06               -942.69                  67,83,960                     0
+TRIPURA                                   49,603.06                  48,718.96               -884.10                  47,77,727                     0
+BNC                                          195.09                     183.95                -11.14                     82,309                     0
+CERC REGULATED GENERATORS (CGS/ISGS)
+AGBPP                                     26,702.39                  27,319.03               616.64                  18,48,372                     0
+AGTCCPP                                    7,940.66                   8,088.27               147.62                   2,66,935                     0
+BGTPP                                     95,761.51                  96,014.82               253.32                  14,18,842                     0
+PALATANA                                  70,875.24                  70,770.12              -105.12                          0              4,22,503
+DOYANG                                     6,370.96                   6,445.31                74.35                   2,23,267                     0
+KHANDONG                                   3,641.59                   3,661.65                20.07                     25,872                     0
+KOPILI                                    28,264.38                  28,434.61               170.23                   2,55,155                     0
+KOPILI-2                                   1,064.00                   1,094.09                30.09                     31,597                     0
+LOKTAK                                     8,331.09                   8,198.72              -132.37                          0              3,41,623
+PARE                                       6,976.63                   7,181.65               205.02                   5,68,861                     0
+RANGANADI                                 18,710.00                  19,053.28               343.28                   4,57,563                     0
+KAMENG                                    95,009.21                  95,538.69               529.49                  23,55,804                     0
+SUBANSIRI                               1,46,984.60                1,48,183.20             1,198.60                  44,17,300                     0
+Subansiri_Infirm                               0.00                       0.00                 0.00                          0                     0
+INTER- REGIONAL
+ER                                       -72,555.37                  -8,660.38             63,894.98               58,59,33,315                     0
+NR                                             0.00                 -87,186.18            -87,186.18                          0          79,51,61,805
+                    TOTAL                                                                                   637206135             820261159
+
+
+Pool Balance (B - A) :                                183055023

@@ -25,6 +25,22 @@ Nothing on these pages is modelled.
 - **Open access.** Landed cost against the discom tariff for 39 discoms, by
   category and voltage, from IEX's calculator.
 
+### Grid & balancing (published data)
+
+These pages show RPC settlement accounts, each checked against its own
+totals.
+
+- **Frequency.** 15-minute block averages, the share of blocks within
+  49.90–50.05 Hz, and daily minimum and maximum.
+- **Deviations (DSM).** Weekly payable and receivable by entity for ERPC,
+  WRPC and NERPC, grouped into discoms, conventional generators and wind &
+  solar, with a top-10 list of DSM payers.
+- **Ancillary.** SRAS and TRAS up/down MWh and payments by provider, plus
+  TRAS clearing prices by block where an RPC publishes them.
+- **Source status.** Every source, whether it parsed, how far its data runs,
+  and why the missing ones (NRPC, SRPC, Grid-India, exchange TRAS) are
+  missing.
+
 ### Dhruva (our own indices and models)
 
 Every page in this section carries a "Dhruva research" banner.
@@ -34,14 +50,15 @@ Every page in this section carries a "Dhruva research" banner.
   Includes regional variants and a comparison with tender tariffs.
 - **Base index (DBI-M).** The month-to-date volume-weighted DAM UMCP that
   futures settle on, shown against the NSE contract.
-- **Analytics.** An indicative DSM Normal Rate under the CERC DSM
-  Regulations 2024, and a D+1 baseline forecast with its backtest.
+- **Analytics.** The DSM Normal Rate under the CERC DSM Regulations 2024
+  (highest of I-DAM, RTM and (I-DAM + RTM + ASC)/3, with the ASC recovered
+  from RPC-published rates), and a D+1 baseline forecast with its backtest.
 - **The Dhruva Weekly, Methodology, Plans.**
 
 ## Run it
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt     # plus poppler-utils (pdftotext) for the RPC PDFs
 python -m dhruva -v daily          # ingest → derive indices → draft weekly → build site JSON
 python -m http.server -d site 8000 # open http://localhost:8000
 ```
@@ -49,7 +66,7 @@ python -m http.server -d site 8000 # open http://localhost:8000
 Individual steps:
 
 ```bash
-python -m dhruva ingest [--from 2024-04-01] [--only spot|areas|umcp|tam|rec|futures|landed_cost]
+python -m dhruva ingest [--from 2024-04-01] [--only spot|areas|umcp|tam|rec|futures|grid|landed_cost]
 python -m dhruva derive     # DBX family (incremental; only new days are solved)
 python -m dhruva weekly     # notes/<week-ending>.md (never overwrites an edited note)
 python -m dhruva build      # site/data/*.json

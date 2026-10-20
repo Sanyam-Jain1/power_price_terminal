@@ -31,11 +31,28 @@ def test_monthly_index_resets_each_month_and_tracks_mtd():
     assert out["2026-10"]["days"] == 2
 
 
-def test_dsm_normal_rate_falls_back_to_dam_rtm_average():
-    dam, rtm = np.array([4000.0, 6000.0]), np.array([2000.0, 3000.0])
-    assert indices.dsm_normal_rate(dam, rtm).tolist() == [3000.0, 4500.0]
-    asc = np.array([9000.0, np.nan])
-    assert indices.dsm_normal_rate(dam, rtm, asc).tolist() == [5000.0, 4500.0]
+def test_dsm_normal_rate_is_highest_of_three_terms():
+    idam, rtm = np.array([4000.0, 6000.0, 10000.0]), np.array([2000.0, 3000.0, 10000.0])
+    # Without the ASC only (i) and (ii) are compared.
+    assert indices.dsm_normal_rate(idam, rtm).tolist() == [4000.0, 6000.0, 10000.0]
+    asc = np.array([9000.0, np.nan, 26000.0])
+    # (4000+2000+9000)/3 = 5000 beats 4000; NaN ASC falls back to the market max; 46000/3 beats the cap.
+    assert indices.dsm_normal_rate(idam, rtm, asc).tolist() == [5000.0, 6000.0, 15333.33]
+
+
+def test_implied_asc_round_trips_where_the_third_term_binds():
+    idam, rtm = np.array([4300.94, 3438.98, 10000.0]), np.array([6000.3, 3500.3, 10000.0])
+    nr = np.array([6000.3, 3836.7, 15326.9])
+    asc = indices.implied_asc(nr, idam, rtm)
+    assert np.isnan(asc[0])                       # RTM set the rate; ASC not recoverable
+    assert asc[1] == pytest.approx(3 * 3836.7 - 3438.98 - 3500.3)
+    assert indices.dsm_normal_rate(idam, rtm, asc)[1:].tolist() == pytest.approx(nr[1:].tolist(), abs=0.01)
+
+
+def test_integrated_dam_weights_by_volume_and_skips_empty_segments():
+    p = [np.array([1000.0, 2000.0]), np.array([4000.0, np.nan]), np.array([np.nan, np.nan])]
+    v = [np.array([1.0, 1.0]), np.array([3.0, 0.0]), np.array([0.0, 0.0])]
+    assert indices.integrated_dam(p, v).tolist() == [3250.0, 2000.0]
 
 
 def test_baseline_backtest_runs():

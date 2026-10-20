@@ -112,6 +112,11 @@ def ingest_landed_cost(max_age_days: int = 30, force: bool = False) -> int:
     return len(rows)
 
 
+def ingest_grid(limit_weeks: int = 4) -> dict:
+    from . import grid
+    return grid.ingest(limit_weeks)
+
+
 def run_all(backfill_from: date = HISTORY_START, landed: bool = True) -> dict:
     """Daily job. Each source is independent; one failing never blocks the rest."""
     results: dict[str, object] = {}
@@ -123,6 +128,7 @@ def run_all(backfill_from: date = HISTORY_START, landed: bool = True) -> dict:
         ("rec", lambda: ingest_rec(list(range(backfill_from.year, date.today().year + 1)))),
         ("futures", ingest_futures),
     ]
+    steps.append(("grid", ingest_grid))
     if landed:
         steps.append(("landed_cost", ingest_landed_cost))
     for name, fn in steps:

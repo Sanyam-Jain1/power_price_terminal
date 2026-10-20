@@ -14,7 +14,7 @@ def main(argv: list[str] | None = None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     ing = sub.add_parser("ingest", help="fetch new data from all sources")
     ing.add_argument("--from", dest="start", type=date.fromisoformat, default=HISTORY_START)
-    ing.add_argument("--only", choices=["spot", "areas", "umcp", "tam", "rec", "futures", "landed_cost"])
+    ing.add_argument("--only", choices=["spot", "areas", "umcp", "tam", "rec", "futures", "grid", "landed_cost"])
     ing.add_argument("--no-landed", action="store_true", help="skip the monthly landed-cost refresh")
     sub.add_parser("derive", help="compute Dhruva indices (incremental)")
     sub.add_parser("build", help="write site/data/*.json")
@@ -33,7 +33,7 @@ def main(argv: list[str] | None = None) -> int:
             fn = {"spot": lambda: ingest.ingest_spot(args.start), "areas": lambda: ingest.ingest_areas(args.start),
                   "umcp": ingest.ingest_umcp, "tam": ingest.ingest_tam,
                   "rec": lambda: ingest.ingest_rec(list(range(args.start.year, date.today().year + 1))),
-                  "futures": ingest.ingest_futures,
+                  "futures": ingest.ingest_futures, "grid": ingest.ingest_grid,
                   "landed_cost": lambda: ingest.ingest_landed_cost(force=True)}[args.only]
             print(json.dumps({args.only: fn()}, default=str))
         else:

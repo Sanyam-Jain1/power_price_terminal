@@ -31,11 +31,48 @@ date,block,purchase_bid_mw,sell_bid_mw,mcv_mw,scheduled_mw,mcp,congestion
 Prices are in ₹/MWh, as IEX publishes them, and volumes in MW for the block.
 An empty `mcp` means nothing cleared; it is never zero-filled.
 
+## Grid & balancing sources
+
+These are checked on every daily run. Each source's status, last-checked time
+and data-through date are written to `data/grid/sources.json` and shown on the
+site's Source status page.
+
+| Source | What Dhruva reads | Status (20 Oct 2026) |
+|---|---|---|
+| ERPC weekly accounts: links on `https://www.erpc.gov.in/` (signed, rotating) | "DSM, SRAS, TRAS and SCUC Settlement Account" PDF (₹ lakh) plus a block-wise Excel (frequency, deviation and Normal Rate per entity per block) | ✅ parsed |
+| WRPC DSM accounts: `https://www.wrpc.gov.in/api/TopMenu/custom/342` | DSM PDF (₹) plus an all-member block-wise CSV zip | ⚠️ parsed; WRPC's printed totals differ from the sum of its rows, so the data is flagged "Totals don't tie" |
+| WRPC SRAS/TRAS: `https://www.wrpc.gov.in/api/TopMenu/custom/348` | "TRAS SRAS & SCUC" weekly PDF | ✅ parsed |
+| NERPC: `https://nerpc.gov.in/?page_id=5872` | Provisional DSM and SRAS/TRAS statements (PDF), plus a data zip (block-wise deviation, SRAS and TRAS Excel) | ✅ parsed |
+| NRPC: `https://nrpc.gov.in/` | its document API answers 401 without a login | ❌ flagged; no workaround attempted |
+| SRPC: `https://srpc.kar.nic.in/` | TLS handshake reset from our network | ❌ flagged |
+| Grid-India: `report.grid-india.in`, `grid-india.in` (frequency profile, AS dispatch) | connection refused by the gateway from this network; may need the host allow-listed | ❌ flagged |
+| PXIL TRAS results | TLS reset from our network | ❌ flagged |
+| IEX / HPX TRAS results | no public TRAS data on either site | ❌ flagged "Not published" |
+
+**Storage.**
+
+- One JSON file per RPC week: `data/grid/weeks/<rpc>_<week-start>.json`. It
+  holds the document titles and URLs, the parse status of every table, and
+  the rows.
+- Original downloads are cached in `data/grid/_raw/`, which is git-ignored.
+- A week is parsed again only when a document's title changes (a revision)
+  or the parser version changes.
+
+**PDF parsing.**
+
+- PDFs are converted with `pdftotext -layout` (poppler-utils). Table rows are
+  read either by serial number or by column position.
+- Every table is checked against its own TOTAL row before it is published
+  (see Methodology §5).
+
 ## Known gaps
 
-- **SRAS/TRAS clearing prices.** These are published weekly by the RPCs as PDFs
-  (e.g. ERPC "DSM, SRAS, TRAS and SCUC Accounts"). A PDF parser is on the
-  roadmap.
+- **NRPC and SRPC accounts, and Grid-India.** Without these, DSM covers 3 of 5
+  regions, frequency is 15-minute block averages rather than Grid-India's
+  10-second profile, and there is no Grid-India AS dispatch report. See the
+  table above.
+- **TRAS clearing prices by block.** Available only where NERPC providers
+  cleared. Exchange TRAS results are not public.
 - **RTM bid-area prices.** `/api/v1/rtm/area-price` returns no rows.
 - **PXIL and HPX.** Not ingested. Since DAM market coupling (Jan 2026) the DAM
   price is common across exchanges, but RTM and TAM are not coupled.
