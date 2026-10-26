@@ -1,0 +1,24 @@
+metric,unit,FY2025-26,FY2026-27,FY2027-28,FY2028-29,FY2029-30,source
+Total power purchase quantum - approved (MYT order),MU,172700,180111,190659,195504,203301,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 249/250; MERC Order Case 75 of 2025 post-remand (25.03.2026) Table 9
+Total power purchase quantum - approved after review,MU,183934,203628,218144,221982,231379,MERC Order Case 75 of 2025 post-remand (25.03.2026) Table 4
+Total power purchase cost - approved after review,Rs crore,89894,98025,105091,110309,116705,MERC Order Case 75 of 2025 post-remand (25.03.2026) Table 4
+Average power purchase cost - approved after review,Rs/kWh,4.89,4.81,4.82,4.97,5.04,MERC Order Case 75 of 2025 post-remand (25.03.2026) Table 4
+Additional PP quantum vs MYT order (review),MU,11234,23517,27485,26216,28078,MERC Order Case 75 of 2025 post-remand (25.03.2026) Table 3
+Additional PP cost vs MYT order (review),Rs crore,4712,9399,10835,9804,9997,MERC Order Case 75 of 2025 post-remand (25.03.2026) Table 3
+Total energy availability & cost - MYT order (FY26-27 Table 259 total),Rs crore,,88626,,,,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 259
+Fixed cost of power purchase (grid support charge basis),Rs crore,21322,21895,22512,26412,31967,MERC Order Case 75 of 2025 post-remand (25.03.2026) Table 9
+Variable cost of power purchase (grid support charge basis),Rs crore,68572,76129,82580,83898,84737,MERC Order Case 75 of 2025 post-remand (25.03.2026) Table 9
+Marginal variable cost,Rs/kWh,3.97,4.23,4.33,4.29,4.17,MERC Order Case 75 of 2025 post-remand (25.03.2026) Table 9
+"Energy sales by MSEDCL incl DF (approved, MYT order)",MU,140358,147085,154218,161873,169973,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 248
+OA sales conventional (approved),MU,4794,5647,6434,7058,7947,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 248
+OA sales non-conventional (approved),MU,3907,3676,3556,3430,3522,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 248
+"Total energy sales (approved, MYT order)",MU,149059,156408,164208,172361,181442,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 248
+"Distribution loss (approved, excl EHV & OA)",%,17.0,15.5,14.0,,,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 249
+Surplus traded quantum (Commission projection),MU,0,2154,7182,5951,7175,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 257
+Contracted capacity (Commission analysis),MW,49302,61454,66376,69830,75276,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 234/240
+Firm capacity adj. for CC factor (Commission),MW,32087,36594,36797,39507,47170,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 234
+RA requirement (Commission),MW,26275,27074,27914,28848,29839,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 234
+RA surplus vs RA requirement (Commission),MW,5812,9520,8883,10659,17331,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 234
+Forecasted peak demand (MSEDCL),MW,25412,27943,30743,31767,32994,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 235
+Contracted capacity (MSEDCL submission),MW,51882,68257,73961,79910,85345,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 234
+RA surplus vs RA requirement (MSEDCL submission),MW,7735,12521,10907,14880,20769,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 234

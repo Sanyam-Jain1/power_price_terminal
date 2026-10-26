@@ -1,0 +1,604 @@
+date,entity,max_demand_mw,at_hrs,includes_load_shedding_mw
+2026-04-01,State,28729,16,0
+2026-04-01,MSEDCL (non-coincident),24406,16,0
+2026-04-01,Mumbai (non-coincident),3880,13,
+2026-04-02,State,25959,16,0
+2026-04-02,MSEDCL (non-coincident),21796,7,0
+2026-04-02,Mumbai (non-coincident),3807,13,
+2026-04-03,State,26634,20,0
+2026-04-03,MSEDCL (non-coincident),22750,20,0
+2026-04-03,Mumbai (non-coincident),3625,13,
+2026-04-04,State,27760,20,0
+2026-04-04,MSEDCL (non-coincident),23855,20,0
+2026-04-04,Mumbai (non-coincident),3601,13,
+2026-04-05,State,26150,1,0
+2026-04-05,MSEDCL (non-coincident),23010,7,0
+2026-04-05,Mumbai (non-coincident),3033,13,
+2026-04-06,State,27606,20,0
+2026-04-06,MSEDCL (non-coincident),23693,20,0
+2026-04-06,Mumbai (non-coincident),3715,13,
+2026-04-07,State,27936,20,0
+2026-04-07,MSEDCL (non-coincident),24384,7,0
+2026-04-07,Mumbai (non-coincident),3799,12,
+2026-04-08,State,28298,20,0
+2026-04-08,MSEDCL (non-coincident),25033,7,0
+2026-04-08,Mumbai (non-coincident),3931,12,
+2026-04-09,State,28721,17,0
+2026-04-09,MSEDCL (non-coincident),24928,7,0
+2026-04-09,Mumbai (non-coincident),3944,12,
+2026-04-10,State,28416,16,0
+2026-04-10,MSEDCL (non-coincident),25051,7,0
+2026-04-10,Mumbai (non-coincident),3919,12,
+2026-04-11,State,29022,17,0
+2026-04-11,MSEDCL (non-coincident),24761,20,0
+2026-04-11,Mumbai (non-coincident),3871,13,
+2026-04-12,State,28246,24,0
+2026-04-12,MSEDCL (non-coincident),24331,24,0
+2026-04-12,Mumbai (non-coincident),3402,15,
+2026-04-13,State,29819,16,0
+2026-04-13,MSEDCL (non-coincident),25174,16,0
+2026-04-13,Mumbai (non-coincident),4102,13,
+2026-04-14,State,30476,16,0
+2026-04-14,MSEDCL (non-coincident),25907,16,0
+2026-04-14,Mumbai (non-coincident),4068,15,
+2026-04-15,State,29668,17,0
+2026-04-15,MSEDCL (non-coincident),25505,7,0
+2026-04-15,Mumbai (non-coincident),4117,13,
+2026-04-16,State,29401,17,0
+2026-04-16,MSEDCL (non-coincident),24888,7,0
+2026-04-16,Mumbai (non-coincident),4029,13,
+2026-04-17,State,30328,16,0
+2026-04-17,MSEDCL (non-coincident),25713,16,0
+2026-04-17,Mumbai (non-coincident),4031,13,
+2026-04-18,State,31231,16,0
+2026-04-18,MSEDCL (non-coincident),26744,16,0
+2026-04-18,Mumbai (non-coincident),3945,13,
+2026-04-19,State,29823,16,0
+2026-04-19,MSEDCL (non-coincident),25956,16,0
+2026-04-19,Mumbai (non-coincident),3370,24,
+2026-04-20,State,30389,17,0
+2026-04-20,MSEDCL (non-coincident),25756,17,0
+2026-04-20,Mumbai (non-coincident),4117,13,
+2026-04-21,State,31029,17,0
+2026-04-21,MSEDCL (non-coincident),26266,17,0
+2026-04-21,Mumbai (non-coincident),4176,13,
+2026-04-22,State,30862,17,0
+2026-04-22,MSEDCL (non-coincident),26227,17,0
+2026-04-22,Mumbai (non-coincident),4201,13,
+2026-04-23,State,31250,17,0
+2026-04-23,MSEDCL (non-coincident),26514,17,0
+2026-04-23,Mumbai (non-coincident),4298,15,
+2026-04-24,State,31113,16,0
+2026-04-24,MSEDCL (non-coincident),26130,16,0
+2026-04-24,Mumbai (non-coincident),4405,15,
+2026-04-25,State,31721,17,0
+2026-04-25,MSEDCL (non-coincident),27127,17,0
+2026-04-25,Mumbai (non-coincident),4076,14,
+2026-04-26,State,30287,1,0
+2026-04-26,MSEDCL (non-coincident),26219,1,0
+2026-04-26,Mumbai (non-coincident),3558,14,
+2026-04-27,State,32161,16,0
+2026-04-27,MSEDCL (non-coincident),27290,16,0
+2026-04-27,Mumbai (non-coincident),4312,12,
+2026-04-28,State,31204,24,0
+2026-04-28,MSEDCL (non-coincident),27367,24,0
+2026-04-28,Mumbai (non-coincident),4213,12,
+2026-04-29,State,30784,17,0
+2026-04-29,MSEDCL (non-coincident),26522,1,0
+2026-04-29,Mumbai (non-coincident),4233,13,
+2026-04-30,State,30428,1,0
+2026-04-30,MSEDCL (non-coincident),26400,1,0
+2026-04-30,Mumbai (non-coincident),4207,13,
+2026-05-01,State,29339,1,0
+2026-05-01,MSEDCL (non-coincident),25385,1,0
+2026-05-01,Mumbai (non-coincident),3494,15,
+2026-05-02,State,29817,17,0
+2026-05-02,MSEDCL (non-coincident),25409,17,0
+2026-05-02,Mumbai (non-coincident),3834,16,
+2026-05-03,State,28970,1,0
+2026-05-03,MSEDCL (non-coincident),25050,1,0
+2026-05-03,Mumbai (non-coincident),3406,24,
+2026-05-04,State,30008,17,0
+2026-05-04,MSEDCL (non-coincident),25363,24,0
+2026-05-04,Mumbai (non-coincident),4215,13,
+2026-05-05,State,30207,16,0
+2026-05-05,MSEDCL (non-coincident),25611,24,0
+2026-05-05,Mumbai (non-coincident),4198,12,
+2026-05-06,State,30778,16,0
+2026-05-06,MSEDCL (non-coincident),25979,16,0
+2026-05-06,Mumbai (non-coincident),4136,13,
+2026-05-07,State,29583,1,0
+2026-05-07,MSEDCL (non-coincident),25527,1,0
+2026-05-07,Mumbai (non-coincident),4335,13,
+2026-05-08,State,30112,16,0
+2026-05-08,MSEDCL (non-coincident),25294,24,0
+2026-05-08,Mumbai (non-coincident),4409,13,
+2026-05-09,State,29420,1,0
+2026-05-09,MSEDCL (non-coincident),25210,1,0
+2026-05-09,Mumbai (non-coincident),4150,16,
+2026-05-10,State,29328,23,0
+2026-05-10,MSEDCL (non-coincident),25097,23,0
+2026-05-10,Mumbai (non-coincident),3760,15,
+2026-05-11,State,31322,16,0
+2026-05-11,MSEDCL (non-coincident),26145,17,0
+2026-05-11,Mumbai (non-coincident),4566,13,
+2026-05-12,State,32096,16,0
+2026-05-12,MSEDCL (non-coincident),27057,16,0
+2026-05-12,Mumbai (non-coincident),4386,16,
+2026-05-13,State,32317,16,0
+2026-05-13,MSEDCL (non-coincident),27243,16,0
+2026-05-13,Mumbai (non-coincident),4409,16,
+2026-05-14,State,30886,17,0
+2026-05-14,MSEDCL (non-coincident),26089,23,0
+2026-05-14,Mumbai (non-coincident),4393,12,
+2026-05-15,State,30734,1,0
+2026-05-15,MSEDCL (non-coincident),26503,1,0
+2026-05-15,Mumbai (non-coincident),4280,16,
+2026-05-16,State,31204,16,0
+2026-05-16,MSEDCL (non-coincident),26538,16,0
+2026-05-16,Mumbai (non-coincident),4035,16,
+2026-05-17,State,30327,1,0
+2026-05-17,MSEDCL (non-coincident),26241,1,0
+2026-05-17,Mumbai (non-coincident),3616,24,
+2026-05-18,State,31720,17,0
+2026-05-18,MSEDCL (non-coincident),26766,17,0
+2026-05-18,Mumbai (non-coincident),4367,16,
+2026-05-19,State,31858,16,0
+2026-05-19,MSEDCL (non-coincident),27032,16,0
+2026-05-19,Mumbai (non-coincident),4239,12,
+2026-05-20,State,32077,16,0
+2026-05-20,MSEDCL (non-coincident),27253,16,0
+2026-05-20,Mumbai (non-coincident),4191,12,
+2026-05-21,State,31458,17,0
+2026-05-21,MSEDCL (non-coincident),26569,17,0
+2026-05-21,Mumbai (non-coincident),4281,16,
+2026-05-22,State,31103,16,0
+2026-05-22,MSEDCL (non-coincident),26360,1,0
+2026-05-22,Mumbai (non-coincident),4385,16,
+2026-05-23,State,30914,16,0
+2026-05-23,MSEDCL (non-coincident),26132,16,0
+2026-05-23,Mumbai (non-coincident),4119,16,
+2026-05-24,State,29463,24,1080
+2026-05-24,MSEDCL (non-coincident),25074,24,1080
+2026-05-24,Mumbai (non-coincident),3769,24,
+2026-05-25,State,31229,16,0
+2026-05-25,MSEDCL (non-coincident),25999,16,0
+2026-05-25,Mumbai (non-coincident),4543,16,
+2026-05-26,State,31325,17,0
+2026-05-26,MSEDCL (non-coincident),26225,17,0
+2026-05-26,Mumbai (non-coincident),4538,16,
+2026-05-27,State,31394,16,0
+2026-05-27,MSEDCL (non-coincident),26241,16,0
+2026-05-27,Mumbai (non-coincident),4468,16,
+2026-05-28,State,30619,16,0
+2026-05-28,MSEDCL (non-coincident),25757,16,0
+2026-05-28,Mumbai (non-coincident),4197,16,
+2026-05-29,State,30738,17,0
+2026-05-29,MSEDCL (non-coincident),25719,17,0
+2026-05-29,Mumbai (non-coincident),4427,16,
+2026-05-30,State,31016,17,0
+2026-05-30,MSEDCL (non-coincident),26197,17,0
+2026-05-30,Mumbai (non-coincident),4287,16,
+2026-05-31,State,28777,16,0
+2026-05-31,MSEDCL (non-coincident),24514,16,0
+2026-05-31,Mumbai (non-coincident),3825,24,
+2026-06-01,State,30840,16,0
+2026-06-01,MSEDCL (non-coincident),25707,17,0
+2026-06-01,Mumbai (non-coincident),4504,16,
+2026-06-02,State,29783,16,0
+2026-06-02,MSEDCL (non-coincident),24609,16,0
+2026-06-02,Mumbai (non-coincident),4496,16,
+2026-06-03,State,30398,16,0
+2026-06-03,MSEDCL (non-coincident),25445,16,0
+2026-06-03,Mumbai (non-coincident),4295,16,
+2026-06-04,State,30275,17,0
+2026-06-04,MSEDCL (non-coincident),25209,17,0
+2026-06-04,Mumbai (non-coincident),4486,16,
+2026-06-05,State,30319,16,0
+2026-06-05,MSEDCL (non-coincident),25040,17,0
+2026-06-05,Mumbai (non-coincident),4623,16,
+2026-06-06,State,30225,16,0
+2026-06-06,MSEDCL (non-coincident),25150,16,0
+2026-06-06,Mumbai (non-coincident),4440,16,
+2026-06-07,State,28353,16,0
+2026-06-07,MSEDCL (non-coincident),23914,16,0
+2026-06-07,Mumbai (non-coincident),3974,24,
+2026-06-08,State,29790,17,0
+2026-06-08,MSEDCL (non-coincident),24615,17,0
+2026-06-08,Mumbai (non-coincident),4631,16,
+2026-06-09,State,30017,17,0
+2026-06-09,MSEDCL (non-coincident),24847,17,0
+2026-06-09,Mumbai (non-coincident),4602,16,
+2026-06-10,State,30138,16,0
+2026-06-10,MSEDCL (non-coincident),25050,17,0
+2026-06-10,Mumbai (non-coincident),4569,16,
+2026-06-11,State,30723,17,0
+2026-06-11,MSEDCL (non-coincident),25631,17,0
+2026-06-11,Mumbai (non-coincident),4539,16,
+2026-06-12,State,30505,16,0
+2026-06-12,MSEDCL (non-coincident),25217,16,0
+2026-06-12,Mumbai (non-coincident),4622,16,
+2026-06-13,State,30527,16,0
+2026-06-13,MSEDCL (non-coincident),25623,16,0
+2026-06-13,Mumbai (non-coincident),4249,16,
+2026-06-14,State,28341,1,0
+2026-06-14,MSEDCL (non-coincident),24237,7,0
+2026-06-14,Mumbai (non-coincident),3876,24,
+2026-06-15,State,30455,16,0
+2026-06-15,MSEDCL (non-coincident),25292,16,0
+2026-06-15,Mumbai (non-coincident),4504,16,
+2026-06-16,State,30764,16,0
+2026-06-16,MSEDCL (non-coincident),25583,17,0
+2026-06-16,Mumbai (non-coincident),4528,16,
+2026-06-17,State,30851,16,0
+2026-06-17,MSEDCL (non-coincident),25749,17,0
+2026-06-17,Mumbai (non-coincident),4512,16,
+2026-06-18,State,30718,17,0
+2026-06-18,MSEDCL (non-coincident),25734,17,0
+2026-06-18,Mumbai (non-coincident),4402,16,
+2026-06-19,State,30438,17,0
+2026-06-19,MSEDCL (non-coincident),25473,17,0
+2026-06-19,Mumbai (non-coincident),4388,16,
+2026-06-20,State,31273,17,0
+2026-06-20,MSEDCL (non-coincident),26567,17,0
+2026-06-20,Mumbai (non-coincident),4133,16,
+2026-06-21,State,29402,16,0
+2026-06-21,MSEDCL (non-coincident),25270,16,0
+2026-06-21,Mumbai (non-coincident),3765,1,
+2026-06-22,State,29646,16,0
+2026-06-22,MSEDCL (non-coincident),25099,7,0
+2026-06-22,Mumbai (non-coincident),4306,16,
+2026-06-23,State,27669,10,0
+2026-06-23,MSEDCL (non-coincident),23751,7,0
+2026-06-23,Mumbai (non-coincident),3976,12,
+2026-06-24,State,26049,20,0
+2026-06-24,MSEDCL (non-coincident),22118,20,0
+2026-06-24,Mumbai (non-coincident),3481,12,
+2026-06-25,State,25958,20,0
+2026-06-25,MSEDCL (non-coincident),22348,7,0
+2026-06-25,Mumbai (non-coincident),3846,12,
+2026-06-26,State,26599,20,374
+2026-06-26,MSEDCL (non-coincident),22532,20,374
+2026-06-26,Mumbai (non-coincident),3697,13,
+2026-06-27,State,26839,20,700
+2026-06-27,MSEDCL (non-coincident),22710,20,700
+2026-06-27,Mumbai (non-coincident),3801,12,
+2026-06-28,State,25222,8,0
+2026-06-28,MSEDCL (non-coincident),22045,8,0
+2026-06-28,Mumbai (non-coincident),3387,1,
+2026-06-29,State,25814,20,0
+2026-06-29,MSEDCL (non-coincident),21871,20,0
+2026-06-29,Mumbai (non-coincident),3889,12,
+2026-06-30,State,25876,20,0
+2026-06-30,MSEDCL (non-coincident),22091,7,0
+2026-06-30,Mumbai (non-coincident),4363,17,
+2026-07-01,State,25030,20,0
+2026-07-01,MSEDCL (non-coincident),21754,7,0
+2026-07-01,Mumbai (non-coincident),3785,12,
+2026-07-02,State,25219,20,0
+2026-07-02,MSEDCL (non-coincident),21706,8,0
+2026-07-02,Mumbai (non-coincident),3495,12,
+2026-07-03,State,25175,11,0
+2026-07-03,MSEDCL (non-coincident),21850,8,0
+2026-07-03,Mumbai (non-coincident),3679,12,
+2026-07-04,State,25269,10,0
+2026-07-04,MSEDCL (non-coincident),21664,10,0
+2026-07-04,Mumbai (non-coincident),3470,12,
+2026-07-05,State,22824,20,0
+2026-07-05,MSEDCL (non-coincident),19700,9,0
+2026-07-05,Mumbai (non-coincident),2881,13,
+2026-07-06,State,23083,20,0
+2026-07-06,MSEDCL (non-coincident),19602,20,0
+2026-07-06,Mumbai (non-coincident),3524,12,
+2026-07-07,State,24008,20,0
+2026-07-07,MSEDCL (non-coincident),20317,20,0
+2026-07-07,Mumbai (non-coincident),3623,12,
+2026-07-08,State,24908,20,0
+2026-07-08,MSEDCL (non-coincident),21016,20,0
+2026-07-08,Mumbai (non-coincident),3730,12,
+2026-07-09,State,25583,21,0
+2026-07-09,MSEDCL (non-coincident),21671,21,0
+2026-07-09,Mumbai (non-coincident),3793,12,
+2026-07-10,State,26081,20,0
+2026-07-10,MSEDCL (non-coincident),21981,20,0
+2026-07-10,Mumbai (non-coincident),3817,12,
+2026-07-11,State,25992,21,0
+2026-07-11,MSEDCL (non-coincident),22096,21,0
+2026-07-11,Mumbai (non-coincident),3611,12,
+2026-07-12,State,25174,21,0
+2026-07-12,MSEDCL (non-coincident),21512,21,0
+2026-07-12,Mumbai (non-coincident),3115,24,
+2026-07-13,State,27667,20,950
+2026-07-13,MSEDCL (non-coincident),23453,20,950
+2026-07-13,Mumbai (non-coincident),3917,12,
+2026-07-14,State,26953,20,100
+2026-07-14,MSEDCL (non-coincident),23236,7,0
+2026-07-14,Mumbai (non-coincident),3911,12,
+2026-07-15,State,27651,11,0
+2026-07-15,MSEDCL (non-coincident),23284,10,0
+2026-07-15,Mumbai (non-coincident),4033,11,
+2026-07-16,State,27291,8,0
+2026-07-16,MSEDCL (non-coincident),23734,8,0
+2026-07-16,Mumbai (non-coincident),3912,12,
+2026-07-17,State,28750,10,0
+2026-07-17,MSEDCL (non-coincident),24475,10,0
+2026-07-17,Mumbai (non-coincident),4144,12,
+2026-07-18,State,28408,11,0
+2026-07-18,MSEDCL (non-coincident),24065,11,0
+2026-07-18,Mumbai (non-coincident),3880,12,
+2026-07-19,State,25005,10,0
+2026-07-19,MSEDCL (non-coincident),21747,10,0
+2026-07-19,Mumbai (non-coincident),3171,12,
+2026-07-20,State,25972,20,0
+2026-07-20,MSEDCL (non-coincident),22100,20,0
+2026-07-20,Mumbai (non-coincident),3849,12,
+2026-07-21,State,27176,10,0
+2026-07-21,MSEDCL (non-coincident),23086,10,0
+2026-07-21,Mumbai (non-coincident),3989,12,
+2026-07-22,State,25609,10,0
+2026-07-22,MSEDCL (non-coincident),21617,10,0
+2026-07-22,Mumbai (non-coincident),3862,12,
+2026-07-23,State,25156,20,0
+2026-07-23,MSEDCL (non-coincident),21218,20,0
+2026-07-23,Mumbai (non-coincident),3661,12,
+2026-07-24,State,25543,20,0
+2026-07-24,MSEDCL (non-coincident),21571,20,0
+2026-07-24,Mumbai (non-coincident),3879,12,
+2026-07-25,State,25033,20,0
+2026-07-25,MSEDCL (non-coincident),21200,20,0
+2026-07-25,Mumbai (non-coincident),3730,12,
+2026-07-26,State,24355,20,0
+2026-07-26,MSEDCL (non-coincident),20854,20,0
+2026-07-26,Mumbai (non-coincident),3237,13,
+2026-07-27,State,25756,20,0
+2026-07-27,MSEDCL (non-coincident),21669,7,0
+2026-07-27,Mumbai (non-coincident),3822,12,
+2026-07-28,State,26031,20,0
+2026-07-28,MSEDCL (non-coincident),22255,8,0
+2026-07-28,Mumbai (non-coincident),4050,12,
+2026-07-29,State,26793,10,0
+2026-07-29,MSEDCL (non-coincident),22840,8,0
+2026-07-29,Mumbai (non-coincident),3895,12,
+2026-07-30,State,27929,10,0
+2026-07-30,MSEDCL (non-coincident),23758,10,0
+2026-07-30,Mumbai (non-coincident),3840,12,
+2026-07-31,State,25827,10,0
+2026-07-31,MSEDCL (non-coincident),22595,9,0
+2026-07-31,Mumbai (non-coincident),3758,13,
+2026-08-01,State,24853,21,0
+2026-08-01,MSEDCL (non-coincident),20965,21,0
+2026-08-01,Mumbai (non-coincident),3608,12,
+2026-08-02,State,24219,21,0
+2026-08-02,MSEDCL (non-coincident),20687,21,0
+2026-08-02,Mumbai (non-coincident),3034,12,
+2026-08-03,State,26026,20,0
+2026-08-03,MSEDCL (non-coincident),21912,20,0
+2026-08-03,Mumbai (non-coincident),3981,12,
+2026-08-04,State,26213,20,0
+2026-08-04,MSEDCL (non-coincident),22171,20,0
+2026-08-04,Mumbai (non-coincident),3927,12,
+2026-08-05,State,26452,20,0
+2026-08-05,MSEDCL (non-coincident),22365,20,0
+2026-08-05,Mumbai (non-coincident),3880,12,
+2026-08-06,State,26818,20,0
+2026-08-06,MSEDCL (non-coincident),22748,20,0
+2026-08-06,Mumbai (non-coincident),3830,12,
+2026-08-07,State,26099,20,0
+2026-08-07,MSEDCL (non-coincident),22300,7,0
+2026-08-07,Mumbai (non-coincident),3819,12,
+2026-08-08,State,26128,20,0
+2026-08-08,MSEDCL (non-coincident),22173,20,0
+2026-08-08,Mumbai (non-coincident),3463,12,
+2026-08-09,State,24569,21,0
+2026-08-09,MSEDCL (non-coincident),21155,7,0
+2026-08-09,Mumbai (non-coincident),3084,13,
+2026-08-10,State,25983,20,0
+2026-08-10,MSEDCL (non-coincident),22223,7,0
+2026-08-10,Mumbai (non-coincident),3864,12,
+2026-08-11,State,26534,20,0
+2026-08-11,MSEDCL (non-coincident),22801,8,0
+2026-08-11,Mumbai (non-coincident),3662,12,
+2026-08-12,State,28238,10,0
+2026-08-12,MSEDCL (non-coincident),24225,10,0
+2026-08-12,Mumbai (non-coincident),3726,12,
+2026-08-13,State,26831,20,0
+2026-08-13,MSEDCL (non-coincident),23263,8,0
+2026-08-13,Mumbai (non-coincident),3722,12,
+2026-08-14,State,26414,20,0
+2026-08-14,MSEDCL (non-coincident),22931,8,0
+2026-08-14,Mumbai (non-coincident),3825,12,
+2026-08-15,State,25560,7,0
+2026-08-15,MSEDCL (non-coincident),22616,7,0
+2026-08-15,Mumbai (non-coincident),3080,12,
+2026-08-16,State,24907,20,0
+2026-08-16,MSEDCL (non-coincident),21448,20,0
+2026-08-16,Mumbai (non-coincident),3145,12,
+2026-08-17,State,27534,10,0
+2026-08-17,MSEDCL (non-coincident),23398,10,0
+2026-08-17,Mumbai (non-coincident),3718,12,
+2026-08-18,State,26983,11,0
+2026-08-18,MSEDCL (non-coincident),22858,7,0
+2026-08-18,Mumbai (non-coincident),3831,12,
+2026-08-19,State,28139,11,0
+2026-08-19,MSEDCL (non-coincident),23907,10,0
+2026-08-19,Mumbai (non-coincident),3843,12,
+2026-08-20,State,27782,20,0
+2026-08-20,MSEDCL (non-coincident),23621,20,0
+2026-08-20,Mumbai (non-coincident),3832,12,
+2026-08-21,State,27777,10,0
+2026-08-21,MSEDCL (non-coincident),23551,7,0
+2026-08-21,Mumbai (non-coincident),3874,12,
+2026-08-22,State,28506,16,0
+2026-08-22,MSEDCL (non-coincident),24395,16,0
+2026-08-22,Mumbai (non-coincident),3595,12,
+2026-08-23,State,27139,11,0
+2026-08-23,MSEDCL (non-coincident),23579,10,0
+2026-08-23,Mumbai (non-coincident),3070,12,
+2026-08-24,State,28239,10,0
+2026-08-24,MSEDCL (non-coincident),24083,10,0
+2026-08-24,Mumbai (non-coincident),3834,12,
+2026-08-25,State,29477,10,0
+2026-08-25,MSEDCL (non-coincident),25305,10,0
+2026-08-25,Mumbai (non-coincident),3889,12,
+2026-08-26,State,27695,16,0
+2026-08-26,MSEDCL (non-coincident),23559,9,0
+2026-08-26,Mumbai (non-coincident),3754,12,
+2026-08-27,State,27710,16,0
+2026-08-27,MSEDCL (non-coincident),23674,7,0
+2026-08-27,Mumbai (non-coincident),3893,12,
+2026-08-28,State,27506,11,0
+2026-08-28,MSEDCL (non-coincident),23697,7,0
+2026-08-28,Mumbai (non-coincident),3727,12,
+2026-08-29,State,29198,11,0
+2026-08-29,MSEDCL (non-coincident),25020,11,0
+2026-08-29,Mumbai (non-coincident),3702,12,
+2026-08-30,State,27293,10,0
+2026-08-30,MSEDCL (non-coincident),23866,10,0
+2026-08-30,Mumbai (non-coincident),3105,12,
+2026-08-31,State,29108,11,0
+2026-08-31,MSEDCL (non-coincident),24769,10,0
+2026-08-31,Mumbai (non-coincident),3902,12,
+2026-09-01,State,28665,11,0
+2026-09-01,MSEDCL (non-coincident),24248,10,0
+2026-09-01,Mumbai (non-coincident),3916,12,
+2026-09-02,State,29749,12,0
+2026-09-02,MSEDCL (non-coincident),25295,16,0
+2026-09-02,Mumbai (non-coincident),3881,12,
+2026-09-03,State,29473,11,0
+2026-09-03,MSEDCL (non-coincident),25170,10,0
+2026-09-03,Mumbai (non-coincident),3791,12,
+2026-09-04,State,29248,10,0
+2026-09-04,MSEDCL (non-coincident),25022,10,0
+2026-09-04,Mumbai (non-coincident),3852,12,
+2026-09-05,State,28401,10,0
+2026-09-05,MSEDCL (non-coincident),24511,10,0
+2026-09-05,Mumbai (non-coincident),3559,12,
+2026-09-06,State,26910,12,0
+2026-09-06,MSEDCL (non-coincident),23168,11,0
+2026-09-06,Mumbai (non-coincident),3245,12,
+2026-09-07,State,29314,12,0
+2026-09-07,MSEDCL (non-coincident),24752,12,0
+2026-09-07,Mumbai (non-coincident),3901,12,
+2026-09-08,State,29822,10,0
+2026-09-08,MSEDCL (non-coincident),25578,10,0
+2026-09-08,Mumbai (non-coincident),3910,12,
+2026-09-09,State,29706,16,0
+2026-09-09,MSEDCL (non-coincident),25143,10,0
+2026-09-09,Mumbai (non-coincident),3935,12,
+2026-09-10,State,30249,16,0
+2026-09-10,MSEDCL (non-coincident),25723,16,0
+2026-09-10,Mumbai (non-coincident),3940,12,
+2026-09-11,State,29899,16,0
+2026-09-11,MSEDCL (non-coincident),25394,16,0
+2026-09-11,Mumbai (non-coincident),3905,12,
+2026-09-12,State,30550,11,0
+2026-09-12,MSEDCL (non-coincident),26414,11,0
+2026-09-12,Mumbai (non-coincident),3608,12,
+2026-09-13,State,28077,10,0
+2026-09-13,MSEDCL (non-coincident),24791,10,0
+2026-09-13,Mumbai (non-coincident),2957,1,
+2026-09-14,State,25694,10,0
+2026-09-14,MSEDCL (non-coincident),22335,10,0
+2026-09-14,Mumbai (non-coincident),3042,12,
+2026-09-15,State,27301,20,610
+2026-09-15,MSEDCL (non-coincident),23407,20,610
+2026-09-15,Mumbai (non-coincident),3701,12,
+2026-09-16,State,29149,17,0
+2026-09-16,MSEDCL (non-coincident),24884,17,0
+2026-09-16,Mumbai (non-coincident),3724,12,
+2026-09-17,State,28743,16,0
+2026-09-17,MSEDCL (non-coincident),24649,10,0
+2026-09-17,Mumbai (non-coincident),3782,12,
+2026-09-18,State,28208,16,0
+2026-09-18,MSEDCL (non-coincident),23914,16,0
+2026-09-18,Mumbai (non-coincident),3817,12,
+2026-09-19,State,28186,16,0
+2026-09-19,MSEDCL (non-coincident),24068,16,0
+2026-09-19,Mumbai (non-coincident),3567,12,
+2026-09-20,State,27285,16,0
+2026-09-20,MSEDCL (non-coincident),23629,16,0
+2026-09-20,Mumbai (non-coincident),3126,20,
+2026-09-21,State,28979,16,0
+2026-09-21,MSEDCL (non-coincident),24425,16,0
+2026-09-21,Mumbai (non-coincident),3957,12,
+2026-09-22,State,28345,20,0
+2026-09-22,MSEDCL (non-coincident),24031,20,0
+2026-09-22,Mumbai (non-coincident),3884,12,
+2026-09-23,State,28388,20,0
+2026-09-23,MSEDCL (non-coincident),24015,20,0
+2026-09-23,Mumbai (non-coincident),4017,16,
+2026-09-24,State,28240,19,0
+2026-09-24,MSEDCL (non-coincident),23809,19,0
+2026-09-24,Mumbai (non-coincident),4265,12,
+2026-09-25,State,26174,10,0
+2026-09-25,MSEDCL (non-coincident),22825,7,0
+2026-09-25,Mumbai (non-coincident),3879,12,
+2026-09-26,State,28155,20,0
+2026-09-26,MSEDCL (non-coincident),24029,20,0
+2026-09-26,Mumbai (non-coincident),3667,12,
+2026-09-27,State,28006,17,0
+2026-09-27,MSEDCL (non-coincident),24349,17,0
+2026-09-27,Mumbai (non-coincident),3121,12,
+2026-09-29,State,30673,16,0
+2026-09-29,MSEDCL (non-coincident),26037,16,0
+2026-09-29,Mumbai (non-coincident),3980,16,
+2026-09-30,State,30247,17,0
+2026-09-30,MSEDCL (non-coincident),25647,17,0
+2026-09-30,Mumbai (non-coincident),3997,16,
+2026-10-01,State,30230,17,0
+2026-10-01,MSEDCL (non-coincident),25530,17,0
+2026-10-01,Mumbai (non-coincident),4092,16,
+2026-10-03,State,31109,16,0
+2026-10-03,MSEDCL (non-coincident),26609,17,0
+2026-10-03,Mumbai (non-coincident),3876,16,
+2026-10-04,State,29927,16,0
+2026-10-04,MSEDCL (non-coincident),26089,16,0
+2026-10-04,Mumbai (non-coincident),3323,24,
+2026-10-05,State,32007,16,0
+2026-10-05,MSEDCL (non-coincident),27226,16,0
+2026-10-05,Mumbai (non-coincident),4122,16,
+2026-10-06,State,31095,16,0
+2026-10-06,MSEDCL (non-coincident),26298,16,0
+2026-10-06,Mumbai (non-coincident),4148,16,
+2026-10-07,State,32507,17,0
+2026-10-07,MSEDCL (non-coincident),27593,17,0
+2026-10-07,Mumbai (non-coincident),4303,16,
+2026-10-08,State,32389,16,0
+2026-10-08,MSEDCL (non-coincident),27382,16,0
+2026-10-08,Mumbai (non-coincident),4329,16,
+2026-10-09,State,32509,17,0
+2026-10-09,MSEDCL (non-coincident),27496,17,0
+2026-10-09,Mumbai (non-coincident),4388,16,
+2026-10-10,State,32921,17,0
+2026-10-10,MSEDCL (non-coincident),28221,17,0
+2026-10-10,Mumbai (non-coincident),4125,16,
+2026-10-11,State,30893,17,0
+2026-10-11,MSEDCL (non-coincident),26902,17,0
+2026-10-11,Mumbai (non-coincident),3611,24,
+2026-10-12,State,32557,17,0
+2026-10-12,MSEDCL (non-coincident),27570,17,0
+2026-10-12,Mumbai (non-coincident),4345,16,
+2026-10-13,State,32838,17,0
+2026-10-13,MSEDCL (non-coincident),27831,17,0
+2026-10-13,Mumbai (non-coincident),4359,16,
+2026-10-14,State,32118,17,0
+2026-10-14,MSEDCL (non-coincident),27201,17,0
+2026-10-14,Mumbai (non-coincident),4317,16,
+2026-10-15,State,32439,17,0
+2026-10-15,MSEDCL (non-coincident),27520,17,0
+2026-10-15,Mumbai (non-coincident),4285,16,
+2026-10-16,State,32536,16,0
+2026-10-16,MSEDCL (non-coincident),27561,16,0
+2026-10-16,Mumbai (non-coincident),4336,16,
+2026-10-17,State,33051,16,0
+2026-10-17,MSEDCL (non-coincident),28131,16,0
+2026-10-17,Mumbai (non-coincident),4294,16,
+2026-10-18,State,31924,16,0
+2026-10-18,MSEDCL (non-coincident),27576,16,0
+2026-10-18,Mumbai (non-coincident),3713,16,
+2026-10-19,State,32547,16,0
+2026-10-19,MSEDCL (non-coincident),27453,16,0
+2026-10-19,Mumbai (non-coincident),4418,16,
+2026-10-20,State,28356,16,0
+2026-10-20,MSEDCL (non-coincident),24116,7,0
+2026-10-20,Mumbai (non-coincident),3833,16,

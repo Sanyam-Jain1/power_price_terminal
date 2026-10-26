@@ -1,0 +1,246 @@
+month,group,item,mu
+2026-03,State generation,Thermal,10549.76
+2026-03,State generation,Hydro,887.42
+2026-03,State generation,Gas,372.32
+2026-03,State generation,Solar,1021.69
+2026-03,State generation,Wind,382.11
+2026-03,State generation,Total,13213.3
+2026-03,Interstate exchange (actual),Gujarat,-25.111
+2026-03,Interstate exchange (actual),Madhya Pradesh,268.603
+2026-03,Interstate exchange (actual),Chhattisgarh,113.23
+2026-03,Interstate exchange (actual),Goa,-34.261
+2026-03,Interstate exchange (actual),Maharashtra net (ISTS points in MH),6571.718
+2026-03,Interstate exchange (actual),Net total,6894.179
+2026-03,Requirement,Restricted energy requirement (gross),20107.479
+2026-03,Requirement,Restricted energy requirement (ex-bus),19325.979
+2026-03,Bilateral purchases - MSEDCL + other discoms,Interstate import,1829.575
+2026-03,Bilateral purchases - MSEDCL + other discoms,Interstate export,-23.071
+2026-03,Bilateral purchases - MSEDCL + other discoms,PX/IEX/REMC/Standby/RTM,2005.574
+2026-03,Bilateral purchases - MSEDCL + other discoms,Intra-state,1058.624
+2026-03,Bilateral purchases - MSEDCL + other discoms,Total,4870.702
+2026-03,Bilateral purchases - Mumbai,Interstate import,580.596
+2026-03,Bilateral purchases - Mumbai,Interstate export,-0.052
+2026-03,Bilateral purchases - Mumbai,Standby from MSEDCL,0.0
+2026-03,Bilateral purchases - Mumbai,PX/IEX/REMC/RTM,556.322
+2026-03,Bilateral purchases - Mumbai,Intra-state,223.322
+2026-03,Bilateral purchases - Mumbai,Total,1360.188
+2026-03,Auxiliary consumption,Total,781.5
+2026-03,Auxiliary consumption,MSPGCL total,450.14
+2026-03,Auxiliary consumption,MSPGCL thermal,435.6
+2026-03,Auxiliary consumption,MSPGCL hydro,5.738
+2026-03,Auxiliary consumption,MSPGCL gas,8.8
+2026-03,Auxiliary consumption,TPCL total,27.041
+2026-03,Auxiliary consumption,TPCL thermal,22.075
+2026-03,Auxiliary consumption,TPCL hydro,1.928
+2026-03,Auxiliary consumption,TPCL gas,3.038
+2026-03,Auxiliary consumption,AEML Dahanu,28.62526639
+2026-04,State generation,Thermal,10116.31
+2026-04,State generation,Hydro,1014.29
+2026-04,State generation,Gas,411.31
+2026-04,State generation,Solar,992.25
+2026-04,State generation,Wind,540.83
+2026-04,State generation,Total,13074.99
+2026-04,Interstate exchange (actual),Gujarat,113.699
+2026-04,Interstate exchange (actual),Madhya Pradesh,235.433
+2026-04,Interstate exchange (actual),Chhattisgarh,25.31
+2026-04,Interstate exchange (actual),Goa,-46.699
+2026-04,Interstate exchange (actual),Maharashtra net (ISTS points in MH),6296.804
+2026-04,Interstate exchange (actual),Net total,6624.547
+2026-04,Requirement,Restricted energy requirement (gross),19699.537
+2026-04,Requirement,Restricted energy requirement (ex-bus),18887.12
+2026-04,Bilateral purchases - MSEDCL + other discoms,Interstate import,1456.951
+2026-04,Bilateral purchases - MSEDCL + other discoms,Interstate export,-24.352
+2026-04,Bilateral purchases - MSEDCL + other discoms,PX/IEX/REMC/Standby/RTM,1770.565
+2026-04,Bilateral purchases - MSEDCL + other discoms,Intra-state,1084.779
+2026-04,Bilateral purchases - MSEDCL + other discoms,Total,4287.943
+2026-04,Bilateral purchases - Mumbai,Interstate import,706.923
+2026-04,Bilateral purchases - Mumbai,Interstate export,0.0
+2026-04,Bilateral purchases - Mumbai,Standby from MSEDCL,0.0
+2026-04,Bilateral purchases - Mumbai,PX/IEX/REMC/RTM,492.678
+2026-04,Bilateral purchases - Mumbai,Intra-state,210.073
+2026-04,Bilateral purchases - Mumbai,Total,1409.674
+2026-04,Auxiliary consumption,Total,812.417
+2026-04,Auxiliary consumption,MSPGCL total,440.96
+2026-04,Auxiliary consumption,MSPGCL thermal,426.66
+2026-04,Auxiliary consumption,MSPGCL hydro,6.727
+2026-04,Auxiliary consumption,MSPGCL gas,7.57
+2026-04,Auxiliary consumption,TPCL total,28.77
+2026-04,Auxiliary consumption,TPCL thermal,23.911
+2026-04,Auxiliary consumption,TPCL hydro,2.203
+2026-04,Auxiliary consumption,TPCL gas,2.656
+2026-04,Auxiliary consumption,AEML Dahanu,27.3
+2026-05,State generation,Thermal,10677.27
+2026-05,State generation,Hydro,814.28
+2026-05,State generation,Gas,311.23
+2026-05,State generation,Solar,1068.39
+2026-05,State generation,Wind,898.25
+2026-05,State generation,Total,13769.42
+2026-05,Interstate exchange (actual),Gujarat,104.094
+2026-05,Interstate exchange (actual),Madhya Pradesh,95.018
+2026-05,Interstate exchange (actual),Chhattisgarh,32.93
+2026-05,Interstate exchange (actual),Goa,-33.894
+2026-05,Interstate exchange (actual),Maharashtra net (ISTS points in MH),6937.901
+2026-05,Interstate exchange (actual),Net total,7136.049
+2026-05,Requirement,Restricted energy requirement (gross),20905.469
+2026-05,Requirement,Restricted energy requirement (ex-bus),20044.131
+2026-05,Bilateral purchases - MSEDCL + other discoms,Interstate import,1357.626
+2026-05,Bilateral purchases - MSEDCL + other discoms,Interstate export,-17.282
+2026-05,Bilateral purchases - MSEDCL + other discoms,PX/IEX/REMC/Standby/RTM,2409.541
+2026-05,Bilateral purchases - MSEDCL + other discoms,Intra-state,1262.773
+2026-05,Bilateral purchases - MSEDCL + other discoms,Total,5012.658
+2026-05,Bilateral purchases - Mumbai,Interstate import,859.68
+2026-05,Bilateral purchases - Mumbai,Interstate export,0.0
+2026-05,Bilateral purchases - Mumbai,Standby from MSEDCL,0.0
+2026-05,Bilateral purchases - Mumbai,PX/IEX/REMC/RTM,564.204
+2026-05,Bilateral purchases - Mumbai,Intra-state,268.143
+2026-05,Bilateral purchases - Mumbai,Total,1692.027
+2026-05,Auxiliary consumption,Total,861.338
+2026-05,Auxiliary consumption,MSPGCL total,458.0
+2026-05,Auxiliary consumption,MSPGCL thermal,447.19
+2026-05,Auxiliary consumption,MSPGCL hydro,5.007
+2026-05,Auxiliary consumption,MSPGCL gas,5.8
+2026-05,Auxiliary consumption,TPCL total,30.594
+2026-05,Auxiliary consumption,TPCL thermal,19.929
+2026-05,Auxiliary consumption,TPCL hydro,2.39
+2026-05,Auxiliary consumption,TPCL gas,8.275
+2026-05,Auxiliary consumption,AEML Dahanu,30.2
+2026-06,State generation,Thermal,10002.11
+2026-06,State generation,Hydro,345.13
+2026-06,State generation,Gas,296.95
+2026-06,State generation,Solar,973.33
+2026-06,State generation,Wind,1089.2
+2026-06,State generation,Total,12706.72
+2026-06,Interstate exchange (actual),Gujarat,26.03
+2026-06,Interstate exchange (actual),Madhya Pradesh,62.72
+2026-06,Interstate exchange (actual),Chhattisgarh,8.23
+2026-06,Interstate exchange (actual),Goa,-20.76
+2026-06,Interstate exchange (actual),Maharashtra net (ISTS points in MH),6569.49
+2026-06,Interstate exchange (actual),Net total,6645.7
+2026-06,Requirement,Restricted energy requirement (gross),19352.42
+2026-06,Requirement,Restricted energy requirement (ex-bus),18522.05
+2026-06,Bilateral purchases - MSEDCL + other discoms,Interstate import,983.22
+2026-06,Bilateral purchases - MSEDCL + other discoms,Interstate export,-8.1
+2026-06,Bilateral purchases - MSEDCL + other discoms,PX/IEX/REMC/Standby/RTM,2607.08
+2026-06,Bilateral purchases - MSEDCL + other discoms,Intra-state,1180.78
+2026-06,Bilateral purchases - MSEDCL + other discoms,Total,4762.97
+2026-06,Bilateral purchases - Mumbai,Interstate import,756.26
+2026-06,Bilateral purchases - Mumbai,Interstate export,-32.29
+2026-06,Bilateral purchases - Mumbai,Standby from MSEDCL,0.0
+2026-06,Bilateral purchases - Mumbai,PX/IEX/REMC/RTM,649.35
+2026-06,Bilateral purchases - Mumbai,Intra-state,266.78
+2026-06,Bilateral purchases - Mumbai,Total,1640.09
+2026-06,Auxiliary consumption,Total,830.37
+2026-06,Auxiliary consumption,MSPGCL total,447.59
+2026-06,Auxiliary consumption,MSPGCL thermal,440.5
+2026-06,Auxiliary consumption,MSPGCL hydro,1.49
+2026-06,Auxiliary consumption,MSPGCL gas,5.6
+2026-06,Auxiliary consumption,TPCL total,29.09
+2026-06,Auxiliary consumption,TPCL thermal,24.37
+2026-06,Auxiliary consumption,TPCL hydro,2.0
+2026-06,Auxiliary consumption,TPCL gas,2.72
+2026-06,Auxiliary consumption,AEML Dahanu,29.3
+2026-07,State generation,Thermal,9009.87
+2026-07,State generation,Hydro,468.74
+2026-07,State generation,Gas,278.46
+2026-07,State generation,Solar,688.96
+2026-07,State generation,Wind,1819.38
+2026-07,State generation,Total,12265.41
+2026-07,Interstate exchange (actual),Gujarat,-51.16
+2026-07,Interstate exchange (actual),Madhya Pradesh,65.68
+2026-07,Interstate exchange (actual),Chhattisgarh,20.24
+2026-07,Interstate exchange (actual),Goa,-38.12
+2026-07,Interstate exchange (actual),Maharashtra net (ISTS points in MH),5279.42
+2026-07,Interstate exchange (actual),Net total,5276.06
+2026-07,Requirement,Restricted energy requirement (gross),17541.47
+2026-07,Requirement,Restricted energy requirement (ex-bus),16764.58
+2026-07,Bilateral purchases - MSEDCL + other discoms,Interstate import,958.01
+2026-07,Bilateral purchases - MSEDCL + other discoms,Interstate export,-308.53
+2026-07,Bilateral purchases - MSEDCL + other discoms,PX/IEX/REMC/Standby/RTM,2501.26
+2026-07,Bilateral purchases - MSEDCL + other discoms,Intra-state,1114.54
+2026-07,Bilateral purchases - MSEDCL + other discoms,Total,4265.29
+2026-07,Bilateral purchases - Mumbai,Interstate import,618.22
+2026-07,Bilateral purchases - Mumbai,Interstate export,-122.53
+2026-07,Bilateral purchases - Mumbai,Standby from MSEDCL,0.0
+2026-07,Bilateral purchases - Mumbai,PX/IEX/REMC/RTM,643.86
+2026-07,Bilateral purchases - Mumbai,Intra-state,250.1
+2026-07,Bilateral purchases - Mumbai,Total,1389.65
+2026-07,Auxiliary consumption,Total,776.89
+2026-07,Auxiliary consumption,MSPGCL total,418.88
+2026-07,Auxiliary consumption,MSPGCL thermal,410.61
+2026-07,Auxiliary consumption,MSPGCL hydro,2.57
+2026-07,Auxiliary consumption,MSPGCL gas,5.7
+2026-07,Auxiliary consumption,TPCL total,29.52
+2026-07,Auxiliary consumption,TPCL thermal,25.22
+2026-07,Auxiliary consumption,TPCL hydro,1.73
+2026-07,Auxiliary consumption,TPCL gas,2.57
+2026-07,Auxiliary consumption,AEML Dahanu,29.51
+2026-08,State generation,Thermal,9256.52
+2026-08,State generation,Hydro,531.82
+2026-08,State generation,Gas,406.23
+2026-08,State generation,Solar,792.69
+2026-08,State generation,Wind,1443.7
+2026-08,State generation,Total,12430.96
+2026-08,Interstate exchange (actual),Gujarat,50.48
+2026-08,Interstate exchange (actual),Madhya Pradesh,82.65
+2026-08,Interstate exchange (actual),Chhattisgarh,26.81
+2026-08,Interstate exchange (actual),Goa,-42.99
+2026-08,Interstate exchange (actual),Maharashtra net (ISTS points in MH),5762.2
+2026-08,Interstate exchange (actual),Net total,5879.15
+2026-08,Requirement,Restricted energy requirement (gross),18310.11
+2026-08,Requirement,Restricted energy requirement (ex-bus),16662.05
+2026-08,Bilateral purchases - MSEDCL + other discoms,Interstate import,1375.74
+2026-08,Bilateral purchases - MSEDCL + other discoms,Interstate export,-309.33
+2026-08,Bilateral purchases - MSEDCL + other discoms,PX/IEX/REMC/Standby/RTM,2230.0
+2026-08,Bilateral purchases - MSEDCL + other discoms,Intra-state,1146.16
+2026-08,Bilateral purchases - MSEDCL + other discoms,Total,4442.57
+2026-08,Bilateral purchases - Mumbai,Interstate import,626.68
+2026-08,Bilateral purchases - Mumbai,Interstate export,-93.99
+2026-08,Bilateral purchases - Mumbai,Standby from MSEDCL,0.0
+2026-08,Bilateral purchases - Mumbai,PX/IEX/REMC/RTM,585.97
+2026-08,Bilateral purchases - Mumbai,Intra-state,241.44
+2026-08,Bilateral purchases - Mumbai,Total,1360.11
+2026-08,Auxiliary consumption,Total,1648.06
+2026-08,Auxiliary consumption,MSPGCL total,420.38
+2026-08,Auxiliary consumption,MSPGCL thermal,411.45
+2026-08,Auxiliary consumption,MSPGCL hydro,3.2
+2026-08,Auxiliary consumption,MSPGCL gas,5.73
+2026-08,Auxiliary consumption,TPCL total,29.68
+2026-08,Auxiliary consumption,TPCL thermal,24.57
+2026-08,Auxiliary consumption,TPCL hydro,2.53
+2026-08,Auxiliary consumption,TPCL gas,2.57
+2026-08,Auxiliary consumption,AEML Dahanu,29.0
+2026-09,State generation,Thermal,9685.14
+2026-09,State generation,Hydro,798.25
+2026-09,State generation,Gas,246.38
+2026-09,State generation,Solar,943.82
+2026-09,State generation,Wind,688.82
+2026-09,State generation,Total,12362.41
+2026-09,Interstate exchange (actual),Gujarat,253.61
+2026-09,Interstate exchange (actual),Madhya Pradesh,164.82
+2026-09,Interstate exchange (actual),Chhattisgarh,66.99
+2026-09,Interstate exchange (actual),Goa,-35.24
+2026-09,Interstate exchange (actual),Maharashtra net (ISTS points in MH),6140.04
+2026-09,Interstate exchange (actual),Net total,6590.22
+2026-09,Requirement,Restricted energy requirement (gross),18952.63
+2026-09,Requirement,Restricted energy requirement (ex-bus),18157.83
+2026-09,Bilateral purchases - MSEDCL + other discoms,Interstate import,1556.45
+2026-09,Bilateral purchases - MSEDCL + other discoms,Interstate export,-166.42
+2026-09,Bilateral purchases - MSEDCL + other discoms,PX/IEX/REMC/Standby/RTM,2098.38
+2026-09,Bilateral purchases - MSEDCL + other discoms,Intra-state,1067.05
+2026-09,Bilateral purchases - MSEDCL + other discoms,Total,4555.45
+2026-09,Bilateral purchases - Mumbai,Interstate import,670.57
+2026-09,Bilateral purchases - Mumbai,Interstate export,-53.58
+2026-09,Bilateral purchases - Mumbai,Standby from MSEDCL,0.0
+2026-09,Bilateral purchases - Mumbai,PX/IEX/REMC/RTM,379.14
+2026-09,Bilateral purchases - Mumbai,Intra-state,244.69
+2026-09,Bilateral purchases - Mumbai,Total,1240.81
+2026-09,Auxiliary consumption,Total,794.8
+2026-09,Auxiliary consumption,MSPGCL total,424.27
+2026-09,Auxiliary consumption,MSPGCL thermal,415.66
+2026-09,Auxiliary consumption,MSPGCL hydro,4.59
+2026-09,Auxiliary consumption,MSPGCL gas,4.02
+2026-09,Auxiliary consumption,TPCL total,31.28
+2026-09,Auxiliary consumption,TPCL thermal,25.87
+2026-09,Auxiliary consumption,TPCL hydro,2.61
+2026-09,Auxiliary consumption,TPCL gas,2.81
+2026-09,Auxiliary consumption,AEML Dahanu,28.02

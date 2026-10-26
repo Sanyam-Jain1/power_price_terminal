@@ -1,0 +1,74 @@
+month,source,basis,mu,variable_rs_per_kwh,variable_rs_cr,fixed_rs_cr,fixed_rs_per_kwh,total_rs_cr,avg_rs_per_kwh,table,doc
+2025-04,MSPGCL - Thermal/Gas,approved,4473.98,3.76,1682.23,761.2,1.7,2443.43,5.46,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,MSPGCL - Thermal/Gas,actual,4914.55,4.1,2015.5,894.48,1.82,2909.98,5.92,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,NTPC (all stations),approved,2118.33,2.05,433.6,449.71,2.12,883.31,4.17,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,NTPC (all stations),actual,3311.65,2.88,952.43,456.29,1.38,1408.72,4.25,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - JSW,approved,,,,16.05,,,,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - JSW,actual,181.82,3.7,67.29,15.48,0.85,82.77,4.55,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - Mundra UMPP (CGPL),approved,423.94,4.77,202.1,40.23,0.95,242.33,5.72,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - Mundra UMPP (CGPL),actual,418.15,5.63,235.56,40.58,0.97,276.14,6.6,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,"IPP - Adani Power (APML, all)",approved,1221.59,4.29,524.31,196.34,1.61,720.65,5.9,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,"IPP - Adani Power (APML, all)",actual,1882.0,4.43,834.11,194.73,1.03,1028.84,5.47,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - Emco (GMR Warora),approved,112.61,2.77,31.23,14.61,1.3,45.84,4.07,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - Emco (GMR Warora),actual,139.63,2.11,29.46,14.43,1.03,43.89,3.14,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - RattanIndia,approved,675.65,3.26,220.56,57.71,0.85,278.27,4.12,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - RattanIndia,actual,859.34,2.47,212.01,56.55,0.66,268.56,3.13,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - Sai Wardha,approved,127.18,3.33,42.32,20.04,1.58,62.36,4.9,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - Sai Wardha,actual,169.69,2.92,49.48,19.48,1.15,68.96,4.06,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - Total (1-6),approved,2560.96,3.98,1020.52,344.98,1.35,1365.5,5.33,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-04,IPP - Total (1-6),actual,3650.64,3.91,1427.92,341.25,0.93,1769.17,4.85,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-April-2025-1.pdf
+2025-05,MSPGCL - Thermal/Gas,approved,4438.86,3.72,1652.79,761.2,1.71,2413.99,5.44,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,MSPGCL - Thermal/Gas,actual,4582.12,3.96,1814.87,934.54,2.04,2749.41,6.0,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,NTPC (all stations),approved,2127.07,1.97,419.94,449.71,2.11,869.65,4.09,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,NTPC (all stations),actual,3153.18,2.49,785.27,476.21,1.51,1261.48,4.0,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - JSW,approved,,,,16.05,,,,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - JSW,actual,139.22,3.77,52.43,16.02,1.15,68.45,4.92,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - Mundra UMPP (CGPL),approved,,,,40.23,,,,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - Mundra UMPP (CGPL),actual,445.95,3.67,163.84,42.67,0.96,206.51,4.63,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,"IPP - Adani Power (APML, all)",approved,780.51,3.88,302.65,196.34,2.52,498.99,6.39,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,"IPP - Adani Power (APML, all)",actual,1647.42,3.84,632.29,201.22,1.22,833.51,5.06,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - Emco (GMR Warora),approved,116.36,2.77,32.27,14.61,1.26,46.88,4.03,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - Emco (GMR Warora),actual,127.99,2.11,26.98,14.93,1.17,41.91,3.27,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - RattanIndia,approved,698.17,3.26,227.91,57.71,0.83,285.62,4.09,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - RattanIndia,actual,820.57,2.46,201.58,58.43,0.71,260.01,3.17,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - Sai Wardha,approved,131.42,3.33,43.73,20.04,1.53,63.77,4.85,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - Sai Wardha,actual,160.8,2.55,40.99,20.13,1.25,61.12,3.8,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - Total (1-6),approved,1726.46,3.51,606.57,344.98,2.0,951.55,5.51,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-05,IPP - Total (1-6),actual,3341.96,3.35,1118.13,353.4,1.06,1471.53,4.4,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-May-2025-1.pdf
+2025-06,MSPGCL - Thermal/Gas,approved,4473.98,3.76,1682.23,761.2,1.7,2443.43,5.46,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,MSPGCL - Thermal/Gas,actual,3893.07,4.03,1569.42,870.28,2.24,2439.7,6.27,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,NTPC (all stations),approved,2117.63,2.05,433.28,449.71,2.12,882.99,4.17,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,NTPC (all stations),actual,2816.18,2.38,669.33,472.08,1.68,1141.41,4.05,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - JSW,approved,,,,16.05,,,,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - JSW,actual,172.53,3.58,61.76,15.53,0.9,77.29,4.48,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Mundra UMPP (CGPL),approved,,,,40.23,,,,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Mundra UMPP (CGPL),actual,425.74,3.55,151.34,39.61,0.93,190.95,4.49,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,"IPP - Adani Power (APML, all)",approved,755.33,3.88,292.89,196.34,2.6,489.23,6.48,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,"IPP - Adani Power (APML, all)",actual,1726.58,2.43,420.14,194.73,1.13,614.87,3.56,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Emco (GMR Warora),approved,112.61,2.77,31.23,14.61,1.3,45.84,4.07,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Emco (GMR Warora),actual,128.6,2.12,27.23,14.46,1.12,41.69,3.24,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - RattanIndia,approved,675.65,3.26,220.56,57.71,0.85,278.27,4.12,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - RattanIndia,actual,758.41,2.44,185.13,56.55,0.75,241.68,3.19,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Sai Wardha,approved,127.18,3.33,42.32,20.04,1.58,62.36,4.9,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Sai Wardha,actual,154.21,2.54,39.17,19.48,1.26,58.65,3.8,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Total (1-6),approved,1670.77,3.51,587.0,344.98,2.06,931.98,5.58,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Total (1-6),actual,3366.06,2.63,884.77,340.35,1.01,1225.12,3.64,"FC/VC comparison tables (MSPGCL p10-11, NTPC p12-13, IPP p14)",MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,MSPGCL - Thermal,actual (FAC-vetted),3893.07,,,,,2439.7,6.27,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,MSPGCL - Hydro,actual (FAC-vetted),154.52,,,,,57.72,3.74,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,NTPC,actual (FAC-vetted),2816.18,,,,,1141.41,4.05,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - JSW,actual (FAC-vetted),172.53,,,,,77.29,4.48,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Mundra UMPP (CGPL),actual (FAC-vetted),425.74,,,,,190.95,4.49,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,"IPP - Adani Power (APML, all)",actual (FAC-vetted),1726.58,,,,,614.87,3.56,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Emco (GMR Warora),actual (FAC-vetted),128.6,,,,,41.69,3.24,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - RattanIndia,actual (FAC-vetted),758.41,,,,,241.68,3.19,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Sai Wardha,actual (FAC-vetted),154.21,,,,,58.64,3.8,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,IPP - Total (1-6),actual (FAC-vetted),3366.06,,,,,1225.12,3.64,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,RE - Non-Solar,actual (FAC-vetted),901.84,,,,,440.06,4.88,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,RE - Solar,actual (FAC-vetted),831.14,,,,,293.77,3.53,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,RE - Total incl REC,actual (FAC-vetted),1732.98,,,,,733.83,4.23,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,"Must Run - KAPP, TAPP, Dodson etc",actual (FAC-vetted),535.45,,,,,194.81,3.64,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,Short Term,actual (FAC-vetted),179.59,,,,,57.56,3.21,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,Sale of Power (shown positive in table; is a sale),actual (FAC-vetted),58.06,,,,,46.4,7.99,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,DSM,actual (FAC-vetted),-43.8,,,,,8.99,-2.05,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,"Transmission, SLDC, STU charges",actual (FAC-vetted),,,,,,960.67,,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf
+2025-06,Total,actual (FAC-vetted),12575.99,,,,,6773.42,5.39,Summary table p8 of 21,MSEDCL-FAC-Approval-June-2025.pdf

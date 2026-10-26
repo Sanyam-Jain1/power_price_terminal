@@ -1,0 +1,83 @@
+section,generator,contracted_mw,type,date_commissioning,date_ppa,normative_capacity_charge_rs_kwh,variable_charge_rs_kwh,total_rs_kwh,remark_raw
+MSPGCL,Bhusawal Unit - 03,210,Thermal,04.05.1982,01.04.2009,1.240,5.174,6.414,
+MSPGCL,Bhusawal Unit - 04,500,Thermal,16.11.2012,24.12.2010,1.521,4.275,5.796,
+MSPGCL,Bhusawal Unit - 05,500,Thermal,03.01.2014,24.12.2010,1.521,4.275,5.796,
+MSPGCL,Bhusawal Unit - 06,660,Thermal,22.02.2025,24.12.2010,2.700,3.561,6.261,
+MSPGCL,Khaparkheda Unit - 01,210,Thermal,26.03.1989,01.04.2009,1.340,3.728,5.068,
+MSPGCL,Khaparkheda Unit - 02,210,Thermal,01.01.1990,01.04.2009,1.340,3.728,5.068,
+MSPGCL,Khaparkheda Unit - 03,210,Thermal,01.05.2000,01.04.2009,1.340,3.728,5.068,
+MSPGCL,Khaparkheda Unit - 04,210,Thermal,01.01.2001,01.04.2009,1.340,3.728,5.068,
+MSPGCL,Khaparkheda Unit - 05,500,Thermal,16.04.2012,24.12.2010,1.777,3.328,5.105,
+MSPGCL,Paras Unit - 03,250,Thermal,31.03.2008,01.04.2009,1.479,4.026,5.505,
+MSPGCL,Paras Unit - 04,250,Thermal,31.10.2010,24.12.2010,1.479,4.026,5.505,
+MSPGCL,Nashik Unit - 03,210,Thermal,26.04.1979,01.04.2009,1.098,5.243,6.341,
+MSPGCL,Nashik Unit - 04,210,Thermal,01.07.1980,01.04.2009,1.098,5.243,6.341,
+MSPGCL,Nashik Unit - 05,210,Thermal,01.06.1981,01.04.2009,1.098,5.243,6.341,
+MSPGCL,Parali Unit - 06,250,Thermal,01.11.2007,01.04.2009,1.559,5.369,6.928,
+MSPGCL,Parali Unit - 07,250,Thermal,31.07.2010,24.12.2010,1.559,5.369,6.928,
+MSPGCL,Parali Unit - 08,250,Thermal,19.11.2016,24.12.2010,2.279,5.236,7.515,
+MSPGCL,Koradi Unit - 06,210,Thermal,15.07.1978,01.04.2009,2.490,3.595,6.085,
+MSPGCL,Koradi Unit - 08,660,Thermal,16.12.2015,24.12.2010,1.098,3.323,4.421,
+MSPGCL,Koradi Unit - 09,660,Thermal,22.11.2016,24.12.2010,1.634,3.323,4.957,
+MSPGCL,Koradi Unit - 10,660,Thermal,17.01.2017,24.12.2010,1.634,3.323,4.957,
+MSPGCL,Chandrapur Unit - 03,210,Thermal,03.05.1985,01.04.2009,1.072,4.509,5.581,
+MSPGCL,Chandrapur Unit - 04,210,Thermal,01.03.1986,01.04.2009,1.072,4.509,5.581,
+MSPGCL,Chandrapur Unit - 05,500,Thermal,01.03.1991,01.04.2009,1.072,4.509,5.581,
+MSPGCL,Chandrapur Unit - 06,500,Thermal,01.03.1992,01.04.2009,1.072,4.509,5.581,
+MSPGCL,Chandrapur Unit - 07,500,Thermal,01.10.1997,01.04.2009,1.072,4.509,5.581,
+MSPGCL,Chandrapur Unit - 08,500,Thermal,04.06.2016,24.12.2010,1.639,3.660,5.299,
+MSPGCL,Chandrapur Unit - 09,500,Thermal,24.11.2016,24.12.2010,1.639,3.660,5.299,
+MSPGCL,GTPS Uran unit - 05,108,Gas,01.10.1985,01.04.2009,0.971,5.232,6.203,
+MSPGCL,GTPS Uran unit - 06,108,Gas,01.08.1985,01.04.2009,0.971,5.232,6.203,
+MSPGCL,GTPS Uran unit - 07,108,Gas,01.06.1985,01.04.2009,0.971,5.232,6.203,
+MSPGCL,GTPS Uran unit - 08,108,Gas,01.01.1986,01.04.2009,0.971,5.232,6.203,
+MSPGCL,GTPS Uran WHR - AO,120,Gas,01.03.1994,01.04.2009,0.971,5.232,6.203,
+MSPGCL,GTPS Uran WHR - BO,120,Gas,01.10.1994,01.04.2009,0.971,5.232,6.203,
+MSPGCL,Koyna Stage-I & II,600,Hydro,,01.04.2009,,0.760,,"Koyna I-IV + KDPH: fixed Rs 238.4 Cr/yr, VC 0.760 Rs/kWh (combined)"
+MSPGCL,Koyna Stage-III,320,Hydro,,01.04.2009,,0.760,,"Koyna I-IV + KDPH: fixed Rs 238.4 Cr/yr, VC 0.760 Rs/kWh (combined)"
+MSPGCL,Koyna Stage-IV,1000,Hydro,,01.04.2009,,0.760,,"Koyna I-IV + KDPH: fixed Rs 238.4 Cr/yr, VC 0.760 Rs/kWh (combined)"
+MSPGCL,KDPH,36,Hydro,,01.04.2009,,0.760,,"Koyna I-IV + KDPH: fixed Rs 238.4 Cr/yr, VC 0.760 Rs/kWh (combined)"
+MSPGCL,BHIRA Unit-1 & 02,80,Small Hydro,,01.04.2009,,1.080,,fixed Rs 7.51 Cr/yr; VC 1.080 Rs/kWh
+MSPGCL,TILLARI Unit-1,66,Small Hydro,,01.04.2009,,1.250,,fixed Rs 13.13 Cr/yr; VC 1.250 Rs/kWh
+MSPGCL,Ghatghar PSS Unit-1 & 2,250,PSS Hydro,,12.05.2014,,,,Rs 19.98 Cr per month
+MSPGCL,VAITARNA Unit-1,60,Small Hydro,,01.04.2009,,,,Rs 2.82 Cr per month
+Central sector (MSEDCL share),Korba STPS I AND II,635,Thermal,01.06.1990,12.01.1994,0.722,1.648,2.370,
+Central sector (MSEDCL share),Vindyachal STP-I,432,Thermal,01.02.1992,12.01.1994,0.855,2.207,3.062,
+Central sector (MSEDCL share),Vindyachal STP-II,336,Thermal,01.10.2000,20.02.2003,0.733,2.114,2.847,
+Central sector (MSEDCL share),Vindyachal STP-III,275,Thermal,15.07.2007,20.02.2003,0.859,2.103,2.962,
+Central sector (MSEDCL share),Vindyachal STP-IV,294,Thermal,01.03.2013,18.10.2008,1.578,2.107,3.685,
+Central sector (MSEDCL share),KAWAS GPS,204,Gas,01.11.1993 / 01.11.1995,12.01.1994,0.868,,,"VC by fuel Rs/kWh: APM 0.00, C-GAS 9.499, Liquid 23.026, RLNG 9.775 (total: 0.8684/10.3674/23.8944/10.6434)"
+Central sector (MSEDCL share),Gandar GPS,200,Gas,01.01.2009 / 20.03.2010 (as printed),12.01.1994,1.032,,,"VC by fuel Rs/kWh: APM 0.00, C-GAS 9.432, RLNG 9.709 (total: 1.0319/10.4639/10.7409)"
+Central sector (MSEDCL share),Sipat STPS-II,274,Thermal,01.08.2012,20.02.2003,0.928,1.577,2.505,
+Central sector (MSEDCL share),Kahalgaon TPS-II,148,Thermal,21.03.2011,26.05.2003,0.867,2.830,3.697,
+Central sector (MSEDCL share),Sipat STPS: I,556,Thermal,13.03.2013,06.12.2003,1.184,1.508,2.692,
+Central sector (MSEDCL share),Korba STPS-III,120,Thermal,30.10.2015,05.01.2011,1.061,1.614,2.675,
+Central sector (MSEDCL share),Mauda STPS-I,394,Thermal,01.02.2017,03.12.2007,1.596,3.119,4.715,
+Central sector (MSEDCL share),Vindyachal STPS V,161,Thermal,6.05.1993,27.11.2007,1.605,2.157,3.762,
+Central sector (MSEDCL share),Mauda STPS-II,531,Thermal,28.10.1969,03.12.2007,1.490,3.096,4.586,
+Central sector (MSEDCL share),Solapur STPS,642,Thermal,25.09.2017,19.07.2010,1.882,4.420,6.302,
+Central sector (MSEDCL share),Gadarwara STPS,25,Thermal,01.06.219,05.01.2011,1.939,3.301,5.240,
+Central sector (MSEDCL share),Khargone,50,Thermal,"U#1 1.02.2020, U#2 4.04.2020",5.01.2011,1.954,3.718,5.672,
+Central sector (MSEDCL share),Lara,228,Thermal,"U#1 1.10.2019, U#2 7.11.2020",16.12.2010,2.152,1.124,3.276,
+Central sector (MSEDCL share),KAPP 1&2,155,Nuclear,12.09.2005,04.06.2005,NA,3.645,3.645,
+Central sector (MSEDCL share),KAPP 3&4,189,Nuclear,30.06.2023,,NA,4.500,4.500,
+Central sector (MSEDCL share),TAPP 1&2,160,Nuclear,28.10.1969,12.02.2008,NA,0.000,0.000,
+Central sector (MSEDCL share),TAPP 3&4,437,Nuclear,12.09.2005,04.06.2005,NA,3.445,3.445,
+Other hydro,Sardar Sarovar Project,391,Hydro,01.06.2006,,,,2.05,
+Other hydro,Pench,54,Hydro,09.03.1987,,,,2.05,
+Other hydro,Dodson II,34,Hydro,01.05.1999,28.06.2006,,,,MERC Case 105 of 2009: fixed charges Rs 2.038 Cr/month for FY 2025-26
+IPP/UMPP,Adani Power Maharashtra Ltd.,1200,Thermal,01.04.2014,31.03.2010,1.050,3.897,4.947,
+IPP/UMPP,Adani Power Maharashtra Ltd.,1320,Thermal,13.06.2013,08.09.2008,1.000,3.422,4.422,
+IPP/UMPP,Adani Power Maharashtra Ltd.,125,Thermal,09.08.2014,09.08.2010,1.050,3.897,4.947,
+IPP/UMPP,Adani Power Maharashtra Ltd.,440,Thermal,16.02.2017,16.02.2013,1.246,3.957,5.203,
+IPP/UMPP,Rattanindia Power Ltd.,450,Thermal,22.04.2014,22.04.2010,0.770,2.006,2.776,
+IPP/UMPP,Rattanindia Power Ltd.,750,Thermal,13.03.2015,05.06.2010,0.770,2.006,2.776,
+IPP/UMPP,Emco Energy Ltd.,200,Thermal,17.03.2018,17.03.2010,1.180,2.695,3.875,
+IPP/UMPP,JSW Energy Ltd.,300,Thermal,01.09.2010,23.02.2010,0.897,3.750,4.647,
+IPP/UMPP,CGPL,800,Thermal,22.03.2013,22.04.2007,0.905,3.608,4.513,
+IPP/UMPP,Sai wardha Power generation ltd,240,Thermal,05.07.2020,01.07.2020,1.326,2.898,4.224,
+Future contracted (not yet commissioned),"NTPC Lara Stage 02, Units 1&2 (2x800 MW)",228,Thermal,Expected FY 2023-24 (as printed),16.12.2010,,,,total capacity 1600 MW
+Future contracted (not yet commissioned),Subansiri Hydro Electric Project,183,Hydro,Expected FY 2023-24 (as printed),10.02.2012,,,,total capacity 2000 MW
+Future contracted (not yet commissioned),M/s Adani Power Ltd.,1600,Thermal,Expected FY 2029-30,,,,,total capacity 1600 MW
+Future contracted (not yet commissioned),M/s JSW Hydro Electric Project (PSP),1500,Hydro,Expected FY 2028-29,,,,,total capacity 1500 MW
+Future contracted (not yet commissioned),M/s Torrent Hydro Electric Project (PSP),1500,Hydro,Expected FY 2028-29,,,,,total capacity 1500 MW

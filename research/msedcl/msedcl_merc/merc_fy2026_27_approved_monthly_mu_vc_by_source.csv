@@ -1,0 +1,817 @@
+month,source,merc_group,energy_charge_rs_per_kwh,approved_mu,approved_variable_cost_rs_cr
+2026-04,KAPP,Must-run,4.15,86.0,35.6
+2026-05,KAPP,Must-run,4.15,89.0,36.8
+2026-06,KAPP,Must-run,4.15,86.0,35.6
+2026-07,KAPP,Must-run,4.15,89.0,36.8
+2026-08,KAPP,Must-run,4.15,89.0,36.8
+2026-09,KAPP,Must-run,4.15,86.0,35.6
+2026-10,KAPP,Must-run,4.15,89.0,36.8
+2026-11,KAPP,Must-run,4.15,86.0,35.6
+2026-12,KAPP,Must-run,4.15,89.0,36.8
+2027-01,KAPP,Must-run,4.15,89.0,36.8
+2027-02,KAPP,Must-run,4.15,80.0,33.3
+2027-03,KAPP,Must-run,4.15,89.0,36.8
+2026-04,KAPP 3 & 4,Must-run,4.15,258.0,107.0
+2026-05,KAPP 3 & 4,Must-run,4.15,267.0,110.5
+2026-06,KAPP 3 & 4,Must-run,4.15,258.0,107.0
+2026-07,KAPP 3 & 4,Must-run,4.15,267.0,110.5
+2026-08,KAPP 3 & 4,Must-run,4.15,267.0,110.5
+2026-09,KAPP 3 & 4,Must-run,4.15,258.0,107.0
+2026-10,KAPP 3 & 4,Must-run,4.15,267.0,110.5
+2026-11,KAPP 3 & 4,Must-run,4.15,258.0,107.0
+2026-12,KAPP 3 & 4,Must-run,4.15,267.0,110.5
+2027-01,KAPP 3 & 4,Must-run,4.15,267.0,110.5
+2027-02,KAPP 3 & 4,Must-run,4.15,241.0,99.9
+2027-03,KAPP 3 & 4,Must-run,4.15,267.0,110.5
+2026-04,TAPP 1 & 2,Must-run,4.76,92.0,43.9
+2026-05,TAPP 1 & 2,Must-run,4.76,95.0,45.4
+2026-06,TAPP 1 & 2,Must-run,4.76,92.0,43.9
+2026-07,TAPP 1 & 2,Must-run,4.76,95.0,45.4
+2026-08,TAPP 1 & 2,Must-run,4.76,95.0,45.4
+2026-09,TAPP 1 & 2,Must-run,4.76,92.0,43.9
+2026-10,TAPP 1 & 2,Must-run,4.76,95.0,45.4
+2026-11,TAPP 1 & 2,Must-run,4.76,92.0,43.9
+2026-12,TAPP 1 & 2,Must-run,4.76,95.0,45.4
+2027-01,TAPP 1 & 2,Must-run,4.76,95.0,45.4
+2027-02,TAPP 1 & 2,Must-run,4.76,86.0,41.0
+2027-03,TAPP 1 & 2,Must-run,4.76,95.0,45.4
+2026-04,TAPP 3 & 4,Must-run,3.78,250.0,94.6
+2026-05,TAPP 3 & 4,Must-run,3.78,258.0,97.8
+2026-06,TAPP 3 & 4,Must-run,3.78,250.0,94.6
+2026-07,TAPP 3 & 4,Must-run,3.78,258.0,97.8
+2026-08,TAPP 3 & 4,Must-run,3.78,258.0,97.8
+2026-09,TAPP 3 & 4,Must-run,3.78,250.0,94.6
+2026-10,TAPP 3 & 4,Must-run,3.78,258.0,97.8
+2026-11,TAPP 3 & 4,Must-run,3.78,250.0,94.6
+2026-12,TAPP 3 & 4,Must-run,3.78,258.0,97.8
+2027-01,TAPP 3 & 4,Must-run,3.78,258.0,97.8
+2027-02,TAPP 3 & 4,Must-run,3.78,233.0,88.3
+2027-03,TAPP 3 & 4,Must-run,3.78,258.0,97.8
+2026-04,SSP,Must-run,2.05,20.0,4.2
+2026-05,SSP,Must-run,2.05,14.0,2.9
+2026-06,SSP,Must-run,2.05,19.0,3.8
+2026-07,SSP,Must-run,2.05,104.0,21.3
+2026-08,SSP,Must-run,2.05,225.0,46.2
+2026-09,SSP,Must-run,2.05,152.0,31.2
+2026-10,SSP,Must-run,2.05,131.0,26.8
+2026-11,SSP,Must-run,2.05,51.0,10.4
+2026-12,SSP,Must-run,2.05,53.0,10.9
+2027-01,SSP,Must-run,2.05,70.0,14.3
+2027-02,SSP,Must-run,2.05,54.0,11.1
+2027-03,SSP,Must-run,2.05,33.0,6.8
+2026-04,Pench,Must-run,2.05,3.0,0.6
+2026-05,Pench,Must-run,2.05,2.0,0.4
+2026-06,Pench,Must-run,2.05,3.0,0.5
+2026-07,Pench,Must-run,2.05,14.0,2.9
+2026-08,Pench,Must-run,2.05,31.0,6.4
+2026-09,Pench,Must-run,2.05,21.0,4.3
+2026-10,Pench,Must-run,2.05,18.0,3.7
+2026-11,Pench,Must-run,2.05,7.0,1.4
+2026-12,Pench,Must-run,2.05,7.0,1.5
+2027-01,Pench,Must-run,2.05,10.0,2.0
+2027-02,Pench,Must-run,2.05,7.0,1.5
+2027-03,Pench,Must-run,2.05,5.0,0.9
+2026-04,Dodson II,Must-run,0.0,19.0,0.0
+2026-05,Dodson II,Must-run,0.0,15.0,0.0
+2026-06,Dodson II,Must-run,0.0,6.0,0.0
+2026-07,Dodson II,Must-run,0.0,3.0,0.0
+2026-08,Dodson II,Must-run,0.0,9.0,0.0
+2026-09,Dodson II,Must-run,0.0,5.0,0.0
+2026-10,Dodson II,Must-run,0.0,3.0,0.0
+2026-11,Dodson II,Must-run,0.0,8.0,0.0
+2026-12,Dodson II,Must-run,0.0,9.0,0.0
+2027-01,Dodson II,Must-run,0.0,17.0,0.0
+2027-02,Dodson II,Must-run,0.0,18.0,0.0
+2027-03,Dodson II,Must-run,0.0,20.0,0.0
+2026-04,Subhansari Hydro,Must-run,5.0,10.0,4.8
+2026-05,Subhansari Hydro,Must-run,5.0,7.0,3.3
+2026-06,Subhansari Hydro,Must-run,5.0,9.0,4.3
+2026-07,Subhansari Hydro,Must-run,5.0,49.0,24.3
+2026-08,Subhansari Hydro,Must-run,5.0,105.0,52.7
+2026-09,Subhansari Hydro,Must-run,5.0,71.0,35.5
+2026-10,Subhansari Hydro,Must-run,5.0,61.0,30.5
+2026-11,Subhansari Hydro,Must-run,5.0,24.0,11.8
+2026-12,Subhansari Hydro,Must-run,5.0,25.0,12.4
+2027-01,Subhansari Hydro,Must-run,5.0,33.0,16.3
+2027-02,Subhansari Hydro,Must-run,5.0,25.0,12.6
+2027-03,Subhansari Hydro,Must-run,5.0,16.0,7.8
+2026-04,Kiru HE Project,Must-run,4.64,6.0,2.6
+2026-05,Kiru HE Project,Must-run,4.64,4.0,1.8
+2026-06,Kiru HE Project,Must-run,4.64,5.0,2.4
+2026-07,Kiru HE Project,Must-run,4.64,29.0,13.4
+2026-08,Kiru HE Project,Must-run,4.64,63.0,29.1
+2026-09,Kiru HE Project,Must-run,4.64,42.0,19.6
+2026-10,Kiru HE Project,Must-run,4.64,36.0,16.9
+2026-11,Kiru HE Project,Must-run,4.64,14.0,6.5
+2026-12,Kiru HE Project,Must-run,4.64,15.0,6.9
+2027-01,Kiru HE Project,Must-run,4.64,19.0,9.0
+2027-02,Kiru HE Project,Must-run,4.64,15.0,7.0
+2027-03,Kiru HE Project,Must-run,4.64,9.0,4.3
+2026-04,Hydro,Must-run,0.0,632.0,0.0
+2026-05,Hydro,Must-run,0.0,561.0,0.0
+2026-06,Hydro,Must-run,0.0,232.0,0.0
+2026-07,Hydro,Must-run,0.0,154.0,0.0
+2026-08,Hydro,Must-run,0.0,175.0,0.0
+2026-09,Hydro,Must-run,0.0,162.0,0.0
+2026-10,Hydro,Must-run,0.0,162.0,0.0
+2026-11,Hydro,Must-run,0.0,165.0,0.0
+2026-12,Hydro,Must-run,0.0,166.0,0.0
+2027-01,Hydro,Must-run,0.0,235.0,0.0
+2027-02,Hydro,Must-run,0.0,278.0,0.0
+2027-03,Hydro,Must-run,0.0,532.0,0.0
+2026-04,Total Solar,Must-run,,3303.0,1041.0
+2026-05,Total Solar,Must-run,,3727.0,1170.0
+2026-06,Total Solar,Must-run,,3632.0,1138.0
+2026-07,Total Solar,Must-run,,2514.0,799.0
+2026-08,Total Solar,Must-run,,3871.0,1207.0
+2026-09,Total Solar,Must-run,,3074.0,964.0
+2026-10,Total Solar,Must-run,,4218.0,1317.0
+2026-11,Total Solar,Must-run,,3230.0,1008.0
+2026-12,Total Solar,Must-run,,3806.0,1186.0
+2027-01,Total Solar,Must-run,,4043.0,1257.0
+2027-02,Total Solar,Must-run,,4085.0,1272.0
+2027-03,Total Solar,Must-run,,4999.0,1558.0
+2026-04,Renewable - Solar intra,Must-run,3.04,2847.0,864.3
+2026-05,Renewable - Solar intra,Must-run,3.04,3263.0,990.7
+2026-06,Renewable - Solar intra,Must-run,3.04,3209.0,974.3
+2026-07,Renewable - Solar intra,Must-run,3.04,2093.0,635.3
+2026-08,Renewable - Solar intra,Must-run,3.04,3486.0,1058.3
+2026-09,Renewable - Solar intra,Must-run,3.04,2708.0,822.2
+2026-10,Renewable - Solar intra,Must-run,3.04,3780.0,1147.5
+2026-11,Renewable - Solar intra,Must-run,3.04,2900.0,880.4
+2026-12,Renewable - Solar intra,Must-run,3.04,3439.0,1043.9
+2027-01,Renewable - Solar intra,Must-run,3.04,3690.0,1120.2
+2027-02,Renewable - Solar intra,Must-run,3.04,3702.0,1124.0
+2027-03,Renewable - Solar intra,Must-run,3.04,4514.0,1370.3
+2026-04,Renewable - Solar inter (Loss not applicable),Must-run,3.87,456.0,176.5
+2026-05,Renewable - Solar inter (Loss not applicable),Must-run,3.87,464.0,179.6
+2026-06,Renewable - Solar inter (Loss not applicable),Must-run,3.87,423.0,163.6
+2026-07,Renewable - Solar inter (Loss not applicable),Must-run,3.87,422.0,163.2
+2026-08,Renewable - Solar inter (Loss not applicable),Must-run,3.87,385.0,149.1
+2026-09,Renewable - Solar inter (Loss not applicable),Must-run,3.87,366.0,141.5
+2026-10,Renewable - Solar inter (Loss not applicable),Must-run,3.87,438.0,169.7
+2026-11,Renewable - Solar inter (Loss not applicable),Must-run,3.87,330.0,127.5
+2026-12,Renewable - Solar inter (Loss not applicable),Must-run,3.87,367.0,142.0
+2027-01,Renewable - Solar inter (Loss not applicable),Must-run,3.87,353.0,136.7
+2027-02,Renewable - Solar inter (Loss not applicable),Must-run,3.87,383.0,148.0
+2027-03,Renewable - Solar inter (Loss not applicable),Must-run,3.87,485.0,187.7
+2026-04,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2026-05,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2026-06,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2026-07,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2026-08,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2026-09,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2026-10,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2026-11,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2026-12,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2027-01,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2027-02,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2027-03,Renewable - Solar inter,Must-run,2.67,0.0,0.0
+2026-04,Renewable - Wind,Must-run,4.37,358.0,156.5
+2026-05,Renewable - Wind,Must-run,4.37,639.0,279.3
+2026-06,Renewable - Wind,Must-run,4.37,1171.0,511.6
+2026-07,Renewable - Wind,Must-run,4.37,1453.0,634.9
+2026-08,Renewable - Wind,Must-run,4.37,1074.0,469.4
+2026-09,Renewable - Wind,Must-run,4.37,834.0,364.5
+2026-10,Renewable - Wind,Must-run,4.37,267.0,116.7
+2026-11,Renewable - Wind,Must-run,4.37,288.0,125.7
+2026-12,Renewable - Wind,Must-run,4.37,352.0,154.0
+2027-01,Renewable - Wind,Must-run,4.37,306.0,133.7
+2027-02,Renewable - Wind,Must-run,4.37,266.0,116.2
+2027-03,Renewable - Wind,Must-run,4.37,412.0,180.2
+2026-04,Renewable - Bagasse based Co-gen,Must-run,5.54,235.0,130.2
+2026-05,Renewable - Bagasse based Co-gen,Must-run,5.54,129.0,71.4
+2026-06,Renewable - Bagasse based Co-gen,Must-run,5.54,40.0,22.1
+2026-07,Renewable - Bagasse based Co-gen,Must-run,5.54,20.0,11.0
+2026-08,Renewable - Bagasse based Co-gen,Must-run,5.54,8.0,4.3
+2026-09,Renewable - Bagasse based Co-gen,Must-run,5.54,18.0,10.2
+2026-10,Renewable - Bagasse based Co-gen,Must-run,5.54,36.0,19.8
+2026-11,Renewable - Bagasse based Co-gen,Must-run,5.54,603.0,333.9
+2026-12,Renewable - Bagasse based Co-gen,Must-run,5.54,845.0,467.7
+2027-01,Renewable - Bagasse based Co-gen,Must-run,5.54,883.0,488.9
+2027-02,Renewable - Bagasse based Co-gen,Must-run,5.54,794.0,439.3
+2027-03,Renewable - Bagasse based Co-gen,Must-run,5.54,694.0,384.4
+2026-04,Renewable - Biomass,Must-run,9.07,3.0,2.5
+2026-05,Renewable - Biomass,Must-run,9.07,1.0,1.3
+2026-06,Renewable - Biomass,Must-run,9.07,0.0,0.4
+2026-07,Renewable - Biomass,Must-run,9.07,0.0,0.2
+2026-08,Renewable - Biomass,Must-run,9.07,0.0,0.1
+2026-09,Renewable - Biomass,Must-run,9.07,0.0,0.2
+2026-10,Renewable - Biomass,Must-run,9.07,0.0,0.4
+2026-11,Renewable - Biomass,Must-run,9.07,7.0,6.3
+2026-12,Renewable - Biomass,Must-run,9.07,10.0,8.8
+2027-01,Renewable - Biomass,Must-run,9.07,10.0,9.2
+2027-02,Renewable - Biomass,Must-run,9.07,9.0,8.3
+2027-03,Renewable - Biomass,Must-run,9.07,8.0,7.2
+2026-04,Renewable - Small Hydro,Must-run,3.34,70.0,23.5
+2026-05,Renewable - Small Hydro,Must-run,3.34,46.0,15.5
+2026-06,Renewable - Small Hydro,Must-run,3.34,34.0,11.5
+2026-07,Renewable - Small Hydro,Must-run,3.34,54.0,17.9
+2026-08,Renewable - Small Hydro,Must-run,3.34,71.0,23.8
+2026-09,Renewable - Small Hydro,Must-run,3.34,63.0,20.9
+2026-10,Renewable - Small Hydro,Must-run,3.34,48.0,16.1
+2026-11,Renewable - Small Hydro,Must-run,3.34,51.0,17.0
+2026-12,Renewable - Small Hydro,Must-run,3.34,47.0,15.5
+2027-01,Renewable - Small Hydro,Must-run,3.34,59.0,19.7
+2027-02,Renewable - Small Hydro,Must-run,3.34,59.0,19.8
+2027-03,Renewable - Small Hydro,Must-run,3.34,54.0,17.9
+2026-04,Renewable - MSW,Must-run,4.88,0.0,0.1
+2026-05,Renewable - MSW,Must-run,4.88,0.0,0.1
+2026-06,Renewable - MSW,Must-run,4.88,0.0,0.0
+2026-07,Renewable - MSW,Must-run,4.88,0.0,0.0
+2026-08,Renewable - MSW,Must-run,4.88,0.0,0.0
+2026-09,Renewable - MSW,Must-run,4.88,0.0,0.0
+2026-10,Renewable - MSW,Must-run,4.88,0.0,0.0
+2026-11,Renewable - MSW,Must-run,4.88,1.0,0.4
+2026-12,Renewable - MSW,Must-run,4.88,1.0,0.5
+2027-01,Renewable - MSW,Must-run,4.88,1.0,0.5
+2027-02,Renewable - MSW,Must-run,4.88,1.0,0.5
+2027-03,Renewable - MSW,Must-run,4.88,1.0,0.4
+2026-04,Renewable - Hybrid intra,Must-run,2.56,49.0,12.5
+2026-05,Renewable - Hybrid intra,Must-run,2.56,59.0,15.0
+2026-06,Renewable - Hybrid intra,Must-run,2.56,71.0,18.1
+2026-07,Renewable - Hybrid intra,Must-run,2.56,65.0,16.6
+2026-08,Renewable - Hybrid intra,Must-run,2.56,68.0,17.4
+2026-09,Renewable - Hybrid intra,Must-run,2.56,52.0,13.4
+2026-10,Renewable - Hybrid intra,Must-run,2.56,47.0,12.0
+2026-11,Renewable - Hybrid intra,Must-run,2.56,37.0,9.6
+2026-12,Renewable - Hybrid intra,Must-run,2.56,43.0,11.1
+2027-01,Renewable - Hybrid intra,Must-run,2.56,45.0,11.5
+2027-02,Renewable - Hybrid intra,Must-run,2.56,44.0,11.2
+2027-03,Renewable - Hybrid intra,Must-run,2.56,56.0,14.4
+2026-04,Renewable - Hybrid Inter,Must-run,3.43,168.0,57.6
+2026-05,Renewable - Hybrid Inter,Must-run,3.43,211.0,72.4
+2026-06,Renewable - Hybrid Inter,Must-run,3.43,187.0,64.1
+2026-07,Renewable - Hybrid Inter,Must-run,3.43,184.0,63.1
+2026-08,Renewable - Hybrid Inter,Must-run,3.43,240.0,82.2
+2026-09,Renewable - Hybrid Inter,Must-run,3.43,163.0,56.0
+2026-10,Renewable - Hybrid Inter,Must-run,3.43,145.0,49.9
+2026-11,Renewable - Hybrid Inter,Must-run,3.43,123.0,42.1
+2026-12,Renewable - Hybrid Inter,Must-run,3.43,146.0,50.1
+2027-01,Renewable - Hybrid Inter,Must-run,3.43,121.0,41.4
+2027-02,Renewable - Hybrid Inter,Must-run,3.43,138.0,47.3
+2027-03,Renewable - Hybrid Inter,Must-run,3.43,169.0,58.1
+2026-04,Renewable - FDRE,Must-run,4.46,747.0,333.1
+2026-05,Renewable - FDRE,Must-run,4.46,922.0,411.3
+2026-06,Renewable - FDRE,Must-run,4.46,1005.0,448.3
+2026-07,Renewable - FDRE,Must-run,4.46,1053.0,469.7
+2026-08,Renewable - FDRE,Must-run,4.46,1028.0,458.3
+2026-09,Renewable - FDRE,Must-run,4.46,810.0,361.1
+2026-10,Renewable - FDRE,Must-run,4.46,662.0,295.4
+2026-11,Renewable - FDRE,Must-run,4.46,675.0,301.2
+2026-12,Renewable - FDRE,Must-run,4.46,742.0,330.8
+2027-01,Renewable - FDRE,Must-run,4.46,797.0,355.4
+2027-02,Renewable - FDRE,Must-run,4.46,755.0,336.8
+2027-03,Renewable - FDRE,Must-run,4.46,795.0,354.4
+2026-04,Renewable - BESS,Must-run,0.0,83.0,0.0
+2026-05,Renewable - BESS,Must-run,0.0,71.0,0.0
+2026-06,Renewable - BESS,Must-run,0.0,83.0,0.0
+2026-07,Renewable - BESS,Must-run,0.0,82.0,0.0
+2026-08,Renewable - BESS,Must-run,0.0,80.0,0.0
+2026-09,Renewable - BESS,Must-run,0.0,74.0,0.0
+2026-10,Renewable - BESS,Must-run,0.0,99.0,0.0
+2026-11,Renewable - BESS,Must-run,0.0,85.0,0.0
+2026-12,Renewable - BESS,Must-run,0.0,86.0,0.0
+2027-01,Renewable - BESS,Must-run,0.0,95.0,0.0
+2027-02,Renewable - BESS,Must-run,0.0,61.0,0.0
+2027-03,Renewable - BESS,Must-run,0.0,72.0,0.0
+2026-04,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,39.0,0.0
+2026-05,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,40.0,0.0
+2026-06,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,41.0,0.0
+2026-07,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,41.0,0.0
+2026-08,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,41.0,0.0
+2026-09,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,40.0,0.0
+2026-10,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,42.0,0.0
+2026-11,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,41.0,0.0
+2026-12,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,41.0,0.0
+2027-01,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,46.0,0.0
+2027-02,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,39.0,0.0
+2027-03,"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,41.0,0.0
+2026-04,Short term,Must-run,5.5,27.0,14.6
+2026-05,Short term,Must-run,5.5,2.0,1.1
+2026-06,Short term,Must-run,5.5,5.0,2.7
+2026-07,Short term,Must-run,5.5,13.0,6.9
+2026-08,Short term,Must-run,5.5,19.0,10.5
+2026-09,Short term,Must-run,5.5,23.0,12.9
+2026-10,Short term,Must-run,5.5,0.0,0.2
+2026-11,Short term,Must-run,5.5,10.0,5.3
+2026-12,Short term,Must-run,5.5,22.0,11.9
+2027-01,Short term,Must-run,5.5,10.0,5.3
+2027-02,Short term,Must-run,5.5,17.0,9.2
+2027-03,Short term,Must-run,5.5,15.0,8.2
+2026-04,Lara,Merit-order (MoD),1.52,172.12,26.2
+2026-05,Lara,Merit-order (MoD),1.52,173.0,26.4
+2026-06,Lara,Merit-order (MoD),1.52,167.0,25.4
+2026-07,Lara,Merit-order (MoD),1.52,180.0,27.5
+2026-08,Lara,Merit-order (MoD),1.52,173.0,26.3
+2026-09,Lara,Merit-order (MoD),1.52,173.0,26.3
+2026-10,Lara,Merit-order (MoD),1.52,174.0,26.5
+2026-11,Lara,Merit-order (MoD),1.52,175.0,26.6
+2026-12,Lara,Merit-order (MoD),1.52,178.0,27.0
+2027-01,Lara,Merit-order (MoD),1.52,179.0,27.3
+2027-02,Lara,Merit-order (MoD),1.52,159.0,24.3
+2027-03,Lara,Merit-order (MoD),1.52,173.0,26.4
+2026-04,KSTPS III,Merit-order (MoD),1.74,75.22,13.1
+2026-05,KSTPS III,Merit-order (MoD),1.74,76.0,13.1
+2026-06,KSTPS III,Merit-order (MoD),1.74,73.0,12.7
+2026-07,KSTPS III,Merit-order (MoD),1.74,79.0,13.7
+2026-08,KSTPS III,Merit-order (MoD),1.74,75.0,13.1
+2026-09,KSTPS III,Merit-order (MoD),1.74,76.0,13.1
+2026-10,KSTPS III,Merit-order (MoD),1.74,76.0,13.2
+2026-11,KSTPS III,Merit-order (MoD),1.74,76.0,13.2
+2026-12,KSTPS III,Merit-order (MoD),1.74,78.0,13.5
+2027-01,KSTPS III,Merit-order (MoD),1.74,78.0,13.6
+2027-02,KSTPS III,Merit-order (MoD),1.74,70.0,12.1
+2027-03,KSTPS III,Merit-order (MoD),1.74,76.0,13.1
+2026-04,KSTPS,Merit-order (MoD),1.76,381.11,67.1
+2026-05,KSTPS,Merit-order (MoD),1.76,384.0,67.7
+2026-06,KSTPS,Merit-order (MoD),1.76,370.0,65.0
+2026-07,KSTPS,Merit-order (MoD),1.76,399.0,70.3
+2026-08,KSTPS,Merit-order (MoD),1.76,383.0,67.4
+2026-09,KSTPS,Merit-order (MoD),1.76,383.0,67.4
+2026-10,KSTPS,Merit-order (MoD),1.76,387.0,68.0
+2026-11,KSTPS,Merit-order (MoD),1.76,387.0,68.1
+2026-12,KSTPS,Merit-order (MoD),1.76,395.0,69.4
+2027-01,KSTPS,Merit-order (MoD),1.76,398.0,70.0
+2027-02,KSTPS,Merit-order (MoD),1.76,353.0,62.2
+2027-03,KSTPS,Merit-order (MoD),1.76,384.0,67.6
+2026-04,VSTP II,Merit-order (MoD),2.02,202.06,40.9
+2026-05,VSTP II,Merit-order (MoD),2.02,204.0,41.3
+2026-06,VSTP II,Merit-order (MoD),2.02,196.0,39.6
+2026-07,VSTP II,Merit-order (MoD),2.02,212.0,42.9
+2026-08,VSTP II,Merit-order (MoD),2.02,203.0,41.2
+2026-09,VSTP II,Merit-order (MoD),2.02,203.0,41.1
+2026-10,VSTP II,Merit-order (MoD),2.02,205.0,41.5
+2026-11,VSTP II,Merit-order (MoD),2.02,205.0,41.5
+2026-12,VSTP II,Merit-order (MoD),2.02,209.0,42.4
+2027-01,VSTP II,Merit-order (MoD),2.02,211.0,42.7
+2027-02,VSTP II,Merit-order (MoD),2.02,187.0,37.9
+2027-03,VSTP II,Merit-order (MoD),2.02,204.0,41.2
+2026-04,VSTP III,Merit-order (MoD),2.04,167.8,34.3
+2026-05,VSTP III,Merit-order (MoD),2.04,169.0,34.6
+2026-06,VSTP III,Merit-order (MoD),2.04,162.0,33.2
+2026-07,VSTP III,Merit-order (MoD),2.04,176.0,36.0
+2026-08,VSTP III,Merit-order (MoD),2.04,169.0,34.5
+2026-09,VSTP III,Merit-order (MoD),2.04,168.0,34.4
+2026-10,VSTP III,Merit-order (MoD),2.04,170.0,34.8
+2026-11,VSTP III,Merit-order (MoD),2.04,170.0,34.8
+2026-12,VSTP III,Merit-order (MoD),2.04,174.0,35.5
+2027-01,VSTP III,Merit-order (MoD),2.04,175.0,35.8
+2027-02,VSTP III,Merit-order (MoD),2.04,155.0,31.8
+2027-03,VSTP III,Merit-order (MoD),2.04,169.0,34.6
+2026-04,SIPAT TPS 1,Merit-order (MoD),2.08,341.97,71.2
+2026-05,SIPAT TPS 1,Merit-order (MoD),2.08,346.0,72.1
+2026-06,SIPAT TPS 1,Merit-order (MoD),2.08,332.0,69.2
+2026-07,SIPAT TPS 1,Merit-order (MoD),2.08,359.0,74.7
+2026-08,SIPAT TPS 1,Merit-order (MoD),2.08,345.0,71.9
+2026-09,SIPAT TPS 1,Merit-order (MoD),2.08,345.0,71.7
+2026-10,SIPAT TPS 1,Merit-order (MoD),2.08,348.0,72.5
+2026-11,SIPAT TPS 1,Merit-order (MoD),2.08,349.0,72.6
+2026-12,SIPAT TPS 1,Merit-order (MoD),2.08,356.0,74.1
+2027-01,SIPAT TPS 1,Merit-order (MoD),2.08,358.0,74.6
+2027-02,SIPAT TPS 1,Merit-order (MoD),2.08,318.0,66.2
+2027-03,SIPAT TPS 1,Merit-order (MoD),2.08,345.0,71.9
+2026-04,VSTP I,Merit-order (MoD),2.13,252.54,53.8
+2026-05,VSTP I,Merit-order (MoD),2.13,256.0,54.4
+2026-06,VSTP I,Merit-order (MoD),2.13,245.0,52.3
+2026-07,VSTP I,Merit-order (MoD),2.13,264.0,56.1
+2026-08,VSTP I,Merit-order (MoD),2.13,255.0,54.3
+2026-09,VSTP I,Merit-order (MoD),2.13,255.0,54.2
+2026-10,VSTP I,Merit-order (MoD),2.13,257.0,54.7
+2026-11,VSTP I,Merit-order (MoD),2.13,257.0,54.6
+2026-12,VSTP I,Merit-order (MoD),2.13,263.0,56.0
+2027-01,VSTP I,Merit-order (MoD),2.13,264.0,56.2
+2027-02,VSTP I,Merit-order (MoD),2.13,235.0,50.0
+2027-03,VSTP I,Merit-order (MoD),2.13,254.0,54.1
+2026-04,VSTP IV,Merit-order (MoD),2.15,179.79,38.6
+2026-05,VSTP IV,Merit-order (MoD),2.15,182.0,39.0
+2026-06,VSTP IV,Merit-order (MoD),2.15,175.0,37.5
+2026-07,VSTP IV,Merit-order (MoD),2.15,187.0,40.2
+2026-08,VSTP IV,Merit-order (MoD),2.15,182.0,39.0
+2026-09,VSTP IV,Merit-order (MoD),2.15,181.0,38.8
+2026-10,VSTP IV,Merit-order (MoD),2.15,183.0,39.3
+2026-11,VSTP IV,Merit-order (MoD),2.15,182.0,39.0
+2026-12,VSTP IV,Merit-order (MoD),2.15,187.0,40.2
+2027-01,VSTP IV,Merit-order (MoD),2.15,188.0,40.4
+2027-02,VSTP IV,Merit-order (MoD),2.15,167.0,35.9
+2027-03,VSTP IV,Merit-order (MoD),2.15,181.0,38.8
+2026-04,VSTP V,Merit-order (MoD),2.17,96.74,21.0
+2026-05,VSTP V,Merit-order (MoD),2.17,98.0,21.3
+2026-06,VSTP V,Merit-order (MoD),2.17,94.0,20.5
+2026-07,VSTP V,Merit-order (MoD),2.17,101.0,21.9
+2026-08,VSTP V,Merit-order (MoD),2.17,98.0,21.3
+2026-09,VSTP V,Merit-order (MoD),2.17,97.0,21.1
+2026-10,VSTP V,Merit-order (MoD),2.17,99.0,21.4
+2026-11,VSTP V,Merit-order (MoD),2.17,98.0,21.2
+2026-12,VSTP V,Merit-order (MoD),2.17,101.0,21.9
+2027-01,VSTP V,Merit-order (MoD),2.17,101.0,22.0
+2027-02,VSTP V,Merit-order (MoD),2.17,90.0,19.6
+2027-03,VSTP V,Merit-order (MoD),2.17,97.0,21.2
+2026-04,SIPAT TPS 2,Merit-order (MoD),2.18,165.51,36.1
+2026-05,SIPAT TPS 2,Merit-order (MoD),2.18,168.0,36.6
+2026-06,SIPAT TPS 2,Merit-order (MoD),2.18,161.0,35.2
+2026-07,SIPAT TPS 2,Merit-order (MoD),2.18,172.0,37.6
+2026-08,SIPAT TPS 2,Merit-order (MoD),2.18,167.0,36.5
+2026-09,SIPAT TPS 2,Merit-order (MoD),2.18,166.0,36.3
+2026-10,SIPAT TPS 2,Merit-order (MoD),2.18,169.0,36.8
+2026-11,SIPAT TPS 2,Merit-order (MoD),2.18,167.0,36.5
+2026-12,SIPAT TPS 2,Merit-order (MoD),2.18,173.0,37.7
+2027-01,SIPAT TPS 2,Merit-order (MoD),2.18,174.0,37.9
+2027-02,SIPAT TPS 2,Merit-order (MoD),2.18,154.0,33.7
+2027-03,SIPAT TPS 2,Merit-order (MoD),2.18,167.0,36.4
+2026-04,RIPL 450 MW,Merit-order (MoD),2.68,258.71,69.4
+2026-05,RIPL 450 MW,Merit-order (MoD),2.68,262.0,70.2
+2026-06,RIPL 450 MW,Merit-order (MoD),2.68,252.0,67.6
+2026-07,RIPL 450 MW,Merit-order (MoD),2.68,268.0,71.8
+2026-08,RIPL 450 MW,Merit-order (MoD),2.68,262.0,70.3
+2026-09,RIPL 450 MW,Merit-order (MoD),2.68,260.0,69.6
+2026-10,RIPL 450 MW,Merit-order (MoD),2.68,264.0,70.8
+2026-11,RIPL 450 MW,Merit-order (MoD),2.68,260.0,69.7
+2026-12,RIPL 450 MW,Merit-order (MoD),2.68,270.0,72.4
+2027-01,RIPL 450 MW,Merit-order (MoD),2.68,271.0,72.8
+2027-02,RIPL 450 MW,Merit-order (MoD),2.68,242.0,64.8
+2027-03,RIPL 450 MW,Merit-order (MoD),2.68,261.0,69.9
+2026-04,RIPL 750 MW,Merit-order (MoD),2.68,431.33,115.7
+2026-05,RIPL 750 MW,Merit-order (MoD),2.68,437.0,117.1
+2026-06,RIPL 750 MW,Merit-order (MoD),2.68,419.0,112.5
+2026-07,RIPL 750 MW,Merit-order (MoD),2.68,447.0,119.9
+2026-08,RIPL 750 MW,Merit-order (MoD),2.68,437.0,117.2
+2026-09,RIPL 750 MW,Merit-order (MoD),2.68,432.0,115.9
+2026-10,RIPL 750 MW,Merit-order (MoD),2.68,440.0,117.9
+2026-11,RIPL 750 MW,Merit-order (MoD),2.68,434.0,116.3
+2026-12,RIPL 750 MW,Merit-order (MoD),2.68,451.0,121.0
+2027-01,RIPL 750 MW,Merit-order (MoD),2.68,452.0,121.2
+2027-02,RIPL 750 MW,Merit-order (MoD),2.68,402.0,107.7
+2027-03,RIPL 750 MW,Merit-order (MoD),2.68,435.0,116.6
+2026-04,KhSTPS-II,Merit-order (MoD),2.94,85.11,25.0
+2026-05,KhSTPS-II,Merit-order (MoD),2.94,86.0,25.4
+2026-06,KhSTPS-II,Merit-order (MoD),2.94,83.0,24.4
+2026-07,KhSTPS-II,Merit-order (MoD),2.94,88.0,25.9
+2026-08,KhSTPS-II,Merit-order (MoD),2.94,86.0,25.4
+2026-09,KhSTPS-II,Merit-order (MoD),2.94,85.0,25.0
+2026-10,KhSTPS-II,Merit-order (MoD),2.94,87.0,25.6
+2026-11,KhSTPS-II,Merit-order (MoD),2.94,85.0,25.0
+2026-12,KhSTPS-II,Merit-order (MoD),2.94,89.0,26.1
+2027-01,KhSTPS-II,Merit-order (MoD),2.94,89.0,26.2
+2027-02,KhSTPS-II,Merit-order (MoD),2.94,79.0,23.3
+2027-03,KhSTPS-II,Merit-order (MoD),2.94,86.0,25.3
+2026-04,SWPGL 240 MW,Merit-order (MoD),3.14,132.26,41.6
+2026-05,SWPGL 240 MW,Merit-order (MoD),3.14,137.0,43.0
+2026-06,SWPGL 240 MW,Merit-order (MoD),3.14,132.0,41.6
+2026-07,SWPGL 240 MW,Merit-order (MoD),3.14,137.0,43.0
+2026-08,SWPGL 240 MW,Merit-order (MoD),3.14,137.0,43.0
+2026-09,SWPGL 240 MW,Merit-order (MoD),3.14,132.0,41.6
+2026-10,SWPGL 240 MW,Merit-order (MoD),3.14,137.0,43.0
+2026-11,SWPGL 240 MW,Merit-order (MoD),3.14,132.0,41.6
+2026-12,SWPGL 240 MW,Merit-order (MoD),3.14,137.0,43.0
+2027-01,SWPGL 240 MW,Merit-order (MoD),3.14,137.0,43.0
+2027-02,SWPGL 240 MW,Merit-order (MoD),3.14,123.0,38.8
+2027-03,SWPGL 240 MW,Merit-order (MoD),3.14,137.0,43.0
+2026-04,GMR Energy,Merit-order (MoD),3.2,114.56,36.7
+2026-05,GMR Energy,Merit-order (MoD),3.2,116.0,37.2
+2026-06,GMR Energy,Merit-order (MoD),3.2,112.0,35.8
+2026-07,GMR Energy,Merit-order (MoD),3.2,118.0,37.8
+2026-08,GMR Energy,Merit-order (MoD),3.2,116.0,37.2
+2026-09,GMR Energy,Merit-order (MoD),3.2,115.0,36.7
+2026-10,GMR Energy,Merit-order (MoD),3.2,117.0,37.4
+2026-11,GMR Energy,Merit-order (MoD),3.2,114.0,36.5
+2026-12,GMR Energy,Merit-order (MoD),3.2,119.0,38.2
+2027-01,GMR Energy,Merit-order (MoD),3.2,120.0,38.4
+2027-02,GMR Energy,Merit-order (MoD),3.2,107.0,34.2
+2027-03,GMR Energy,Merit-order (MoD),3.2,116.0,37.1
+2026-04,Koradi - 8 to 10,Merit-order (MoD),3.38,938.04,316.9
+2026-05,Koradi - 8 to 10,Merit-order (MoD),3.38,969.0,327.5
+2026-06,Koradi - 8 to 10,Merit-order (MoD),3.38,938.0,316.9
+2026-07,Koradi - 8 to 10,Merit-order (MoD),3.38,969.0,327.5
+2026-08,Koradi - 8 to 10,Merit-order (MoD),3.38,969.0,327.5
+2026-09,Koradi - 8 to 10,Merit-order (MoD),3.38,747.0,252.3
+2026-10,Koradi - 8 to 10,Merit-order (MoD),3.38,969.0,327.5
+2026-11,Koradi - 8 to 10,Merit-order (MoD),3.38,938.0,316.9
+2026-12,Koradi - 8 to 10,Merit-order (MoD),3.38,969.0,327.5
+2027-01,Koradi - 8 to 10,Merit-order (MoD),3.38,923.0,311.9
+2027-02,Koradi - 8 to 10,Merit-order (MoD),3.38,876.0,295.8
+2027-03,Koradi - 8 to 10,Merit-order (MoD),3.38,893.0,301.6
+2026-04,Khaparkheda - 5,Merit-order (MoD),3.43,275.12,94.3
+2026-05,Khaparkheda - 5,Merit-order (MoD),3.43,284.0,97.5
+2026-06,Khaparkheda - 5,Merit-order (MoD),3.43,275.0,94.3
+2026-07,Khaparkheda - 5,Merit-order (MoD),3.43,284.0,97.5
+2026-08,Khaparkheda - 5,Merit-order (MoD),3.43,284.0,97.5
+2026-09,Khaparkheda - 5,Merit-order (MoD),3.43,275.0,94.3
+2026-10,Khaparkheda - 5,Merit-order (MoD),3.43,284.0,97.5
+2026-11,Khaparkheda - 5,Merit-order (MoD),3.43,275.0,94.3
+2026-12,Khaparkheda - 5,Merit-order (MoD),3.43,284.0,97.5
+2027-01,Khaparkheda - 5,Merit-order (MoD),3.43,284.0,97.5
+2027-02,Khaparkheda - 5,Merit-order (MoD),3.43,257.0,88.0
+2027-03,Khaparkheda - 5,Merit-order (MoD),3.43,284.0,97.5
+2026-04,CGPL,Merit-order (MoD),3.43,407.12,139.7
+2026-05,CGPL,Merit-order (MoD),3.43,421.0,144.4
+2026-06,CGPL,Merit-order (MoD),3.43,407.0,139.7
+2026-07,CGPL,Merit-order (MoD),3.43,421.0,144.4
+2026-08,CGPL,Merit-order (MoD),3.43,421.0,144.4
+2026-09,CGPL,Merit-order (MoD),3.43,407.0,139.7
+2026-10,CGPL,Merit-order (MoD),3.43,421.0,144.4
+2026-11,CGPL,Merit-order (MoD),3.43,407.0,139.7
+2026-12,CGPL,Merit-order (MoD),3.43,421.0,144.4
+2027-01,CGPL,Merit-order (MoD),3.43,421.0,144.4
+2027-02,CGPL,Merit-order (MoD),3.43,380.0,130.4
+2027-03,CGPL,Merit-order (MoD),3.43,421.0,144.4
+2026-04,Chandrapur - 8 & 9,Merit-order (MoD),3.62,553.62,200.3
+2026-05,Chandrapur - 8 & 9,Merit-order (MoD),3.62,572.0,206.9
+2026-06,Chandrapur - 8 & 9,Merit-order (MoD),3.62,554.0,200.3
+2026-07,Chandrapur - 8 & 9,Merit-order (MoD),3.62,572.0,206.9
+2026-08,Chandrapur - 8 & 9,Merit-order (MoD),3.62,572.0,206.9
+2026-09,Chandrapur - 8 & 9,Merit-order (MoD),3.62,554.0,200.3
+2026-10,Chandrapur - 8 & 9,Merit-order (MoD),3.62,572.0,206.9
+2026-11,Chandrapur - 8 & 9,Merit-order (MoD),3.62,554.0,200.3
+2026-12,Chandrapur - 8 & 9,Merit-order (MoD),3.62,572.0,206.9
+2027-01,Chandrapur - 8 & 9,Merit-order (MoD),3.62,572.0,206.9
+2027-02,Chandrapur - 8 & 9,Merit-order (MoD),3.62,517.0,186.9
+2027-03,Chandrapur - 8 & 9,Merit-order (MoD),3.62,572.0,206.9
+2026-04,Bhusawal - 6,Merit-order (MoD),3.67,379.68,139.3
+2026-05,Bhusawal - 6,Merit-order (MoD),3.67,386.0,141.7
+2026-06,Bhusawal - 6,Merit-order (MoD),3.67,372.0,136.5
+2026-07,Bhusawal - 6,Merit-order (MoD),3.67,390.0,143.1
+2026-08,Bhusawal - 6,Merit-order (MoD),3.67,386.0,141.4
+2026-09,Bhusawal - 6,Merit-order (MoD),3.67,379.0,139.1
+2026-10,Bhusawal - 6,Merit-order (MoD),3.67,389.0,142.5
+2026-11,Bhusawal - 6,Merit-order (MoD),3.67,380.0,139.2
+2026-12,Bhusawal - 6,Merit-order (MoD),3.67,390.0,143.2
+2027-01,Bhusawal - 6,Merit-order (MoD),3.67,392.0,143.9
+2027-02,Bhusawal - 6,Merit-order (MoD),3.67,354.0,130.0
+2027-03,Bhusawal - 6,Merit-order (MoD),3.67,385.0,141.4
+2026-04,Koradi - 6,Merit-order (MoD),3.7,84.12,31.1
+2026-05,Koradi - 6,Merit-order (MoD),3.7,102.0,37.9
+2026-06,Koradi - 6,Merit-order (MoD),3.7,99.0,36.7
+2026-07,Koradi - 6,Merit-order (MoD),3.7,102.0,37.9
+2026-08,Koradi - 6,Merit-order (MoD),3.7,102.0,37.9
+2026-09,Koradi - 6,Merit-order (MoD),3.7,99.0,36.7
+2026-10,Koradi - 6,Merit-order (MoD),3.7,102.0,37.9
+2026-11,Koradi - 6,Merit-order (MoD),3.7,99.0,36.7
+2026-12,Koradi - 6,Merit-order (MoD),3.7,102.0,37.9
+2027-01,Koradi - 6,Merit-order (MoD),3.7,102.0,37.9
+2027-02,Koradi - 6,Merit-order (MoD),3.7,93.0,34.3
+2027-03,Koradi - 6,Merit-order (MoD),3.7,102.0,37.9
+2026-04,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,352.81,135.5
+2026-05,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,362.0,138.9
+2026-06,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,406.0,156.0
+2026-07,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,420.0,161.2
+2026-08,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,420.0,161.2
+2026-09,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,406.0,156.0
+2026-10,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,420.0,161.2
+2026-11,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,406.0,156.0
+2026-12,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,420.0,161.2
+2027-01,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,420.0,161.2
+2027-02,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,379.0,145.6
+2027-03,Khaparkheda - 1 to 4,Merit-order (MoD),3.84,420.0,161.2
+2026-04,Mauda I,Merit-order (MoD),3.95,228.76,90.4
+2026-05,Mauda I,Merit-order (MoD),3.95,231.0,91.3
+2026-06,Mauda I,Merit-order (MoD),3.95,223.0,88.2
+2026-07,Mauda I,Merit-order (MoD),3.95,232.0,91.8
+2026-08,Mauda I,Merit-order (MoD),3.95,229.0,90.7
+2026-09,Mauda I,Merit-order (MoD),3.95,227.0,89.9
+2026-10,Mauda I,Merit-order (MoD),3.95,233.0,92.2
+2026-11,Mauda I,Merit-order (MoD),3.95,227.0,89.9
+2026-12,Mauda I,Merit-order (MoD),3.95,218.0,86.1
+2027-01,Mauda I,Merit-order (MoD),3.95,235.0,92.8
+2027-02,Mauda I,Merit-order (MoD),3.95,214.0,84.6
+2027-03,Mauda I,Merit-order (MoD),3.95,232.0,91.5
+2026-04,Mauda II,Merit-order (MoD),4.09,314.29,128.6
+2026-05,Mauda II,Merit-order (MoD),4.09,318.0,130.2
+2026-06,Mauda II,Merit-order (MoD),4.09,307.0,125.8
+2026-07,Mauda II,Merit-order (MoD),4.09,221.0,90.4
+2026-08,Mauda II,Merit-order (MoD),4.09,309.0,126.3
+2026-09,Mauda II,Merit-order (MoD),4.09,313.0,128.0
+2026-10,Mauda II,Merit-order (MoD),4.09,322.0,131.8
+2026-11,Mauda II,Merit-order (MoD),4.09,313.0,128.2
+2026-12,Mauda II,Merit-order (MoD),4.09,294.0,120.4
+2027-01,Mauda II,Merit-order (MoD),4.09,322.0,132.0
+2027-02,Mauda II,Merit-order (MoD),4.09,295.0,120.8
+2027-03,Mauda II,Merit-order (MoD),4.09,320.0,130.9
+2026-04,Paras - 3 & 4,Merit-order (MoD),4.2,256.93,108.0
+2026-05,Paras - 3 & 4,Merit-order (MoD),4.2,265.0,111.6
+2026-06,Paras - 3 & 4,Merit-order (MoD),4.2,257.0,108.0
+2026-07,Paras - 3 & 4,Merit-order (MoD),4.2,215.0,90.4
+2026-08,Paras - 3 & 4,Merit-order (MoD),4.2,265.0,111.6
+2026-09,Paras - 3 & 4,Merit-order (MoD),4.2,257.0,108.0
+2026-10,Paras - 3 & 4,Merit-order (MoD),4.2,265.0,111.6
+2026-11,Paras - 3 & 4,Merit-order (MoD),4.2,257.0,108.0
+2026-12,Paras - 3 & 4,Merit-order (MoD),4.2,264.0,110.9
+2027-01,Paras - 3 & 4,Merit-order (MoD),4.2,265.0,111.6
+2027-02,Paras - 3 & 4,Merit-order (MoD),4.2,240.0,100.8
+2027-03,Paras - 3 & 4,Merit-order (MoD),4.2,265.0,111.6
+2026-04,Gadarwara,Merit-order (MoD),4.35,63.07,27.4
+2026-05,Gadarwara,Merit-order (MoD),4.35,63.0,27.3
+2026-06,Gadarwara,Merit-order (MoD),4.35,58.0,25.4
+2026-07,Gadarwara,Merit-order (MoD),4.35,14.0,5.9
+2026-08,Gadarwara,Merit-order (MoD),4.35,45.0,19.6
+2026-09,Gadarwara,Merit-order (MoD),4.35,56.0,24.1
+2026-10,Gadarwara,Merit-order (MoD),4.35,64.0,27.9
+2026-11,Gadarwara,Merit-order (MoD),4.35,48.0,20.7
+2026-12,Gadarwara,Merit-order (MoD),4.35,29.0,12.5
+2027-01,Gadarwara,Merit-order (MoD),4.35,41.0,18.0
+2027-02,Gadarwara,Merit-order (MoD),4.35,59.0,25.8
+2027-03,Gadarwara,Merit-order (MoD),4.35,64.0,28.1
+2026-04,Bhusawal - 4 & 5,Merit-order (MoD),4.4,554.98,244.4
+2026-05,Bhusawal - 4 & 5,Merit-order (MoD),4.4,573.0,252.5
+2026-06,Bhusawal - 4 & 5,Merit-order (MoD),4.4,549.0,241.9
+2026-07,Bhusawal - 4 & 5,Merit-order (MoD),4.4,130.0,57.2
+2026-08,Bhusawal - 4 & 5,Merit-order (MoD),4.4,550.0,242.3
+2026-09,Bhusawal - 4 & 5,Merit-order (MoD),4.4,437.0,192.3
+2026-10,Bhusawal - 4 & 5,Merit-order (MoD),4.4,573.0,252.5
+2026-11,Bhusawal - 4 & 5,Merit-order (MoD),4.4,555.0,244.4
+2026-12,Bhusawal - 4 & 5,Merit-order (MoD),4.4,522.0,229.9
+2027-01,Bhusawal - 4 & 5,Merit-order (MoD),4.4,558.0,245.6
+2027-02,Bhusawal - 4 & 5,Merit-order (MoD),4.4,518.0,228.1
+2027-03,Bhusawal - 4 & 5,Merit-order (MoD),4.4,573.0,252.5
+2026-04,APML 1320 MW,Merit-order (MoD),4.42,745.72,329.5
+2026-05,APML 1320 MW,Merit-order (MoD),4.42,748.0,330.4
+2026-06,APML 1320 MW,Merit-order (MoD),4.42,701.0,309.6
+2026-07,APML 1320 MW,Merit-order (MoD),4.42,307.0,135.7
+2026-08,APML 1320 MW,Merit-order (MoD),4.42,562.0,248.5
+2026-09,APML 1320 MW,Merit-order (MoD),4.42,705.0,311.4
+2026-10,APML 1320 MW,Merit-order (MoD),4.42,763.0,337.0
+2026-11,APML 1320 MW,Merit-order (MoD),4.42,741.0,327.6
+2026-12,APML 1320 MW,Merit-order (MoD),4.42,618.0,273.1
+2027-01,APML 1320 MW,Merit-order (MoD),4.42,674.0,297.6
+2027-02,APML 1320 MW,Merit-order (MoD),4.42,701.0,309.9
+2027-03,APML 1320 MW,Merit-order (MoD),4.42,761.0,336.3
+2026-04,Khargone,Merit-order (MoD),4.5,18.64,8.4
+2026-05,Khargone,Merit-order (MoD),4.5,44.0,19.7
+2026-06,Khargone,Merit-order (MoD),4.5,41.0,18.4
+2026-07,Khargone,Merit-order (MoD),4.5,11.0,4.8
+2026-08,Khargone,Merit-order (MoD),4.5,0.0,0.0
+2026-09,Khargone,Merit-order (MoD),4.5,11.0,5.1
+2026-10,Khargone,Merit-order (MoD),4.5,55.0,24.8
+2026-11,Khargone,Merit-order (MoD),4.5,33.0,14.6
+2026-12,Khargone,Merit-order (MoD),4.5,21.0,9.3
+2027-01,Khargone,Merit-order (MoD),4.5,13.0,5.7
+2027-02,Khargone,Merit-order (MoD),4.5,11.0,5.1
+2027-03,Khargone,Merit-order (MoD),4.5,30.0,13.7
+2026-04,APML 125 MW,Merit-order (MoD),4.52,70.13,31.7
+2026-05,APML 125 MW,Merit-order (MoD),4.52,70.0,31.7
+2026-06,APML 125 MW,Merit-order (MoD),4.52,64.0,29.1
+2026-07,APML 125 MW,Merit-order (MoD),4.52,14.0,6.3
+2026-08,APML 125 MW,Merit-order (MoD),4.52,32.0,14.5
+2026-09,APML 125 MW,Merit-order (MoD),4.52,45.0,20.5
+2026-10,APML 125 MW,Merit-order (MoD),4.52,72.0,32.4
+2026-11,APML 125 MW,Merit-order (MoD),4.52,65.0,29.5
+2026-12,APML 125 MW,Merit-order (MoD),4.52,13.0,6.1
+2027-01,APML 125 MW,Merit-order (MoD),4.52,48.0,21.6
+2027-02,APML 125 MW,Merit-order (MoD),4.52,49.0,22.3
+2027-03,APML 125 MW,Merit-order (MoD),4.52,72.0,32.6
+2026-04,APML 1200 MW,Merit-order (MoD),4.52,674.12,304.9
+2026-05,APML 1200 MW,Merit-order (MoD),4.52,673.0,304.4
+2026-06,APML 1200 MW,Merit-order (MoD),4.52,619.0,280.1
+2026-07,APML 1200 MW,Merit-order (MoD),4.52,131.0,59.4
+2026-08,APML 1200 MW,Merit-order (MoD),4.52,307.0,138.6
+2026-09,APML 1200 MW,Merit-order (MoD),4.52,441.0,199.6
+2026-10,APML 1200 MW,Merit-order (MoD),4.52,687.0,310.9
+2026-11,APML 1200 MW,Merit-order (MoD),4.52,637.0,288.3
+2026-12,APML 1200 MW,Merit-order (MoD),4.52,544.0,246.2
+2027-01,APML 1200 MW,Merit-order (MoD),4.52,312.0,141.1
+2027-02,APML 1200 MW,Merit-order (MoD),4.52,633.0,286.2
+2027-03,APML 1200 MW,Merit-order (MoD),4.52,690.0,312.0
+2026-04,APML 440 MW,Merit-order (MoD),4.58,163.35,74.9
+2026-05,APML 440 MW,Merit-order (MoD),4.58,190.0,87.2
+2026-06,APML 440 MW,Merit-order (MoD),4.58,179.0,82.2
+2026-07,APML 440 MW,Merit-order (MoD),4.58,47.0,21.7
+2026-08,APML 440 MW,Merit-order (MoD),4.58,46.0,21.0
+2026-09,APML 440 MW,Merit-order (MoD),4.58,136.0,62.3
+2026-10,APML 440 MW,Merit-order (MoD),4.58,244.0,111.6
+2026-11,APML 440 MW,Merit-order (MoD),4.58,127.0,58.1
+2026-12,APML 440 MW,Merit-order (MoD),4.58,55.0,25.4
+2027-01,APML 440 MW,Merit-order (MoD),4.58,212.0,97.2
+2027-02,APML 440 MW,Merit-order (MoD),4.58,116.0,53.1
+2027-03,APML 440 MW,Merit-order (MoD),4.58,183.0,83.8
+2026-04,Chandrapur - 3 to 7,Merit-order (MoD),4.61,726.5,335.2
+2026-05,Chandrapur - 3 to 7,Merit-order (MoD),4.61,841.0,388.2
+2026-06,Chandrapur - 3 to 7,Merit-order (MoD),4.61,758.0,349.9
+2026-07,Chandrapur - 3 to 7,Merit-order (MoD),4.61,0.0,0.0
+2026-08,Chandrapur - 3 to 7,Merit-order (MoD),4.61,211.0,97.2
+2026-09,Chandrapur - 3 to 7,Merit-order (MoD),4.61,215.0,99.2
+2026-10,Chandrapur - 3 to 7,Merit-order (MoD),4.61,832.0,383.9
+2026-11,Chandrapur - 3 to 7,Merit-order (MoD),4.61,652.0,301.0
+2026-12,Chandrapur - 3 to 7,Merit-order (MoD),4.61,336.0,155.1
+2027-01,Chandrapur - 3 to 7,Merit-order (MoD),4.61,673.0,310.5
+2027-02,Chandrapur - 3 to 7,Merit-order (MoD),4.61,633.0,292.3
+2027-03,Chandrapur - 3 to 7,Merit-order (MoD),4.61,841.0,388.2
+2026-04,NVVNL Coal,Merit-order (MoD),4.76,7.45,3.5
+2026-05,NVVNL Coal,Merit-order (MoD),4.76,9.0,4.1
+2026-06,NVVNL Coal,Merit-order (MoD),4.76,8.0,3.8
+2026-07,NVVNL Coal,Merit-order (MoD),4.76,2.0,1.0
+2026-08,NVVNL Coal,Merit-order (MoD),4.76,0.0,0.0
+2026-09,NVVNL Coal,Merit-order (MoD),4.76,2.0,1.1
+2026-10,NVVNL Coal,Merit-order (MoD),4.76,11.0,5.2
+2026-11,NVVNL Coal,Merit-order (MoD),4.76,6.0,3.1
+2026-12,NVVNL Coal,Merit-order (MoD),4.76,0.0,0.0
+2027-01,NVVNL Coal,Merit-order (MoD),4.76,2.0,1.0
+2027-02,NVVNL Coal,Merit-order (MoD),4.76,0.0,0.0
+2027-03,NVVNL Coal,Merit-order (MoD),4.76,4.0,1.7
+2026-04,JSW,Merit-order (MoD),4.99,111.06,55.4
+2026-05,JSW,Merit-order (MoD),4.99,92.0,45.7
+2026-06,JSW,Merit-order (MoD),4.99,121.0,60.4
+2026-07,JSW,Merit-order (MoD),4.99,32.0,15.8
+2026-08,JSW,Merit-order (MoD),4.99,0.0,0.0
+2026-09,JSW,Merit-order (MoD),4.99,33.0,16.6
+2026-10,JSW,Merit-order (MoD),4.99,163.0,81.4
+2026-11,JSW,Merit-order (MoD),4.99,51.0,25.6
+2026-12,JSW,Merit-order (MoD),4.99,0.0,0.0
+2027-01,JSW,Merit-order (MoD),4.99,34.0,17.0
+2027-02,JSW,Merit-order (MoD),4.99,33.0,16.6
+2027-03,JSW,Merit-order (MoD),4.99,54.0,26.9
+2026-04,NTPC Solapur,Merit-order (MoD),5.19,232.76,120.8
+2026-05,NTPC Solapur,Merit-order (MoD),5.19,277.0,143.7
+2026-06,NTPC Solapur,Merit-order (MoD),5.19,106.0,54.8
+2026-07,NTPC Solapur,Merit-order (MoD),5.19,0.0,0.0
+2026-08,NTPC Solapur,Merit-order (MoD),5.19,0.0,0.0
+2026-09,NTPC Solapur,Merit-order (MoD),5.19,70.0,36.4
+2026-10,NTPC Solapur,Merit-order (MoD),5.19,362.0,187.8
+2026-11,NTPC Solapur,Merit-order (MoD),5.19,91.0,47.3
+2026-12,NTPC Solapur,Merit-order (MoD),5.19,0.0,0.0
+2027-01,NTPC Solapur,Merit-order (MoD),5.19,0.0,0.0
+2027-02,NTPC Solapur,Merit-order (MoD),5.19,0.0,0.0
+2027-03,NTPC Solapur,Merit-order (MoD),5.19,85.0,44.0
+2026-04,GTPS Uran,Merit-order (MoD),5.23,192.92,100.9
+2026-05,GTPS Uran,Merit-order (MoD),5.23,199.0,104.3
+2026-06,GTPS Uran,Merit-order (MoD),5.23,193.0,100.9
+2026-07,GTPS Uran,Merit-order (MoD),5.23,199.0,104.3
+2026-08,GTPS Uran,Merit-order (MoD),5.23,199.0,104.3
+2026-09,GTPS Uran,Merit-order (MoD),5.23,193.0,100.9
+2026-10,GTPS Uran,Merit-order (MoD),5.23,199.0,104.3
+2026-11,GTPS Uran,Merit-order (MoD),5.23,193.0,100.9
+2026-12,GTPS Uran,Merit-order (MoD),5.23,199.0,104.3
+2027-01,GTPS Uran,Merit-order (MoD),5.23,199.0,104.3
+2027-02,GTPS Uran,Merit-order (MoD),5.23,180.0,94.2
+2027-03,GTPS Uran,Merit-order (MoD),5.23,199.0,104.3
+2026-04,Bhusawal - 3,Merit-order (MoD),5.33,43.89,23.4
+2026-05,Bhusawal - 3,Merit-order (MoD),5.33,61.0,32.7
+2026-06,Bhusawal - 3,Merit-order (MoD),5.33,28.0,15.1
+2026-07,Bhusawal - 3,Merit-order (MoD),5.33,0.0,0.0
+2026-08,Bhusawal - 3,Merit-order (MoD),5.33,0.0,0.0
+2026-09,Bhusawal - 3,Merit-order (MoD),5.33,21.0,11.4
+2026-10,Bhusawal - 3,Merit-order (MoD),5.33,83.0,44.5
+2026-11,Bhusawal - 3,Merit-order (MoD),5.33,28.0,14.8
+2026-12,Bhusawal - 3,Merit-order (MoD),5.33,0.0,0.0
+2027-01,Bhusawal - 3,Merit-order (MoD),5.33,0.0,0.0
+2027-02,Bhusawal - 3,Merit-order (MoD),5.33,0.0,0.0
+2027-03,Bhusawal - 3,Merit-order (MoD),5.33,25.0,13.6
+2026-04,Parli Replacement U 8,Merit-order (MoD),5.39,44.69,24.1
+2026-05,Parli Replacement U 8,Merit-order (MoD),5.39,31.0,16.6
+2026-06,Parli Replacement U 8,Merit-order (MoD),5.39,30.0,16.2
+2026-07,Parli Replacement U 8,Merit-order (MoD),5.39,0.0,0.0
+2026-08,Parli Replacement U 8,Merit-order (MoD),5.39,0.0,0.0
+2026-09,Parli Replacement U 8,Merit-order (MoD),5.39,52.0,28.0
+2026-10,Parli Replacement U 8,Merit-order (MoD),5.39,97.0,52.3
+2026-11,Parli Replacement U 8,Merit-order (MoD),5.39,0.0,0.0
+2026-12,Parli Replacement U 8,Merit-order (MoD),5.39,0.0,0.0
+2027-01,Parli Replacement U 8,Merit-order (MoD),5.39,26.0,14.3
+2027-02,Parli Replacement U 8,Merit-order (MoD),5.39,0.0,0.0
+2027-03,Parli Replacement U 8,Merit-order (MoD),5.39,31.0,16.6
+2026-04,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,98.34,53.1
+2026-05,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,76.0,40.9
+2026-06,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,73.0,39.5
+2026-07,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,0.0,0.0
+2026-08,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,0.0,0.0
+2026-09,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,62.0,33.7
+2026-10,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,320.0,173.0
+2026-11,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,0.0,0.0
+2026-12,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,0.0,0.0
+2027-01,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,63.0,34.0
+2027-02,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,0.0,0.0
+2027-03,"Nashik- 3,4 & 5",Merit-order (MoD),5.4,67.0,36.4
+2026-04,Parli - 6 & 7,Merit-order (MoD),5.53,152.78,84.5
+2026-05,Parli - 6 & 7,Merit-order (MoD),5.53,0.0,0.0
+2026-06,Parli - 6 & 7,Merit-order (MoD),5.53,0.0,0.0
+2026-07,Parli - 6 & 7,Merit-order (MoD),5.53,0.0,0.0
+2026-08,Parli - 6 & 7,Merit-order (MoD),5.53,0.0,0.0
+2026-09,Parli - 6 & 7,Merit-order (MoD),5.53,101.0,55.7
+2026-10,Parli - 6 & 7,Merit-order (MoD),5.53,201.0,110.9
+2026-11,Parli - 6 & 7,Merit-order (MoD),5.53,0.0,0.0
+2026-12,Parli - 6 & 7,Merit-order (MoD),5.53,0.0,0.0
+2027-01,Parli - 6 & 7,Merit-order (MoD),5.53,52.0,28.8
+2027-02,Parli - 6 & 7,Merit-order (MoD),5.53,0.0,0.0
+2027-03,Parli - 6 & 7,Merit-order (MoD),5.53,48.0,26.8
+2026-04,Kawas,Merit-order (MoD),12.0,12.98,15.6
+2026-05,Kawas,Merit-order (MoD),12.0,48.0,57.0
+2026-06,Kawas,Merit-order (MoD),12.0,50.0,60.3
+2026-07,Kawas,Merit-order (MoD),12.0,14.0,17.0
+2026-08,Kawas,Merit-order (MoD),12.0,13.0,16.0
+2026-09,Kawas,Merit-order (MoD),12.0,17.0,20.5
+2026-10,Kawas,Merit-order (MoD),12.0,28.0,33.8
+2026-11,Kawas,Merit-order (MoD),12.0,2.0,3.0
+2026-12,Kawas,Merit-order (MoD),12.0,2.0,2.9
+2027-01,Kawas,Merit-order (MoD),12.0,4.0,4.2
+2027-02,Kawas,Merit-order (MoD),12.0,4.0,4.7
+2027-03,Kawas,Merit-order (MoD),12.0,5.0,5.4
+2026-04,Gandhar,Merit-order (MoD),12.0,12.65,15.2
+2026-05,Gandhar,Merit-order (MoD),12.0,47.0,56.5
+2026-06,Gandhar,Merit-order (MoD),12.0,49.0,59.1
+2026-07,Gandhar,Merit-order (MoD),12.0,14.0,16.9
+2026-08,Gandhar,Merit-order (MoD),12.0,13.0,15.5
+2026-09,Gandhar,Merit-order (MoD),12.0,16.0,19.3
+2026-10,Gandhar,Merit-order (MoD),12.0,27.0,32.1
+2026-11,Gandhar,Merit-order (MoD),12.0,3.0,3.3
+2026-12,Gandhar,Merit-order (MoD),12.0,2.0,2.5
+2027-01,Gandhar,Merit-order (MoD),12.0,3.0,3.9
+2027-02,Gandhar,Merit-order (MoD),12.0,3.0,4.1
+2027-03,Gandhar,Merit-order (MoD),12.0,4.0,5.3

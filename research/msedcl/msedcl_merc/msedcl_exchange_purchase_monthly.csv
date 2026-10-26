@@ -1,0 +1,14 @@
+month,mu_total_printed,avg_rate_printed_rs_kwh,implied_cost_rs_cr,n_days,mu_sum_of_days,daily_weighted_rate,long_duration_contract_mu,long_duration_contract_rate,check_diff_mu,max_daily_rate,min_daily_rate,max_daily_mu,doc_title,doc
+2025-03,1110.79,4.79,532.07,31,952.38,4.656,158.4,5.59,-0.01,5.46,3.55,49.88,Power Purchase from Power Exchange for March-2025,Exchange-Purchase-March-25.pdf
+2025-04,992.49,5.34,529.99,30,902.49,5.226,90.0,6.52,0.0,7.52,3.48,46.61,Power Purchase from Power Exchange for April-2025,Exchange-Purchase-April-25.pdf
+2025-05,200.59,3.64,73.01,31,200.6,3.643,0,,0.01,6.17,0.0,38.35,Power Purchase from Power Exchange for May-25,Exchange-Purchase-May-25.pdf
+2025-06,179.83,3.21,57.73,30,179.84,3.205,0,,0.01,5.0,2.01,17.35,Power Purchase from Power Exchange for June-25,Exchange-Purchase-June-25.pdf
+2025-07,1408.6,4.55,640.91,31,1408.59,4.546,0,,-0.01,5.47,2.48,89.67,Power Purchase from Power Exchange for July-25,Exchange-Purchase-July-25-1.pdf
+2025-08,1197.84,4.39,525.85,31,952.98,4.286,244.88,4.82,0.02,5.22,1.99,78.82,Power Purchase from Power Exchange for August-25,Exchange-Purchase-August-25.pdf
+2025-09,727.61,3.94,286.68,30,542.63,3.649,184.97,4.8,-0.01,4.68,2.17,37.11,Power Purchase from Power Exchange for September-25,Exchange-Purchase-September-25.pdf
+2025-10,382.04,3.74,142.88,31,293.18,3.398,88.86,4.88,0.0,4.58,1.73,22.05,Power Purchase from Power Exchange (IEX) for October-2025,October-25_Exchange-Purchase.pdf
+2025-11,225.83,3.77,85.14,30,225.84,3.77,0,,0.01,6.01,1.96,21.34,Power Purchase from Power Exchange (IEX) for November-2025,November-25_Exchange-Purchase-1.pdf
+2025-12,330.46,4.05,133.84,31,330.49,4.047,0,,0.03,5.39,2.51,26.29,Power Purchase from Power Exchange for December-2025,Exchange-Purchase-Dec-25.pdf
+2026-01,175.37,3.43,60.15,31,175.35,3.433,0,,-0.02,4.33,2.56,17.47,Power Purchase from Power Exchange for January-2026,Exchange-Purchase-Jan-26.pdf
+2026-02,346.41,4.21,145.84,28,346.45,4.205,0,,0.04,5.48,2.81,30.53,Power Purchase from Power Exchange for February-2026,Exchange-Purchase-Feb-26_English.pdf
+2026-03,433.69,4.66,202.1,31,433.69,4.663,0,,0.0,7.72,2.25,37.55,Power Purchase from Power Exchange for March-2026,Exchange-Purchase-Mar-26_English.pdf

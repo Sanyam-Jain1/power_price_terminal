@@ -1,0 +1,12 @@
+resource,FY2025-26,FY2026-27,FY2027-28,FY2028-29,FY2029-30,unit,source
+Thermal,22551,22551,22551,24151,25123,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)
+Nuclear,1191,1191,1191,1191,1191,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)
+Large Hydro,2825,2934,3247,3351,3351,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)
+PSP-Storage,250,1000,1000,2750,4824,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)
+Wind,3604,3604,3604,3604,3604,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)
+Solar,15353,24053,25053,25053,27453,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)
+Hybrid,300,1080,4344,4344,4344,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)
+FDRE,0,1468,1468,1468,1468,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)
+Bagasse+Biomass,2911,3256,3601,3601,3601,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)
+Small Hydro,317,317,317,317,317,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)
+Total,49302,61454,66376,69830,75276,MW,MERC MYT Order Case 217 of 2024 (28.03.2025) Table 240 (Commission's analysis)

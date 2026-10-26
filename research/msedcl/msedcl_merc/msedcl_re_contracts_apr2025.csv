@@ -1,0 +1,29 @@
+category,item,contracted_mw,commissioned_mw,tariff_rs_per_kwh,ppa_date,location,doc
+RE summary,Wind,3248,2620,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Bagasse co-generation,2833,2733,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Biomass,37,37,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Small Hydro,307,304.13,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Solar (Centralised),14356,3861,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Solar (MSKVY),1531,614,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Solar (Kusum A),204,4,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Solar (Kusum C),108,96,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Solar (MSKVY 2.0),11668,640,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Solar (LIS),805,0,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Total Solar,28672,5215,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Wind-Solar Hybrid,4344,300,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,RTC/Storage,2218,0,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,Municipal Solid Waste,17,4,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RE summary,TOTAL,41676,11213,,,,Consolidated-Renewable-Energy-contracted-by-MSEDCL.pdf
+RTC/Storage,SJVN Ltd. (FDRE),1468,,4.45/4.46,13.03.2024,Inter-state,h.-RTC-Storage.pdf
+RTC/Storage,Pace Renewable Energies Pvt Ltd (storage),750,,"Rs 2,19,001 per MW per month",21.02.2025,Intra-state,h.-RTC-Storage.pdf
+Wind-Solar Hybrid,T.P. Saurya Ltd (Solar 200 + Wind 100),300,300,2.56,22.07.2022,Maharashtra,g.-Wind-Solar-Hybrid.pdf
+Wind-Solar Hybrid,NTPC,780,0,3.42-3.43,30.06.2024,Interstate,g.-Wind-Solar-Hybrid.pdf
+Wind-Solar Hybrid,JSW Renew Energy Six Ltd,600,0,3.6,16.10.2024,Intrastate,g.-Wind-Solar-Hybrid.pdf
+Wind-Solar Hybrid,BN Peak Power-1 Pvt Ltd,89,0,3.6,25.10.2024,Intrastate,g.-Wind-Solar-Hybrid.pdf
+Wind-Solar Hybrid,JSW Renew Energy Thirty Ltd,600,0,3.6,16.10.2024,Intrastate,g.-Wind-Solar-Hybrid.pdf
+Wind-Solar Hybrid,Tata Power Renewable Energy Ltd,400,0,3.6,18.11.2024,Intrastate,g.-Wind-Solar-Hybrid.pdf
+Wind-Solar Hybrid,Juniper Green Park Spark Pvt Ltd,75,0,3.6,18.11.2024,Intrastate,g.-Wind-Solar-Hybrid.pdf
+Wind-Solar Hybrid,Juniper Green Eta Five Pvt Ltd,75,,3.6,18.11.2024,Intrastate,g.-Wind-Solar-Hybrid.pdf
+Wind-Solar Hybrid,Juniper Green Energy Five Pvt Ltd,75,0,3.6,18.11.2024,Intrastate,g.-Wind-Solar-Hybrid.pdf
+Wind-Solar Hybrid,AVAADA Green Sustainable Energy Pvt Ltd,850,0,3.61,26.11.2024,Intrastate,g.-Wind-Solar-Hybrid.pdf
+Wind-Solar Hybrid,Avaada Energy Pvt Ltd,500,0,3.6,26.11.2024,Intrastate,g.-Wind-Solar-Hybrid.pdf
