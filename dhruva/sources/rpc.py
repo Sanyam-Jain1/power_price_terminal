@@ -243,6 +243,8 @@ def wrpc_weeks(limit: int = 4) -> list[Week]:
         m = WEEK_RE.search(text)
         if not m or not href.lower().endswith(".pdf"):
             continue
+        if re.match(r"\s*Revised DSM of\b", text, re.I):
+            continue                  # a revision for one or two entities, not the week's account
         w = Week("WRPC", _d(m.group(1)), _d(m.group(2)), WRPC_DSM_PAGE)
         if w.key in weeks:            # the list is newest-first; keep the latest revision
             continue

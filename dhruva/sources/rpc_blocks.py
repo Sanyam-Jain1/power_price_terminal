@@ -127,9 +127,11 @@ def wrpc_dsm(data: bytes) -> Result:
     """WRPC zip of per-constituent CSVs (*_DSM-2024_Data.csv); Normal Rate in p/kWh."""
     z = zipfile.ZipFile(io.BytesIO(data))
     rows, freq, skipped = [], defaultdict(list), []
-    for name in z.namelist():
-        if "/" in name or not name.endswith("_DSM-2024_Data.csv"):
-            continue                       # schedules, summaries, and a nested copy of an older zip
+    data_files = [n for n in z.namelist() if n.endswith("_DSM-2024_Data.csv") and n.count("/") <= 1]
+    # Usually the CSVs sit at the top level, and anything in a folder is a nested copy of an older
+    # week; some weeks ship everything inside a single dated folder instead.
+    top = [n for n in data_files if "/" not in n]
+    for name in top or data_files:
         rd = csv.reader(io.StringIO(z.read(name).decode("utf-8", errors="replace")))
         hdr = next(rd, [])
         c = {k: _col(hdr, p) for k, p in (("date", r"^date$"), ("blk", r"^block$"), ("freq", r"^freq"),
@@ -141,7 +143,7 @@ def wrpc_dsm(data: bytes) -> Result:
         if c["date"] is None or c["blk"] is None or c["pay"] is None:
             skipped.append(name)
             continue
-        fallback = name.removesuffix("_DSM-2024_Data.csv")
+        fallback = name.split("/")[-1].removesuffix("_DSM-2024_Data.csv")
         for r in rd:
             if len(r) <= c["pay"]:
                 continue
