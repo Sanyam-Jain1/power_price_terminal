@@ -1,0 +1,16 @@
+metric,label,value,unit,window
+demand,"MSEDCL energy supplied, average per day",539.153,MU/day,1 Apr – 20 Oct 2026
+peak,MSEDCL peak demand,28221.0,MW,10 Oct 2026
+load_shed,Load shed for supply shortfall,121.598,MU,1 Apr – 20 Oct 2026
+load_shed_days,Days with shortfall load shedding,57.0,days,1 Apr – 20 Oct 2026
+load_shed_max,Largest single cut,2050.0,MW,25 May 2026
+ledger_mu,"Energy scheduled, average per day",559.462,MU/day,11 Sep – 25 Oct 2026
+ledger_cost,Energy-charge cost of scheduled power,9441.058,Rs crore,11 Sep – 25 Oct 2026
+ledger_avg,Average energy charge,3.82,Rs/kWh,11 Sep – 25 Oct 2026
+exch_mu,Bought on power exchanges,1206.224,MU,11 Sep – 25 Oct 2026
+exch_cost,Spent on power exchanges,762.637,Rs crore,11 Sep – 25 Oct 2026
+exch_avg,Average exchange price paid,6.323,Rs/kWh,11 Sep – 25 Oct 2026
+dsm_sep,"State DSM net payable, September",204.415,Rs crore,"Sep 2026, Maharashtra at the inter-state boundary"
+dsm_oct,"State DSM net payable, 1–11 October",201.622,Rs crore,1–11 Oct 2026
+days_n,Days in the seller-level ledger,45.0,days,11 Sep – 25 Oct 2026
+evening_gap,"Average demand left unscheduled, 18:00–20:00",520.51,MW,11 Sep – 25 Oct 2026

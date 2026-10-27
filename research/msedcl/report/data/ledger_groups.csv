@@ -1,0 +1,13 @@
+group,mu_total,mu_per_day,share,priced_mu,cost_rs_cr,avg_rs_kwh,undrawn_capacity_mu_per_day,price_basis
+MSPGCL thermal,6618.289,147.073,0.263,6618.289,2756.0,4.164,13.194,MERC FY27 approved energy charge
+"Central stations (NTPC, NPCIL, CGPL...)",6129.633,136.214,0.243,6129.633,1927.007,3.144,0.0,MERC FY27 approved energy charge; not priced
+Renewable contracts,3041.961,67.599,0.121,3041.961,989.218,3.252,0.0,MERC FY27 approved energy charge
+"In-state IPPs, long term (Tiroda, SWPGL, Uran)",2950.225,65.561,0.117,2950.225,1278.308,4.333,0.0,MERC FY27 approved energy charge
+"In-state IPPs, long term (RattanIndia, JSW)",1414.178,31.426,0.056,1414.178,438.254,3.099,1.69,MERC FY27 approved energy charge
+"In-state IPPs, medium/short term",1333.172,29.626,0.053,1333.172,708.998,5.318,0.0,MERC FY27 approved energy charge
+Exchange,1206.224,26.805,0.048,1206.224,762.637,6.323,0.0,actual exchange clearing price by block
+Hydro,849.522,18.878,0.034,849.522,0.0,0.0,27.239,MERC FY27 approved energy charge
+Inter-state IPPs (short/medium term),817.425,18.165,0.032,734.707,361.954,4.927,0.0,MERC FY27 approved energy charge; MERC approved short-term rate (assumed; deal prices not published); not priced
+Swap / banking with other states,362.856,8.063,0.014,0.0,,,0.0,not priced
+Small RE / co-gen / other,306.909,6.82,0.012,289.773,142.631,4.922,0.0,MERC FY27 approved energy charge; not priced
+MSPGCL gas (Uran),145.411,3.231,0.006,145.411,76.051,5.23,0.0,MERC FY27 approved energy charge

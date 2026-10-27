@@ -1,0 +1,24 @@
+metric,unit,fy2025_26,fy2026_27
+Total power purchase quantum - approved (MYT order),MU,172700,180111
+Total power purchase quantum - approved after review,MU,183934,203628
+Total power purchase cost - approved after review,Rs crore,89894,98025
+Average power purchase cost - approved after review,Rs/kWh,4.89,4.81
+Additional PP quantum vs MYT order (review),MU,11234,23517
+Additional PP cost vs MYT order (review),Rs crore,4712,9399
+Total energy availability & cost - MYT order (FY26-27 Table 259 total),Rs crore,,88626
+Fixed cost of power purchase (grid support charge basis),Rs crore,21322,21895
+Variable cost of power purchase (grid support charge basis),Rs crore,68572,76129
+Marginal variable cost,Rs/kWh,3.97,4.23
+"Energy sales by MSEDCL incl DF (approved, MYT order)",MU,140358,147085
+OA sales conventional (approved),MU,4794,5647
+OA sales non-conventional (approved),MU,3907,3676
+"Total energy sales (approved, MYT order)",MU,149059,156408
+"Distribution loss (approved, excl EHV & OA)",%,17.0,15.5
+Surplus traded quantum (Commission projection),MU,0,2154
+Contracted capacity (Commission analysis),MW,49302,61454
+Firm capacity adj. for CC factor (Commission),MW,32087,36594
+RA requirement (Commission),MW,26275,27074
+RA surplus vs RA requirement (Commission),MW,5812,9520
+Forecasted peak demand (MSEDCL),MW,25412,27943
+Contracted capacity (MSEDCL submission),MW,51882,68257
+RA surplus vs RA requirement (MSEDCL submission),MW,7735,12521

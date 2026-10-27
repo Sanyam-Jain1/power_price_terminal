@@ -1,0 +1,67 @@
+source,merc_group,energy_charge_rs_kwh,approved_mu_per_day,scheduled_mu_per_day,scheduled_vs_approved
+Dodson II,Must-run,0.0,0.132,0.0,0.0
+Hydro,Must-run,0.0,5.313,18.878,3.553
+Renewable - BESS,Must-run,0.0,2.83,0.0,0.0
+"Renewable - PHSP (JSW, Torrent, SSP PHSP & Ghatghar)",Must-run,0.0,1.344,0.0,0.0
+Lara,Merit-order (MoD),1.52,5.69,5.966,1.049
+KSTPS III,Merit-order (MoD),1.74,2.492,2.713,1.089
+KSTPS,Merit-order (MoD),1.76,12.625,12.567,0.995
+VSTP II,Merit-order (MoD),2.02,6.69,6.53,0.976
+VSTP III,Merit-order (MoD),2.04,5.542,4.798,0.866
+SSP,Must-run,2.05,4.646,3.834,0.825
+Pench,Must-run,2.05,0.64,0.291,0.455
+SIPAT TPS 1,Merit-order (MoD),2.08,11.363,11.754,1.034
+VSTP I,Merit-order (MoD),2.13,8.395,6.977,0.831
+VSTP IV,Merit-order (MoD),2.15,5.968,5.009,0.839
+VSTP V,Merit-order (MoD),2.17,3.213,3.074,0.957
+SIPAT TPS 2,Merit-order (MoD),2.18,5.492,5.978,1.088
+Renewable - Hybrid intra,Must-run,2.56,1.625,0.0,0.0
+Renewable - Solar inter,Must-run,2.67,0.0,14.187,
+RIPL 450 MW,Merit-order (MoD),2.68,8.591,0.0,0.0
+RIPL 750 MW,Merit-order (MoD),2.68,14.297,25.726,1.799
+KhSTPS-II,Merit-order (MoD),2.94,2.82,2.248,0.797
+Renewable - Solar intra,Must-run,3.04,106.101,37.956,0.358
+SWPGL 240 MW,Merit-order (MoD),3.14,4.41,5.449,1.236
+GMR Energy,Merit-order (MoD),3.2,3.804,4.072,1.07
+Renewable - Small Hydro,Must-run,3.34,1.824,1.809,0.991
+Koradi - 8 to 10,Merit-order (MoD),3.38,28.079,22.692,0.808
+Renewable - Hybrid Inter,Must-run,3.43,5.055,1.045,0.207
+Khaparkheda - 5,Merit-order (MoD),3.43,9.164,9.069,0.99
+CGPL,Merit-order (MoD),3.43,13.574,12.06,0.888
+Chandrapur - 8 & 9,Merit-order (MoD),3.62,18.459,18.931,1.026
+Bhusawal - 6,Merit-order (MoD),3.67,12.591,10.92,0.867
+Koradi - 6,Merit-order (MoD),3.7,3.295,2.752,0.835
+TAPP 3 & 4,Must-run,3.78,8.328,7.052,0.847
+Khaparkheda - 1 to 4,Merit-order (MoD),3.84,13.541,10.794,0.797
+Renewable - Solar inter (Loss not applicable),Must-run,3.87,13.165,0.0,0.0
+Mauda I,Merit-order (MoD),3.95,7.541,6.073,0.805
+Mauda II,Merit-order (MoD),4.09,10.41,7.41,0.712
+KAPP,Must-run,4.15,2.869,3.084,1.075
+KAPP 3 & 4,Must-run,4.15,8.606,8.76,1.018
+Paras - 3 & 4,Merit-order (MoD),4.2,8.558,7.145,0.835
+Gadarwara,Merit-order (MoD),4.35,1.966,1.122,0.571
+Renewable - Wind,Must-run,4.37,18.206,14.411,0.792
+Bhusawal - 4 & 5,Merit-order (MoD),4.4,16.525,14.943,0.904
+APML 1320 MW,Merit-order (MoD),4.42,24.056,58.549,2.434
+Renewable - FDRE,Must-run,4.46,24.177,0.0,0.0
+Khargone,Merit-order (MoD),4.5,1.07,1.781,1.664
+APML 125 MW,Merit-order (MoD),4.52,1.911,0.0,0.0
+APML 1200 MW,Merit-order (MoD),4.52,18.431,0.0,0.0
+APML 440 MW,Merit-order (MoD),4.58,6.202,0.0,0.0
+Chandrapur - 3 to 7,Merit-order (MoD),4.61,17.003,26.819,1.577
+Kiru HE Project,Must-run,4.64,1.281,0.0,0.0
+TAPP 1 & 2,Must-run,4.76,3.066,3.119,1.017
+NVVNL Coal,Merit-order (MoD),4.76,0.211,0.0,0.0
+Renewable - MSW,Must-run,4.88,0.0,0.0,
+JSW,Merit-order (MoD),4.99,3.179,17.184,5.405
+Subhansari Hydro,Must-run,5.0,2.167,1.662,0.767
+NTPC Solapur,Merit-order (MoD),5.19,7.005,10.459,1.493
+GTPS Uran,Merit-order (MoD),5.23,6.426,4.794,0.746
+Bhusawal - 3,Merit-order (MoD),5.33,1.689,3.062,1.813
+Parli Replacement U 8,Merit-order (MoD),5.39,2.431,4.009,1.649
+"Nashik- 3,4 & 5",Merit-order (MoD),5.4,6.195,8.107,1.309
+Parli - 6 & 7,Merit-order (MoD),5.53,4.925,7.831,1.59
+Renewable - Bagasse based Co-gen,Must-run,5.54,0.881,16.376,18.596
+Renewable - Biomass,Must-run,9.07,0.0,0.0,
+Kawas,Merit-order (MoD),12.0,0.735,0.937,1.275
+Gandhar,Merit-order (MoD),12.0,0.702,0.953,1.357

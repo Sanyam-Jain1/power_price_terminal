@@ -1,0 +1,64 @@
+month,month_label,source,mu,days
+2026-04,Apr,MSPGCL thermal,5141.802,30
+2026-04,Apr,MSPGCL hydro,896.901,30
+2026-04,Apr,MSPGCL gas,228.536,30
+2026-04,Apr,Private & captive plants in Maharashtra,4450.99,30
+2026-04,Apr,Wind,540.828,30
+2026-04,Apr,Solar,992.25,30
+2026-04,Apr,Central share & inter-state (net receipt),6624.544,30
+2026-04,Apr,Supplied to Mumbai utilities (net),-1531.471,30
+2026-04,Apr,Other licensees in the state,-422.662,30
+2026-05,May,MSPGCL thermal,5132.098,31
+2026-05,May,MSPGCL hydro,667.543,31
+2026-05,May,MSPGCL gas,206.724,31
+2026-05,May,Private & captive plants in Maharashtra,4986.414,31
+2026-05,May,Wind,898.252,31
+2026-05,May,Solar,1068.393,31
+2026-05,May,Central share & inter-state (net receipt),7136.059,31
+2026-05,May,Supplied to Mumbai utilities (net),-1778.355,31
+2026-05,May,Other licensees in the state,-448.49,31
+2026-06,Jun,MSPGCL thermal,4850.037,30
+2026-06,Jun,MSPGCL hydro,198.115,30
+2026-06,Jun,MSPGCL gas,195.964,30
+2026-06,Jun,Private & captive plants in Maharashtra,4542.26,30
+2026-06,Jun,Wind,1089.204,30
+2026-06,Jun,Solar,973.333,30
+2026-06,Jun,Central share & inter-state (net receipt),6645.706,30
+2026-06,Jun,Supplied to Mumbai utilities (net),-1722.867,30
+2026-06,Jun,Other licensees in the state,-432.004,30
+2026-07,Jul,MSPGCL thermal,4436.793,31
+2026-07,Jul,MSPGCL hydro,342.671,31
+2026-07,Jul,MSPGCL gas,187.597,31
+2026-07,Jul,Private & captive plants in Maharashtra,3969.559,31
+2026-07,Jul,Wind,1819.38,31
+2026-07,Jul,Solar,688.956,31
+2026-07,Jul,Central share & inter-state (net receipt),5259.478,31
+2026-07,Jul,Supplied to Mumbai utilities (net),-1455.483,31
+2026-07,Jul,Other licensees in the state,-419.462,31
+2026-08,Aug,MSPGCL thermal,4656.508,31
+2026-08,Aug,MSPGCL hydro,423.79,31
+2026-08,Aug,MSPGCL gas,202.406,31
+2026-08,Aug,Private & captive plants in Maharashtra,4057.903,31
+2026-08,Aug,Wind,1443.699,31
+2026-08,Aug,Solar,792.692,31
+2026-08,Aug,Central share & inter-state (net receipt),5879.158,31
+2026-08,Aug,Supplied to Mumbai utilities (net),-1444.875,31
+2026-08,Aug,Other licensees in the state,-433.506,31
+2026-09,Sep,MSPGCL thermal,4459.984,29
+2026-09,Sep,MSPGCL hydro,594.658,29
+2026-09,Sep,MSPGCL gas,136.705,29
+2026-09,Sep,Private & captive plants in Maharashtra,4265.096,29
+2026-09,Sep,Wind,681.81,29
+2026-09,Sep,Solar,904.849,29
+2026-09,Sep,Central share & inter-state (net receipt),6335.41,29
+2026-09,Sep,Supplied to Mumbai utilities (net),-1288.272,29
+2026-09,Sep,Other licensees in the state,-414.051,29
+2026-10,Oct,MSPGCL thermal,3123.463,19
+2026-10,Oct,MSPGCL hydro,473.526,19
+2026-10,Oct,MSPGCL gas,92.854,19
+2026-10,Oct,Private & captive plants in Maharashtra,3013.505,19
+2026-10,Oct,Wind,227.851,19
+2026-10,Oct,Solar,718.884,19
+2026-10,Oct,Central share & inter-state (net receipt),4825.893,19
+2026-10,Oct,Supplied to Mumbai utilities (net),-1040.405,19
+2026-10,Oct,Other licensees in the state,-279.391,19

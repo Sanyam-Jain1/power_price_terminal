@@ -1,0 +1,705 @@
+<meta name="dash-one-writer">
+<style>
+  #dash-root { --pl-measure: 72ch; }
+  .pl { font-family: var(--font-anthropic-sans); color: var(--color-fg); display: grid; gap: var(--cds-gap-xl); max-width: 1180px; margin-inline: auto; }
+  .pl-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .pl-lede { font-size: var(--cds-font-size-body); max-width: var(--pl-measure); line-height: 1.55; margin: var(--cds-gap-sm) 0 0; }
+  .pl-lede b, .pl-prose b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pl-nav { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-sm); margin-top: var(--cds-gap-md); font-size: var(--cds-font-size-caption); }
+  .pl-nav a { color: var(--color-fg-muted); text-decoration: none; border: 1px solid var(--color-border-line); border-radius: 999px; padding: 2px 10px; }
+  .pl-nav a:hover, .pl-nav a:focus-visible { color: var(--color-fg); border-color: var(--color-fg-muted); }
+  .pl-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); }
+  .pl-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: grid; gap: 2px; align-content: start; }
+  .pl-tile .k { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .pl-tile .n { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.15; }
+  .pl-tile .n small { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-left: 4px; }
+  .pl-tile .w { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .pl-sec { display: grid; gap: var(--cds-gap-md); scroll-margin-top: 12px; }
+  .pl-sec > h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; padding-top: var(--cds-gap-md); border-top: 1px solid var(--color-border-line); text-wrap: balance; }
+  .pl-prose { max-width: var(--pl-measure); line-height: 1.55; font-size: var(--cds-font-size-body); margin: 0; }
+  .pl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); }
+  .pl-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; display: grid; gap: var(--cds-gap-sm); align-content: start; }
+  .pl-card h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .pl-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; line-height: 1.45; }
+  .pl-chart { position: relative; min-height: 240px; }
+  .pl-chart.tall { min-height: 320px; }
+  .pl-chart svg { display: block; overflow: visible; }
+  .pl-chart text { fill: var(--color-fg-muted); font-size: 11px; font-family: var(--font-anthropic-sans); }
+  .pl-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); list-style: none; margin: 0; padding: 0; }
+  .pl-legend li { display: inline-flex; align-items: center; gap: 6px; }
+  .pl-sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; flex: none; background: var(--cds-chart-muted); }
+  .pl-sw.line { height: 2px; width: 14px; border-radius: 0; background: var(--color-fg); }
+  .pl-sw.dash { height: 0; width: 14px; border-top: 2px dashed var(--color-fg-muted); background: none; border-radius: 0; }
+  .pl-tip { position: absolute; z-index: 5; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); min-width: 10rem; max-width: 18rem; display: grid; gap: 2px; }
+  .pl-tip-h { color: var(--cds-text-secondary); }
+  .pl-tip-r { display: grid; grid-template-columns: auto 1fr auto; gap: 6px; align-items: center; }
+  .pl-tip-r b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pl-scroll { max-height: 26rem; overflow: auto; border-radius: var(--cds-radius); }
+  .pl-scroll.short { max-height: 18rem; }
+  .pl-tbl { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .pl-tbl th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); vertical-align: bottom; }
+  .pl-tbl td { padding: 5px 8px; border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .pl-tbl .r { text-align: right; }
+  .pl-tbl th button { all: unset; cursor: pointer; }
+  .pl-tbl th button:focus-visible { outline: 2px solid var(--color-fg-muted); outline-offset: 2px; }
+  .pl-tbl a { color: inherit; word-break: break-all; }
+  .pl-bar { display: inline-block; height: 8px; border-radius: 2px; background: var(--cds-chart-muted); vertical-align: middle; margin-right: 6px; }
+  .pl-tools { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+  .pl-tools input { font: inherit; font-size: var(--cds-font-size-caption); padding: 4px 8px; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); min-width: 12rem; }
+  .pl-steps { margin: 0; padding-left: 1.2rem; display: grid; gap: var(--cds-gap-sm); max-width: var(--pl-measure); line-height: 1.5; }
+  .pl-steps b { font-weight: 600; }
+  .pl-list { margin: 0; padding-left: 1.2rem; display: grid; gap: 4px; line-height: 1.5; max-width: var(--pl-measure); }
+  .pl-list a { color: inherit; }
+  .pl-flag { display: inline-block; font-size: 10px; padding: 0 6px; border-radius: 999px; border: 1px solid var(--color-border-line); color: var(--color-fg-muted); }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  .pl-fail { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .pl-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+</style>
+
+<div class="pl">
+  <header class="pl-head" id="top">
+    <h1>MSEDCL Power Ledger</h1>
+    <p class="pl-lede">Between 1 April and 20 October 2026 Maharashtra's main discom supplied <b data-draw="v" data-source="headline" data-where="metric=demand" data-field="value" data-fmt="int">—</b> MU a day on average, peaked at <b data-draw="v" data-source="headline" data-where="metric=peak" data-field="value" data-fmt="int">—</b> MW, and cut supply for want of power on <b data-draw="v" data-source="headline" data-where="metric=load_shed_days" data-field="value" data-fmt="int">—</b> days, <b data-draw="v" data-source="headline" data-where="metric=load_shed" data-field="value" data-fmt="one">—</b> MU in all. In the <b data-draw="v" data-source="headline" data-where="metric=days_n" data-field="value" data-fmt="int">—</b> days to 25 October, the only window with seller-level detail, it scheduled <b data-draw="v" data-source="headline" data-where="metric=ledger_mu" data-field="value" data-fmt="int">—</b> MU a day, bought <b data-draw="v" data-source="headline" data-where="metric=exch_mu" data-field="value" data-fmt="int">—</b> MU on the power exchanges for ₹<b data-draw="v" data-source="headline" data-where="metric=exch_cost" data-field="value" data-fmt="int">—</b> crore, and still left about <b data-draw="v" data-source="headline" data-where="metric=evening_gap" data-field="value" data-fmt="int">—</b> MW of its own evening demand forecast unscheduled.</p>
+    <nav class="pl-nav" aria-label="Sections">
+      <a href="#mix">Energy by source</a><a href="#days">Day by day</a><a href="#ledger">Every unit, by seller</a><a href="#hours">A day of decisions</a><a href="#merit">Merit order</a><a href="#exchange">Exchange buying</a><a href="#central">Central stations</a><a href="#dsm">Deviation charges</a><a href="#cuts">Load shedding</a><a href="#timeline">Events and contracts</a><a href="#plan">Plan and last year</a><a href="#method">Method and gaps</a>
+    </nav>
+  </header>
+
+  <section class="pl-tiles" id="headline" aria-label="Headline figures">
+    <div class="pl-tile"><span class="k">Energy supplied a day</span><span class="n"><span data-draw="v" data-source="headline" data-where="metric=demand" data-field="value" data-fmt="int">—</span><small>MU</small></span><span class="w" data-draw="v" data-source="headline" data-where="metric=demand" data-field="window" data-fmt="text">—</span></div>
+    <div class="pl-tile"><span class="k">Peak demand</span><span class="n"><span data-draw="v" data-source="headline" data-where="metric=peak" data-field="value" data-fmt="int">—</span><small>MW</small></span><span class="w" data-draw="v" data-source="headline" data-where="metric=peak" data-field="window" data-fmt="text">—</span></div>
+    <div class="pl-tile"><span class="k">Load shed for shortfall</span><span class="n"><span data-draw="v" data-source="headline" data-where="metric=load_shed" data-field="value" data-fmt="one">—</span><small>MU</small></span><span class="w">Largest cut <span data-draw="v" data-source="headline" data-where="metric=load_shed_max" data-field="value" data-fmt="int">—</span> MW, <span data-draw="v" data-source="headline" data-where="metric=load_shed_max" data-field="window" data-fmt="text">—</span></span></div>
+    <div class="pl-tile"><span class="k">Average energy charge</span><span class="n">₹<span data-draw="v" data-source="headline" data-where="metric=ledger_avg" data-field="value" data-fmt="two">—</span><small>/kWh</small></span><span class="w" data-draw="v" data-source="headline" data-where="metric=ledger_avg" data-field="window" data-fmt="text">—</span></div>
+    <div class="pl-tile"><span class="k">Exchange price paid</span><span class="n">₹<span data-draw="v" data-source="headline" data-where="metric=exch_avg" data-field="value" data-fmt="two">—</span><small>/kWh</small></span><span class="w">₹<span data-draw="v" data-source="headline" data-where="metric=exch_cost" data-field="value" data-fmt="int">—</span> crore in <span data-draw="v" data-source="headline" data-where="metric=days_n" data-field="value" data-fmt="int">—</span> days</span></div>
+    <div class="pl-tile"><span class="k">State DSM bill, September</span><span class="n">₹<span data-draw="v" data-source="headline" data-where="metric=dsm_sep" data-field="value" data-fmt="int">—</span><small>crore</small></span><span class="w">₹<span data-draw="v" data-source="headline" data-where="metric=dsm_oct" data-field="value" data-fmt="int">—</span> crore more in 1–11 Oct</span></div>
+  </section>
+
+  <section class="pl-sec" id="mix">
+    <h2>Where the energy came from, month by month</h2>
+    <p class="pl-prose">The state load despatch centre's hourly tables add up exactly to what MSEDCL supplied each day. Power flows from Maharashtra's own plants, private plants inside the state, wind, solar and the inter-state grid (central stations, inter-state contracts and exchange purchases arrive as one net receipt). Part of it is passed on to the Mumbai utilities and other small licensees, shown below zero.</p>
+    <div class="pl-card">
+      <h3>MSEDCL supply by source, MU a day</h3>
+      <p class="pl-note">Monthly average of daily energy. October covers 1–20 Oct. Below zero: energy delivered onward to Mumbai and other licensees.</p>
+      <ul class="pl-legend">
+        <li><i class="pl-sw" data-c="0"></i>MSPGCL thermal</li><li><i class="pl-sw" data-c="1"></i>MSPGCL hydro</li><li><i class="pl-sw" data-c="2"></i>MSPGCL gas</li><li><i class="pl-sw" data-c="3"></i>Private &amp; captive plants in Maharashtra</li><li><i class="pl-sw" data-c="4"></i>Wind</li><li><i class="pl-sw" data-c="5"></i>Solar</li><li><i class="pl-sw" data-c="6"></i>Central share &amp; inter-state (net receipt)</li><li><i class="pl-sw"></i>Delivered to Mumbai and other licensees</li>
+      </ul>
+      <div class="pl-chart tall" id="mix-chart" data-draw="mix" data-source="monthly_mix"></div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="days">
+    <h2>Day by day: demand, cuts and plants out of service</h2>
+    <p class="pl-prose">Demand dipped in the monsoon and climbed to the year's peak in October. Supply cuts cluster in late May, June and September to October, the same weeks when forced outages and fuel-shortage outages were high. Units on reserve shutdown are plants MSEDCL chose not to schedule because they were too costly for that day.</p>
+    <div class="pl-grid">
+      <div class="pl-card"><h3>Energy supplied, MU a day</h3><p class="pl-note">MSEDCL demand met, from the daily system reports.</p><div class="pl-chart" id="days-demand" data-draw="daily-demand" data-source="daily"></div></div>
+      <div class="pl-card"><h3>Load shed for supply shortfall, MU a day</h3><p class="pl-note">Planned load shedding for lack of power. Cuts for transmission constraints are excluded.</p><div class="pl-chart" id="days-cuts" data-draw="daily-cuts" data-source="daily"></div></div>
+    </div>
+    <div class="pl-card">
+      <h3>Generating capacity out of service each day, MW</h3>
+      <p class="pl-note">All of Maharashtra, from the daily outage statement.</p>
+      <ul class="pl-legend"><li><i class="pl-sw" data-c="0"></i>Forced outage</li><li><i class="pl-sw" data-c="1"></i>Fuel shortage</li><li><i class="pl-sw" data-c="2"></i>Reserve shutdown (not scheduled on cost)</li><li><i class="pl-sw" data-c="3"></i>Planned outage</li></ul>
+      <div class="pl-chart" id="days-out" data-draw="daily-out" data-source="daily"></div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="ledger">
+    <h2>Every unit, by who sold it</h2>
+    <p class="pl-prose">For 11 September to 25 October, MSEDCL's own 15-minute schedules name every seller. Each unit is priced at the energy charge MERC approved for that source this year, and exchange purchases at the clearing price of their block. Capacity charges are owed whether a plant runs or not, so they are left out here; they do not change day-to-day decisions.</p>
+    <div class="pl-card">
+      <h3>Supply groups, 11 Sep – 25 Oct 2026</h3>
+      <p class="pl-note">Undrawn capacity is declared capability that MSEDCL did not schedule, where the seller reports it.</p>
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="groups-table" data-source="ledger_groups" data-row-key="group">
+          <thead><tr><th data-field="group">Supply group</th><th class="r" data-field="mu_per_day">MU a day</th><th data-field="share">Share</th><th class="r" data-field="avg_rs_kwh">Energy charge, ₹/kWh</th><th class="r" data-field="cost_rs_cr">Cost, ₹ crore</th><th class="r" data-field="undrawn_capacity_mu_per_day">Undrawn, MU a day</th><th data-field="price_basis">Price basis</th></tr></thead>
+          <tbody data-draw="tbl-groups"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="pl-card">
+      <h3>Every seller</h3>
+      <p class="pl-note">Totals for 11 Sep – 25 Oct. Sort by any column; search by seller, group or contract.</p>
+      <div class="pl-tools"><input id="pl-seller-q" type="search" placeholder="Search sellers" aria-label="Search sellers"></div>
+      <div class="pl-scroll">
+        <table class="pl-tbl pl-sellers" id="sellers-table" data-source="ledger_sellers" data-row-key="seller">
+          <thead><tr>
+            <th data-field="seller"><button data-sort="seller">Seller</button></th>
+            <th data-field="group"><button data-sort="group">Group</button></th>
+            <th data-field="contract"><button data-sort="contract">Contract</button></th>
+            <th class="r" data-field="mu_total" aria-sort="descending"><button data-sort="mu_total">MU</button></th>
+            <th class="r" data-field="mu_per_day"><button data-sort="mu_per_day">MU a day</button></th>
+            <th class="r" data-field="avg_rs_kwh"><button data-sort="avg_rs_kwh">₹/kWh</button></th>
+            <th class="r" data-field="cost_rs_cr"><button data-sort="cost_rs_cr">₹ crore</button></th>
+            <th class="r" data-field="undrawn_mu"><button data-sort="undrawn_mu">Undrawn MU</button></th>
+            <th data-field="price_basis"><button data-sort="price_basis">Price basis</button></th>
+          </tr></thead>
+          <tbody data-draw="tbl-sellers"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="pl-card">
+      <h3>Power swapped with other states</h3>
+      <p class="pl-note">Energy received back under banking arrangements and energy MSEDCL delivered out, MU over 11 Sep – 25 Oct. These are settled in energy, not money.</p>
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="swaps-table" data-source="swaps" data-row-key="partner">
+          <thead><tr><th data-field="partner">Partner</th><th class="r" data-field="received_mu">Received, MU</th><th class="r" data-field="delivered_mu">Delivered, MU</th></tr></thead>
+          <tbody data-draw="tbl-swaps"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="hours">
+    <h2>A day of decisions, hour by hour</h2>
+    <p class="pl-prose">Every day MSEDCL repeats the same cycle. The chart shows the average result for 11 September to 25 October.</p>
+    <ol class="pl-steps">
+      <li><b>The day before, by morning.</b> Forecast demand for every quarter-hour of the next day.</li>
+      <li><b>Call contracts in merit order.</b> Requisition contracted plants cheapest energy charge first and leave the costliest unscheduled. Must-run sources (nuclear, renewables, hydro within its water budget) come first.</li>
+      <li><b>Bid the day-ahead market for the gap.</b> At midday the exchange is cheaper than MSEDCL's own coal, so it buys there and backs its plants down. In the evening the market is capped and rationed, so only a sliver is filled.</li>
+      <li><b>Top up in the real-time market</b> through the day, mostly before dawn and in the late-afternoon ramp.</li>
+      <li><b>Live with what is left.</b> Any demand still uncovered is either drawn from the grid as a deviation, charged at DSM rates, or cut.</li>
+    </ol>
+    <div class="pl-card">
+      <h3>Scheduled supply and demand by hour, MW</h3>
+      <p class="pl-note">Average of each hour, 11 Sep – 25 Oct. The dashed line is MSEDCL's own demand forecast; the solid line is the demand it managed to schedule.</p>
+      <ul class="pl-legend"><li><i class="pl-sw" data-c="0"></i>Central stations</li><li><i class="pl-sw" data-c="1"></i>Own and in-state generation</li><li><i class="pl-sw" data-c="2"></i>Long-term private plants</li><li><i class="pl-sw" data-c="3"></i>Medium- and short-term contracts</li><li><i class="pl-sw" data-c="4"></i>Renewables</li><li><i class="pl-sw" data-c="5"></i>Exchange, day-ahead</li><li><i class="pl-sw" data-c="6"></i>Exchange, real-time</li><li><i class="pl-sw line"></i>Scheduled demand</li><li><i class="pl-sw dash"></i>Forecast demand</li></ul>
+      <div class="pl-chart tall" id="hours-stack" data-draw="stack" data-source="hourly_stack"></div>
+    </div>
+    <div class="pl-grid">
+      <div class="pl-card"><h3>Demand left unscheduled, MW</h3><p class="pl-note">Forecast demand minus scheduled demand, by hour.</p><div class="pl-chart" id="hours-gap" data-draw="gap" data-source="hourly_stack"></div></div>
+      <div class="pl-card"><h3>Day-ahead price by hour, ₹/MWh</h3><p class="pl-note">Average IEX clearing price over the same days; hover for the share of days at the price cap.</p><div class="pl-chart" id="hours-price" data-draw="price" data-source="hourly_stack"></div></div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="merit">
+    <h2>Merit order: what each source costs and how hard it was called</h2>
+    <p class="pl-prose">Sources are sorted by the energy charge MERC approved for this year. The cheap NTPC and Lara units ran near their planned volume; the imported-gas units at the bottom were barely called. Hydro ran far above plan once Koyna refilled.</p>
+    <div class="pl-card">
+      <h3>Scheduled vs approved energy, MU a day</h3>
+      <p class="pl-note">Thin bar: MERC's approved monthly volume for September and October, per day. Thick bar: what MSEDCL scheduled, 11 Sep – 25 Oct. The label is the approved energy charge in ₹/kWh.</p>
+      <ul class="pl-legend"><li><i class="pl-sw" data-c="0"></i>Scheduled</li><li><i class="pl-sw"></i>Approved plan</li></ul>
+      <div class="pl-chart" id="merit-chart" data-draw="merit" data-source="merit_order"></div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="exchange">
+    <h2>Buying on the exchanges</h2>
+    <p class="pl-prose">Exchange purchases are where MSEDCL pays the market price. In this window it paid well above both its average contract charge and its own exchange purchases a year earlier.</p>
+    <div class="pl-grid">
+      <div class="pl-card"><h3>Exchange purchases, MU a day</h3><p class="pl-note">From MSEDCL's schedules.</p><ul class="pl-legend"><li><i class="pl-sw" data-c="0"></i>Day-ahead</li><li><i class="pl-sw" data-c="1"></i>Real-time</li><li><i class="pl-sw" data-c="2"></i>Green day-ahead</li></ul><div class="pl-chart" id="exch-daily" data-draw="exch-daily" data-source="exchange_daily"></div></div>
+      <div class="pl-card"><h3>Average price paid, ₹/kWh</h3><p class="pl-note">Each block's volume times that block's clearing price, per day.</p><div class="pl-chart" id="exch-price" data-draw="exch-price" data-source="exchange_daily"></div></div>
+    </div>
+    <div class="pl-card"><h3>A year earlier: exchange purchases by month</h3><p class="pl-note">MSEDCL's own monthly disclosures, March 2025 to March 2026, MU. Hover for the average rate. Nothing has been published since.</p><div class="pl-chart" id="exch-hist" data-draw="exch-hist" data-source="exchange_history"></div></div>
+  </section>
+
+  <section class="pl-sec" id="central">
+    <h2>Central stations, April to October</h2>
+    <p class="pl-prose">The regional power committee's weekly files carry MSEDCL's schedule from each central station for every quarter-hour. Monthly totals below; April starts on 6 April and October ends on 11 October.</p>
+    <div class="pl-card">
+      <h3>MSEDCL schedule from central stations, MU</h3>
+      <div class="pl-scroll">
+        <table class="pl-tbl" id="central-table" data-source="central_pivot" data-row-key="station">
+          <thead><tr><th data-source="central_pivot" data-field="station">Station</th><th class="r" data-source="central_pivot" data-field="Apr">Apr</th><th class="r" data-source="central_pivot" data-field="May">May</th><th class="r" data-source="central_pivot" data-field="Jun">Jun</th><th class="r" data-source="central_pivot" data-field="Jul">Jul</th><th class="r" data-source="central_pivot" data-field="Aug">Aug</th><th class="r" data-source="central_pivot" data-field="Sep">Sep</th><th class="r" data-source="central_pivot" data-field="Oct">Oct</th><th class="r" data-source="central_pivot" data-field="total">Total</th></tr></thead>
+          <tbody data-draw="tbl-central"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="dsm">
+    <h2>Deviation charges: paying for the gap</h2>
+    <p class="pl-prose">When Maharashtra draws more than it scheduled, it pays the regional pool at the DSM rate, which rises with low frequency and large deviations. These figures are for the whole state at its boundary with the inter-state grid, not MSEDCL alone.</p>
+    <div class="pl-grid">
+      <div class="pl-card"><h3>Net DSM payable, ₹ crore</h3><p class="pl-note">Payable minus receivable each month. October covers 1–11 Oct.</p><div class="pl-chart" id="dsm-chart" data-draw="dsm" data-source="dsm_monthly"></div></div>
+      <div class="pl-card"><h3>Paid per unit overdrawn when the market was capped, ₹/kWh</h3><p class="pl-note">DSM payable in blocks where the day-ahead price was at its cap, divided by the energy overdrawn in them.</p><div class="pl-chart" id="dsm-rate" data-draw="dsm-rate" data-source="dsm_monthly"></div></div>
+    </div>
+    <div class="pl-card">
+      <h3>Monthly deviation account</h3>
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="dsm-table" data-source="dsm_monthly" data-row-key="month">
+          <thead><tr><th data-field="month_label">Month</th><th class="r" data-field="days">Days</th><th class="r" data-field="overdrawal_gwh">Overdrawn, GWh</th><th class="r" data-field="underdrawal_gwh">Underdrawn, GWh</th><th class="r" data-field="payable_rs_cr">Payable, ₹ cr</th><th class="r" data-field="receivable_rs_cr">Receivable, ₹ cr</th><th class="r" data-field="net_payable_rs_cr">Net, ₹ cr</th><th class="r" data-field="dam_capped_share">Blocks capped</th><th class="r" data-field="overdrawal_in_capped_blocks_gwh">Overdrawn when capped, GWh</th><th class="r" data-field="payable_in_capped_blocks_rs_cr">Paid when capped, ₹ cr</th></tr></thead>
+          <tbody data-draw="tbl-dsm"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="cuts">
+    <h2>Load-shedding log</h2>
+    <p class="pl-prose">Every day with planned load shedding for supply shortfall, from the hourly tables of the state load despatch centre's daily reports. The hour shown is when the cut was largest.</p>
+    <div class="pl-card">
+      <div class="pl-scroll">
+        <table class="pl-tbl" id="cuts-table" data-source="load_shedding_events" data-row-key="date">
+          <thead><tr><th data-field="date">Date</th><th class="r" data-field="mu">Energy cut, MU</th><th class="r" data-field="peak_mw">Largest cut, MW</th><th data-field="peak_hour">At</th><th class="r" data-field="hours_with_cuts">Hours with cuts</th></tr></thead>
+          <tbody data-draw="tbl-cuts"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="timeline">
+    <h2>Events and contracts</h2>
+    <p class="pl-prose">What happened around the numbers: supply orders, coal and hydro constraints, cuts, and the long-term contracts MSEDCL signed or is seeking. Each line links to its source; claims and search-snippet items are flagged.</p>
+    <div class="pl-card">
+      <h3>Timeline</h3>
+      <div class="pl-scroll">
+        <table class="pl-tbl" id="events-table" data-source="events" data-row-key="date">
+          <thead><tr><th data-field="date">Date</th><th data-field="type">Type</th><th data-field="what">What happened</th><th data-field="basis">Basis</th><th data-field="source_url">Source</th></tr></thead>
+          <tbody data-draw="tbl-events"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="pl-card">
+      <h3>Contracts signed or sought</h3>
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="contracts-table" data-source="contracts" data-row-key="contract">
+          <thead><tr><th data-field="contract">Contract</th><th data-field="counterparty">Counterparty</th><th class="r" data-field="capacity">Capacity</th><th data-field="capacity_unit">Unit</th><th class="r" data-field="price_low">Price from</th><th class="r" data-field="price_high">Price to</th><th data-field="price_unit">Price unit</th><th data-field="supply_from">Supply</th><th data-field="status">Status</th><th data-field="source_url">Source</th></tr></thead>
+          <tbody data-draw="tbl-contracts"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="plan">
+    <h2>The plan on paper, and last year for comparison</h2>
+    <p class="pl-prose">On paper MSEDCL holds far more capacity than its peak. Most of it is solar, which contributes nothing in the evening, and the thermal fleet loses capacity to coal shortages and outages. MERC's approved plan and last year's actual purchases give the baseline these months are measured against.</p>
+    <div class="pl-grid">
+      <div class="pl-card"><h3>Contracted capacity by resource, FY2026-27, MW</h3><p class="pl-note">MERC's multi-year order.</p><div class="pl-chart" id="cap-chart" data-draw="cap" data-source="contracted_capacity"></div></div>
+      <div class="pl-card"><h3>Last year's purchases by category</h3><p class="pl-note">April 2025 to February 2026, from MSEDCL's monthly statements (scanned, read by OCR and checked against their printed subtotals).</p>
+        <div class="pl-scroll short"><table class="pl-tbl" id="fy26-table" data-source="fy26_totals" data-row-key="category"><thead><tr><th data-source="fy26_totals" data-field="category">Category</th><th class="r" data-source="fy26_totals" data-field="mu">MU</th><th class="r" data-source="fy26_totals" data-field="rs_cr">₹ crore</th><th class="r" data-source="fy26_totals" data-field="rs_kwh">₹/kWh</th></tr></thead><tbody data-draw="tbl-fy26"></tbody></table></div>
+      </div>
+    </div>
+    <div class="pl-card">
+      <h3>MERC-approved plan</h3>
+      <p class="pl-note">Figures as stated in MERC's orders, with the table each comes from in Sources.</p>
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="plan-table" data-source="approved_plan" data-row-key="metric">
+          <thead><tr><th data-field="metric">Item</th><th data-field="unit">Unit</th><th class="r" data-field="fy2025_26">FY2025-26</th><th class="r" data-field="fy2026_27">FY2026-27</th></tr></thead>
+          <tbody data-draw="tbl-plan"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="method">
+    <h2>Method, sources and gaps</h2>
+    <ul class="pl-list">
+      <li><b>MSEDCL's schedules by seller</b> come from the state load despatch centre's public scheduling feed, which only serves the most recent six or so weeks. They are scheduled quantities, not metered energy.</li>
+      <li><b>Daily supply, load shedding and outages</b> come from the daily system reports of the <a href="https://mahasldc.in/" target="_blank" rel="noopener">Maharashtra State Load Despatch Centre</a>. Reports for 28 Sep and 2 Oct are not published.</li>
+      <li><b>Central-station schedules and deviation charges</b> come from the <a href="https://www.wrpc.gov.in/" target="_blank" rel="noopener">Western Regional Power Committee</a>'s weekly block-wise files, for Maharashtra as a whole.</li>
+      <li><b>Prices of contracted power</b> are MERC's approved energy charges for FY2026-27 from its review order of 25 March 2026. Short-term purchases from out-of-state plants are priced at MERC's approved short-term rate because deal prices are not published; the price-basis column marks them.</li>
+      <li><b>Exchange prices</b> are IEX clearing prices for each block from the Dhruva terminal's own collection.</li>
+      <li><b>Not published yet:</b> MSEDCL's source-wise actual purchases after February 2026, its exchange-purchase statements after March 2026, and MERC's fuel-adjustment approvals for this year. When they appear, the energy and costs here can be replaced with actuals.</li>
+      <li><b>Not separated:</b> deviation charges for MSEDCL alone (only one week of the state's own settlement is public) and the regions hit by load shedding.</li>
+      <li>The raw files, parsing code and the full day-by-seller ledger are in the Dhruva repository under <code>research/msedcl</code>.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+window.PL = (() => {
+  const F = { int: d3.format(',.0f'), one: d3.format(',.1f'), two: d3.format(',.2f'), pct: d3.format('.0%'), pct1: d3.format('.1%') };
+  const num = (v) => (v === '' || v == null ? null : Number(v));
+  const fmt = (v, kind) => {
+    if (kind === 'text') return v == null || v === '' ? '—' : String(v);
+    const n = num(v);
+    return n == null || Number.isNaN(n) ? '—' : (F[kind] || F.int)(n);
+  };
+  const rows = (id) => { const g = dash.data(id); return g.status === 'ok' ? g.data : null; };
+  const color = (i) => dash.colors[i % dash.colors.length];
+  const MUTED = 'var(--cds-chart-muted)';
+  function fail(el, id) {
+    const g = dash.data(id);
+    el.replaceChildren();
+    if (g.status === 'error') { const d = document.createElement('div'); d.className = 'pl-fail'; d.textContent = 'Failed to load'; el.append(d); }
+  }
+  function tip(el) {
+    let t = el.querySelector(':scope > .pl-tip');
+    if (!t) { t = document.createElement('div'); t.className = 'pl-tip'; t.hidden = true; el.append(t); }
+    return t;
+  }
+  function fillTip(t, title, lines) {
+    const h = document.createElement('div'); h.className = 'pl-tip-h'; h.textContent = title;
+    t.replaceChildren(h);
+    for (const l of lines) {
+      const r = document.createElement('div'); r.className = 'pl-tip-r';
+      const s = document.createElement('i'); s.className = 'pl-sw'; s.style.background = l.color || 'transparent';
+      const a = document.createElement('span'); a.textContent = l.name;
+      const b = document.createElement('b'); b.textContent = l.value;
+      r.append(s, a, b); t.append(r);
+    }
+  }
+  function placeTip(el, t, x, y) {
+    t.hidden = false;
+    const w = el.clientWidth, tw = t.offsetWidth;
+    let left = x + 14; if (left + tw > w) left = Math.max(0, x - 14 - tw);
+    t.style.left = left + 'px'; t.style.top = Math.max(0, y - 8) + 'px';
+  }
+  function svg(el, h) {
+    el.replaceChildren();
+    const w = Math.max(280, el.clientWidth || 600);
+    const s = d3.select(el).append('svg').attr('width', '100%').attr('height', h).attr('viewBox', `0 0 ${w} ${h}`);
+    return { s, w, h };
+  }
+  function textWidth(s, strs) {
+    const t = s.append('text').attr('font-size', 11);
+    let m = 0; for (const x of strs) { t.text(x); m = Math.max(m, t.node().getComputedTextLength()); }
+    t.remove(); return m;
+  }
+  function yAxis(s, y, x0, x1, fmtTick, ticks = 5) {
+    const g = s.append('g');
+    for (const v of y.ticks(ticks)) {
+      g.append('line').attr('x1', x0).attr('x2', x1).attr('y1', y(v)).attr('y2', y(v)).style('stroke', v === 0 ? 'var(--cds-chart-axis)' : 'var(--cds-chart-grid)').attr('stroke-width', 1);
+      g.append('text').attr('x', x0 - 6).attr('y', y(v)).attr('dy', '0.32em').attr('text-anchor', 'end').text(fmtTick(v));
+    }
+  }
+  function xLabels(s, items, xpos, y, minGap = 44) {
+    let last = -Infinity;
+    for (const it of items) {
+      const x = xpos(it); if (x - last < minGap) continue;
+      s.append('text').attr('x', x).attr('y', y).attr('text-anchor', 'middle').text(it.label);
+      last = x;
+    }
+  }
+  const dayFmt = d3.utcFormat('%-d %b');
+  const parseDay = (s) => new Date(s + 'T00:00:00Z');
+  /** stacked bars; series values may be negative (stacked below zero). */
+  function stackBars(el, { items, series, height = 300, yFmt = F.int, unit = '', tipTitle }) {
+    const { s, w, h } = svg(el, height);
+    const pos = (d, k) => Math.max(0, series[k].value(d)), neg = (d, k) => Math.min(0, series[k].value(d));
+    const hi = d3.max(items, (d) => d3.sum(series, (_, k) => pos(d, k))) || 1;
+    const lo = d3.min(items, (d) => d3.sum(series, (_, k) => neg(d, k))) || 0;
+    const y0 = d3.scaleLinear([lo, hi], [h - 24, 10]).nice();
+    const left = textWidth(s, y0.ticks(5).map(yFmt)) + 12;
+    const x = d3.scaleBand(items.map((d) => d.key), [left, w - 8]).padding(0.25);
+    yAxis(s, y0, left, w - 8, yFmt);
+    const bw = Math.min(32, x.bandwidth());
+    for (const d of items) {
+      let up = 0, dn = 0;
+      series.forEach((sr, k) => {
+        const v = sr.value(d); if (!v) return;
+        const a = v > 0 ? up : dn, b = a + v; if (v > 0) up = b; else dn = b;
+        s.append('rect').attr('x', x(d.key) + (x.bandwidth() - bw) / 2).attr('width', bw).attr('y', y0(Math.max(a, b))).attr('height', Math.max(0.5, Math.abs(y0(a) - y0(b)))).attr('rx', 1.5).style('fill', sr.color);
+      });
+    }
+    xLabels(s, items, (d) => x(d.key) + x.bandwidth() / 2, h - 6, 30);
+    const t = tip(el);
+    const hit = s.append('g');
+    for (const d of items) {
+      hit.append('rect').attr('x', x(d.key)).attr('width', x.bandwidth()).attr('y', 0).attr('height', h - 24).style('fill', 'transparent')
+        .on('pointermove', (ev) => { const [px, py] = d3.pointer(ev, el); fillTip(t, tipTitle(d), series.filter((sr) => sr.value(d)).map((sr) => ({ color: sr.color, name: sr.label, value: yFmt(sr.value(d)) + unit }))); placeTip(el, t, px, py); })
+        .on('pointerleave', () => { t.hidden = true; });
+    }
+  }
+  /** daily line or bars on a date axis. */
+  function dateChart(el, { items, value, kind = 'line', height = 220, yFmt = F.int, unit = '', label, colorIdx = 0, highlight }) {
+    const { s, w, h } = svg(el, height);
+    const pts = items.filter((d) => value(d) != null && !Number.isNaN(value(d)));
+    const hi = d3.max(pts, value) || 1, lo = kind === 'bar' ? 0 : d3.min(pts, value);
+    const y = d3.scaleLinear([kind === 'bar' ? 0 : lo * 0.97, hi], [h - 24, 10]).nice();
+    const left = textWidth(s, y.ticks(5).map(yFmt)) + 12;
+    const dates = items.map((d) => d.date);
+    const x = d3.scaleUtc([dates[0], d3.utcDay.offset(dates[dates.length - 1], 1)], [left, w - 8]);
+    yAxis(s, y, left, w - 8, yFmt);
+    const months = d3.utcMonth.range(d3.utcMonth.ceil(dates[0]), dates[dates.length - 1]);
+    for (const m of months) s.append('text').attr('x', x(m)).attr('y', h - 6).attr('text-anchor', 'start').text(d3.utcFormat('%b')(m));
+    const c = highlight ? 'var(--cds-chart-status-critical)' : color(colorIdx);
+    const bw = Math.max(1, (w - 8 - left) / Math.max(1, (x.domain()[1] - x.domain()[0]) / 864e5) - 1);
+    if (kind === 'bar') {
+      for (const d of pts) if (value(d) > 0) s.append('rect').attr('x', x(d.date)).attr('width', bw).attr('y', y(value(d))).attr('height', y(0) - y(value(d))).attr('rx', Math.min(1.5, bw / 2)).style('fill', c);
+    } else {
+      s.append('path').attr('d', d3.line().defined((d) => value(d) != null).x((d) => x(d.date) + bw / 2).y((d) => y(value(d)))(items)).style('fill', 'none').style('stroke', c).attr('stroke-width', 2).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round');
+    }
+    const t = tip(el);
+    const dot = s.append('circle').attr('r', 3.5).style('fill', c).attr('visibility', 'hidden');
+    s.append('rect').attr('x', left).attr('width', w - 8 - left).attr('y', 0).attr('height', h - 24).style('fill', 'transparent')
+      .on('pointermove', (ev) => {
+        const [px, py] = d3.pointer(ev, el); const dt = x.invert(px);
+        const d = items[Math.max(0, Math.min(items.length - 1, d3.bisector((a) => a.date).center(items, dt)))];
+        if (value(d) == null) return;
+        dot.attr('cx', x(d.date) + bw / 2).attr('cy', y(value(d))).attr('visibility', 'visible');
+        fillTip(t, dayFmt(d.date), [{ name: label, value: yFmt(value(d)) + unit }]); placeTip(el, t, px, py);
+      })
+      .on('pointerleave', () => { t.hidden = true; dot.attr('visibility', 'hidden'); });
+  }
+  return { F, num, fmt, rows, color, MUTED, fail, tip, fillTip, placeTip, svg, textWidth, yAxis, xLabels, stackBars, dateChart, dayFmt, parseDay };
+})();
+</script>
+
+<script>
+// Legend swatches take the series colours.
+document.querySelectorAll('.pl-sw[data-c]').forEach((sw) => { sw.style.background = PL.color(Number(sw.dataset.c)); });
+
+// Single values marked in text and tiles.
+dash.draw('v', (el) => {
+  const id = el.dataset.source, g = dash.data(id);
+  if (g.status !== 'ok') { el.textContent = '—'; return; }
+  const [k, v] = (el.dataset.where || '').split('=').map(decodeURIComponent);
+  const row = g.data.find((r) => String(r[k]) === v);
+  el.textContent = row ? PL.fmt(row[el.dataset.field], el.dataset.fmt) : '—';
+});
+
+const MONTHS = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
+dash.draw('mix', (el) => {
+  const r = PL.rows('monthly_mix'); if (!r) return PL.fail(el, 'monthly_mix');
+  const srcs = ['MSPGCL thermal', 'MSPGCL hydro', 'MSPGCL gas', 'Private & captive plants in Maharashtra', 'Wind', 'Solar', 'Central share & inter-state (net receipt)'];
+  const neg = ['Supplied to Mumbai utilities (net)', 'Other licensees in the state'];
+  const items = MONTHS.map((m) => ({ key: m, label: m, rows: r.filter((x) => x.month_label === m) })).filter((d) => d.rows.length);
+  const per = (d, s) => { const x = d.rows.find((q) => q.source === s); return x ? Number(x.mu) / Number(x.days) : 0; };
+  const series = [...srcs.map((s, i) => ({ label: s, color: PL.color(i), value: (d) => per(d, s) })),
+    { label: 'Delivered to Mumbai utilities', color: PL.MUTED, value: (d) => per(d, neg[0]) },
+    { label: 'Other licensees in the state', color: PL.MUTED, value: (d) => per(d, neg[1]) }];
+  PL.stackBars(el, { items, series, height: 320, yFmt: PL.F.int, unit: ' MU/day', tipTitle: (d) => d.label + ' 2026' });
+});
+
+const daily = () => { const r = PL.rows('daily'); return r && r.map((d) => ({ ...d, date: PL.parseDay(d.date) })); };
+dash.draw('daily-demand', (el) => {
+  const r = daily(); if (!r) return PL.fail(el, 'daily');
+  PL.dateChart(el, { items: r, value: (d) => Number(d.demand_met_mu), label: 'Energy supplied', unit: ' MU', colorIdx: 0 });
+});
+dash.draw('daily-cuts', (el) => {
+  const r = daily(); if (!r) return PL.fail(el, 'daily');
+  PL.dateChart(el, { items: r, value: (d) => Number(d.load_shed_shortfall_mu), kind: 'bar', label: 'Load shed', unit: ' MU', yFmt: PL.F.one, highlight: true });
+});
+dash.draw('daily-out', (el) => {
+  const r = daily(); if (!r) return PL.fail(el, 'daily');
+  const keys = [['forced_outage_mw', 'Forced outage'], ['fuel_shortage_outage_mw', 'Fuel shortage'], ['reserve_shutdown_mw', 'Reserve shutdown'], ['planned_outage_mw', 'Planned outage']];
+  const { s, w, h } = PL.svg(el, 240);
+  const st = d3.stack().keys(keys.map((k) => k[0])).value((d, k) => Number(d[k]) || 0)(r);
+  const y = d3.scaleLinear([0, d3.max(st[st.length - 1], (p) => p[1]) || 1], [h - 24, 10]).nice();
+  const left = PL.textWidth(s, y.ticks(5).map(PL.F.int)) + 12;
+  const x = d3.scaleUtc(d3.extent(r, (d) => d.date), [left, w - 8]);
+  PL.yAxis(s, y, left, w - 8, PL.F.int);
+  for (const m of d3.utcMonth.range(d3.utcMonth.ceil(r[0].date), r[r.length - 1].date)) s.append('text').attr('x', x(m)).attr('y', h - 6).text(d3.utcFormat('%b')(m));
+  st.forEach((layer, i) => s.append('path').attr('d', d3.area().x((p) => x(p.data.date)).y0((p) => y(p[0])).y1((p) => y(p[1]))(layer)).style('fill', PL.color(i)).style('opacity', 0.85));
+  const t = PL.tip(el);
+  s.append('rect').attr('x', left).attr('width', w - 8 - left).attr('height', h - 24).style('fill', 'transparent')
+    .on('pointermove', (ev) => { const [px, py] = d3.pointer(ev, el); const d = r[Math.max(0, Math.min(r.length - 1, d3.bisector((a) => a.date).center(r, x.invert(px))))];
+      PL.fillTip(t, PL.dayFmt(d.date), keys.map(([k, n], i) => ({ color: PL.color(i), name: n, value: PL.F.int(Number(d[k]) || 0) + ' MW' }))); PL.placeTip(el, t, px, py); })
+    .on('pointerleave', () => { t.hidden = true; });
+});
+
+// Tables: rows drawn as text; numbers formatted, keys as in the data.
+function cell(tr, v, cls) { const td = document.createElement('td'); if (cls) td.className = cls; td.textContent = v; tr.append(td); return td; }
+function linkCell(tr, url) { const td = document.createElement('td'); if (url) { const a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = url; td.append(a); } tr.append(td); }
+dash.draw('tbl-groups', (tb) => {
+  const r = PL.rows('ledger_groups'); tb.replaceChildren(); if (!r) return;
+  const mx = d3.max(r, (d) => Number(d.share)) || 1;
+  for (const d of r) {
+    const tr = document.createElement('tr');
+    cell(tr, d.group); cell(tr, PL.fmt(d.mu_per_day, 'one'), 'r');
+    const td = document.createElement('td'); const bar = document.createElement('span'); bar.className = 'pl-bar'; bar.style.width = (Number(d.share) / mx * 80) + 'px'; bar.style.background = PL.color(0);
+    td.append(bar, document.createTextNode(PL.fmt(d.share, 'pct1'))); tr.append(td);
+    cell(tr, PL.fmt(d.avg_rs_kwh, 'two'), 'r'); cell(tr, PL.fmt(d.cost_rs_cr, 'int'), 'r'); cell(tr, PL.fmt(d.undrawn_capacity_mu_per_day, 'one'), 'r'); cell(tr, d.price_basis);
+    tb.append(tr);
+  }
+});
+window.PLsellers = { key: 'mu_total', dir: -1, q: '' };
+const SELLER_NUM = new Set(['mu_total', 'mu_per_day', 'avg_rs_kwh', 'cost_rs_cr', 'undrawn_mu']);
+dash.draw('tbl-sellers', (tb) => {
+  const r = PL.rows('ledger_sellers'); tb.replaceChildren(); if (!r) return;
+  const { key, dir, q } = window.PLsellers; const ql = q.trim().toLowerCase();
+  const val = (d) => (SELLER_NUM.has(key) ? (d[key] === '' ? -Infinity : Number(d[key])) : String(d[key]).toLowerCase());
+  const list = r.filter((d) => !ql || `${d.seller} ${d.group} ${d.contract} ${d.merc_source}`.toLowerCase().includes(ql)).sort((a, b) => (val(a) > val(b) ? 1 : val(a) < val(b) ? -1 : 0) * dir);
+  for (const d of list) {
+    const tr = document.createElement('tr');
+    cell(tr, d.seller); cell(tr, d.group); cell(tr, d.contract); cell(tr, PL.fmt(d.mu_total, 'one'), 'r'); cell(tr, PL.fmt(d.mu_per_day, 'two'), 'r');
+    cell(tr, PL.fmt(d.avg_rs_kwh, 'two'), 'r'); cell(tr, PL.fmt(d.cost_rs_cr, 'one'), 'r'); cell(tr, PL.fmt(d.undrawn_mu, 'one'), 'r'); cell(tr, d.price_basis);
+    tb.append(tr);
+  }
+});
+document.querySelectorAll('#pl-seller-q').forEach((inp) => inp.addEventListener('input', () => { window.PLsellers.q = inp.value; dash.draw('tbl-sellers'); }));
+document.querySelectorAll('.pl-sellers th button[data-sort]').forEach((b) => b.addEventListener('click', () => {
+  const k = b.dataset.sort, s = window.PLsellers;
+  s.dir = s.key === k ? -s.dir : (SELLER_NUM.has(k) ? -1 : 1); s.key = k;
+  document.querySelectorAll('.pl-sellers th').forEach((th) => th.removeAttribute('aria-sort'));
+  b.closest('th').setAttribute('aria-sort', s.dir > 0 ? 'ascending' : 'descending');
+  dash.draw('tbl-sellers');
+}));
+dash.draw('tbl-swaps', (tb) => {
+  const r = PL.rows('swaps'); tb.replaceChildren(); if (!r) return;
+  for (const d of r) { const tr = document.createElement('tr'); cell(tr, d.partner); cell(tr, PL.fmt(d.received_mu, 'one'), 'r'); cell(tr, PL.fmt(d.delivered_mu, 'one'), 'r'); tb.append(tr); }
+});
+
+// Hour by hour.
+dash.draw('stack', (el) => {
+  const r = PL.rows('hourly_stack'); if (!r) return PL.fail(el, 'hourly_stack');
+  const n = (d, k) => Number(d[k]) || 0;
+  const series = [
+    ['Central stations', (d) => n(d, 'central_mw')], ['Own and in-state generation', (d) => n(d, 'instate_generation_mw')],
+    ['Long-term private plants', (d) => n(d, 'long_term_ipp_mw')], ['Medium- and short-term contracts', (d) => n(d, 'medium_term_mw') + n(d, 'short_term_mw')],
+    ['Renewables', (d) => n(d, 'renewables_mw')], ['Exchange, day-ahead', (d) => n(d, 'exchange_dam_mw') + n(d, 'exchange_gdam_mw')], ['Exchange, real-time', (d) => n(d, 'exchange_rtm_mw')]];
+  const { s, w, h } = PL.svg(el, 340);
+  const st = d3.stack().keys(series.map((_, i) => i)).value((d, i) => series[i][1](d))(r);
+  const top = Math.max(d3.max(st[st.length - 1], (p) => p[1]), d3.max(r, (d) => n(d, 'forecast_demand_mw')));
+  const y = d3.scaleLinear([0, top], [h - 24, 10]).nice();
+  const left = PL.textWidth(s, y.ticks(6).map(PL.F.int)) + 12;
+  const x = d3.scalePoint(r.map((d) => d.hour), [left + 6, w - 14]);
+  PL.yAxis(s, y, left, w - 8, PL.F.int, 6);
+  st.forEach((layer, i) => s.append('path').attr('d', d3.area().x((p) => x(p.data.hour)).y0((p) => y(p[0])).y1((p) => y(p[1]))(layer)).style('fill', PL.color(i)).style('opacity', 0.9));
+  s.append('path').attr('d', d3.line().x((d) => x(d.hour)).y((d) => y(n(d, 'scheduled_demand_mw')))(r)).style('fill', 'none').style('stroke', 'var(--color-fg)').attr('stroke-width', 2).attr('stroke-linejoin', 'round');
+  s.append('path').attr('d', d3.line().x((d) => x(d.hour)).y((d) => y(n(d, 'forecast_demand_mw')))(r)).style('fill', 'none').style('stroke', 'var(--color-fg-muted)').attr('stroke-width', 2).attr('stroke-dasharray', '5 4');
+  PL.xLabels(s, r.map((d) => ({ key: d.hour, label: d.hour })), (d) => x(d.key), h - 6, 40);
+  const t = PL.tip(el); const rule = s.append('line').attr('y1', 10).attr('y2', h - 24).style('stroke', 'var(--cds-chart-reference)').attr('visibility', 'hidden');
+  s.append('rect').attr('x', left).attr('width', w - 8 - left).attr('height', h - 24).style('fill', 'transparent')
+    .on('pointermove', (ev) => { const [px, py] = d3.pointer(ev, el); const i = Math.max(0, Math.min(r.length - 1, Math.round((px - left - 6) / x.step()))); const d = r[i];
+      rule.attr('x1', x(d.hour)).attr('x2', x(d.hour)).attr('visibility', 'visible');
+      PL.fillTip(t, d.hour + ' – hourly average', [...series.map(([nm, f], k) => ({ color: PL.color(k), name: nm, value: PL.F.int(f(d)) + ' MW' })),
+        { color: 'var(--color-fg)', name: 'Scheduled demand', value: PL.F.int(n(d, 'scheduled_demand_mw')) + ' MW' }, { color: 'var(--color-fg-muted)', name: 'Forecast demand', value: PL.F.int(n(d, 'forecast_demand_mw')) + ' MW' }]);
+      PL.placeTip(el, t, px, py); })
+    .on('pointerleave', () => { t.hidden = true; rule.attr('visibility', 'hidden'); });
+});
+function hourBars(el, field, label, unit, fmtv, extra) {
+  const r = PL.rows('hourly_stack'); if (!r) return PL.fail(el, 'hourly_stack');
+  const items = r.map((d) => ({ key: d.hour, label: d.hour, d }));
+  PL.stackBars(el, { items, series: [{ label, color: extra?.color || PL.color(0), value: (it) => Number(it.d[field]) }], height: 220, yFmt: fmtv, unit, tipTitle: (it) => it.label + (extra ? ' · ' + extra.tip(it.d) : '') });
+}
+dash.draw('gap', (el) => hourBars(el, 'unscheduled_gap_mw', 'Unscheduled', ' MW', PL.F.int, { color: 'var(--cds-chart-status-critical)', tip: () => 'forecast minus scheduled' }));
+dash.draw('price', (el) => hourBars(el, 'dam_avg_price_rs_mwh', 'Average price', ' ₹/MWh', PL.F.int, { color: PL.color(5), tip: (d) => PL.F.pct(Number(d.dam_cap_share)) + ' of days at the cap' }));
+
+// Merit order.
+dash.draw('merit', (el) => {
+  const r = PL.rows('merit_order'); if (!r) return PL.fail(el, 'merit_order');
+  const list = r.filter((d) => Number(d.approved_mu_per_day) >= 0.5 || Number(d.scheduled_mu_per_day) >= 0.5).sort((a, b) => Number(a.energy_charge_rs_kwh) - Number(b.energy_charge_rs_kwh));
+  const rowH = 18, top = 8, h = top + list.length * rowH + 24;
+  el.style.minHeight = h + 'px';
+  const { s, w } = PL.svg(el, h);
+  const lab = (d) => `${d.source}  ₹${PL.F.two(Number(d.energy_charge_rs_kwh))}`;
+  const left = Math.min(w * 0.5, PL.textWidth(s, list.map(lab)) + 14);
+  const x = d3.scaleLinear([0, d3.max(list, (d) => Math.max(Number(d.approved_mu_per_day), Number(d.scheduled_mu_per_day))) || 1], [left, w - 12]).nice();
+  for (const v of x.ticks(5)) { s.append('line').attr('x1', x(v)).attr('x2', x(v)).attr('y1', top).attr('y2', h - 20).style('stroke', 'var(--cds-chart-grid)'); s.append('text').attr('x', x(v)).attr('y', h - 6).attr('text-anchor', 'middle').text(PL.F.int(v)); }
+  const t = PL.tip(el);
+  list.forEach((d, i) => {
+    const yy = top + i * rowH;
+    s.append('text').attr('x', left - 8).attr('y', yy + rowH / 2).attr('dy', '0.32em').attr('text-anchor', 'end').text(lab(d));
+    s.append('rect').attr('x', left).attr('y', yy + 2).attr('height', 3).attr('width', Math.max(0, x(Number(d.approved_mu_per_day)) - left)).style('fill', PL.MUTED);
+    s.append('rect').attr('x', left).attr('y', yy + 6).attr('height', 9).attr('rx', 1.5).attr('width', Math.max(0, x(Number(d.scheduled_mu_per_day)) - left)).style('fill', PL.color(0));
+    s.append('rect').attr('x', 0).attr('y', yy).attr('width', w).attr('height', rowH).style('fill', 'transparent')
+      .on('pointermove', (ev) => { const [px, py] = d3.pointer(ev, el); PL.fillTip(t, d.source + ' · ' + d.merc_group, [{ color: PL.color(0), name: 'Scheduled', value: PL.F.one(Number(d.scheduled_mu_per_day)) + ' MU/day' }, { color: PL.MUTED, name: 'Approved plan', value: PL.F.one(Number(d.approved_mu_per_day)) + ' MU/day' }, { name: 'Energy charge', value: '₹' + PL.F.two(Number(d.energy_charge_rs_kwh)) + '/kWh' }]); PL.placeTip(el, t, px, py); })
+      .on('pointerleave', () => { t.hidden = true; });
+  });
+});
+
+// Exchanges.
+dash.draw('exch-daily', (el) => {
+  const r = PL.rows('exchange_daily'); if (!r) return PL.fail(el, 'exchange_daily');
+  const items = r.map((d) => ({ key: d.date, label: PL.dayFmt(PL.parseDay(d.date)), d }));
+  PL.stackBars(el, { items, height: 240, yFmt: PL.F.int, unit: ' MU', tipTitle: (it) => it.label,
+    series: [['Day-ahead', 'dam_mu'], ['Real-time', 'rtm_mu'], ['Green day-ahead', 'gdam_mu']].map(([nm, k], i) => ({ label: nm, color: PL.color(i), value: (it) => Number(it.d[k]) })) });
+});
+dash.draw('exch-price', (el) => {
+  const r = PL.rows('exchange_daily'); if (!r) return PL.fail(el, 'exchange_daily');
+  PL.dateChart(el, { items: r.map((d) => ({ ...d, date: PL.parseDay(d.date) })), value: (d) => Number(d.avg_rs_kwh), label: 'Average price paid', unit: ' ₹/kWh', yFmt: PL.F.two, height: 240, colorIdx: 1 });
+});
+dash.draw('exch-hist', (el) => {
+  const r = PL.rows('exchange_history'); if (!r) return PL.fail(el, 'exchange_history');
+  const items = r.map((d) => ({ key: d.month, label: d3.utcFormat('%b %y')(new Date(d.month + '-01T00:00:00Z')), d }));
+  PL.stackBars(el, { items, height: 220, yFmt: PL.F.int, unit: ' MU', tipTitle: (it) => it.label + ' · ₹' + PL.F.two(Number(it.d.avg_rs_kwh)) + '/kWh average',
+    series: [{ label: 'Bought on exchanges', color: PL.color(0), value: (it) => Number(it.d.mu) }] });
+});
+
+// Central stations: month by month, from one calc.
+dash.calc('central_pivot', {
+  inputs: ['central_monthly'], title: 'Central stations by month',
+  description: 'MSEDCL schedule from each central station summed by month, with the total; MU.',
+  fn: (central_monthly) => {
+    const by = new Map();
+    for (const r of central_monthly) {
+      const o = by.get(r.station) || { station: r.station, Apr: 0, May: 0, Jun: 0, Jul: 0, Aug: 0, Sep: 0, Oct: 0, total: 0 };
+      o[r.month_label] += Number(r.mu); o.total += Number(r.mu); by.set(r.station, o);
+    }
+    return [...by.values()].sort((a, b) => b.total - a.total);
+  },
+});
+dash.draw('tbl-central', (tb) => {
+  const g = dash.data('central_pivot'); tb.replaceChildren(); if (g.status !== 'ok') return;
+  for (const d of g.data) { const tr = document.createElement('tr'); cell(tr, d.station); for (const k of [...MONTHS, 'total']) cell(tr, PL.fmt(d[k], 'one'), 'r'); tb.append(tr); }
+});
+
+// Deviation settlement.
+dash.draw('dsm', (el) => {
+  const r = PL.rows('dsm_monthly'); if (!r) return PL.fail(el, 'dsm_monthly');
+  PL.stackBars(el, { items: r.map((d) => ({ key: d.month, label: d.month_label, d })), height: 230, yFmt: PL.F.int, unit: ' ₹ crore', tipTitle: (it) => it.label + ' 2026',
+    series: [{ label: 'Net payable', color: 'var(--cds-chart-status-critical)', value: (it) => Number(it.d.net_payable_rs_cr) }] });
+});
+dash.draw('dsm-rate', (el) => {
+  const r = PL.rows('dsm_monthly'); if (!r) return PL.fail(el, 'dsm_monthly');
+  PL.stackBars(el, { items: r.map((d) => ({ key: d.month, label: d.month_label, d })), height: 230, yFmt: PL.F.one, unit: ' ₹/kWh', tipTitle: (it) => it.label + ' 2026',
+    series: [{ label: 'Paid per kWh overdrawn', color: PL.color(1), value: (it) => Number(it.d.payable_per_kwh_in_capped_blocks) }] });
+});
+dash.draw('tbl-dsm', (tb) => {
+  const r = PL.rows('dsm_monthly'); tb.replaceChildren(); if (!r) return;
+  for (const d of r) {
+    const tr = document.createElement('tr'); tr.dataset.key = d.month;
+    cell(tr, d.month_label); cell(tr, PL.fmt(d.days, 'int'), 'r');
+    for (const k of ['overdrawal_gwh', 'underdrawal_gwh', 'payable_rs_cr', 'receivable_rs_cr', 'net_payable_rs_cr']) cell(tr, PL.fmt(d[k], 'one'), 'r');
+    cell(tr, PL.fmt(d.dam_capped_share, 'pct'), 'r'); cell(tr, PL.fmt(d.overdrawal_in_capped_blocks_gwh, 'one'), 'r'); cell(tr, PL.fmt(d.payable_in_capped_blocks_rs_cr, 'one'), 'r');
+    tb.append(tr);
+  }
+});
+
+// Logs and lists.
+const longDate = d3.utcFormat('%-d %b %Y');
+dash.draw('tbl-cuts', (tb) => {
+  const r = PL.rows('load_shedding_events'); tb.replaceChildren(); if (!r) return;
+  for (const d of [...r].reverse()) {
+    const tr = document.createElement('tr'); tr.dataset.key = d.date;
+    cell(tr, longDate(PL.parseDay(d.date))); cell(tr, PL.fmt(d.mu, 'two'), 'r'); cell(tr, PL.fmt(d.peak_mw, 'int'), 'r'); cell(tr, d.peak_hour); cell(tr, PL.fmt(d.hours_with_cuts, 'int'), 'r');
+    tb.append(tr);
+  }
+});
+dash.draw('tbl-events', (tb) => {
+  const r = PL.rows('events'); tb.replaceChildren(); if (!r) return;
+  for (const d of r) {
+    const tr = document.createElement('tr'); tr.dataset.key = d.date;
+    cell(tr, longDate(PL.parseDay(d.date))); cell(tr, d.type); cell(tr, d.what);
+    const td = document.createElement('td'); const f = document.createElement('span'); f.className = 'pl-flag'; f.textContent = d.basis; td.append(f); tr.append(td);
+    linkCell(tr, d.source_url); tb.append(tr);
+  }
+});
+dash.draw('tbl-contracts', (tb) => {
+  const r = PL.rows('contracts'); tb.replaceChildren(); if (!r) return;
+  for (const d of r) {
+    const tr = document.createElement('tr');
+    cell(tr, d.contract); cell(tr, d.counterparty); cell(tr, PL.fmt(d.capacity, 'int'), 'r'); cell(tr, d.capacity_unit);
+    cell(tr, PL.fmt(d.price_low, 'two'), 'r'); cell(tr, PL.fmt(d.price_high, 'two'), 'r'); cell(tr, d.price_unit); cell(tr, d.supply_from); cell(tr, d.status); linkCell(tr, d.source_url);
+    tb.append(tr);
+  }
+});
+
+// Plan and last year.
+dash.draw('cap', (el) => {
+  const r = PL.rows('contracted_capacity'); if (!r) return PL.fail(el, 'contracted_capacity');
+  const items = r.filter((d) => d.resource !== 'Total').sort((a, b) => Number(b.mw_fy2026_27) - Number(a.mw_fy2026_27)).map((d) => ({ key: d.resource, label: d.resource, d }));
+  PL.stackBars(el, { items, height: 240, yFmt: PL.F.int, unit: ' MW', tipTitle: (it) => it.label + ', FY2026-27', series: [{ label: 'Contracted', color: PL.color(0), value: (it) => Number(it.d.mw_fy2026_27) }] });
+});
+dash.calc('fy26_totals', {
+  inputs: ['fy26_by_category'], title: 'Last year by category',
+  description: 'MSEDCL purchases April 2025 – February 2026 summed by category; ₹/kWh is cost divided by energy where energy is above zero.',
+  fn: (fy26_by_category) => {
+    const by = new Map();
+    for (const r of fy26_by_category) {
+      if (r.month < '2025-04') continue;
+      const o = by.get(r.category) || { category: r.category, mu: 0, rs_cr: 0 };
+      o.mu += Number(r.mu) || 0; o.rs_cr += Number(r.rs_cr) || 0; by.set(r.category, o);
+    }
+    return [...by.values()].map((o) => ({ ...o, rs_kwh: o.mu > 0 ? (o.rs_cr / o.mu) * 10 : null })).sort((a, b) => b.rs_cr - a.rs_cr);
+  },
+});
+dash.draw('tbl-fy26', (tb) => {
+  const g = dash.data('fy26_totals'); tb.replaceChildren(); if (g.status !== 'ok') return;
+  for (const d of g.data) { const tr = document.createElement('tr'); cell(tr, d.category); cell(tr, PL.fmt(d.mu, 'int'), 'r'); cell(tr, PL.fmt(d.rs_cr, 'int'), 'r'); cell(tr, PL.fmt(d.rs_kwh, 'two'), 'r'); tb.append(tr); }
+});
+dash.draw('tbl-plan', (tb) => {
+  const r = PL.rows('approved_plan'); tb.replaceChildren(); if (!r) return;
+  for (const d of r) { const tr = document.createElement('tr'); cell(tr, d.metric); cell(tr, d.unit); cell(tr, d.fy2025_26 === '' ? '' : PL.fmt(d.fy2025_26, Number(d.fy2025_26) % 1 ? 'two' : 'int'), 'r'); cell(tr, d.fy2026_27 === '' ? '' : PL.fmt(d.fy2026_27, Number(d.fy2026_27) % 1 ? 'two' : 'int'), 'r'); tb.append(tr); }
+});
+
+// Section links.
+document.querySelectorAll('.pl-nav a').forEach((a) => a.addEventListener('click', (ev) => {
+  const el = document.getElementById(a.getAttribute('href').slice(1)); if (!el) return;
+  ev.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); dash.setLink(el.id);
+}));
+const named = document.getElementById(location.hash.slice(1));
+if (named) requestAnimationFrame(() => named.scrollIntoView());
+</script>

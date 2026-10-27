@@ -1,0 +1,25 @@
+date,type,what,source_url,basis
+2026-03-22,Supply order,"Power Ministry orders Tata Mundra (CGPL, imported coal) to run at full capacity, 1 Apr–30 Jun; Maharashtra holds a supplementary PPA",https://psuwatch.com/newsupdates/govt-invokes-section-11-orders-tatas-mundra-icb-plant-to-run-at-full-capacity-to-meet-summer-demand-surge,reported
+2026-04-01,Contract,"Adani Power gets the letter of award for 2,500 MW renewable round-the-clock power, 25 years",https://www.energetica-india.net/news/adani-power-wins-msedcls-2500-mw-renewable-rtc-power-supply-contract,reported
+2026-04-08,Company,State cabinet approves splitting MSEDCL and an IPO of the non-farm business,https://mercomindia.com/maharashtra-approves-bifurcation-of-msedcl-ipo-plans,claim
+2026-05-25,Load shedding,"Largest cut of the period: 2,050 MW (6.1 MU that day)",https://mahasldc.in/,SLDC daily report
+2026-06-02,Supply,"All Koyna hydro machines stopped for low reservoir level; about 1,920 MW listed as fuel shortage in early June",https://mahasldc.in/,SLDC daily report
+2026-06-19,Supply order,Mundra full-capacity order extended to 30 Sep,https://psuwatch.com/newsupdates/govt-invokes-section-11-orders-tatas-mundra-icb-plant-to-run-at-full-capacity-to-meet-summer-demand-surge,reported
+2026-06-27,Load shedding,"1,850 MW cut between 20:00 and 21:00; reported causes include coal-quality derating at MAHAGENCO and outages at JSW, RattanIndia and Koradi",https://powerpeakdigest.com/maharashtra-1850mw-load-shedding-coal-constraints/,SLDC daily report; causes secondary
+2026-07-03,Tender,"MSEDCL tenders 2,000 MW / 4,000 MWh of battery storage for 15 years",https://renewablewatch.in/2026/07/03/msedcl-floats-tender-for-2000-mw-4000-mwh-bess/,reported
+2026-07-15,Contract,"1,600 MW thermal PPA signed with Adani Power at Rs 5.30/kWh, supply from FY2030-31",https://www.etvbharat.com/amp/en/business/adani-power-and-msedcl-ink-pact-for-1600-mw-power-supply-enn26071505186,reported
+2026-07-16,Money,"State announces a Rs 48,000 crore waiver of farm power dues",https://www.theweek.in/news/india/2026/07/16/maharashtra-farmer-electricity-bill-waiver.html,claim
+2026-08-05,Contract,"MERC sets tariffs for 2,269 MW of farm-feeder solar (MSKVY 2.0) at Rs 2.24–2.90/kWh",https://www.saurenergy.com/solar-energy-news/merc-approves-2269-mw-solar-power-procurement-for-msedcl-under-mskvy-20-12234132,search snippet only
+2026-08-21,Supply,RattanIndia Amravati Unit 5 (270 MW) out for coal shortage until about 27 Sep,https://mahasldc.in/,SLDC daily report
+2026-09-05,Supply,Koyna dam full,https://www.uniindia.com/west-india/water-maha-koyna-dam/170300,reported
+2026-09-06,Load shedding,Most energy cut in one day: 8.2 MU,https://mahasldc.in/,SLDC daily report
+2026-09-08,Contract,"2,500 MW round-the-clock PPA signed with PTSL (Adani trading arm) at Rs 5.90/kWh, supply from 28 Feb 2027",https://www.constructionworld.in/energy-infrastructure/power-and-renewable-energy/adani-power-assigns-2500-mw-msedcl-rtc-contract-to-ptsl/97325,reported
+2026-09-17,Coal,12 of 22 Maharashtra plants at critical coal stock; MAHAGENCO at 25.6% of requirement,https://psuwatch.com/newsupdates/thermal-power-plants-hold-87-days-of-coal-currently-but-where-is-the-shortage-most-concentrated,reported
+2026-09-22,Contract,"Battery auction result: 1,500 MW at Rs 2.38 lakh/MW/month and 500 MW at Rs 2.40",https://renewablewatch.in/2026/09/22/msedcl-announces-results-of-2000-mw-4000-mwh-standalone-bess-auction/,reported
+2026-09-28,Supply order,Power Ministry orders 112 captive plants to run at maximum 1 Oct–31 Dec and sell surplus on exchanges; Mundra order extended to 31 Dec,https://indianinfrastructure.com/2026/09/28/mop-directs-captive-coal-plants-to-maximise-generation-till-december-2026/,reported
+2026-10-01,Regulator,"MERC puts MSEDCL's request for 1,600 MW from NTPC Lara Stage III on hold pending the central allocation",https://www.thehitavada.com/Encyc/2026/10/1/merc-puts-on-hold-msedcl-plea-for-ppa-to-source-extra-1600-mw.html,reported
+2026-10-08,Coal,"15 of 20 Maharashtra plants at critical stock; MAHAGENCO at 19%, Tiroda at 6%",https://psuwatch.com/newsupdates/coal-stock-drawdown-at-power-plants-more-than-halves-in-october-rebuilding-yet-to-start-coal-ministry,reported
+2026-10-09,Load shedding,"1,800 MW cut at 18:00–19:00",https://mahasldc.in/,SLDC daily report
+2026-10-10,Demand,"MSEDCL peak demand of 28,221 MW, highest this financial year",https://www.mahadiscom.in/en/msedcl-peak-demand-en/,MSEDCL
+2026-10-17,Demand,"Maharashtra peak demand of 33,051 MW",https://mahasldc.in/,SLDC daily report
+2026-10-22,Statement,MSEDCL official tells the press there has been no load shedding and that it is buying month-ahead power; SLDC reports show cuts on 11 days in October,https://www.thecore.in/business/el-nio-heats-up-power-demand-discoms-turn-to-spot-markets-872817,"claim, contradicted by SLDC data"

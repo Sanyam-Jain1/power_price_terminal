@@ -1,0 +1,138 @@
+month,category,mu,rs_cr,rs_kwh
+2025-03,Central-NPCIL,550.95,213.36,3.873
+2025-03,Central-NTPC,3487.5,1350.5,3.872
+2025-03,Central-Others/Hydro/Interstate,77.84,19.21,2.468
+2025-03,Central-RGPPL (gas),0.0,1620.42,
+2025-03,DSM / Deviation,-195.24,96.41,-4.938
+2025-03,IPP,3606.58,2283.68,6.332
+2025-03,MSPGCL,5786.86,3069.82,5.305
+2025-03,RE (Non Conventional),2099.46,853.0,4.063
+2025-03,Short Term (bilateral/exchange),1583.52,849.87,5.367
+2025-03,State-Other (Dodson),6.09,4.46,7.323
+2025-03,Transmission & Other charges,0.0,1066.31,
+2025-03,ALL POWER PURCHASE excl. transmission (sum of components),17003.56,10360.73,6.093
+2025-04,Central-NPCIL,612.35,240.49,3.927
+2025-04,Central-NTPC,3299.29,1396.62,4.233
+2025-04,Central-Others/Hydro/Interstate,45.46,12.47,2.743
+2025-04,DSM / Deviation,-154.28,-10.24,0.664
+2025-04,IPP,3650.63,1699.35,4.655
+2025-04,MSPGCL,5543.09,3302.0,5.957
+2025-04,RE (Non Conventional),1417.85,555.51,3.918
+2025-04,Short Term (bilateral/exchange),1503.84,874.62,5.816
+2025-04,State-Other (Dodson),7.38,2.04,2.764
+2025-04,Transmission & Other charges,0.0,996.31,
+2025-04,ALL POWER PURCHASE excl. transmission (sum of components),15925.61,8072.86,5.069
+2025-05,Central-NPCIL,624.51,246.62,3.949
+2025-05,Central-NTPC,3140.05,1248.55,3.976
+2025-05,Central-Others/Hydro/Interstate,56.88,15.32,2.693
+2025-05,DSM / Deviation,-78.83,17.61,-2.234
+2025-05,IPP,3341.95,1458.47,4.364
+2025-05,MSPGCL,5035.12,3149.39,6.255
+2025-05,RE (Non Conventional),1515.89,593.9,3.918
+2025-05,Short Term (bilateral/exchange),510.6,283.71,5.556
+2025-05,State-Other (Dodson),8.08,2.04,2.525
+2025-05,Transmission & Other charges,0.0,982.53,
+2025-05,ALL POWER PURCHASE excl. transmission (sum of components),14154.25,7015.61,4.957
+2025-06,Central-NPCIL,462.59,178.09,3.85
+2025-06,Central-NTPC,2803.05,1131.91,4.038
+2025-06,Central-Others/Hydro/Interstate,81.95,20.39,2.488
+2025-06,DSM / Deviation,-43.8,21.93,-5.007
+2025-06,IPP,3366.05,1531.75,4.551
+2025-06,MSPGCL,4047.61,2795.07,6.905
+2025-06,RE (Non Conventional),1732.97,733.82,4.234
+2025-06,Short Term (bilateral/exchange),179.59,57.56,3.205
+2025-06,State-Other (Dodson),4.05,2.04,5.037
+2025-06,Transmission & Other charges,0.0,962.3,
+2025-06,ALL POWER PURCHASE excl. transmission (sum of components),12634.06,6472.56,5.123
+2025-07,Central-NPCIL,456.88,170.1,3.723
+2025-07,Central-NTPC,2988.02,1210.79,4.052
+2025-07,Central-Others/Hydro/Interstate,160.89,35.06,2.179
+2025-07,DSM / Deviation,-231.19,-17.15,0.742
+2025-07,IPP,2589.43,1066.6,4.119
+2025-07,MSPGCL,4320.3,2740.78,6.344
+2025-07,RE (Non Conventional),1836.88,769.28,4.188
+2025-07,Short Term (bilateral/exchange),1392.33,632.33,4.542
+2025-07,State-Other (Dodson),2.13,2.04,9.577
+2025-07,Transmission & Other charges,0.0,945.26,
+2025-07,ALL POWER PURCHASE excl. transmission (sum of components),13515.67,6609.83,4.89
+2025-08,Central-NPCIL,462.67,172.95,3.738
+2025-08,Central-NTPC,2811.27,1157.37,4.117
+2025-08,Central-Others/Hydro/Interstate,293.98,63.13,2.147
+2025-08,DSM / Deviation,-160.08,-11.26,0.703
+2025-08,IPP,2434.51,1119.29,4.598
+2025-08,MSPGCL,4322.34,2804.31,6.488
+2025-08,RE (Non Conventional),1626.43,637.81,3.922
+2025-08,Short Term (bilateral/exchange),1379.87,603.65,4.375
+2025-08,State-Other (Dodson),0.0,2.04,
+2025-08,Transmission & Other charges,0.0,955.99,
+2025-08,ALL POWER PURCHASE excl. transmission (sum of components),13170.99,6549.29,4.973
+2025-09,Central-NPCIL,523.59,204.07,3.898
+2025-09,Central-NTPC,2566.42,1112.73,4.336
+2025-09,Central-Others/Hydro/Interstate,303.61,65.14,2.146
+2025-09,DSM / Deviation,-118.56,-19.53,1.647
+2025-09,IPP,2432.15,1048.3,4.31
+2025-09,MSPGCL,4058.29,2658.81,6.552
+2025-09,RE (Non Conventional),1440.64,547.9,3.803
+2025-09,Short Term (bilateral/exchange),1173.57,525.87,4.481
+2025-09,State-Other (Dodson),0.0,2.04,
+2025-09,Transmission & Other charges,0.0,994.87,
+2025-09,ALL POWER PURCHASE excl. transmission (sum of components),12379.71,6145.33,4.964
+2025-10,Central-NPCIL,643.96,254.25,3.948
+2025-10,Central-NTPC,2727.36,1093.2,4.008
+2025-10,Central-Others/Hydro/Interstate,215.27,47.36,2.2
+2025-10,DSM / Deviation,-82.21,-24.28,2.953
+2025-10,IPP,2839.07,744.76,2.623
+2025-10,MSPGCL,4080.58,2737.91,6.71
+2025-10,RE (Non Conventional),1529.33,544.85,3.563
+2025-10,Short Term (bilateral/exchange),841.85,391.69,4.653
+2025-10,State-Other (Dodson),0.0,2.04,
+2025-10,Transmission & Other charges,0.0,1006.42,
+2025-10,ALL POWER PURCHASE excl. transmission (sum of components),12795.21,5791.78,4.527
+2025-11,Central-NPCIL,503.54,204.08,4.053
+2025-11,Central-NTPC,2667.84,1080.02,4.048
+2025-11,Central-Others/Hydro/Interstate,107.1,25.23,2.356
+2025-11,DSM / Deviation,59.29,116.37,19.627
+2025-11,IPP,2718.05,1187.89,4.37
+2025-11,MSPGCL,3463.23,2901.68,8.379
+2025-11,Medium Term,624.44,323.14,5.175
+2025-11,RE (Non Conventional),1951.55,864.45,4.43
+2025-11,Short Term (bilateral/exchange),536.22,237.72,4.433
+2025-11,State-Other (Dodson),0.0,2.04,
+2025-11,Transmission & Other charges,0.0,994.74,
+2025-11,ALL POWER PURCHASE excl. transmission (sum of components),12631.26,6942.62,5.496
+2025-12,Central-NPCIL,499.78,205.97,4.121
+2025-12,Central-NTPC,3046.59,1179.13,3.87
+2025-12,Central-Others/Hydro/Interstate,109.03,26.23,2.406
+2025-12,DSM / Deviation,-148.18,-22.89,1.545
+2025-12,IPP,2508.38,1230.3,4.905
+2025-12,MSPGCL,4944.32,3511.08,7.101
+2025-12,Medium Term,678.0,346.29,5.108
+2025-12,RE (Non Conventional),2464.64,1100.36,4.465
+2025-12,Short Term (bilateral/exchange),330.29,133.66,4.047
+2025-12,State-Other (Dodson),0.0,2.04,
+2025-12,Transmission & Other charges,0.0,1001.22,
+2025-12,ALL POWER PURCHASE excl. transmission (sum of components),14432.85,7712.17,5.343
+2026-01,Central-NPCIL,493.35,195.35,3.96
+2026-01,Central-NTPC,3125.55,1148.95,3.676
+2026-01,Central-Others/Hydro/Interstate,79.09,20.11,2.543
+2026-01,DSM / Deviation,-183.27,-35.69,1.947
+2026-01,IPP,2984.6,1456.64,4.881
+2026-01,MSPGCL,5344.0,3616.65,6.768
+2026-01,Medium Term,651.36,336.65,5.168
+2026-01,RE (Non Conventional),2402.37,1016.35,4.231
+2026-01,Short Term (bilateral/exchange),175.35,60.17,3.431
+2026-01,State-Other (Dodson),0.0,2.04,
+2026-01,Transmission & Other charges,0.0,1281.9,
+2026-01,ALL POWER PURCHASE excl. transmission (sum of components),15072.4,7817.22,5.186
+2026-02,Central-NPCIL,579.6,220.64,3.807
+2026-02,Central-NTPC,2842.29,1110.02,3.905
+2026-02,Central-Others/Hydro/Interstate,63.31,16.31,2.576
+2026-02,DSM / Deviation,-142.23,-21.82,1.534
+2026-02,IPP,2756.79,1194.42,4.333
+2026-02,MSPGCL,4918.86,3313.19,6.736
+2026-02,Medium Term,554.51,292.64,5.277
+2026-02,RE (Non Conventional),2080.33,823.9,3.96
+2026-02,Short Term (bilateral/exchange),828.07,341.3,4.122
+2026-02,State-Other (Dodson),2.73,2.04,7.473
+2026-02,Transmission & Other charges,0.0,1012.72,
+2026-02,ALL POWER PURCHASE excl. transmission (sum of components),14484.26,7292.64,5.035

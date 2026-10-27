@@ -1,0 +1,9 @@
+contract,counterparty,capacity,capacity_unit,price_low,price_high,price_unit,supply_from,status,source_url
+Round-the-clock renewables,"Adani Power, assigned to PTSL",2500,MW,5.9,5.9,Rs/kWh,From 28 Feb 2027,PPA signed 8 Sep 2026,https://www.constructionworld.in/energy-infrastructure/power-and-renewable-energy/adani-power-assigns-2500-mw-msedcl-rtc-contract-to-ptsl/97325
+"Thermal, 2 × 800 MW",Adani Power,1600,MW,5.3,5.3,Rs/kWh,From FY2030-31,PPA signed 15 Jul 2026; no MERC adoption order found,https://www.etvbharat.com/amp/en/business/adani-power-and-msedcl-ink-pact-for-1600-mw-power-supply-enn26071505186
+"Battery storage, 2-hour, 15 years",Auction winners (Oriana 900 MW),2000,MW,2.38,2.4,Rs lakh/MW/month,Not stated,Auction result 22 Sep 2026,https://renewablewatch.in/2026/09/22/msedcl-announces-results-of-2000-mw-4000-mwh-standalone-bess-auction/
+"Battery storage, 4-hour, 5 years",Tender,1000,MW,,,Rs lakh/MW/month,Not stated,Tender opened 24 Sep 2026,https://www.mahadiscom.in/en/supplier/
+Farm-feeder solar (MSKVY 2.0),Several developers,2269,MW,2.24,2.9,Rs/kWh,Commissioning,MERC tariffs set 5 Aug 2026 (search snippet only),https://www.saurenergy.com/solar-energy-news/merc-approves-2269-mw-solar-power-procurement-for-msedcl-under-mskvy-20-12234132
+NTPC solar,NTPC,1600,MW,2.66,2.72,Rs/kWh,Not stated,MERC order 31 Dec 2025,https://jmkresearch.com/wp-content/uploads/2026/01/MERC_1600MW_NTPC.pdf
+NTPC Lara Stage III,NTPC,1600,MW,4.53,4.53,Rs/kWh (indicative),Not stated,On hold at MERC since 1 Oct 2026,https://www.thehitavada.com/Encyc/2026/10/1/merc-puts-on-hold-msedcl-plea-for-ppa-to-source-extra-1600-mw.html
+Kakrapar 3 & 4 extension (3 years),NPCIL,378.67,MW,4.7,4.93,Rs/kWh,Not stated,Pending at MERC,https://www.thehitavada.com/Encyc/2026/10/1/merc-puts-on-hold-msedcl-plea-for-ppa-to-source-extra-1600-mw.html

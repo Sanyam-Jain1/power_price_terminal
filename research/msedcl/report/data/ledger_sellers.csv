@@ -1,0 +1,169 @@
+seller,group,contract,merc_source,mu_total,mu_per_day,avg_rs_kwh,cost_rs_cr,price_basis,declared_capability_mu,undrawn_mu
+REMC,Renewable contracts,REMC/LTA/SOLAR,Renewable - Wind,2356.528,52.367,3.406,802.636,MERC FY27 approved energy charge,,
+MSPGCL_KOYNAHYDRO,Hydro,INTRASTATE GENERATION,Hydro,772.696,17.171,0.0,0.0,MERC FY27 approved energy charge,1948.0,1175.304
+Exchange RTM,Exchange,RTM,,691.836,15.374,6.396,442.515,actual exchange clearing price by block,,
+KSTPS12,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,KSTPS,565.516,12.567,1.76,99.53,MERC FY27 approved energy charge,,
+TPCL_Mundra,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,CGPL,542.706,12.06,3.43,186.148,MERC FY27 approved energy charge,,
+APML_U2,"In-state IPPs, long term (Tiroda, SWPGL, Uran)",INTRASTATE LTA,APML 1320 MW,541.588,12.035,4.42,239.382,MERC FY27 approved energy charge,,
+APML_U1,"In-state IPPs, long term (Tiroda, SWPGL, Uran)",INTRASTATE LTA,APML 1320 MW,538.384,11.964,4.42,237.966,MERC FY27 approved energy charge,,
+APML_U3,"In-state IPPs, long term (Tiroda, SWPGL, Uran)",INTRASTATE LTA,APML 1320 MW,538.057,11.957,4.42,237.821,MERC FY27 approved energy charge,,
+APML_U4,"In-state IPPs, long term (Tiroda, SWPGL, Uran)",INTRASTATE LTA,APML 1320 MW,536.817,11.929,4.42,237.273,MERC FY27 approved energy charge,,
+SIPAT1,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,SIPAT TPS 1,528.944,11.754,2.08,110.02,MERC FY27 approved energy charge,,
+JSWEL_U234,"In-state IPPs, medium/short term",INTRASTATE MTOA,JSW,516.743,11.483,4.99,257.855,MERC FY27 approved energy charge,,
+Exchange DAM,Exchange,DAM,,493.69,10.971,6.306,311.344,actual exchange clearing price by block,,
+VIPL_TOTAL,"In-state IPPs, medium/short term",INTRASTATE MTOA,Renewable - Bagasse based Co-gen,492.883,10.953,5.54,273.057,MERC FY27 approved energy charge,,
+BHUSAWAL_U6,MSPGCL thermal,INTRASTATE GENERATION,Bhusawal - 6,491.395,10.92,3.67,180.342,MERC FY27 approved energy charge,537.563,46.168
+APML_U5,"In-state IPPs, long term (Tiroda, SWPGL, Uran)",INTRASTATE LTA,APML 1320 MW,479.874,10.664,4.42,212.104,MERC FY27 approved energy charge,,
+KORADI_U9,MSPGCL thermal,INTRASTATE GENERATION,Koradi - 8 to 10,477.391,10.609,3.38,161.358,MERC FY27 approved energy charge,493.004,15.613
+KORADI_U8,MSPGCL thermal,INTRASTATE GENERATION,Koradi - 8 to 10,475.005,10.556,3.38,160.552,MERC FY27 approved energy charge,490.091,15.086
+SOLAPUR,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,NTPC Solapur,470.663,10.459,5.19,244.274,MERC FY27 approved energy charge,,
+CHANDRAPUR_U9,MSPGCL thermal,INTRASTATE GENERATION,Chandrapur - 8 & 9,433.467,9.633,3.62,156.915,MERC FY27 approved energy charge,466.121,32.654
+CHANDRAPUR_U8,MSPGCL thermal,INTRASTATE GENERATION,Chandrapur - 8 & 9,418.419,9.298,3.62,151.467,MERC FY27 approved energy charge,447.565,29.145
+KHAPERKHEDA_U5,MSPGCL thermal,INTRASTATE GENERATION,Khaparkheda - 5,408.115,9.069,3.43,139.983,MERC FY27 approved energy charge,426.923,18.808
+BHUSAWAL_U4,MSPGCL thermal,INTRASTATE GENERATION,Bhusawal - 4 & 5,404.932,8.998,4.4,178.17,MERC FY27 approved energy charge,468.828,63.896
+KAPS_34,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,KAPP 3 & 4,394.183,8.76,4.15,163.586,MERC FY27 approved energy charge,,
+CHANDRAPUR_U6,MSPGCL thermal,INTRASTATE GENERATION,Chandrapur - 3 to 7,351.152,7.803,4.61,161.881,MERC FY27 approved energy charge,390.58,39.427
+MOUDA2,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,Mauda II,333.472,7.41,4.09,136.39,MERC FY27 approved energy charge,,
+CHANDRAPUR_U5,MSPGCL thermal,INTRASTATE GENERATION,Chandrapur - 3 to 7,323.32,7.185,4.61,149.05,MERC FY27 approved energy charge,355.996,32.676
+TAPS_II,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,TAPP 3 & 4,317.328,7.052,3.78,119.95,MERC FY27 approved energy charge,,
+VSTPS1,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,VSTP I,313.987,6.977,2.13,66.879,MERC FY27 approved energy charge,,
+VSTPS2,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,VSTP II,293.86,6.53,2.02,59.36,MERC FY27 approved energy charge,,
+CHANDRAPUR_U7,MSPGCL thermal,INTRASTATE GENERATION,Chandrapur - 3 to 7,285.476,6.344,4.61,131.605,MERC FY27 approved energy charge,320.047,34.571
+JPL-2,Inter-state IPPs (short/medium term),CENTRE,,282.863,6.286,5.5,155.574,MERC approved short-term rate (assumed; deal prices not published),,
+MOUDA1,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,Mauda I,273.289,6.073,3.95,107.949,MERC FY27 approved energy charge,,
+SIPAT2,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,SIPAT TPS 2,269.005,5.978,2.18,58.643,MERC FY27 approved energy charge,,
+LARA,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,Lara,268.473,5.966,1.52,40.808,MERC FY27 approved energy charge,,
+BHUSAWAL_U5,MSPGCL thermal,INTRASTATE GENERATION,Bhusawal - 4 & 5,267.506,5.945,4.4,117.703,MERC FY27 approved energy charge,311.09,43.583
+RIPL_U1,"In-state IPPs, long term (RattanIndia, JSW)",INTRASTATE GENERATION,RIPL 750 MW,262.018,5.823,2.68,70.22,MERC FY27 approved energy charge,266.196,4.178
+RIPL_U2,"In-state IPPs, long term (RattanIndia, JSW)",INTRASTATE GENERATION,RIPL 750 MW,261.813,5.818,2.68,70.165,MERC FY27 approved energy charge,266.274,4.462
+RIPL_U4,"In-state IPPs, long term (RattanIndia, JSW)",INTRASTATE GENERATION,RIPL 750 MW,260.558,5.79,2.68,69.83,MERC FY27 approved energy charge,265.255,4.696
+JSWEL_U1,"In-state IPPs, long term (RattanIndia, JSW)",INTRASTATE GENERATION,JSW,256.519,5.7,4.99,128.003,MERC FY27 approved energy charge,313.037,56.519
+RIPL_U3,"In-state IPPs, long term (RattanIndia, JSW)",INTRASTATE GENERATION,RIPL 750 MW,246.576,5.479,2.68,66.082,MERC FY27 approved energy charge,251.153,4.576
+SWPGL_U1234,"In-state IPPs, long term (Tiroda, SWPGL, Uran)",INTRASTATE LTA,SWPGL 240 MW,245.207,5.449,3.14,76.995,MERC FY27 approved energy charge,,
+VSTPS4,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,VSTP IV,225.412,5.009,2.15,48.463,MERC FY27 approved energy charge,,
+VSTPS3,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,VSTP III,215.927,4.798,2.04,44.049,MERC FY27 approved energy charge,,
+PARAS_U4,MSPGCL thermal,INTRASTATE GENERATION,Paras - 3 & 4,184.482,4.1,4.2,77.482,MERC FY27 approved energy charge,205.95,21.468
+GMR_WARORA,Inter-state IPPs (short/medium term),CENTRE,GMR Energy,183.221,4.072,3.2,58.631,MERC FY27 approved energy charge,,
+PARLI_U8,MSPGCL thermal,INTRASTATE GENERATION,Parli Replacement U 8,180.414,4.009,5.39,97.243,MERC FY27 approved energy charge,206.4,25.986
+PARLI_U6,MSPGCL thermal,INTRASTATE GENERATION,Parli - 6 & 7,177.845,3.952,5.53,98.348,MERC FY27 approved energy charge,202.411,24.566
+PARLI_U7,MSPGCL thermal,INTRASTATE GENERATION,Parli - 6 & 7,174.531,3.878,5.53,96.516,MERC FY27 approved energy charge,197.919,23.387
+SSP,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,SSP,172.522,3.834,2.05,35.367,MERC FY27 approved energy charge,,
+KHAPERKHEDA_U4,MSPGCL thermal,INTRASTATE GENERATION,Khaparkheda - 1 to 4,146.342,3.252,3.84,56.195,MERC FY27 approved energy charge,154.275,7.934
+TAPS_I,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,TAPP 1 & 2,140.365,3.119,4.76,66.813,MERC FY27 approved energy charge,,
+KAPS,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,KAPP,138.782,3.084,4.15,57.595,MERC FY27 approved energy charge,,
+JBVNL,Swap / banking with other states,CENTRE,,138.78,3.084,,,not priced,,
+VSTPS5,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,VSTP V,138.336,3.074,2.17,30.019,MERC FY27 approved energy charge,,
+BHUSAWAL_U3,MSPGCL thermal,INTRASTATE GENERATION,Bhusawal - 3,137.772,3.062,5.33,73.432,MERC FY27 approved energy charge,161.422,23.65
+PARAS_U3,MSPGCL thermal,INTRASTATE GENERATION,Paras - 3 & 4,137.025,3.045,4.2,57.551,MERC FY27 approved energy charge,150.202,13.177
+CHANDRAPUR_U3,MSPGCL thermal,INTRASTATE GENERATION,Chandrapur - 3 to 7,129.162,2.87,4.61,59.543,MERC FY27 approved energy charge,140.656,11.494
+RIPL_U5,"In-state IPPs, long term (RattanIndia, JSW)",INTRASTATE GENERATION,RIPL 750 MW,126.694,2.815,2.68,33.954,MERC FY27 approved energy charge,128.335,1.642
+IEPL,"In-state IPPs, medium/short term",INTRASTATE STOA,Short term,126.16,2.804,5.5,69.388,MERC FY27 approved energy charge,,
+NASHIK_U4,MSPGCL thermal,INTRASTATE GENERATION,"Nashik- 3,4 & 5",124.938,2.776,5.4,67.466,MERC FY27 approved energy charge,142.565,17.627
+KORADI_U6,MSPGCL thermal,INTRASTATE GENERATION,Koradi - 6,123.832,2.752,3.7,45.817,MERC FY27 approved energy charge,130.425,6.593
+KSTPS7,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,KSTPS III,122.089,2.713,1.74,21.243,MERC FY27 approved energy charge,,
+NASHIK_U5,MSPGCL thermal,INTRASTATE GENERATION,"Nashik- 3,4 & 5",121.51,2.7,5.4,65.615,MERC FY27 approved energy charge,134.281,12.77
+KHAPERKHEDA_U2,MSPGCL thermal,INTRASTATE GENERATION,Khaparkheda - 1 to 4,121.371,2.697,3.84,46.607,MERC FY27 approved energy charge,125.062,3.691
+NASHIK_U3,MSPGCL thermal,INTRASTATE GENERATION,"Nashik- 3,4 & 5",118.364,2.63,5.4,63.916,MERC FY27 approved energy charge,128.841,10.477
+CHANDRAPUR_U4,MSPGCL thermal,INTRASTATE GENERATION,Chandrapur - 3 to 7,117.727,2.616,4.61,54.272,MERC FY27 approved energy charge,127.403,9.676
+MSEDCL_COGEN,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,111.773,2.484,5.54,61.922,MERC FY27 approved energy charge,,
+KHAPERKHEDA_U1,MSPGCL thermal,INTRASTATE GENERATION,Khaparkheda - 1 to 4,109.759,2.439,3.84,42.148,MERC FY27 approved energy charge,112.178,2.419
+JPL,Inter-state IPPs (short/medium term),CENTRE,,109.587,2.435,5.5,60.273,MERC approved short-term rate (assumed; deal prices not published),,
+KHAPERKHEDA_U3,MSPGCL thermal,INTRASTATE GENERATION,Khaparkheda - 1 to 4,108.277,2.406,3.84,41.579,MERC FY27 approved energy charge,111.818,3.541
+ASunceEPL_BKN,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,105.746,2.35,2.67,28.234,MERC FY27 approved energy charge,,
+URAN_STG_2,MSPGCL gas (Uran),INTRASTATE GENERATION,GTPS Uran,101.24,2.25,5.23,52.949,MERC FY27 approved energy charge,101.24,0.0
+KHSTPP_II,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,KhSTPS-II,101.171,2.248,2.94,29.744,MERC FY27 approved energy charge,,
+AcHPPL_BHDL2,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,95.878,2.131,2.67,25.599,MERC FY27 approved energy charge,,
+UPPCL,Swap / banking with other states,CENTRE,,90.769,2.017,,,not priced,,
+RSBPL_FTG2,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,88.584,1.969,2.67,23.652,MERC FY27 approved energy charge,,
+APDCL,Swap / banking with other states,CENTRE,,84.029,1.867,,,not priced,,
+JINDAL PL_U1(&U2_Total),"In-state IPPs, medium/short term",INTRASTATE MTOA,Short term,83.286,1.851,5.5,45.807,MERC FY27 approved energy charge,,
+Kameng,Inter-state IPPs (short/medium term),CENTRE,,82.718,1.838,,,not priced,,
+MSEDCL_SHYDRO,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Small Hydro,81.389,1.809,3.34,27.184,MERC FY27 approved energy charge,,
+KHARGONE,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,Khargone,80.165,1.781,4.5,36.074,MERC FY27 approved energy charge,,
+SUBANSIRI_LOWER,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,Subhansari Hydro,74.812,1.662,5.0,37.407,MERC FY27 approved energy charge,,
+RSPPL_BKN,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,74.491,1.655,2.67,19.889,MERC FY27 approved energy charge,,
+URAN_OPENCYCLE,"In-state IPPs, long term (Tiroda, SWPGL, Uran)",INTRASTATE LTA,GTPS Uran,70.299,1.562,5.23,36.766,MERC FY27 approved energy charge,,
+ACSEPL_BHADLA,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,69.53,1.545,2.67,18.564,MERC FY27 approved energy charge,,
+KORADI_U10,MSPGCL thermal,INTRASTATE GENERATION,Koradi - 8 to 10,68.761,1.528,3.38,23.241,MERC FY27 approved energy charge,72.41,3.649
+ARERJL,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,55.935,1.243,2.67,14.935,MERC FY27 approved energy charge,,
+GADARWARA,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,Gadarwara,50.468,1.122,4.35,21.953,MERC FY27 approved energy charge,,
+VIDARBHA MAEPL_Total,"In-state IPPs, medium/short term",INTRASTATE MTOA,Short term,47.153,1.048,5.5,25.934,MERC FY27 approved energy charge,,
+TPREL,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,44.722,0.994,2.67,11.941,MERC FY27 approved energy charge,,
+URAN_WHRP,MSPGCL gas (Uran),INTRASTATE GENERATION,GTPS Uran,44.171,0.982,5.23,23.102,MERC FY27 approved energy charge,44.171,0.0
+APL_Raipur_TPP,Inter-state IPPs (short/medium term),CENTRE,,44.054,0.979,5.5,24.229,MERC approved short-term rate (assumed; deal prices not published),,
+GANDHAR_CRF,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,Gandhar,42.868,0.953,12.0,51.442,MERC FY27 approved energy charge,,
+KAWAS_CRF,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,Kawas,42.175,0.937,12.0,50.61,MERC FY27 approved energy charge,,
+APTFPL_Bhadla,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,37.121,0.825,2.67,9.911,MERC FY27 approved energy charge,,
+MAHAN_ENERGEN_U1,Inter-state IPPs (short/medium term),CENTRE,,36.942,0.821,5.5,20.318,MERC approved short-term rate (assumed; deal prices not published),,
+GHATGHAR_2,Hydro,INTRASTATE GENERATION,Hydro,35.709,0.794,0.0,0.0,MERC FY27 approved energy charge,84.893,49.184
+OMSAIRAM SAPL_1,"In-state IPPs, medium/short term",INTRASTATE MTOA,Renewable - Bagasse based Co-gen,33.933,0.754,5.539,18.797,MERC FY27 approved energy charge,,
+HARYANA,Swap / banking with other states,CENTRE,,27.558,0.612,,,not priced,,
+VEDANTA_LIMITED_CG,Inter-state IPPs (short/medium term),CENTRE,,24.929,0.554,5.5,13.711,MERC approved short-term rate (assumed; deal prices not published),,
+KDPH,Hydro,INTRASTATE GENERATION,Hydro,22.593,0.502,0.0,0.0,MERC FY27 approved energy charge,23.113,0.521
+JPL_BHADRESHWAR_GJ,Inter-state IPPs (short/medium term),CENTRE,,20.807,0.462,5.5,11.444,MERC approved short-term rate (assumed; deal prices not published),,
+Exchange G-DAM,Exchange,G-DAM,,20.698,0.46,4.241,8.779,actual exchange clearing price by block,,
+JGSPL_S_FTG4,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,20.177,0.448,2.67,5.387,MERC FY27 approved energy charge,,
+ARTPL_BKN3,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,19.983,0.444,2.67,5.335,MERC FY27 approved energy charge,,
+SIMHAPURI,Inter-state IPPs (short/medium term),CENTRE,,18.757,0.417,5.5,10.317,MERC approved short-term rate (assumed; deal prices not published),,
+AWEK1L,Renewable contracts,CENTRE/GRTM_HPX/WIND,Renewable - Hybrid Inter,17.453,0.388,3.43,5.987,MERC FY27 approved energy charge,,
+BHIRA_U12,Hydro,INTRASTATE GENERATION,Hydro,17.417,0.387,0.0,0.0,MERC FY27 approved energy charge,18.102,0.685
+SANVIJAY,"In-state IPPs, medium/short term",INTRASTATE MTOA,Short term,14.681,0.326,5.5,8.075,MERC FY27 approved energy charge,,
+KTPREL_S_BKN3,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,14.48,0.322,2.67,3.866,MERC FY27 approved energy charge,,
+SRSL,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,14.04,0.312,5.538,7.776,MERC FY27 approved energy charge,14.04,0.0
+PENCH,"Central stations (NTPC, NPCIL, CGPL...)",CENTRE/ISGS,Pench,13.112,0.291,2.05,2.688,MERC FY27 approved energy charge,,
+SVVPL_HJRTPR_RJGR_W,Renewable contracts,CENTRE/GRTM_HPX/WIND,Renewable - Hybrid Inter,12.84,0.285,3.43,4.404,MERC FY27 approved energy charge,,
+JGSPL_W_FTG4,Renewable contracts,CENTRE/GRTM_HPX/WIND,Renewable - Hybrid Inter,12.392,0.275,3.43,4.251,MERC FY27 approved energy charge,,
+LMEL,"In-state IPPs, medium/short term",INTRASTATE STOA,Short term,12.165,0.27,5.501,6.692,MERC FY27 approved energy charge,,
+SHRI CHHATRAPATI SSKL BARAMATI_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,11.74,0.261,5.539,6.502,MERC FY27 approved energy charge,11.74,0.0
+BALIRAJA SKL_1,Small RE / co-gen / other,INTRASTATE GENERATION,,11.376,0.253,,,not priced,11.376,0.0
+Assam_Ben,Swap / banking with other states,CENTRE,,10.562,0.235,,,not priced,,
+MAEL_UP,Inter-state IPPs (short/medium term),CENTRE,,9.254,0.206,5.5,5.089,MERC approved short-term rate (assumed; deal prices not published),,
+MAHARASHTRA VNPL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,8.946,0.199,5.542,4.958,MERC FY27 approved energy charge,8.946,0.0
+JGSPL_BESS_FTG4,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,7.868,0.175,2.67,2.101,MERC FY27 approved energy charge,,
+RPSSKL,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,7.56,0.168,5.542,4.19,MERC FY27 approved energy charge,7.56,0.0
+LOKNETE SUNDERRAOJI SSSKL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,6.802,0.151,5.541,3.769,MERC FY27 approved energy charge,6.802,0.0
+LMEL_U2,"In-state IPPs, medium/short term",INTRASTATE STOA,Short term,6.167,0.137,5.502,3.393,MERC FY27 approved energy charge,,
+JAGRUTI SAIL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,5.4,0.12,5.542,2.993,MERC FY27 approved energy charge,5.4,0.0
+SOMESHWARSSK_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,4.607,0.102,5.54,2.552,MERC FY27 approved energy charge,4.607,0.0
+BARAMATI AL KANNAD_1,Small RE / co-gen / other,INTRASTATE GENERATION,,4.402,0.098,,,not priced,4.402,0.0
+SAIL,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,4.104,0.091,5.542,2.274,MERC FY27 approved energy charge,4.104,0.0
+RENUKA SL AJINKYA,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,4.032,0.09,5.542,2.234,MERC FY27 approved energy charge,4.032,0.0
+DAUND SPL_2,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,3.861,0.086,5.539,2.139,MERC FY27 approved energy charge,3.861,0.0
+TeqGreen_Wasi_klm_W,Renewable contracts,CENTRE/GRTM_HPX/WIND,Renewable - Hybrid Inter,3.521,0.078,3.43,1.208,MERC FY27 approved energy charge,,
+BSPHCL,Swap / banking with other states,CENTRE,,3.418,0.076,,,not priced,,
+DAUND SPL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,3.072,0.068,5.541,1.702,MERC FY27 approved energy charge,3.072,0.0
+CSEB_Beneficiary,Swap / banking with other states,CENTRE,,2.998,0.067,,,not priced,,
+IL_FS_BAROD_MP_S,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,2.768,0.062,2.671,0.739,MERC FY27 approved energy charge,,
+USTKWPCL,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,2.688,0.06,5.54,1.489,MERC FY27 approved energy charge,2.688,0.0
+RAJ_SOLAR,Inter-state IPPs (short/medium term),CENTRE,,2.307,0.051,5.499,1.269,MERC approved short-term rate (assumed; deal prices not published),,
+PONDY,Swap / banking with other states,CENTRE,,2.244,0.05,,,not priced,,
+SHAHU SSKL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,2.16,0.048,5.542,1.197,MERC FY27 approved energy charge,2.16,0.0
+YASHWANTRAO MKSSKL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,2.148,0.048,5.541,1.19,MERC FY27 approved energy charge,2.148,0.0
+ODISHA,Swap / banking with other states,CENTRE,,2.029,0.045,,,not priced,,
+BABURAO PATIL AIL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,1.978,0.044,5.54,1.096,MERC FY27 approved energy charge,1.978,0.0
+DRPATANGRAO KSSSKL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,1.776,0.039,5.541,0.984,MERC FY27 approved energy charge,1.776,0.0
+JSPL_DCPP,Inter-state IPPs (short/medium term),CENTRE,Renewable - Bagasse based Co-gen,1.733,0.039,5.54,0.96,MERC FY27 approved energy charge,,
+JSMPL_U1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,1.666,0.037,5.541,0.923,MERC FY27 approved energy charge,1.666,0.0
+UDAGIRI SAPL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,1.597,0.035,5.54,0.885,MERC FY27 approved energy charge,1.597,0.0
+SHRIPATI SAPL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,1.596,0.035,5.529,0.882,MERC FY27 approved energy charge,1.596,0.0
+MSEDCL_SOLAR,Small RE / co-gen / other,INTRASTATE GENERATION,,1.359,0.03,,,not priced,,
+SMSMPSSKL,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,1.307,0.029,5.539,0.724,MERC FY27 approved energy charge,1.307,0.0
+GKSEL,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.887,0.02,5.54,0.491,MERC FY27 approved energy charge,0.887,0.0
+RAJARAMBAPU PSSKL WT_U2,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.876,0.019,5.539,0.485,MERC FY27 approved energy charge,0.876,0.0
+ACL_PSS4_KPS1_W,Renewable contracts,CENTRE/GRTM_HPX/WIND,Renewable - Hybrid Inter,0.806,0.018,3.429,0.277,MERC FY27 approved energy charge,,
+VILAS SSKL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.792,0.018,5.538,0.439,MERC FY27 approved energy charge,0.792,0.0
+VAITARNA,Hydro,INTRASTATE GENERATION,Hydro,0.738,0.016,0.0,0.0,MERC FY27 approved energy charge,0.738,0.0
+JAYWANT SL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.708,0.016,5.541,0.392,MERC FY27 approved energy charge,0.708,0.0
+SIDDHANATH SML_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.552,0.012,5.542,0.306,MERC FY27 approved energy charge,0.552,0.0
+KTPREL_BESS_BKN3,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,0.513,0.011,2.68,0.138,MERC FY27 approved energy charge,,
+WBSEDCL,Swap / banking with other states,CENTRE,,0.469,0.01,,,not priced,,
+TSESOPL_BKN2,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,0.467,0.01,2.66,0.124,MERC FY27 approved energy charge,,
+USDPCL,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.403,0.009,5.541,0.223,MERC FY27 approved energy charge,0.403,0.0
+JSMPL_U2,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.383,0.009,5.54,0.212,MERC FY27 approved energy charge,0.383,0.0
+SHRI DUTT IPL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.378,0.008,5.595,0.212,MERC FY27 approved energy charge,0.378,0.0
+TILLARI,Hydro,INTRASTATE GENERATION,Hydro,0.37,0.008,0.0,0.0,MERC FY27 approved energy charge,0.415,0.044
+SASPL,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.336,0.007,5.539,0.186,MERC FY27 approved energy charge,0.336,0.0
+ITCWIND,Inter-state IPPs (short/medium term),CENTRE,,0.255,0.006,5.5,0.14,MERC approved short-term rate (assumed; deal prices not published),,
+KRANTI ADGDBLSSKL_1,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.143,0.003,5.54,0.08,MERC FY27 approved energy charge,0.143,0.0
+AG7PL_BESS_BKN3,Renewable contracts,CENTRE/GRTM_HPX/SOLAR,Renewable - Solar inter,0.12,0.003,2.667,0.032,MERC FY27 approved energy charge,,
+KRANTI ADGDBLSSKL_2,Small RE / co-gen / other,INTRASTATE GENERATION,Renewable - Bagasse based Co-gen,0.072,0.002,5.545,0.04,MERC FY27 approved energy charge,0.072,0.0
