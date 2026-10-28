@@ -1,0 +1,5 @@
+aspect,discom,producer
+Scarce at,The evening (17:00–23:00),The midday wire
+Deviation cost,Normal Rate × frequency multipliers; about ₹24/kWh in big-gap evening blocks,Its own sale rate; real penalty about ₹0.002/kWh
+Day-ahead market,"Rationed at the ₹10 cap in the evening, 1.4% of bids filled","Sells at ₹1.4–2 at midday, about 21% curtailed"
+What would fix it,"Evening capacity: batteries at about ₹6.5/kWh delivered",Storage behind the meter; the 2027 transmission corridor

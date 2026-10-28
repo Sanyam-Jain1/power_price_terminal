@@ -1,0 +1,5 @@
+period,revenue_cr,ebitda_cr,energy_mu,revenue_rs_kwh,solar_cuf_pct,wind_cuf_pct,solar_grid_availability_pct,curtailment_ebitda_cr,flag
+FY26,11602,10865,37567,3.09,24.0,26.6,86.9,500,P
+Q1 FY27,4280,4122,13657,3.13,25.3,44.4,80.6,,P
+Q2 FY27,4019,3835,12090,3.32,,,,,P
+H1 FY27,8299,7957,25747,3.22,22.9,42.9,78.9,724,P

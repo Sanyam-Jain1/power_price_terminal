@@ -1,0 +1,49 @@
+metric,value,window
+days,196.0,6 Apr – 18 Oct 2026
+ps1_mu,9476.867,6 Apr – 18 Oct 2026
+ps1_mu_day,48.351,6 Apr – 18 Oct 2026
+ps3_mu,3687.595,6 Apr – 18 Oct 2026
+ps3_mu_day,18.814,6 Apr – 18 Oct 2026
+ps1_capacity,7559.79,median available capacity
+ps3_capacity,2582.8,median available capacity
+ps1_cuf,26.649,6 Apr – 18 Oct 2026
+ps3_cuf,30.352,6 Apr – 18 Oct 2026
+ps1_night,14.342,19:00–06:00
+ps3_night,31.596,19:00–06:00
+ps1_capture,62.0,output-weighted ÷ time-average day-ahead price
+ps3_capture,84.4,output-weighted ÷ time-average day-ahead price
+ps1_rate,3.652,WRPC settlement rate
+ps3_rate,5.948,WRPC settlement rate
+potential_gwh,12327.313,"PS1, estimate"
+curtailed_gwh,2540.497,"PS1, estimate"
+curtailed_pct,20.609,"PS1, estimate"
+curtailed_value_dam,560.726,at each block's day-ahead price
+curtailed_value_seci,614.8,at the ₹2.42 SECI tariff
+ceiling_low,3659.677,"PS1 highest daily schedule, Jun–Oct, 10th percentile"
+ceiling_high,4378.203,"PS1 highest daily schedule, Jun–Oct, 90th percentile"
+april_peak_sched,5836.41,PS1 highest schedule in April
+ps1_dsm,152.981,net received
+ps3_dsm,-138.445,net
+ps1_at_rate,155.257,deviation × own rate
+ps1_penalty,2.276,real penalty
+ps1_penalty_kwh,0.002,₹/kWh of output
+ps1_over_gwh,732.609,over-injected
+ps1_under_gwh,372.94,under-injected
+wrpc_cost_to_others,263.316,all WRPC wind/solar sellers
+ps1_evening_mw,1041.606,PS1 average output 18:00–23:00
+ps1_midday_dam,1.481,day-ahead 10:00–14:00
+ps1_evening_dam,8.758,day-ahead 18:00–23:00
+ps1_night_rate_max,10.635,highest hourly settlement rate
+band1_mw,1133.968,"first deviation band of the 2015-era tiers, 15% of PS1 available capacity"
+fit_threshold_pct,45.0,peer solar output below this share of capacity is treated as unconstrained
+plant_min_mu,50.0,plants below this output are left out of the comparison
+rte_pct,88.0,battery round-trip efficiency assumed
+wear_rs_mwh,300.0,"battery wear cost assumed, per MWh discharged"
+agel_merchant_rs_kwh,2.4,"AGEL merchant price, Q2 FY27 call"
+agel_h1_rs_kwh,3.22,"AGEL revenue per kWh, H1 FY27"
+agel_h1_curtail_cr,724.0,"AGEL EBITDA lost to curtailment, H1 FY27"
+agel_solar_grid_avail,78.9,"AGEL solar grid availability, H1 FY27"
+khavda_mw,10752.0,"Khavda operating capacity, 30 Sep 2026"
+khavda_bess_mwh,6632.0,"Khavda battery capacity, 30 Sep 2026"
+ps1_gna_mw,3525.0,"PS1 grid access from Jul 2026, WRPC RTDA"
+msedcl_evening_dsm,24.25,"MSEDCL deviation price in big-gap evening blocks, research/msedcl"

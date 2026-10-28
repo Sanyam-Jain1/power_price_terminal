@@ -1,0 +1,5 @@
+technology,energy_twh,dam_rs_mwh,gdam_rs_mwh,rtm_rs_mwh,dam_capture_pct
+Time-weighted market average,,7269,7305,6698,100
+Solar,1.10,3621,3542,3321,50
+Wind,0.76,6524,6695,5832,90
+Hybrid,0.38,5544,5641,4966,76

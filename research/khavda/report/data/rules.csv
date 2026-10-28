@@ -1,0 +1,11 @@
+regime,band,band_low_pct,band_high_pct,over_injection_paid_pct,under_injection_charged_pct,applies_to
+2015-era tiers (court-protected),1,0,15,100,100,"Adani Khavda aggregators and about 30 other WRPC wind/solar entities"
+2015-era tiers (court-protected),2,15,25,90,110,"Adani Khavda aggregators and about 30 other WRPC wind/solar entities"
+2015-era tiers (court-protected),3,25,35,80,120,"Adani Khavda aggregators and about 30 other WRPC wind/solar entities"
+2015-era tiers (court-protected),4,35,,70,130,"Adani Khavda aggregators and about 30 other WRPC wind/solar entities"
+DSM 2024 from 1 Apr 2026: solar and hybrid,1,0,5,100,100,"About 7 WRPC entities (GSECL, GIPCL, CIL, SGEL, MRPL)"
+DSM 2024 from 1 Apr 2026: solar and hybrid,2,5,10,90,110,"About 7 WRPC entities (GSECL, GIPCL, CIL, SGEL, MRPL)"
+DSM 2024 from 1 Apr 2026: solar and hybrid,3,10,,0,200,"About 7 WRPC entities (GSECL, GIPCL, CIL, SGEL, MRPL)"
+DSM 2024 from 1 Apr 2026: wind,1,0,10,100,100,AVGJC
+DSM 2024 from 1 Apr 2026: wind,2,10,15,90,110,AVGJC
+DSM 2024 from 1 Apr 2026: wind,3,15,,0,200,AVGJC

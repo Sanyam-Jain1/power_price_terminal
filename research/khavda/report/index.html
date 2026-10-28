@@ -1,0 +1,654 @@
+<meta name="dash-one-writer">
+<style>
+  #dash-root { --pl-measure: 72ch; }
+  .pl { font-family: var(--font-anthropic-sans); color: var(--color-fg); display: grid; gap: var(--cds-gap-xl); max-width: 1180px; margin-inline: auto; }
+  .pl-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .pl-lede { font-size: var(--cds-font-size-body); max-width: var(--pl-measure); line-height: 1.55; margin: var(--cds-gap-sm) 0 0; }
+  .pl-lede b, .pl-prose b, .pl-list b, .pl-steps b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pl-nav { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-sm); margin-top: var(--cds-gap-md); font-size: var(--cds-font-size-caption); }
+  .pl-nav a { color: var(--color-fg-muted); text-decoration: none; border: 1px solid var(--color-border-line); border-radius: 999px; padding: 2px 10px; }
+  .pl-nav a:hover, .pl-nav a:focus-visible { color: var(--color-fg); border-color: var(--color-fg-muted); }
+  .pl-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); }
+  .pl-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: grid; gap: 2px; align-content: start; }
+  .pl-tile .k { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .pl-tile .n { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.15; }
+  .pl-tile .n small { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-left: 4px; }
+  .pl-tile .w { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .pl-sec { display: grid; gap: var(--cds-gap-md); scroll-margin-top: 12px; }
+  .pl-sec > h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; padding-top: var(--cds-gap-md); border-top: 1px solid var(--color-border-line); text-wrap: balance; }
+  .pl-prose { max-width: var(--pl-measure); line-height: 1.55; font-size: var(--cds-font-size-body); margin: 0; }
+  .pl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); }
+  .pl-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; display: grid; gap: var(--cds-gap-sm); align-content: start; }
+  .pl-card h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .pl-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; line-height: 1.45; }
+  .pl-note b { font-weight: 600; }
+  .pl-chart { position: relative; min-height: 240px; }
+  .pl-chart.tall { min-height: 320px; }
+  .pl-chart svg { display: block; overflow: visible; }
+  .pl-chart text { fill: var(--color-fg-muted); font-size: 11px; font-family: var(--font-anthropic-sans); }
+  .pl-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); list-style: none; margin: 0; padding: 0; }
+  .pl-legend li { display: inline-flex; align-items: center; gap: 6px; }
+  .pl-sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; flex: none; background: var(--cds-chart-muted); }
+  .pl-sw.line { height: 2px; width: 14px; border-radius: 0; }
+  .pl-sw.dash { height: 0; width: 14px; border-top: 2px dashed var(--color-fg-muted); background: none; border-radius: 0; }
+  .pl-tip { position: absolute; z-index: 5; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); min-width: 10rem; max-width: 18rem; display: grid; gap: 2px; }
+  .pl-tip-h { color: var(--cds-text-secondary); }
+  .pl-tip-r { display: grid; grid-template-columns: auto 1fr auto; gap: 6px; align-items: center; }
+  .pl-tip-r b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pl-scroll { max-height: 26rem; overflow: auto; border-radius: var(--cds-radius); }
+  .pl-scroll.short { max-height: 20rem; }
+  .pl-tbl { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .pl-tbl th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); vertical-align: bottom; }
+  .pl-tbl td { padding: 5px 8px; border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .pl-tbl .r { text-align: right; }
+  .pl-tbl th button { all: unset; cursor: pointer; }
+  .pl-tbl th button:focus-visible { outline: 2px solid var(--color-fg-muted); outline-offset: 2px; }
+  .pl-tbl a { color: inherit; word-break: break-all; }
+  .pl-tbl tr.hl td { background: color-mix(in srgb, var(--color-panel) 80%, var(--color-fg) 6%); font-weight: 600; }
+  .pl-tools { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+  .pl-tools input { font: inherit; font-size: var(--cds-font-size-caption); padding: 4px 8px; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); min-width: 12rem; }
+  .pl-list { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; line-height: 1.5; max-width: var(--pl-measure); }
+  .pl-steps { margin: 0; padding-left: 1.2rem; display: grid; gap: var(--cds-gap-sm); max-width: var(--pl-measure); line-height: 1.5; }
+  .pl-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--cds-gap-sm); }
+  .pl-flow > div { border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md); display: grid; gap: 4px; align-content: start; font-size: var(--cds-font-size-caption); line-height: 1.45; }
+  .pl-flow h4 { margin: 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  .pl-fail { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .pl-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+</style>
+
+<div class="pl">
+  <header class="pl-head" id="top">
+    <h1>Khavda Producer Ledger</h1>
+    <p class="pl-lede">Adani Green's Khavda park in Kutch is the largest renewable site in the world: <b data-draw="v" data-source="headline" data-where="metric=khavda_mw" data-field="value" data-fmt="int">—</b> MW and <b data-draw="v" data-source="headline" data-where="metric=khavda_bess_mwh" data-field="value" data-fmt="int">—</b> MWh of batteries at the end of September. Over <b data-draw="v" data-source="headline" data-where="metric=days" data-field="value" data-fmt="int">—</b> days from 6 April to 18 October its main grid connection, PS1, produced <b data-draw="v" data-source="headline" data-where="metric=ps1_mu_day" data-field="value" data-fmt="one">—</b> MU a day from about <b data-draw="v" data-source="headline" data-where="metric=ps1_capacity" data-field="value" data-fmt="int">—</b> MW. It was held back to a ceiling of roughly <b data-draw="v" data-source="headline" data-where="metric=ceiling_low" data-field="value" data-fmt="int">—</b>–<b data-draw="v" data-source="headline" data-where="metric=ceiling_high" data-field="value" data-fmt="int">—</b> MW at midday, and lost an estimated <b data-draw="v" data-source="headline" data-where="metric=curtailed_pct" data-field="value" data-fmt="int">—</b>% of what it could have made. It sells at <b data-draw="v" data-source="headline" data-where="metric=ps1_midday_dam" data-field="value" data-fmt="two">—</b> ₹/kWh at noon, while the evening market pays <b data-draw="v" data-source="headline" data-where="metric=ps1_evening_dam" data-field="value" data-fmt="two">—</b> and its transmission line sits half empty.</p>
+    <nav class="pl-nav" aria-label="Sections">
+      <a href="#park">The park and its buyers</a><a href="#output">What it produced</a><a href="#curtail">Curtailment</a><a href="#day">One day, block by block</a><a href="#price">What a unit earns</a><a href="#dsm">Deviation charges</a><a href="#peers">Every renewable plant in WRPC</a><a href="#storage">Battery behind the bottleneck</a><a href="#both">Discom and producer</a><a href="#timeline">Events</a><a href="#method">Method and gaps</a>
+    </nav>
+  </header>
+
+  <section class="pl-tiles" id="headline" aria-label="Headline figures">
+    <div class="pl-tile"><span class="k">PS1 output a day</span><span class="n"><span data-draw="v" data-source="headline" data-where="metric=ps1_mu_day" data-field="value" data-fmt="one">—</span><small>MU</small></span><span class="w"><span data-draw="v" data-source="headline" data-where="metric=ps1_mu" data-field="value" data-fmt="int">—</span> MU in <span data-draw="v" data-source="headline" data-where="metric=days" data-field="value" data-fmt="int">—</span> days</span></div>
+    <div class="pl-tile"><span class="k">PS1 capacity factor</span><span class="n"><span data-draw="v" data-source="headline" data-where="metric=ps1_cuf" data-field="value" data-fmt="one">—</span><small>%</small></span><span class="w">on <span data-draw="v" data-source="headline" data-where="metric=ps1_capacity" data-field="value" data-fmt="int">—</span> MW available</span></div>
+    <div class="pl-tile"><span class="k">Output lost to curtailment</span><span class="n"><span data-draw="v" data-source="headline" data-where="metric=curtailed_gwh" data-field="value" data-fmt="int">—</span><small>GWh</small></span><span class="w"><span data-draw="v" data-source="headline" data-where="metric=curtailed_pct" data-field="value" data-fmt="one">—</span>% of potential, estimate</span></div>
+    <div class="pl-tile"><span class="k">Value of lost output</span><span class="n">₹<span data-draw="v" data-source="headline" data-where="metric=curtailed_value_dam" data-field="value" data-fmt="int">—</span><small>crore</small></span><span class="w">₹<span data-draw="v" data-source="headline" data-where="metric=curtailed_value_seci" data-field="value" data-fmt="int">—</span> crore at the SECI tariff</span></div>
+    <div class="pl-tile"><span class="k">Midday price captured</span><span class="n"><span data-draw="v" data-source="headline" data-where="metric=ps1_capture" data-field="value" data-fmt="int">—</span><small>%</small></span><span class="w">of the average day-ahead price</span></div>
+    <div class="pl-tile"><span class="k">Real deviation penalty</span><span class="n">₹<span data-draw="v" data-source="headline" data-where="metric=ps1_penalty_kwh" data-field="value" data-fmt="three">—</span><small>/kWh</small></span><span class="w">MSEDCL paid ₹<span data-draw="v" data-source="headline" data-where="metric=msedcl_evening_dsm" data-field="value" data-fmt="two">—</span> in the evening</span></div>
+  </section>
+
+  <section class="pl-sec" id="park">
+    <h2>The park, and who buys its power</h2>
+    <p class="pl-prose">Khavda sits on a vast stretch of salt desert near the Pakistan border. Adani Green Energy (AGEL) builds and owns almost all of it, through a family of project companies, plus some plants it built for its own group companies, Ambuja Cements and Adani Ports. The plants feed three Khavda pooling stations of the inter-state grid. In the Western Regional Power Committee's data two Adani aggregators speak for them: <b>PS1</b>, mostly solar, and <b>PS3</b>, with more wind. An aggregator schedules all its members' plants as one and settles their deviations together.</p>
+    <div class="pl-grid">
+      <div class="pl-card">
+        <h3>Khavda operating capacity, MW</h3>
+        <p class="pl-note">AGEL's own capacity plus what it built for group companies. Hover for batteries and AGEL's company-wide total.</p>
+        <div class="pl-chart" id="park-cap" data-draw="park-cap" data-source="capacity"></div>
+      </div>
+      <div class="pl-card">
+        <h3>How AGEL's energy was sold, MU</h3>
+        <p class="pl-note">Company-wide. Infirm means a plant whose PPA is signed but whose supply has not started, so its output goes to the exchanges.</p>
+        <ul class="pl-legend"><li><i class="pl-sw" data-c="0"></i>Long-term PPAs</li><li><i class="pl-sw" data-c="1"></i>PTSL and private buyers</li><li><i class="pl-sw" data-c="2"></i>Infirm and merchant</li></ul>
+        <div class="pl-chart" id="sales-mix" data-draw="sales-mix" data-source="sales_mix"></div>
+      </div>
+    </div>
+    <div class="pl-card">
+      <h3>Who buys Khavda's capacity, and at what tariff</h3>
+      <p class="pl-note">From AGEL's Q2 FY27 asset list and CERC orders. PTSL is a subsidiary of Adani Energy Solutions, so these sales are to a related party. SECI is a central intermediary that resells to state discoms, adding a margin.</p>
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="offtake-table" data-source="offtake" data-row-key="buyer,technology">
+          <thead><tr><th data-field="buyer">Buyer</th><th data-field="technology">Technology</th><th class="r" data-field="mw">MW operating</th><th class="r" data-field="mw_in_process">MW in process</th><th class="r" data-field="tariff_low">Tariff from, ₹/kWh</th><th class="r" data-field="tariff_high">to</th><th data-field="end_buyer">Who ends up paying</th><th data-field="status">Status</th><th data-field="flag">Flag</th></tr></thead>
+          <tbody data-draw="tbl-offtake"></tbody>
+        </table>
+      </div>
+    </div>
+    <p class="pl-prose">The pattern that matters: much of the SECI capacity is still <b>infirm</b>. Supply under the PPA can only start once the plant has grid access and its transmission is built, and Khavda has neither in full. Until then those units go to the power exchanges, where AGEL says it realised about ₹<b data-draw="v" data-source="headline" data-where="metric=agel_merchant_rs_kwh" data-field="value" data-fmt="two">—</b>/kWh in Q2 FY27. Across the company AGEL earned ₹<b data-draw="v" data-source="headline" data-where="metric=agel_h1_rs_kwh" data-field="value" data-fmt="two">—</b>/kWh in the first half of FY27.</p>
+    <div class="pl-card">
+      <h3>AGEL results</h3>
+      <p class="pl-note">Whole company, from its investor decks and call transcripts. Solar grid availability counts output lost when the grid operator cuts solar plants.</p>
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="results-table" data-source="results" data-row-key="period">
+          <thead><tr><th data-field="period">Period</th><th class="r" data-field="revenue_cr">Power revenue, ₹ crore</th><th class="r" data-field="ebitda_cr">EBITDA, ₹ crore</th><th class="r" data-field="energy_mu">Energy sold, MU</th><th class="r" data-field="revenue_rs_kwh">₹/kWh</th><th class="r" data-field="solar_cuf_pct">Solar CUF %</th><th class="r" data-field="wind_cuf_pct">Wind CUF %</th><th class="r" data-field="solar_grid_availability_pct">Solar grid availability %</th><th class="r" data-field="curtailment_ebitda_cr">EBITDA lost to curtailment, ₹ crore</th></tr></thead>
+          <tbody data-draw="tbl-results"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="output">
+    <h2>What it produced</h2>
+    <p class="pl-prose">WRPC's weekly files give every quarter-hour block: what PS1 actually injected, what it was scheduled to inject, its available capacity, and the rate used to settle the difference. PS1 ran at a <b data-draw="v" data-source="headline" data-where="metric=ps1_cuf" data-field="value" data-fmt="one">—</b>% capacity factor and made only <b data-draw="v" data-source="headline" data-where="metric=ps1_night" data-field="value" data-fmt="int">—</b>% of its energy at night; PS3, with more wind, made <b data-draw="v" data-source="headline" data-where="metric=ps3_night" data-field="value" data-fmt="int">—</b>% at night and ran at <b data-draw="v" data-source="headline" data-where="metric=ps3_cuf" data-field="value" data-fmt="one">—</b>%. Together they produced <b data-draw="v" data-source="headline" data-where="metric=ps1_mu" data-field="value" data-fmt="int">—</b> and <b data-draw="v" data-source="headline" data-where="metric=ps3_mu" data-field="value" data-fmt="int">—</b> MU.</p>
+    <div class="pl-card">
+      <h3>An average day at PS1, MW</h3>
+      <p class="pl-note">Hourly average over the whole window. Potential is the estimate of what the plants could have made if nothing held them back (see Method).</p>
+      <ul class="pl-legend"><li><i class="pl-sw line" data-c="3"></i>Potential</li><li><i class="pl-sw line" data-c="0"></i>Actual</li><li><i class="pl-sw dash"></i>Scheduled</li></ul>
+      <div class="pl-chart tall" id="hourly-profile" data-draw="hourly-profile" data-source="hourly"></div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="curtail">
+    <h2>Curtailment: the wire is the limit</h2>
+    <p class="pl-prose">In April, PS1's highest schedule of the day reached <b data-draw="v" data-source="headline" data-where="metric=april_peak_sched" data-field="value" data-fmt="int">—</b> MW. From June it barely moved, topping out between <b data-draw="v" data-source="headline" data-where="metric=ceiling_low" data-field="value" data-fmt="int">—</b> and <b data-draw="v" data-source="headline" data-where="metric=ceiling_high" data-field="value" data-fmt="int">—</b> MW on nine days in ten, though its available capacity stayed near <b data-draw="v" data-source="headline" data-where="metric=ps1_capacity" data-field="value" data-fmt="int">—</b> MW and nearby solar plants ran near full output at noon. The reason is grid access. WRLDC grants the PS1 aggregator only <b data-draw="v" data-source="headline" data-where="metric=ps1_gna_mw" data-field="value" data-fmt="int">—</b> MW of access, and the Phase III transmission corridor that would give AGEL its full access has slipped to January–March 2027. Injection above the access quantity is billed separately at the transmission rate.</p>
+    <div class="pl-card">
+      <h3>PS1 each day: the highest block it was scheduled for, and the highest it injected, MW</h3>
+      <p class="pl-note">The flat line from June is the evacuation ceiling. Grid access per WRPC's monthly transmission deviation statements.</p>
+      <ul class="pl-legend"><li><i class="pl-sw line" data-c="0"></i>Highest schedule</li><li><i class="pl-sw line" data-c="1"></i>Highest output</li><li><i class="pl-sw line" data-c="3"></i>Available capacity</li><li><i class="pl-sw dash"></i>Grid access (GNA)</li></ul>
+      <div class="pl-chart tall" id="daily-ceiling" data-draw="daily-ceiling" data-source="daily monthly"></div>
+    </div>
+    <div class="pl-grid">
+      <div class="pl-card">
+        <h3>PS1 energy by month, GWh</h3>
+        <p class="pl-note">Actual output plus the estimated curtailed output on top. April starts on the 6th, October ends on the 18th.</p>
+        <ul class="pl-legend"><li><i class="pl-sw" data-c="0"></i>Actual</li><li><i class="pl-sw" data-crit="1"></i>Curtailed, estimate</li></ul>
+        <div class="pl-chart" id="monthly-curt" data-draw="monthly-curt" data-source="monthly"></div>
+      </div>
+      <div class="pl-card">
+        <h3>Injection above grid access, billed by WRPC</h3>
+        <p class="pl-note">From the monthly transmission deviation statements.</p>
+        <div class="pl-scroll short">
+          <table class="pl-tbl" id="gna-table" data-source="gna" data-row-key="billing_month">
+            <thead><tr><th data-field="billing_month">Month</th><th class="r" data-field="ps1_gna_mw">PS1 access, MW</th><th class="r" data-field="ps1_above_gna_mwh">PS1 above access, MWh</th><th class="r" data-field="ps1_above_gna_rs_lakh">₹ lakh</th><th class="r" data-field="ps3_gna_mw">PS3 access, MW</th><th class="r" data-field="ps3_above_gna_mwh">PS3 above, MWh</th><th class="r" data-field="ps3_above_gna_rs_lakh">₹ lakh</th></tr></thead>
+            <tbody data-draw="tbl-gna"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="pl-card">
+      <h3>PS1 month by month</h3>
+      <p class="pl-note">Potential and curtailed are estimates. Value is the curtailed energy at each block's day-ahead price. Settlement rate is the rate WRPC applied to PS1's deviations.</p>
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="monthly-table" data-source="monthly" data-row-key="month">
+          <thead><tr><th data-field="month">Month</th><th class="r" data-field="capacity_mw">Available MW</th><th class="r" data-field="max_schedule_mw">Highest schedule, MW</th><th class="r" data-field="potential_gwh">Potential, GWh</th><th class="r" data-field="actual_gwh">Actual, GWh</th><th class="r" data-field="curtailed_gwh">Curtailed, GWh</th><th class="r" data-field="curtailed_share">Share</th><th class="r" data-field="curtailed_value_cr">Value, ₹ crore</th><th class="r" data-field="sale_rate_rs_kwh">Settlement rate, ₹/kWh</th><th class="r" data-field="dam_time_avg_rs_kwh">Day-ahead average, ₹/kWh</th></tr></thead>
+          <tbody data-draw="tbl-monthly"></tbody>
+        </table>
+      </div>
+    </div>
+    <p class="pl-prose">The estimate puts the loss at <b data-draw="v" data-source="headline" data-where="metric=curtailed_gwh" data-field="value" data-fmt="int">—</b> GWh, <b data-draw="v" data-source="headline" data-where="metric=curtailed_pct" data-field="value" data-fmt="one">—</b>% of PS1's potential, worth ₹<b data-draw="v" data-source="headline" data-where="metric=curtailed_value_dam" data-field="value" data-fmt="int">—</b>–<b data-draw="v" data-source="headline" data-where="metric=curtailed_value_seci" data-field="value" data-fmt="int">—</b> crore. AGEL's own numbers point the same way: solar grid availability of <b data-draw="v" data-source="headline" data-where="metric=agel_solar_grid_avail" data-field="value" data-fmt="one">—</b>% in H1 FY27, and about ₹<b data-draw="v" data-source="headline" data-where="metric=agel_h1_curtail_cr" data-field="value" data-fmt="int">—</b> crore of EBITDA lost to curtailment, company-wide but mostly at Khavda. Its PPAs compensate only power that was scheduled and then cut. Power that could never be scheduled because the plant had no access earns nothing.</p>
+  </section>
+
+  <section class="pl-sec" id="day">
+    <h2>One clear day, block by block</h2>
+    <p class="pl-prose">On 10 October the sun was strong all day. PS1's output climbs at sunrise, hits the ceiling by mid-morning and stays flat until mid-afternoon, tracking its schedule almost exactly, while the potential keeps rising. That flat top is energy being thrown away. At the same hours the day-ahead price fell to its lowest of the day, then climbed to the cap after sunset, when PS1 had only its wind left to sell.</p>
+    <div class="pl-grid">
+      <div class="pl-card">
+        <h3>PS1 on 10 October 2026, MW per block</h3>
+        <ul class="pl-legend"><li><i class="pl-sw line" data-c="3"></i>Potential</li><li><i class="pl-sw line" data-c="0"></i>Actual</li><li><i class="pl-sw dash"></i>Scheduled</li></ul>
+        <div class="pl-chart tall" id="sample-day" data-draw="sample-day" data-source="sample_day"></div>
+      </div>
+      <div class="pl-card">
+        <h3>Day-ahead price the same day, ₹/kWh</h3>
+        <div class="pl-chart tall" id="sample-price" data-draw="sample-price" data-source="sample_day"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="price">
+    <h2>What a unit earns</h2>
+    <p class="pl-prose">Solar's problem is that every solar plant in India produces at the same hours. PS1's output, weighted block by block, captures only <b data-draw="v" data-source="headline" data-where="metric=ps1_capture" data-field="value" data-fmt="int">—</b>% of the time-average day-ahead price; PS3 with its wind captures <b data-draw="v" data-source="headline" data-where="metric=ps3_capture" data-field="value" data-fmt="int">—</b>%. WRPC also records the rate it settles each plant's deviations at. For a plant on a PPA that is its tariff. For a seller on the exchanges it is the price its sales cleared at, averaged across its deals in that block. For PS1 it averaged ₹<b data-draw="v" data-source="headline" data-where="metric=ps1_rate" data-field="value" data-fmt="two">—</b>/kWh and peaked at ₹<b data-draw="v" data-source="headline" data-where="metric=ps1_night_rate_max" data-field="value" data-fmt="two">—</b> at night. That rate overstates AGEL's income, because group-company captive supply inside the aggregator is settled at the exchange price by rule; AGEL books ₹<b data-draw="v" data-source="headline" data-where="metric=agel_h1_rs_kwh" data-field="value" data-fmt="two">—</b>.</p>
+    <div class="pl-grid">
+      <div class="pl-card">
+        <h3>Price by hour at PS1, ₹/kWh</h3>
+        <p class="pl-note">Hourly averages over the window.</p>
+        <ul class="pl-legend"><li><i class="pl-sw line" data-c="0"></i>WRPC settlement rate for PS1</li><li><i class="pl-sw line" data-c="5"></i>Day-ahead price</li></ul>
+        <div class="pl-chart" id="hourly-price" data-draw="hourly-price" data-source="hourly"></div>
+      </div>
+      <div class="pl-card">
+        <h3>Price capture by technology, 24 Aug – 18 Oct</h3>
+        <p class="pl-note">Every WRPC wind, solar and hybrid seller, output weighted, all-India IEX prices, ₹/MWh.</p>
+        <table class="pl-tbl" id="capture-table" data-source="capture_tech" data-row-key="technology">
+          <thead><tr><th data-field="technology">Technology</th><th class="r" data-field="energy_twh">TWh</th><th class="r" data-field="dam_rs_mwh">Day-ahead</th><th class="r" data-field="gdam_rs_mwh">Green day-ahead</th><th class="r" data-field="rtm_rs_mwh">Real-time</th><th class="r" data-field="dam_capture_pct">Capture %</th></tr></thead>
+          <tbody data-draw="tbl-capture"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="dsm">
+    <h2>Deviation charges: almost free for a renewable seller</h2>
+    <p class="pl-prose">A discom or a coal plant that deviates from its schedule settles at the Normal Rate, the highest of the day-ahead and real-time prices, multiplied up when the grid frequency is low. A wind or solar seller settles at <b>its own rate</b>: its PPA tariff, or the price its exchange sales cleared at. Within the first band, under-injection is simply bought back at the price it was sold at, and over-injection is paid at it. Adani's aggregators, like most other WRPC renewable entities, are still settled on the older 2015-era tiers, apparently under court protection. The first band there works out to about <b data-draw="v" data-source="headline" data-where="metric=band1_mw" data-field="value" data-fmt="int">—</b> MW for PS1, more than its whole night-time output.</p>
+    <div class="pl-card">
+      <h3>The settlement tiers in use</h3>
+      <p class="pl-note">Percent of available capacity; charges as a percent of the seller's own rate. Fitted block by block from WRPC's payable and receivable columns, and from the CERC regulations.</p>
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="rules-table" data-source="rules" data-row-key="regime,band">
+          <thead><tr><th data-field="regime">Regime</th><th class="r" data-field="band">Band</th><th class="r" data-field="band_low_pct">From %</th><th class="r" data-field="band_high_pct">To %</th><th class="r" data-field="over_injection_paid_pct">Over-injection paid at %</th><th class="r" data-field="under_injection_charged_pct">Under-injection charged at %</th><th data-field="applies_to">Applies to</th></tr></thead>
+          <tbody data-draw="tbl-rules"></tbody>
+        </table>
+      </div>
+    </div>
+    <p class="pl-prose">So PS1 <b>received</b> a net ₹<b data-draw="v" data-source="headline" data-where="metric=ps1_dsm" data-field="value" data-fmt="int">—</b> crore in deviation charges. It over-injected <b data-draw="v" data-source="headline" data-where="metric=ps1_over_gwh" data-field="value" data-fmt="int">—</b> GWh and under-injected <b data-draw="v" data-source="headline" data-where="metric=ps1_under_gwh" data-field="value" data-fmt="int">—</b> GWh, mostly at night when its rate is high. Of that, ₹<b data-draw="v" data-source="headline" data-where="metric=ps1_at_rate" data-field="value" data-fmt="int">—</b> crore is simply energy priced at its own rate. The real penalty, what it paid beyond its own price, was ₹<b data-draw="v" data-source="headline" data-where="metric=ps1_penalty" data-field="value" data-fmt="one">—</b> crore on <b data-draw="v" data-source="headline" data-where="metric=ps1_mu" data-field="value" data-fmt="int">—</b> MU: ₹<b data-draw="v" data-source="headline" data-where="metric=ps1_penalty_kwh" data-field="value" data-fmt="three">—</b>/kWh. PS3 paid a net ₹<b data-draw="v" data-source="headline" data-where="metric=ps3_dsm" data-field="value" data-fmt="abs">—</b> crore, again almost all of it energy at its own rate.</p>
+    <div class="pl-card">
+      <h3>PS1 deviation money by hour, ₹ crore over the window</h3>
+      <p class="pl-note">Above zero: received. The part that is energy at its own rate, and the real penalty beyond it.</p>
+      <ul class="pl-legend"><li><i class="pl-sw" data-c="0"></i>Energy at its own rate</li><li><i class="pl-sw" data-crit="1"></i>Penalty beyond its own rate</li></ul>
+      <div class="pl-chart" id="dsm-hourly" data-draw="dsm-hourly" data-source="hourly"></div>
+    </div>
+    <p class="pl-prose">The cheap regime has a cost, and someone else pays it. When a PPA wind plant falls short at 19:00 it pays its own low tariff for energy the grid replaces at the Normal Rate. Summed over every WRPC renewable seller, the Normal Rate minus the seller's rate on its shortfalls, less the same on its surpluses, comes to ₹<b data-draw="v" data-source="headline" data-where="metric=wrpc_cost_to_others" data-field="value" data-fmt="int">—</b> crore in <b data-draw="v" data-source="headline" data-where="metric=days" data-field="value" data-fmt="int">—</b> days. New projects bid from 2027 will be settled like any other seller; existing plants keep the cheap regime.</p>
+  </section>
+
+  <section class="pl-sec" id="peers">
+    <h2>Every renewable plant in WRPC</h2>
+    <p class="pl-prose">The same files cover every ISTS-connected wind, solar and hybrid seller in western India. Grouped by how they sell, plants on the market earned far more per MW than plants locked into PPAs this year, mostly because wind sells into the night, when the day-ahead market is rationed at its cap.</p>
+    <div class="pl-card">
+      <h3>PPA plants against market plants, medians</h3>
+      <p class="pl-note">Plants with more than <span data-draw="v" data-source="headline" data-where="metric=plant_min_mu" data-field="value" data-fmt="int">—</span> MU over the window. Revenue at the settlement rate times scheduled energy.</p>
+      <table class="pl-tbl" id="basis-table" data-source="by_basis" data-row-key="basis">
+        <thead><tr><th data-field="basis">How it sells</th><th class="r" data-field="plants">Plants</th><th class="r" data-field="sale_rate_rs_kwh">Rate, ₹/kWh</th><th class="r" data-field="revenue_lakh_per_mw_month">Revenue, ₹ lakh/MW/month</th><th class="r" data-field="capture">Day-ahead capture</th><th class="r" data-field="abs_deviation_pct">Absolute deviation, % of schedule</th><th class="r" data-field="penalty_rs_kwh">Real penalty, ₹/kWh</th></tr></thead>
+        <tbody data-draw="tbl-basis"></tbody>
+      </table>
+    </div>
+    <div class="pl-card">
+      <h3>Every plant</h3>
+      <p class="pl-note">WRPC entity codes. Cost to others is the Normal Rate minus the plant's own rate on its shortfalls, net of its surpluses. Sort by any column; search by name.</p>
+      <div class="pl-tools"><input id="pl-plant-q" type="search" placeholder="Search plants" aria-label="Search plants"></div>
+      <div class="pl-scroll">
+        <table class="pl-tbl pl-plants" id="plants-table" data-source="plants" data-row-key="plant">
+          <thead><tr>
+            <th data-field="plant"><button data-sort="plant">Plant</button></th>
+            <th data-field="owner"><button data-sort="owner">Owner</button></th>
+            <th data-field="basis"><button data-sort="basis">Sells by</button></th>
+            <th class="r" data-field="capacity_mw"><button data-sort="capacity_mw">MW</button></th>
+            <th class="r" data-field="actual_mu" aria-sort="descending"><button data-sort="actual_mu">MU</button></th>
+            <th class="r" data-field="cuf_pct"><button data-sort="cuf_pct">CUF %</button></th>
+            <th class="r" data-field="night_share_pct"><button data-sort="night_share_pct">Night %</button></th>
+            <th class="r" data-field="ppa_rate_rs_kwh"><button data-sort="ppa_rate_rs_kwh">PPA ₹/kWh</button></th>
+            <th class="r" data-field="sale_rate_rs_kwh"><button data-sort="sale_rate_rs_kwh">Rate ₹/kWh</button></th>
+            <th class="r" data-field="dam_capture_ratio"><button data-sort="dam_capture_ratio">Capture</button></th>
+            <th class="r" data-field="revenue_lakh_per_mw_month"><button data-sort="revenue_lakh_per_mw_month">₹ lakh/MW/month</button></th>
+            <th class="r" data-field="dsm_net_cr"><button data-sort="dsm_net_cr">Deviation net, ₹ crore</button></th>
+            <th class="r" data-field="penalty_rs_kwh"><button data-sort="penalty_rs_kwh">Penalty ₹/kWh</button></th>
+            <th class="r" data-field="shortfall_cost_to_others_cr"><button data-sort="shortfall_cost_to_others_cr">Cost to others, ₹ crore</button></th>
+            <th class="r" data-field="abs_deviation_pct"><button data-sort="abs_deviation_pct">Deviation %</button></th>
+          </tr></thead>
+          <tbody data-draw="tbl-plants"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="storage">
+    <h2>The opportunity: a battery behind the bottleneck</h2>
+    <p class="pl-prose">The evacuation ceiling binds only at midday. From 18:00 to 23:00 PS1 injects about <b data-draw="v" data-source="headline" data-where="metric=ps1_evening_mw" data-field="value" data-fmt="int">—</b> MW under a ceiling of around <b data-draw="v" data-source="headline" data-where="metric=ceiling_high" data-field="value" data-fmt="int">—</b> MW, so the line is mostly idle exactly when the market pays most. A battery at the pooling station can soak up the solar that would be spilled and sell it into those hours through the same wire. The model below runs it once a day on the real blocks: it charges from the estimated curtailed output, tops up from the grid in the cheapest blocks if that runs short, and sells into the day's highest-priced blocks within the spare room under the ceiling, at <b data-draw="v" data-source="headline" data-where="metric=rte_pct" data-field="value" data-fmt="int">—</b>% round-trip efficiency and ₹<b data-draw="v" data-source="headline" data-where="metric=wear_rs_mwh" data-field="value" data-fmt="int">—</b>/MWh wear.</p>
+    <div class="pl-grid">
+      <div class="pl-card">
+        <h3>Margin by battery size, ₹ lakh per MW a month</h3>
+        <p class="pl-note">Sales minus grid charging cost and wear, annualised from the window.</p>
+        <div class="pl-chart" id="storage-bars" data-draw="storage-bars" data-source="storage"></div>
+      </div>
+      <div class="pl-card">
+        <h3>The model's results</h3>
+        <div class="pl-scroll short">
+          <table class="pl-tbl" id="storage-table" data-source="storage" data-row-key="option">
+            <thead><tr><th data-field="option">Battery</th><th class="r" data-field="free_gwh">Spilled solar used, GWh</th><th class="r" data-field="grid_gwh">Grid charging, GWh</th><th class="r" data-field="sold_gwh">Sold, GWh</th><th class="r" data-field="sale_rs_kwh">Sale price, ₹/kWh</th><th class="r" data-field="margin_cr">Margin, ₹ crore</th><th class="r" data-field="margin_cr_per_year">₹ crore a year</th><th class="r" data-field="margin_lakh_per_mw_month">₹ lakh/MW/month</th></tr></thead>
+            <tbody data-draw="tbl-storage"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="pl-card">
+      <h3>What batteries and renewables are contracted at</h3>
+      <p class="pl-note">Recent Indian auctions. A standalone battery is paid a fixed monthly charge per MW.</p>
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="tariffs-table" data-source="tariffs" data-row-key="product,result">
+          <thead><tr><th data-field="product">Product</th><th data-field="result">Auction</th><th class="r" data-field="low">From</th><th class="r" data-field="high">To</th><th data-field="unit">Unit</th><th data-field="when">When</th><th data-field="flag">Flag</th></tr></thead>
+          <tbody data-draw="tbl-tariffs"></tbody>
+        </table>
+      </div>
+    </div>
+    <ul class="pl-list">
+      <li>Behind a curtailed park a battery earns several times what a standalone battery is contracted at, because its charging energy is free and the evening price it sells at is the market's highest.</li>
+      <li>A Ministry of Power letter of 27 August 2026 lets curtailed renewable power charge a co-located battery and be sold to anyone, with no change to the PPA.</li>
+      <li>AGEL is already building this, with <b data-draw="v" data-source="headline" data-where="metric=khavda_bess_mwh" data-field="value" data-fmt="int">—</b> MWh at Khavda. It sells the first battery output to its group company PTSL at a long fixed price (see the buyers table), below the evening exchange price, so much of the value goes to Adani Energy Solutions.</li>
+      <li>The case weakens in 2027: once Phase III arrives there is little spilled solar to soak up, and the battery charges from the grid at midday prices instead.</li>
+      <li>Evening prices hold only while the day-ahead market stays rationed at its cap. The MSEDCL study found the evening market's unmet bids run to many gigawatts, so a few more would not move it.</li>
+    </ul>
+  </section>
+
+  <section class="pl-sec" id="both">
+    <h2>The same market, seen from both sides</h2>
+    <p class="pl-prose">The MSEDCL study looked at the buyer: evenings short of power, the exchange rationed at the cap, shortfalls settled at high deviation prices. This one looks at a seller with the opposite problem.</p>
+    <div class="pl-card">
+      <table class="pl-tbl" id="compare-table" data-source="compare" data-row-key="aspect">
+        <thead><tr><th data-field="aspect">What</th><th data-field="discom">Discom (MSEDCL)</th><th data-field="producer">Producer (Khavda)</th></tr></thead>
+        <tbody data-draw="tbl-compare"></tbody>
+      </table>
+    </div>
+    <p class="pl-prose">A battery at Khavda that charges from spilled midday solar and sells into the rationed evening market answers both columns at once. It is the largest single opportunity either study found.</p>
+  </section>
+
+  <section class="pl-sec" id="timeline">
+    <h2>Events that shaped the year</h2>
+    <div class="pl-card">
+      <div class="pl-scroll short">
+        <table class="pl-tbl" id="events-table" data-source="events" data-row-key="date">
+          <thead><tr><th data-field="date">Date</th><th data-field="event">Event</th><th data-field="flag">Flag</th><th data-field="source">Source</th></tr></thead>
+          <tbody data-draw="tbl-events"></tbody>
+        </table>
+      </div>
+      <p class="pl-note">P: primary filing or regulator document. C: company press release. S: news or other secondary source.</p>
+    </div>
+  </section>
+
+  <section class="pl-sec" id="method">
+    <h2>Method and gaps</h2>
+    <ol class="pl-steps">
+      <li><b>Block data.</b> Every wind and solar seller's file from WRPC's weekly zips of all-member block data, 6 April to 18 October 2026, joined to IEX day-ahead, real-time and green day-ahead prices for each block.</li>
+      <li><b>Settlement rate.</b> WRPC's own rate for each block: the declared PPA tariff, or the weighted average of the seller's transactions. Deviation payable and receivable reconcile to it. It is used here as a price signal, not as booked revenue.</li>
+      <li><b>Potential output.</b> Each month PS1's output is fitted as a solar term (the average capacity factor of the PPA solar plants at the neighbouring KPS2 station) plus a wind term (the PPA wind plants around Bhuj), using only blocks where the solar peers are below <b data-draw="v" data-source="headline" data-where="metric=fit_threshold_pct" data-field="value" data-fmt="int">—</b>% of capacity, where PS1 is not held back. The fit is applied to the midday blocks; potential minus actual is the curtailment estimate. It is a straight-line fit on peers some tens of kilometres away. AGEL's own statement of capacity-factor points lost to curtailment suggests a figure about half as large; the true loss is probably between the two.</li>
+      <li><b>Real deviation penalty.</b> Net deviation money minus deviation energy times the seller's own rate in each block.</li>
+      <li><b>Cost to others.</b> On each block, under-injection times (Normal Rate minus the seller's rate), less the same on over-injection.</li>
+      <li><b>Company facts.</b> AGEL's investor decks, call transcripts and annual report; CARE's rating rationale; CERC orders; WRPC's monthly transmission deviation statements for grid access.</li>
+    </ol>
+    <ul class="pl-list">
+      <li>Who received each block, by buyer, is in WRLDC's scheduling portal, which cannot be reached from here.</li>
+      <li>AGEL reports generation, revenue and curtailment for the whole company, not Khavda alone.</li>
+      <li>Which project companies are still infirm, and when each PPA's supply starts, is not published.</li>
+      <li>The settlement regime for each plant is inferred from fits to WRPC's numbers, not from a WRPC note.</li>
+    </ul>
+    <p class="pl-note">Scripts and every dataset are in research/khavda on the repository branch.</p>
+  </section>
+</div>
+
+<script>
+window.PL = (() => {
+  const F = { int: d3.format(',.0f'), one: d3.format(',.1f'), two: d3.format(',.2f'), three: d3.format(',.3f'), pct: d3.format('.0%'), pct1: d3.format('.1%') };
+  const num = (v) => (v === '' || v == null ? null : Number(v));
+  const fmt = (v, kind) => {
+    if (kind === 'text') return v == null || v === '' ? '—' : String(v);
+    const n = num(v);
+    if (n == null || Number.isNaN(n)) return '—';
+    if (kind === 'abs') return F.int(Math.abs(n));
+    return (F[kind] || F.int)(n);
+  };
+  const rows = (id) => { const g = dash.data(id); return g.status === 'ok' ? g.data : null; };
+  const color = (i) => dash.colors[i % dash.colors.length];
+  const CRIT = 'var(--cds-chart-status-critical)';
+  function fail(el, id) {
+    const g = dash.data(id);
+    el.replaceChildren();
+    if (g.status === 'error') { const d = document.createElement('div'); d.className = 'pl-fail'; d.textContent = 'Failed to load'; el.append(d); }
+  }
+  function tip(el) {
+    let t = el.querySelector(':scope > .pl-tip');
+    if (!t) { t = document.createElement('div'); t.className = 'pl-tip'; t.hidden = true; el.append(t); }
+    return t;
+  }
+  function fillTip(t, title, lines) {
+    const h = document.createElement('div'); h.className = 'pl-tip-h'; h.textContent = title;
+    t.replaceChildren(h);
+    for (const l of lines) {
+      const r = document.createElement('div'); r.className = 'pl-tip-r';
+      const s = document.createElement('i'); s.className = 'pl-sw'; s.style.background = l.color || 'transparent';
+      const a = document.createElement('span'); a.textContent = l.name;
+      const b = document.createElement('b'); b.textContent = l.value;
+      r.append(s, a, b); t.append(r);
+    }
+  }
+  function placeTip(el, t, x, y) {
+    t.hidden = false;
+    const w = el.clientWidth, tw = t.offsetWidth;
+    let left = x + 14; if (left + tw > w) left = Math.max(0, x - 14 - tw);
+    t.style.left = left + 'px'; t.style.top = Math.max(0, y - 8) + 'px';
+  }
+  function svg(el, h) {
+    el.replaceChildren();
+    const w = Math.max(280, el.clientWidth || 600);
+    const s = d3.select(el).append('svg').attr('width', '100%').attr('height', h).attr('viewBox', `0 0 ${w} ${h}`);
+    return { s, w, h };
+  }
+  function textWidth(s, strs) {
+    const t = s.append('text').attr('font-size', 11);
+    let m = 0; for (const x of strs) { t.text(x); m = Math.max(m, t.node().getComputedTextLength()); }
+    t.remove(); return m;
+  }
+  function yAxis(s, y, x0, x1, fmtTick, ticks = 5) {
+    const g = s.append('g');
+    for (const v of y.ticks(ticks)) {
+      g.append('line').attr('x1', x0).attr('x2', x1).attr('y1', y(v)).attr('y2', y(v)).style('stroke', v === 0 ? 'var(--cds-chart-axis)' : 'var(--cds-chart-grid)').attr('stroke-width', 1);
+      g.append('text').attr('x', x0 - 6).attr('y', y(v)).attr('dy', '0.32em').attr('text-anchor', 'end').text(fmtTick(v));
+    }
+  }
+  function xLabels(s, items, xpos, y, minGap = 44) {
+    // Place a label only where it clears the previous one by its measured width.
+    let lastRight = -Infinity;
+    for (const it of items) {
+      const x = xpos(it);
+      const t = s.append('text').attr('x', x).attr('y', y).attr('text-anchor', 'middle').text(it.label);
+      const half = t.node().getComputedTextLength() / 2;
+      if (x - half < lastRight + 8 || x - lastRight < minGap / 2) { t.remove(); continue; }
+      lastRight = x + half;
+    }
+  }
+  const dayFmt = d3.utcFormat('%-d %b');
+  const parseDay = (s) => new Date(s + 'T00:00:00Z');
+  /** stacked bars on a band axis; values may be negative (stacked below zero). */
+  function stackBars(el, { items, series, height = 260, yFmt = F.int, unit = '', tipTitle }) {
+    const { s, w, h } = svg(el, height);
+    const pos = (d, k) => Math.max(0, series[k].value(d)), neg = (d, k) => Math.min(0, series[k].value(d));
+    const hi = d3.max(items, (d) => d3.sum(series, (_, k) => pos(d, k))) || 1;
+    const lo = d3.min(items, (d) => d3.sum(series, (_, k) => neg(d, k))) || 0;
+    const y0 = d3.scaleLinear([Math.min(0, lo), hi], [h - 24, 10]).nice();
+    const left = textWidth(s, y0.ticks(5).map(yFmt)) + 12;
+    const x = d3.scaleBand(items.map((d) => d.key), [left, w - 8]).padding(0.25);
+    yAxis(s, y0, left, w - 8, yFmt);
+    const bw = Math.min(32, x.bandwidth());
+    for (const d of items) {
+      let up = 0, dn = 0;
+      series.forEach((sr) => {
+        const v = sr.value(d); if (!v) return;
+        const a = v > 0 ? up : dn, b = a + v; if (v > 0) up = b; else dn = b;
+        s.append('rect').attr('x', x(d.key) + (x.bandwidth() - bw) / 2).attr('width', bw).attr('y', y0(Math.max(a, b))).attr('height', Math.max(0.5, Math.abs(y0(a) - y0(b)))).attr('rx', 1.5).style('fill', sr.color);
+      });
+    }
+    xLabels(s, items, (d) => x(d.key) + x.bandwidth() / 2, h - 6, 30);
+    const t = tip(el);
+    for (const d of items) {
+      s.append('rect').attr('x', x(d.key)).attr('width', x.bandwidth()).attr('y', 0).attr('height', h - 24).style('fill', 'transparent')
+        .on('pointermove', (ev) => { const [px, py] = d3.pointer(ev, el); fillTip(t, tipTitle(d), series.filter((sr) => sr.value(d) != null).map((sr) => ({ color: sr.color, name: sr.label, value: yFmt(sr.value(d)) + unit }))); placeTip(el, t, px, py); })
+        .on('pointerleave', () => { t.hidden = true; });
+    }
+  }
+  /** several lines over a point axis (hours, blocks) or a date axis. */
+  function lines(el, { items, xKind = 'point', xOf, labelOf, series, height = 300, yFmt = F.int, unit = '', yMin, tipTitle, labelGap = 44, monthTicks = false }) {
+    const { s, w, h } = svg(el, height);
+    const vals = items.flatMap((d) => series.map((sr) => sr.value(d))).filter((v) => v != null && !Number.isNaN(v));
+    const y = d3.scaleLinear([yMin ?? Math.min(0, d3.min(vals)), d3.max(vals) || 1], [h - 24, 10]).nice();
+    const left = textWidth(s, y.ticks(5).map(yFmt)) + 12;
+    let x, pos;
+    if (xKind === 'date') { x = d3.scaleUtc(d3.extent(items, xOf), [left, w - 8]); pos = (d) => x(xOf(d)); }
+    else { x = d3.scalePoint(items.map(xOf), [left + 4, w - 10]); pos = (d) => x(xOf(d)); }
+    yAxis(s, y, left, w - 8, yFmt);
+    if (monthTicks) {
+      const [a, b] = d3.extent(items, xOf);
+      let lastRight = -Infinity;
+      for (const m of d3.utcMonth.range(d3.utcMonth.ceil(a), b)) {
+        const t = s.append('text').attr('x', x(m)).attr('y', h - 6).attr('text-anchor', 'start').text(d3.utcFormat('%b')(m));
+        if (x(m) < lastRight + 6) { t.remove(); continue; }
+        lastRight = x(m) + t.node().getComputedTextLength();
+      }
+    } else xLabels(s, items.map((d) => ({ d, label: labelOf(d) })), (it) => pos(it.d), h - 6, labelGap);
+    for (const sr of series) {
+      s.append('path').attr('d', d3.line().defined((d) => sr.value(d) != null && !Number.isNaN(sr.value(d))).x(pos).y((d) => y(sr.value(d)))(items))
+        .style('fill', 'none').style('stroke', sr.color).attr('stroke-width', 2).attr('stroke-linejoin', 'round').attr('stroke-linecap', sr.dash ? 'butt' : 'round').attr('stroke-dasharray', sr.dash || null);
+    }
+    const t = tip(el);
+    const rule = s.append('line').attr('y1', 10).attr('y2', h - 24).style('stroke', 'var(--cds-chart-reference)').attr('visibility', 'hidden');
+    const xs = items.map(pos);
+    s.append('rect').attr('x', left).attr('width', w - 8 - left).attr('height', h - 24).style('fill', 'transparent')
+      .on('pointermove', (ev) => {
+        const [px, py] = d3.pointer(ev, el);
+        const i = d3.leastIndex(xs, (a, b) => Math.abs(a - px) - Math.abs(b - px)); const d = items[i];
+        rule.attr('x1', xs[i]).attr('x2', xs[i]).attr('visibility', 'visible');
+        fillTip(t, tipTitle(d), series.filter((sr) => sr.value(d) != null && !Number.isNaN(sr.value(d))).map((sr) => ({ color: sr.color, name: sr.label, value: yFmt(sr.value(d)) + unit })));
+        placeTip(el, t, px, py);
+      })
+      .on('pointerleave', () => { t.hidden = true; rule.attr('visibility', 'hidden'); });
+  }
+  return { F, num, fmt, rows, color, CRIT, fail, tip, fillTip, placeTip, svg, textWidth, yAxis, xLabels, stackBars, lines, dayFmt, parseDay };
+})();
+</script>
+
+<script>
+document.querySelectorAll('.pl-sw[data-c]').forEach((sw) => { sw.style.background = PL.color(Number(sw.dataset.c)); });
+document.querySelectorAll('.pl-sw[data-crit]').forEach((sw) => { sw.style.background = PL.CRIT; });
+
+// Single values in text and tiles.
+dash.draw('v', (el) => {
+  const id = el.dataset.source, g = dash.data(id);
+  if (g.status !== 'ok') { el.textContent = '—'; return; }
+  const [k, v] = (el.dataset.where || '').split('=').map(decodeURIComponent);
+  const row = g.data.find((r) => String(r[k]) === v);
+  el.textContent = row ? PL.fmt(row[el.dataset.field], el.dataset.fmt) : '—';
+});
+
+const n = (v) => (v === '' || v == null ? null : Number(v));
+
+dash.draw('park-cap', (el) => {
+  const r = PL.rows('capacity'); if (!r) return PL.fail(el, 'capacity');
+  const items = r.map((d) => ({ key: d.date, label: d3.utcFormat('%b %Y')(PL.parseDay(d.date)), d }));
+  PL.stackBars(el, { items, height: 240, series: [
+    { label: 'AGEL own', color: PL.color(0), value: (it) => n(it.d.agel_own_khavda_mw) ?? n(it.d.khavda_mw) },
+    { label: 'Group companies', color: PL.color(1), value: (it) => n(it.d.group_company_mw) },
+  ], unit: ' MW', tipTitle: (it) => `${PL.dayFmt(PL.parseDay(it.d.date))} ${it.d.date.slice(0, 4)} · total ${PL.fmt(it.d.khavda_mw, 'int')} MW · batteries ${PL.fmt(it.d.khavda_bess_mwh, 'int')} MWh · AGEL ${PL.fmt(it.d.agel_total_mw, 'int')} MW` });
+});
+
+dash.draw('sales-mix', (el) => {
+  const r = PL.rows('sales_mix'); if (!r) return PL.fail(el, 'sales_mix');
+  const items = r.map((d) => ({ key: d.period, label: d.period, d }));
+  PL.stackBars(el, { items, height: 240, series: [
+    { label: 'Long-term PPAs', color: PL.color(0), value: (it) => n(it.d.ppa_mu) },
+    { label: 'PTSL and private', color: PL.color(1), value: (it) => n(it.d.ptsl_private_mu) },
+    { label: 'Infirm and merchant', color: PL.color(2), value: (it) => n(it.d.infirm_merchant_mu) },
+  ], unit: ' MU', tipTitle: (it) => it.label });
+});
+
+const hourly = () => PL.rows('hourly');
+dash.draw('hourly-profile', (el) => {
+  const r = hourly(); if (!r) return PL.fail(el, 'hourly');
+  PL.lines(el, { items: r, xOf: (d) => d.label, labelOf: (d) => d.label, height: 320, unit: ' MW', tipTitle: (d) => d.label + ' hourly average', series: [
+    { label: 'Potential', color: PL.color(3), value: (d) => n(d.potential_mw) },
+    { label: 'Actual', color: PL.color(0), value: (d) => n(d.actual_mw) },
+    { label: 'Scheduled', color: 'var(--color-fg-muted)', dash: '5 4', value: (d) => n(d.schedule_mw) },
+  ] });
+});
+dash.draw('hourly-price', (el) => {
+  const r = hourly(); if (!r) return PL.fail(el, 'hourly');
+  PL.lines(el, { items: r, xOf: (d) => d.label, labelOf: (d) => d.label, height: 260, yFmt: PL.F.one, unit: ' ₹/kWh', yMin: 0, tipTitle: (d) => d.label + ' hourly average', series: [
+    { label: 'Settlement rate', color: PL.color(0), value: (d) => n(d.settlement_rate_rs_kwh) },
+    { label: 'Day-ahead price', color: PL.color(5), value: (d) => n(d.dam_rs_kwh) },
+  ] });
+});
+
+dash.draw('daily-ceiling', (el) => {
+  const r = PL.rows('daily'), m = PL.rows('monthly');
+  if (!r) return PL.fail(el, 'daily'); if (!m) return PL.fail(el, 'monthly');
+  const gna = new Map(m.map((x) => [x.month, n(x.ps1_gna_mw)]));
+  const items = r.map((d) => ({ ...d, date: PL.parseDay(d.date), gna: gna.get(d.date.slice(0, 7)) }));
+  PL.lines(el, { items, xKind: 'date', xOf: (d) => d.date, monthTicks: true, height: 320, unit: ' MW', yMin: 0, tipTitle: (d) => PL.dayFmt(d.date), series: [
+    { label: 'Available capacity', color: PL.color(3), value: (d) => n(d.capacity_mw) },
+    { label: 'Highest output', color: PL.color(1), value: (d) => n(d.max_output_mw) },
+    { label: 'Highest schedule', color: PL.color(0), value: (d) => n(d.max_schedule_mw) },
+    { label: 'Grid access', color: 'var(--color-fg-muted)', dash: '5 4', value: (d) => d.gna },
+  ] });
+});
+
+dash.draw('monthly-curt', (el) => {
+  const r = PL.rows('monthly'); if (!r) return PL.fail(el, 'monthly');
+  const items = r.map((d) => ({ key: d.month, label: d.label, d }));
+  PL.stackBars(el, { items, series: [
+    { label: 'Actual', color: PL.color(0), value: (it) => n(it.d.actual_gwh) },
+    { label: 'Curtailed, estimate', color: PL.CRIT, value: (it) => n(it.d.curtailed_gwh) },
+  ], unit: ' GWh', tipTitle: (it) => `${it.label} 2026 · ${PL.fmt(n(it.d.curtailed_share), 'pct')} curtailed` });
+});
+
+dash.draw('sample-day', (el) => {
+  const r = PL.rows('sample_day'); if (!r) return PL.fail(el, 'sample_day');
+  PL.lines(el, { items: r, xOf: (d) => d.time, labelOf: (d) => d.time, labelGap: 56, height: 320, unit: ' MW', yMin: 0, tipTitle: (d) => d.time, series: [
+    { label: 'Potential', color: PL.color(3), value: (d) => n(d.potential_mw) },
+    { label: 'Actual', color: PL.color(0), value: (d) => n(d.mw) },
+    { label: 'Scheduled', color: 'var(--color-fg-muted)', dash: '5 4', value: (d) => n(d.sch_mw) },
+  ] });
+});
+dash.draw('sample-price', (el) => {
+  const r = PL.rows('sample_day'); if (!r) return PL.fail(el, 'sample_day');
+  PL.lines(el, { items: r, xOf: (d) => d.time, labelOf: (d) => d.time, labelGap: 56, height: 320, yFmt: PL.F.one, unit: ' ₹/kWh', yMin: 0, tipTitle: (d) => d.time, series: [
+    { label: 'Day-ahead price', color: PL.color(5), value: (d) => n(d.dam_rs_kwh) },
+  ] });
+});
+
+dash.draw('dsm-hourly', (el) => {
+  const r = hourly(); if (!r) return PL.fail(el, 'hourly');
+  const items = r.map((d) => ({ key: d.label, label: d.label, d }));
+  PL.stackBars(el, { items, yFmt: PL.F.one, series: [
+    { label: 'Energy at own rate', color: PL.color(0), value: (it) => n(it.d.dsm_at_own_rate_cr) },
+    { label: 'Penalty', color: PL.CRIT, value: (it) => n(it.d.penalty_cr) },
+  ], unit: ' ₹ cr', tipTitle: (it) => `${it.label} · net ₹${PL.fmt(it.d.dsm_net_cr, 'two')} crore` });
+});
+
+dash.draw('storage-bars', (el) => {
+  const r = PL.rows('storage'); if (!r) return PL.fail(el, 'storage');
+  const items = r.map((d) => ({ key: d.option, label: d.option, d }));
+  PL.stackBars(el, { items, yFmt: PL.F.one, series: [
+    { label: 'Margin', color: PL.color(0), value: (it) => n(it.d.margin_lakh_per_mw_month) },
+  ], unit: ' ₹ lakh/MW/month', tipTitle: (it) => `${it.label} · ₹${PL.fmt(it.d.margin_cr_per_year, 'int')} crore a year` });
+});
+
+// Tables: body rows drawn as text, numbers formatted, keys as in the data.
+function cell(tr, v, cls) { const td = document.createElement('td'); if (cls) td.className = cls; td.textContent = v; tr.append(td); return td; }
+function table(name, id, cols, opts = {}) {
+  dash.draw(name, (tb) => {
+    let r = PL.rows(id); tb.replaceChildren(); if (!r) return;
+    if (opts.filter) r = opts.filter(r);
+    for (const d of r) {
+      const tr = document.createElement('tr');
+      if (opts.hl && opts.hl(d)) tr.className = 'hl';
+      for (const c of cols) {
+        if (c.link) {
+          const td = document.createElement('td'); const u = d[c.f] || '';
+          if (/^https?:\/\//.test(u)) { const a = document.createElement('a'); a.href = u; a.target = '_blank'; a.rel = 'noopener'; a.textContent = u; td.append(a); } else td.textContent = u;
+          tr.append(td);
+        } else cell(tr, c.fmt ? PL.fmt(d[c.f], c.fmt) : (d[c.f] ?? ''), c.fmt ? 'r' : '');
+      }
+      tb.append(tr);
+    }
+  });
+}
+table('tbl-offtake', 'offtake', [{ f: 'buyer' }, { f: 'technology' }, { f: 'mw', fmt: 'int' }, { f: 'mw_in_process', fmt: 'int' }, { f: 'tariff_low', fmt: 'two' }, { f: 'tariff_high', fmt: 'two' }, { f: 'end_buyer' }, { f: 'status' }, { f: 'flag' }]);
+table('tbl-results', 'results', [{ f: 'period' }, { f: 'revenue_cr', fmt: 'int' }, { f: 'ebitda_cr', fmt: 'int' }, { f: 'energy_mu', fmt: 'int' }, { f: 'revenue_rs_kwh', fmt: 'two' }, { f: 'solar_cuf_pct', fmt: 'one' }, { f: 'wind_cuf_pct', fmt: 'one' }, { f: 'solar_grid_availability_pct', fmt: 'one' }, { f: 'curtailment_ebitda_cr', fmt: 'int' }]);
+table('tbl-gna', 'gna', [{ f: 'billing_month' }, { f: 'ps1_gna_mw', fmt: 'int' }, { f: 'ps1_above_gna_mwh', fmt: 'int' }, { f: 'ps1_above_gna_rs_lakh', fmt: 'one' }, { f: 'ps3_gna_mw', fmt: 'int' }, { f: 'ps3_above_gna_mwh', fmt: 'int' }, { f: 'ps3_above_gna_rs_lakh', fmt: 'one' }]);
+table('tbl-monthly', 'monthly', [{ f: 'month' }, { f: 'capacity_mw', fmt: 'int' }, { f: 'max_schedule_mw', fmt: 'int' }, { f: 'potential_gwh', fmt: 'int' }, { f: 'actual_gwh', fmt: 'int' }, { f: 'curtailed_gwh', fmt: 'int' }, { f: 'curtailed_share', fmt: 'pct' }, { f: 'curtailed_value_cr', fmt: 'int' }, { f: 'sale_rate_rs_kwh', fmt: 'two' }, { f: 'dam_time_avg_rs_kwh', fmt: 'two' }]);
+table('tbl-capture', 'capture_tech', [{ f: 'technology' }, { f: 'energy_twh', fmt: 'two' }, { f: 'dam_rs_mwh', fmt: 'int' }, { f: 'gdam_rs_mwh', fmt: 'int' }, { f: 'rtm_rs_mwh', fmt: 'int' }, { f: 'dam_capture_pct', fmt: 'int' }]);
+table('tbl-rules', 'rules', [{ f: 'regime' }, { f: 'band' }, { f: 'band_low_pct', fmt: 'int' }, { f: 'band_high_pct', fmt: 'int' }, { f: 'over_injection_paid_pct', fmt: 'int' }, { f: 'under_injection_charged_pct', fmt: 'int' }, { f: 'applies_to' }]);
+table('tbl-basis', 'by_basis', [{ f: 'basis' }, { f: 'plants', fmt: 'int' }, { f: 'sale_rate_rs_kwh', fmt: 'two' }, { f: 'revenue_lakh_per_mw_month', fmt: 'one' }, { f: 'capture', fmt: 'pct' }, { f: 'abs_deviation_pct', fmt: 'one' }, { f: 'penalty_rs_kwh', fmt: 'three' }]);
+table('tbl-storage', 'storage', [{ f: 'option' }, { f: 'free_gwh', fmt: 'int' }, { f: 'grid_gwh', fmt: 'int' }, { f: 'sold_gwh', fmt: 'int' }, { f: 'sale_rs_kwh', fmt: 'two' }, { f: 'margin_cr', fmt: 'int' }, { f: 'margin_cr_per_year', fmt: 'int' }, { f: 'margin_lakh_per_mw_month', fmt: 'one' }]);
+table('tbl-tariffs', 'tariffs', [{ f: 'product' }, { f: 'result' }, { f: 'low', fmt: 'two' }, { f: 'high', fmt: 'two' }, { f: 'unit' }, { f: 'when' }, { f: 'flag' }]);
+table('tbl-compare', 'compare', [{ f: 'aspect' }, { f: 'discom' }, { f: 'producer' }]);
+table('tbl-events', 'events', [{ f: 'date' }, { f: 'event' }, { f: 'flag' }, { f: 'source', link: true }]);
+
+window.PLplants = { key: 'actual_mu', dir: -1, q: '' };
+const PLANT_NUM = new Set(['capacity_mw', 'actual_mu', 'cuf_pct', 'night_share_pct', 'ppa_rate_rs_kwh', 'sale_rate_rs_kwh', 'dam_capture_ratio', 'revenue_lakh_per_mw_month', 'dsm_net_cr', 'penalty_rs_kwh', 'shortfall_cost_to_others_cr', 'abs_deviation_pct']);
+const PLANT_COLS = [['plant'], ['owner'], ['basis'], ['capacity_mw', 'int'], ['actual_mu', 'int'], ['cuf_pct', 'one'], ['night_share_pct', 'int'], ['ppa_rate_rs_kwh', 'two'], ['sale_rate_rs_kwh', 'two'], ['dam_capture_ratio', 'pct'], ['revenue_lakh_per_mw_month', 'one'], ['dsm_net_cr', 'one'], ['penalty_rs_kwh', 'three'], ['shortfall_cost_to_others_cr', 'one'], ['abs_deviation_pct', 'one']];
+dash.draw('tbl-plants', (tb) => {
+  const r = PL.rows('plants'); tb.replaceChildren(); if (!r) return;
+  const { key, dir, q } = window.PLplants; const ql = q.trim().toLowerCase();
+  const val = (d) => (PLANT_NUM.has(key) ? (d[key] === '' || d[key] == null ? -Infinity : Number(d[key])) : String(d[key]).toLowerCase());
+  const list = r.filter((d) => !ql || `${d.plant} ${d.owner} ${d.basis}`.toLowerCase().includes(ql)).sort((a, b) => (val(a) > val(b) ? 1 : val(a) < val(b) ? -1 : 0) * dir);
+  for (const d of list) {
+    const tr = document.createElement('tr'); if (d.owner === 'Adani Green') tr.className = 'hl';
+    for (const [f, k] of PLANT_COLS) cell(tr, k ? PL.fmt(d[f], k) : d[f], k ? 'r' : '');
+    tb.append(tr);
+  }
+});
+document.querySelectorAll('#pl-plant-q').forEach((inp) => inp.addEventListener('input', () => { window.PLplants.q = inp.value; dash.draw('tbl-plants'); }));
+document.querySelectorAll('.pl-plants th button[data-sort]').forEach((b) => b.addEventListener('click', () => {
+  const k = b.dataset.sort, s = window.PLplants;
+  s.dir = s.key === k ? -s.dir : (PLANT_NUM.has(k) ? -1 : 1); s.key = k;
+  document.querySelectorAll('.pl-plants th').forEach((th) => th.removeAttribute('aria-sort'));
+  b.closest('th').setAttribute('aria-sort', s.dir > 0 ? 'ascending' : 'descending');
+  dash.draw('tbl-plants');
+}));
+
+const named = document.getElementById(location.hash.slice(1));
+if (named) setTimeout(() => named.scrollIntoView(), 300);
+document.querySelectorAll('.pl-nav a').forEach((a) => a.addEventListener('click', () => dash.setLink(a.getAttribute('href').slice(1))));
+</script>

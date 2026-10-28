@@ -1,0 +1,16 @@
+product,result,low,high,unit,when,flag,source
+Plain solar,SJVN 1.2 GW,2.52,2.52,₹/kWh,Aug 2024,P,https://cercind.gov.in/2025/orders/404-AT-2024.pdf
+Plain solar,SECI Tranche XVI,2.48,2.48,₹/kWh,2025,S,Mercom
+Wind,SJVN 600 MW,3.64,3.65,₹/kWh,Mar 2026,S,https://renewablewatch.in/2026/03/03/sjvn-announces-results-of-its-ists-connected-600-mw-wind-power-auction/
+Wind,SECI 2 GW,3.78,3.85,₹/kWh,Jul 2026,S,https://renewablewatch.in/2026/07/16/seci-announces-winners-of-2-gw-wind-auction/
+Hybrid,SJVN 1.2 GW,3.19,3.19,₹/kWh,Mar 2026,S,
+Hybrid,NTPC,3.38,3.44,₹/kWh,2025,S,
+Solar + battery,SECI 2 GW + 4 GWh,2.86,2.87,₹/kWh,Oct 2025,S,https://www.saurenergy.com/solar-energy-news/11-firms-win-allocations-in-secis-2000-mw4000mwh-ists-tender-10566850
+Solar + battery,SECI 1.2 GW,3.12,3.13,₹/kWh,Jan 2026,S,
+Firm and dispatchable,NHPC,3.13,3.13,₹/kWh,Jul 2025,S,
+Assured peak,SJVN 1.5 GW × 4 h,6.74,6.74,₹/kWh,2026,P,https://cercind.gov.in/2026/orders/31-AT-2026.pdf
+Assured peak,SECI 1.5 GW / 6 GWh,5.99,6.00,₹/kWh,Aug 2026,S,
+Standalone battery 2 h,GUVNL,2.10,2.32,₹ lakh/MW/month,Feb–Aug 2026,S,
+Standalone battery 2 h,SJVN 265 MW,2.35,2.35,₹ lakh/MW/month,Sep 2026,S,
+Standalone battery 4 h,TNGECL,3.15,3.15,₹ lakh/MW/month,2026,S,
+Standalone battery 4 h,WBSEDCL (NTPC Green),4.35,4.39,₹ lakh/MW/month,Aug 2026,S,https://ieefa.org/sites/default/files/2026-09/ESSjmk-0926.pdf
