@@ -1,12 +1,12 @@
 {
- "generated": "2026-11-04T22:03+05:30",
+ "generated": "2026-11-05T22:16+05:30",
  "sources": [
   {
    "id": "ERPC",
    "name": "ERPC weekly DSM, SRAS and TRAS accounts",
    "publisher": "Eastern Regional Power Committee",
    "url": "https://www.erpc.gov.in/",
-   "last_checked": "2026-11-04T22:02+05:30",
+   "last_checked": "2026-11-05T22:15+05:30",
    "kind": "rpc",
    "status": "unreachable",
    "message": "listing page failed: HTTP 403 for https://www.erpc.gov.in/"
@@ -16,7 +16,7 @@
    "name": "WRPC weekly DSM, SRAS and TRAS accounts",
    "publisher": "Western Regional Power Committee",
    "url": "https://www.wrpc.gov.in/menu/DSM_342",
-   "last_checked": "2026-11-04T22:02+05:30",
+   "last_checked": "2026-11-05T22:15+05:30",
    "kind": "rpc",
    "status": "partial",
    "data_through": "2026-10-25",
@@ -45,26 +45,26 @@
    "name": "NERPC weekly DSM, SRAS and TRAS accounts",
    "publisher": "North-Eastern Regional Power Committee",
    "url": "https://nerpc.gov.in/?page_id=5872",
-   "last_checked": "2026-11-04T22:03+05:30",
+   "last_checked": "2026-11-05T22:15+05:30",
    "kind": "rpc",
    "status": "ok",
-   "data_through": "2026-10-04",
+   "data_through": "2026-10-25",
    "latest_period": {
-    "from": "2026-09-28",
-    "to": "2026-10-04"
+    "from": "2026-10-19",
+    "to": "2026-10-25"
    },
    "documents": {
     "dsm_pdf": {
-     "title": "NERPC Provisional-DSM-statement-from-280926-to-041026-1.pdf",
-     "url": "https://nerpc.gov.in/wp-content/uploads/2026/10/Provisional-DSM-statement-from-280926-to-041026-1.pdf"
+     "title": "NERPC Provisional-DSM-statement-from-191026-to-251026.pdf",
+     "url": "https://nerpc.gov.in/wp-content/uploads/2026/11/Provisional-DSM-statement-from-191026-to-251026.pdf"
     },
     "as_pdf": {
-     "title": "NERPC Provisional-SRAS-and-TRAS-statement-from-280926-to-041026.pdf",
-     "url": "https://nerpc.gov.in/wp-content/uploads/2026/10/Provisional-SRAS-and-TRAS-statement-from-280926-to-041026.pdf"
+     "title": "NERPC Provisional-SRAS-and-TRAS-statement-from-191026-to-251026.pdf",
+     "url": "https://nerpc.gov.in/wp-content/uploads/2026/11/Provisional-SRAS-and-TRAS-statement-from-191026-to-251026.pdf"
     },
     "data_zip": {
-     "title": "NERPC DSM-SRAS-TRAS-and-SCUC_DATA_FILE28-Sep-26-to-04-Oct-26.zip",
-     "url": "https://nerpc.gov.in/wp-content/uploads/2026/10/DSM-SRAS-TRAS-and-SCUC_DATA_FILE28-Sep-26-to-04-Oct-26.zip"
+     "title": "NERPC DSM-SRAS-TRAS-and-SCUC_DATA_FILE19-Oct-26-to-25-Oct-26.zip",
+     "url": "https://nerpc.gov.in/wp-content/uploads/2026/11/DSM-SRAS-TRAS-and-SCUC_DATA_FILE19-Oct-26-to-25-Oct-26.zip"
     }
    },
    "message": ""
@@ -75,7 +75,7 @@
    "name": "NRPC weekly DSM / SRAS / TRAS accounts",
    "publisher": "Northern Regional Power Committee",
    "url": "https://nrpc.gov.in/",
-   "last_checked": "2026-11-04T22:03+05:30",
+   "last_checked": "2026-11-05T22:15+05:30",
    "status": "blocked",
    "message": "the site's document API answers 401 Unauthorized without a login"
   },
@@ -85,7 +85,7 @@
    "name": "SRPC weekly DSM / SRAS / TRAS accounts",
    "publisher": "Southern Regional Power Committee",
    "url": "https://srpc.kar.nic.in/",
-   "last_checked": "2026-11-04T22:03+05:30",
+   "last_checked": "2026-11-05T22:16+05:30",
    "status": "unreachable",
    "message": "connection reset during TLS handshake from this network"
   },
@@ -95,7 +95,7 @@
    "name": "Grid-India daily frequency profile",
    "publisher": "Grid Controller of India",
    "url": "https://report.grid-india.in/",
-   "last_checked": "2026-11-04T22:03+05:30",
+   "last_checked": "2026-11-05T22:16+05:30",
    "status": "unreachable",
    "message": "host refused the connection from this network"
   },
@@ -105,7 +105,7 @@
    "name": "Grid-India ancillary services dispatch reports",
    "publisher": "Grid Controller of India",
    "url": "https://grid-india.in/",
-   "last_checked": "2026-11-04T22:03+05:30",
+   "last_checked": "2026-11-05T22:16+05:30",
    "status": "unreachable",
    "message": "host refused the connection from this network"
   },
@@ -115,7 +115,7 @@
    "name": "PXIL TRAS market results",
    "publisher": "Power Exchange India",
    "url": "https://www.pxil.co.in/",
-   "last_checked": "2026-11-04T22:03+05:30",
+   "last_checked": "2026-11-05T22:16+05:30",
    "status": "unreachable",
    "message": "connection reset during TLS handshake from this network"
   },
@@ -125,7 +125,7 @@
    "name": "IEX TRAS market results",
    "publisher": "Indian Energy Exchange",
    "url": "https://www.iexindia.com/market-data/day-ahead-market/market-snapshot",
-   "last_checked": "2026-11-04T22:03+05:30",
+   "last_checked": "2026-11-05T22:16+05:30",
    "status": "not_published",
    "message": "no public TRAS segment in IEX's market-data site or API (checked market-data menu and /api/v1)"
   },
@@ -135,7 +135,7 @@
    "name": "HPX TRAS market results",
    "publisher": "Hindustan Power Exchange",
    "url": "https://www.hpxindia.com/",
-   "last_checked": "2026-11-04T22:03+05:30",
+   "last_checked": "2026-11-05T22:16+05:30",
    "status": "not_published",
    "message": "HPX publishes only DAM snapshot and area-price pages publicly; no TRAS results page found"
   }
