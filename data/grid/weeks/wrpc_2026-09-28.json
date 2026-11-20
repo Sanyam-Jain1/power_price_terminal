@@ -16,11 +16,11 @@
    "url": "https://www.wrpc.gov.in/allfile/161020261230299930sum4.zip"
   },
   "as_pdf": {
-   "title": "WRPC TRAS SRAS & SCUC for 28.09.2026 to 04.10.2026 (Updated on 13/10/2026)",
-   "url": "https://www.wrpc.gov.in/allfile/131020261601187422trassep26.4.pdf"
+   "title": "WRPC Revised TRAS and SCUC of TPCL_Mundra, Kawas,Gandhar and RGPPL for the week 28.09.2026 to 04.10.2026",
+   "url": "https://www.wrpc.gov.in/allfile/201120261728499303trasoct26.1a f 5.pdf"
   }
  },
- "fetched": "2026-10-21T00:53+05:30",
+ "fetched": "2026-11-20T22:44+05:30",
  "parser_version": "2.3",
  "dsm": {
   "status": "source_mismatch",
@@ -1127,12 +1127,12 @@
   "rows": [
    {
     "name": "GADARWARA-I",
-    "up_mwh": 133.2,
-    "down_mwh": 288.95,
-    "incentive_rs": 99998.0,
-    "net_mwh": -155.75,
-    "energy_rs": -461955.0,
-    "total_rs": -361957.0
+    "up_mwh": 174.95,
+    "down_mwh": 317.22,
+    "incentive_rs": 117637.0,
+    "net_mwh": -142.27,
+    "energy_rs": -421973.0,
+    "total_rs": -304336.0
    },
    {
     "name": "GANDHAR-NAPM",
@@ -1154,93 +1154,93 @@
    },
    {
     "name": "KHARGONE-I",
-    "up_mwh": 214.33,
-    "down_mwh": 270.15,
-    "incentive_rs": 214004.0,
-    "net_mwh": -55.82,
-    "energy_rs": -186104.0,
-    "total_rs": 27900.0
+    "up_mwh": 683.65,
+    "down_mwh": 1209.92,
+    "incentive_rs": 836619.0,
+    "net_mwh": -526.27,
+    "energy_rs": -1754584.0,
+    "total_rs": -917965.0
    },
    {
     "name": "KSTPS I&II",
-    "up_mwh": 1461.42,
-    "down_mwh": 2742.08,
-    "incentive_rs": 1518153.0,
-    "net_mwh": -1280.66,
-    "energy_rs": -1672542.0,
-    "total_rs": -154389.0
+    "up_mwh": 1059.39,
+    "down_mwh": 2226.56,
+    "incentive_rs": 1236283.0,
+    "net_mwh": -1167.17,
+    "energy_rs": -1524324.0,
+    "total_rs": -288041.0
    },
    {
     "name": "KSTPS7",
-    "up_mwh": 393.66,
-    "down_mwh": 794.91,
-    "incentive_rs": 475428.0,
-    "net_mwh": -401.25,
-    "energy_rs": -514001.0,
-    "total_rs": -38573.0
+    "up_mwh": 219.81,
+    "down_mwh": 777.74,
+    "incentive_rs": 446091.0,
+    "net_mwh": -557.93,
+    "energy_rs": -714708.0,
+    "total_rs": -268617.0
    },
    {
     "name": "LARA-I",
-    "up_mwh": 283.56,
-    "down_mwh": 2018.19,
-    "incentive_rs": 948514.0,
-    "net_mwh": -1734.63,
-    "energy_rs": -2780612.0,
-    "total_rs": -1832098.0
+    "up_mwh": 170.88,
+    "down_mwh": 2172.21,
+    "incentive_rs": 1065896.0,
+    "net_mwh": -2001.33,
+    "energy_rs": -3208132.0,
+    "total_rs": -2142236.0
    },
    {
     "name": "MOUDA",
-    "up_mwh": 867.73,
-    "down_mwh": 1276.34,
-    "incentive_rs": 892071.0,
-    "net_mwh": -408.61,
-    "energy_rs": -1205808.0,
-    "total_rs": -313737.0
+    "up_mwh": 861.56,
+    "down_mwh": 1064.35,
+    "incentive_rs": 856149.0,
+    "net_mwh": -202.79,
+    "energy_rs": -598433.0,
+    "total_rs": 257716.0
    },
    {
     "name": "MOUDA_II",
-    "up_mwh": 937.36,
-    "down_mwh": 1263.98,
-    "incentive_rs": 1032831.0,
-    "net_mwh": -326.62,
-    "energy_rs": -963856.0,
-    "total_rs": 68975.0
+    "up_mwh": 1313.07,
+    "down_mwh": 811.36,
+    "incentive_rs": 1018506.0,
+    "net_mwh": 501.71,
+    "energy_rs": 1480546.0,
+    "total_rs": 2499052.0
    },
    {
     "name": "NSPCL",
-    "up_mwh": 490.35,
-    "down_mwh": 859.9,
-    "incentive_rs": 675125.0,
-    "net_mwh": -369.55,
-    "energy_rs": -832227.0,
-    "total_rs": -157102.0
+    "up_mwh": 418.1,
+    "down_mwh": 807.1,
+    "incentive_rs": 551665.0,
+    "net_mwh": -389.0,
+    "energy_rs": -876028.0,
+    "total_rs": -324363.0
    },
    {
     "name": "SIPAT I",
-    "up_mwh": 1289.49,
-    "down_mwh": 2549.21,
-    "incentive_rs": 1649191.0,
-    "net_mwh": -1259.72,
-    "energy_rs": -1651493.0,
-    "total_rs": -2302.0
+    "up_mwh": 846.93,
+    "down_mwh": 2534.24,
+    "incentive_rs": 1309909.0,
+    "net_mwh": -1687.31,
+    "energy_rs": -2212063.0,
+    "total_rs": -902154.0
    },
    {
     "name": "SIPAT II",
-    "up_mwh": 849.91,
-    "down_mwh": 1359.37,
-    "incentive_rs": 1045167.0,
-    "net_mwh": -509.46,
-    "energy_rs": -668921.0,
-    "total_rs": 376246.0
+    "up_mwh": 401.76,
+    "down_mwh": 1165.52,
+    "incentive_rs": 719070.0,
+    "net_mwh": -763.76,
+    "energy_rs": -1002817.0,
+    "total_rs": -283747.0
    },
    {
     "name": "SOLAPUR",
-    "up_mwh": 1482.99,
-    "down_mwh": 1172.26,
-    "incentive_rs": 1308616.0,
-    "net_mwh": 310.73,
-    "energy_rs": 1520091.0,
-    "total_rs": 2828707.0
+    "up_mwh": 619.94,
+    "down_mwh": 252.71,
+    "incentive_rs": 389620.0,
+    "net_mwh": 367.23,
+    "energy_rs": 1796489.0,
+    "total_rs": 2186109.0
    },
    {
     "name": "TPCL_Mundra",
@@ -1253,39 +1253,39 @@
    },
    {
     "name": "VSTPS II",
-    "up_mwh": 218.62,
-    "down_mwh": 1314.09,
-    "incentive_rs": 654093.0,
-    "net_mwh": -1095.47,
-    "energy_rs": -2468094.0,
-    "total_rs": -1814001.0
+    "up_mwh": 211.28,
+    "down_mwh": 2113.25,
+    "incentive_rs": 899940.0,
+    "net_mwh": -1901.97,
+    "energy_rs": -4285138.0,
+    "total_rs": -3385198.0
    },
    {
     "name": "VSTPS III",
-    "up_mwh": 1785.66,
-    "down_mwh": 556.06,
-    "incentive_rs": 729965.0,
-    "net_mwh": 1229.6,
-    "energy_rs": 2730942.0,
-    "total_rs": 3460907.0
+    "up_mwh": 810.23,
+    "down_mwh": 1627.84,
+    "incentive_rs": 745925.0,
+    "net_mwh": -817.61,
+    "energy_rs": -1815912.0,
+    "total_rs": -1069987.0
    },
    {
     "name": "VSTPS IV",
-    "up_mwh": 819.5,
-    "down_mwh": 923.58,
-    "incentive_rs": 739754.0,
-    "net_mwh": -104.08,
-    "energy_rs": -228352.0,
-    "total_rs": 511402.0
+    "up_mwh": 280.85,
+    "down_mwh": 953.89,
+    "incentive_rs": 519025.0,
+    "net_mwh": -673.04,
+    "energy_rs": -1476650.0,
+    "total_rs": -957625.0
    },
    {
     "name": "VSTPS V",
-    "up_mwh": 399.55,
-    "down_mwh": 255.82,
-    "incentive_rs": 233735.0,
-    "net_mwh": 143.73,
-    "energy_rs": 318937.0,
-    "total_rs": 552672.0
+    "up_mwh": 366.67,
+    "down_mwh": 764.33,
+    "incentive_rs": 461395.0,
+    "net_mwh": -397.66,
+    "energy_rs": -882408.0,
+    "total_rs": -421013.0
    },
    {
     "name": "GANDHAR-APM",
@@ -1352,12 +1352,12 @@
    }
   ],
   "total": {
-   "up_mwh": 11627.33,
-   "down_mwh": -17644.89,
-   "incentive_rs": 12216645.0,
-   "net_mwh": -6017.56,
-   "energy_rs": -9063995.0,
-   "total_rs": 3152650.0
+   "up_mwh": 8439.07,
+   "down_mwh": -18798.24,
+   "incentive_rs": 11173730.0,
+   "net_mwh": -10359.17,
+   "energy_rs": -17496135.0,
+   "total_rs": -6322405.0
   }
  },
  "tras_market": {
@@ -1375,11 +1375,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 125.75,
-    "da_down_rs": 3772.43,
-    "rt_down_mwh": 2853.6,
-    "rt_down_rs": 85608.09,
-    "net_rs": -89380.52
+    "da_down_mwh": 242.65,
+    "da_down_rs": 7279.46,
+    "rt_down_mwh": 891.36,
+    "rt_down_rs": 26740.76,
+    "net_rs": -34020.22
    },
    {
     "name": "APL Stage-3 (U-9)",
@@ -1392,11 +1392,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 2647.96,
-    "da_down_rs": 79438.81,
-    "rt_down_mwh": 610.48,
-    "rt_down_rs": 18314.34,
-    "net_rs": -97753.15
+    "da_down_mwh": 801.25,
+    "da_down_rs": 24037.38,
+    "rt_down_mwh": 672.65,
+    "rt_down_rs": 20179.47,
+    "net_rs": -44216.85
    },
    {
     "name": "APL_Raigarh TPP",
@@ -1409,11 +1409,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 3091.38,
-    "da_down_rs": 92741.35,
-    "rt_down_mwh": 327.04,
-    "rt_down_rs": 9811.13,
-    "net_rs": -102552.48
+    "da_down_mwh": 436.78,
+    "da_down_rs": 13103.41,
+    "rt_down_mwh": 73.65,
+    "rt_down_rs": 2209.52,
+    "net_rs": -15312.93
    },
    {
     "name": "APL_Raipur TPP",
@@ -1426,11 +1426,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 5109.71,
-    "da_down_rs": 153291.23,
-    "rt_down_mwh": 2802.2,
-    "rt_down_rs": 84065.87,
-    "net_rs": -237357.1
+    "da_down_mwh": 2360.23,
+    "da_down_rs": 70806.8,
+    "rt_down_mwh": 1123.65,
+    "rt_down_rs": 33709.63,
+    "net_rs": -104516.43
    },
    {
     "name": "DHARIWAL_ISTS",
@@ -1443,11 +1443,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 262.5,
-    "da_down_rs": 102375.0,
-    "rt_down_mwh": 165.25,
-    "rt_down_rs": 64612.8,
-    "net_rs": -166987.8
+    "da_down_mwh": 208.75,
+    "da_down_rs": 81412.5,
+    "rt_down_mwh": 180.63,
+    "rt_down_rs": 66124.38,
+    "net_rs": -147536.88
    },
    {
     "name": "DHARIWAL_STU_OTHER",
@@ -1460,11 +1460,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 262.5,
-    "da_down_rs": 102375.0,
-    "rt_down_mwh": 165.25,
-    "rt_down_rs": 64612.8,
-    "net_rs": -166987.8
+    "da_down_mwh": 208.75,
+    "da_down_rs": 81412.5,
+    "rt_down_mwh": 180.63,
+    "rt_down_rs": 66124.38,
+    "net_rs": -147536.88
    },
    {
     "name": "GADARWARA-I",
@@ -1479,9 +1479,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 577.4,
-    "rt_down_rs": 198625.6,
-    "net_rs": -198625.6
+    "rt_down_mwh": 1158.93,
+    "rt_down_rs": 607276.7,
+    "net_rs": -607276.7
    },
    {
     "name": "JPNIGRIE_JNSTPP",
@@ -1494,11 +1494,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 1059.18,
-    "da_down_rs": 31775.48,
-    "rt_down_mwh": 931.02,
-    "rt_down_rs": 27930.54,
-    "net_rs": -59706.02
+    "da_down_mwh": 385.27,
+    "da_down_rs": 11558.09,
+    "rt_down_mwh": 277.12,
+    "rt_down_rs": 8313.7,
+    "net_rs": -19871.79
    },
    {
     "name": "JSW_MAHANADI",
@@ -1513,9 +1513,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 409.55,
-    "rt_down_rs": 9610.21,
-    "net_rs": -9610.21
+    "rt_down_mwh": 908.42,
+    "rt_down_rs": 108341.5,
+    "net_rs": -108341.5
    },
    {
     "name": "KHARGONE-I",
@@ -1530,9 +1530,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 174.21,
-    "rt_down_rs": 58616.1,
-    "net_rs": -58616.1
+    "rt_down_mwh": 0.0,
+    "rt_down_rs": 0.0,
+    "net_rs": 0.0
    },
    {
     "name": "KSTPS I&II",
@@ -1547,9 +1547,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 7899.71,
-    "rt_down_rs": 102700.58,
-    "net_rs": -102700.58
+    "rt_down_mwh": 5559.18,
+    "rt_down_rs": 680063.75,
+    "net_rs": -680063.75
    },
    {
     "name": "KSTPS7",
@@ -1564,9 +1564,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 1732.59,
-    "rt_down_rs": 17325.91,
-    "net_rs": -17325.91
+    "rt_down_mwh": 816.48,
+    "rt_down_rs": 121579.16,
+    "net_rs": -121579.16
    },
    {
     "name": "LAMKPL",
@@ -1581,9 +1581,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 2272.17,
-    "rt_down_rs": 68165.18,
-    "net_rs": -68165.18
+    "rt_down_mwh": 900.38,
+    "rt_down_rs": 27011.51,
+    "net_rs": -27011.51
    },
    {
     "name": "LARA-I",
@@ -1598,9 +1598,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 4513.39,
-    "rt_down_rs": 49647.7,
-    "net_rs": -49647.7
+    "rt_down_mwh": 1369.7,
+    "rt_down_rs": 15066.77,
+    "net_rs": -15066.77
    },
    {
     "name": "MAHAN_ENERGEN_U1",
@@ -1613,11 +1613,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 995.44,
-    "da_down_rs": 29863.08,
-    "rt_down_mwh": 3527.65,
-    "rt_down_rs": 105829.37,
-    "net_rs": -135692.45
+    "da_down_mwh": 68.56,
+    "da_down_rs": 2056.66,
+    "rt_down_mwh": 164.29,
+    "rt_down_rs": 4928.74,
+    "net_rs": -6985.4
    },
    {
     "name": "MAHAN_ENERGEN_U2",
@@ -1630,11 +1630,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 2260.58,
-    "da_down_rs": 67817.5,
-    "rt_down_mwh": 5489.21,
-    "rt_down_rs": 164676.25,
-    "net_rs": -232493.75
+    "da_down_mwh": 637.64,
+    "da_down_rs": 19129.17,
+    "rt_down_mwh": 2216.18,
+    "rt_down_rs": 66485.46,
+    "net_rs": -85614.63
    },
    {
     "name": "MBMP",
@@ -1649,9 +1649,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 5215.08,
-    "rt_down_rs": 521507.5,
-    "net_rs": -521507.5
+    "rt_down_mwh": 2977.46,
+    "rt_down_rs": 297745.5,
+    "net_rs": -297745.5
    },
    {
     "name": "MCCPL",
@@ -1664,28 +1664,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 386.48,
-    "da_down_rs": 34239.78,
-    "rt_down_mwh": 433.67,
-    "rt_down_rs": 5191.71,
-    "net_rs": -39431.49
-   },
-   {
-    "name": "MOUDA",
-    "da_up_cleared_mwh": 0.0,
-    "da_up_sched_mwh": 0.0,
-    "da_up_energy_rs": 0.0,
-    "da_up_commit_rs": 0.0,
-    "rt_up_cleared_mwh": 0.0,
-    "rt_up_sched_mwh": 0.0,
-    "rt_up_energy_rs": 0.0,
-    "rt_up_commit_rs": 0.0,
-    "up_total_rs": 0.0,
-    "da_down_mwh": 0.0,
-    "da_down_rs": 0.0,
-    "rt_down_mwh": 9.75,
-    "rt_down_rs": 1062.75,
-    "net_rs": -1062.75
+    "da_down_mwh": 203.15,
+    "da_down_rs": 20314.5,
+    "rt_down_mwh": 432.43,
+    "rt_down_rs": 54918.58,
+    "net_rs": -75233.08
    },
    {
     "name": "MOUDA_II",
@@ -1700,9 +1683,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 526.38,
-    "rt_down_rs": 60533.21,
-    "net_rs": -60533.21
+    "rt_down_mwh": 105.75,
+    "rt_down_rs": 12161.28,
+    "net_rs": -12161.28
    },
    {
     "name": "NSPCL",
@@ -1717,9 +1700,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 2426.68,
-    "rt_down_rs": 153651.43,
-    "net_rs": -153651.43
+    "rt_down_mwh": 1464.25,
+    "rt_down_rs": 323599.67,
+    "net_rs": -323599.67
    },
    {
     "name": "SASAN",
@@ -1732,11 +1715,11 @@
     "rt_up_energy_rs": 0.0,
     "rt_up_commit_rs": 0.0,
     "up_total_rs": 0.0,
-    "da_down_mwh": 2647.43,
-    "da_down_rs": 26545.6,
-    "rt_down_mwh": 11792.69,
-    "rt_down_rs": 121632.01,
-    "net_rs": -148177.61
+    "da_down_mwh": 1828.94,
+    "da_down_rs": 80086.61,
+    "rt_down_mwh": 7545.17,
+    "rt_down_rs": 400762.3,
+    "net_rs": -480848.91
    },
    {
     "name": "SIPAT I",
@@ -1751,9 +1734,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 8290.46,
-    "rt_down_rs": 171302.52,
-    "net_rs": -171302.52
+    "rt_down_mwh": 3819.27,
+    "rt_down_rs": 506025.9,
+    "net_rs": -506025.9
    },
    {
     "name": "SIPAT II",
@@ -1768,9 +1751,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 3939.08,
-    "rt_down_rs": 43329.87,
-    "net_rs": -43329.87
+    "rt_down_mwh": 1423.35,
+    "rt_down_rs": 194055.88,
+    "net_rs": -194055.88
    },
    {
     "name": "TPCL_Mundra",
@@ -1785,9 +1768,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 858.0,
-    "rt_down_rs": 102950.0,
-    "net_rs": -102950.0
+    "rt_down_mwh": 1425.27,
+    "rt_down_rs": 142526.75,
+    "net_rs": -142526.75
    },
    {
     "name": "VSTPS I",
@@ -1802,9 +1785,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 1413.53,
-    "rt_down_rs": 39627.51,
-    "net_rs": -39627.51
+    "rt_down_mwh": 1630.38,
+    "rt_down_rs": 142993.01,
+    "net_rs": -142993.01
    },
    {
     "name": "VSTPS II",
@@ -1819,9 +1802,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 985.25,
-    "rt_down_rs": 10933.19,
-    "net_rs": -10933.19
+    "rt_down_mwh": 332.1,
+    "rt_down_rs": 3876.07,
+    "net_rs": -3876.07
    },
    {
     "name": "VSTPS III",
@@ -1836,9 +1819,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 137.87,
-    "rt_down_rs": 1521.48,
-    "net_rs": -1521.48
+    "rt_down_mwh": 1318.94,
+    "rt_down_rs": 133230.94,
+    "net_rs": -133230.94
    },
    {
     "name": "VSTPS IV",
@@ -1853,9 +1836,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 383.7,
-    "rt_down_rs": 4926.27,
-    "net_rs": -4926.27
+    "rt_down_mwh": 444.43,
+    "rt_down_rs": 5777.67,
+    "net_rs": -5777.67
    },
    {
     "name": "VSTPS V",
@@ -1870,9 +1853,9 @@
     "up_total_rs": 0.0,
     "da_down_mwh": 0.0,
     "da_down_rs": 0.0,
-    "rt_down_mwh": 267.62,
-    "rt_down_rs": 3479.07,
-    "net_rs": -3479.07
+    "rt_down_mwh": 322.37,
+    "rt_down_rs": 4190.8,
+    "net_rs": -4190.8
    }
   ],
   "total": {
@@ -1885,11 +1868,11 @@
    "rt_up_energy_rs": 0.0,
    "rt_up_commit_rs": 0.0,
    "up_total_rs": 0.0,
-   "da_down_mwh": 18848.91,
-   "da_down_rs": 724235.26,
-   "rt_down_mwh": 71130.48,
-   "rt_down_rs": 2371800.99,
-   "net_rs": -3096036.25
+   "da_down_mwh": 7381.97,
+   "da_down_rs": 411197.08,
+   "rt_down_mwh": 39734.42,
+   "rt_down_rs": 4076019.78,
+   "net_rs": -4487216.86
   }
  },
  "tras_shortfall": {
@@ -1898,35 +1881,35 @@
   "rows": [
    {
     "name": "APL_Raigarh TPP",
-    "up_mwh": 201.84,
-    "up_rs": 344133.0,
-    "down_mwh": 354.29,
-    "down_rs": 494238.0,
-    "net_rs": -150105.0
+    "up_mwh": 130.61,
+    "up_rs": 222694.0,
+    "down_mwh": 378.16,
+    "down_rs": 527533.0,
+    "net_rs": -304839.0
    },
    {
     "name": "APL_Raipur TPP",
-    "up_mwh": 1.73,
-    "up_rs": 1332.0,
-    "down_mwh": 124.54,
-    "down_rs": 78459.0,
-    "net_rs": -77127.0
+    "up_mwh": 81.93,
+    "up_rs": 63088.0,
+    "down_mwh": 756.38,
+    "down_rs": 476516.0,
+    "net_rs": -413428.0
    },
    {
     "name": "GADARWARA-I",
-    "up_mwh": 713.86,
-    "up_rs": 2329048.0,
-    "down_mwh": 1377.06,
-    "down_rs": 3675911.0,
-    "net_rs": -1346863.0
+    "up_mwh": 182.97,
+    "up_rs": 596966.0,
+    "down_mwh": 628.99,
+    "down_rs": 1679026.0,
+    "net_rs": -1082060.0
    },
    {
     "name": "GANDHAR-ComGas",
-    "up_mwh": 3207.64,
-    "up_rs": 108757250.0,
-    "down_mwh": 473.05,
-    "down_rs": 12756530.0,
-    "net_rs": 96000720.0
+    "up_mwh": 7360.81,
+    "up_rs": 228954812.0,
+    "down_mwh": 34.03,
+    "down_rs": 838445.0,
+    "net_rs": 228116367.0
    },
    {
     "name": "GANDHAR-RLNG",
@@ -1938,27 +1921,27 @@
    },
    {
     "name": "JPNIGRIE_JNSTPP",
-    "up_mwh": 0,
-    "up_rs": 0,
-    "down_mwh": 236.56,
-    "down_rs": 149030.0,
-    "net_rs": -149030.0
+    "up_mwh": 9.37,
+    "up_rs": 7213.0,
+    "down_mwh": 765.13,
+    "down_rs": 482030.0,
+    "net_rs": -474817.0
    },
    {
     "name": "JSW_MAHANADI",
-    "up_mwh": 1359.39,
-    "up_rs": 747662.0,
-    "down_mwh": 4273.66,
-    "down_rs": 1923146.0,
-    "net_rs": -1175484.0
+    "up_mwh": 895.49,
+    "up_rs": 492521.0,
+    "down_mwh": 0,
+    "down_rs": 0,
+    "net_rs": 492521.0
    },
    {
     "name": "KAWAS-ComGas",
-    "up_mwh": 1236.52,
-    "up_rs": 40564888.0,
-    "down_mwh": 533.95,
-    "down_rs": 13974409.0,
-    "net_rs": 26590479.0
+    "up_mwh": 6774.08,
+    "up_rs": 206862594.0,
+    "down_mwh": 181.65,
+    "down_rs": 5598402.0,
+    "net_rs": 201264192.0
    },
    {
     "name": "KAWAS-RLNG",
@@ -1970,75 +1953,67 @@
    },
    {
     "name": "KHARGONE-I",
-    "up_mwh": 1087.47,
-    "up_rs": 3988197.0,
-    "down_mwh": 1372.53,
-    "down_rs": 4118399.0,
-    "net_rs": -130202.0
+    "up_mwh": 607.04,
+    "up_rs": 2226240.0,
+    "down_mwh": 2469.1,
+    "down_rs": 7408782.0,
+    "net_rs": -5182542.0
    },
    {
     "name": "KSTPS I&II",
-    "up_mwh": 91.59,
-    "up_rs": 131575.0,
-    "down_mwh": 862.62,
-    "down_rs": 1013921.0,
-    "net_rs": -882346.0
+    "up_mwh": 0,
+    "up_rs": 0,
+    "down_mwh": 2372.87,
+    "down_rs": 2789071.0,
+    "net_rs": -2789071.0
    },
    {
     "name": "KSTPS7",
-    "up_mwh": 93.09,
-    "up_rs": 131177.0,
-    "down_mwh": 216.99,
-    "down_rs": 250168.0,
-    "net_rs": -118991.0
+    "up_mwh": 12.46,
+    "up_rs": 17550.0,
+    "down_mwh": 391.7,
+    "down_rs": 451594.0,
+    "net_rs": -434044.0
    },
    {
     "name": "LAMKPL",
-    "up_mwh": 28.74,
-    "up_rs": 49322.0,
-    "down_mwh": 134.48,
-    "down_rs": 188803.0,
-    "net_rs": -139481.0
-   },
-   {
-    "name": "MAHAN_ENERGEN_U1",
-    "up_mwh": 43.7,
-    "up_rs": 86526.0,
-    "down_mwh": 615.51,
-    "down_rs": 997130.0,
-    "net_rs": -910604.0
+    "up_mwh": 0,
+    "up_rs": 0,
+    "down_mwh": 326.43,
+    "down_rs": 458308.0,
+    "net_rs": -458308.0
    },
    {
     "name": "MAHAN_ENERGEN_U2",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 202.57,
-    "down_rs": 127616.0,
-    "net_rs": -127616.0
+    "down_mwh": 654.8,
+    "down_rs": 412524.0,
+    "net_rs": -412524.0
    },
    {
     "name": "MOUDA",
-    "up_mwh": 989.46,
-    "up_rs": 3211878.0,
-    "down_mwh": 1170.14,
-    "down_rs": 3107775.0,
-    "net_rs": 104103.0
+    "up_mwh": 98.52,
+    "up_rs": 319806.0,
+    "down_mwh": 470.71,
+    "down_rs": 1250152.0,
+    "net_rs": -930346.0
    },
    {
     "name": "MOUDA_II",
-    "up_mwh": 1119.15,
-    "up_rs": 3632881.0,
-    "down_mwh": 1467.71,
-    "down_rs": 3898098.0,
-    "net_rs": -265217.0
+    "up_mwh": 71.13,
+    "up_rs": 230895.0,
+    "down_mwh": 567.67,
+    "down_rs": 1507668.0,
+    "net_rs": -1276773.0
    },
    {
     "name": "NSPCL",
-    "up_mwh": 352.39,
-    "up_rs": 872928.0,
-    "down_mwh": 546.85,
-    "down_rs": 1108345.0,
-    "net_rs": -235417.0
+    "up_mwh": 51.61,
+    "up_rs": 127854.0,
+    "down_mwh": 580.65,
+    "down_rs": 1176856.0,
+    "net_rs": -1049002.0
    },
    {
     "name": "RGPPL-LTRLNG",
@@ -2050,89 +2025,89 @@
    },
    {
     "name": "RGPPL-RLNG",
-    "up_mwh": 5019.93,
-    "up_rs": 154889921.0,
+    "up_mwh": 10628.81,
+    "up_rs": 301879403.0,
     "down_mwh": 0,
     "down_rs": 0,
-    "net_rs": 154889921.0
+    "net_rs": 301879403.0
    },
    {
     "name": "SIPAT I",
-    "up_mwh": 86.93,
-    "up_rs": 125362.0,
-    "down_mwh": 1036.97,
-    "down_rs": 1223524.0,
-    "net_rs": -1098162.0
+    "up_mwh": 16.74,
+    "up_rs": 24141.0,
+    "down_mwh": 2474.74,
+    "down_rs": 2919946.0,
+    "net_rs": -2895805.0
    },
    {
     "name": "SIPAT II",
-    "up_mwh": 78.7,
-    "up_rs": 113670.0,
-    "down_mwh": 731.17,
-    "down_rs": 864018.0,
-    "net_rs": -750348.0
+    "up_mwh": 206.13,
+    "up_rs": 297714.0,
+    "down_mwh": 1254.11,
+    "down_rs": 1481976.0,
+    "net_rs": -1184262.0
    },
    {
     "name": "SOLAPUR",
-    "up_mwh": 6148.04,
-    "up_rs": 33083833.0,
-    "down_mwh": 2919.55,
-    "down_rs": 12854195.0,
-    "net_rs": 20229638.0
+    "up_mwh": 2396.5,
+    "up_rs": 12896059.0,
+    "down_mwh": 2671.14,
+    "down_rs": 11760495.0,
+    "net_rs": 1135564.0
    },
    {
     "name": "VSTPS I",
-    "up_mwh": 761.51,
-    "up_rs": 1927452.0,
-    "down_mwh": 1338.26,
-    "down_rs": 2771408.0,
-    "net_rs": -843956.0
+    "up_mwh": 88.1,
+    "up_rs": 222990.0,
+    "down_mwh": 1177.77,
+    "down_rs": 2439039.0,
+    "net_rs": -2216049.0
    },
    {
     "name": "VSTPS II",
-    "up_mwh": 908.12,
-    "up_rs": 2250600.0,
-    "down_mwh": 1085.64,
-    "down_rs": 2201357.0,
-    "net_rs": 49243.0
+    "up_mwh": 192.56,
+    "up_rs": 477215.0,
+    "down_mwh": 1027.0,
+    "down_rs": 2082453.0,
+    "net_rs": -1605238.0
    },
    {
     "name": "VSTPS III",
-    "up_mwh": 619.83,
-    "up_rs": 1514301.0,
-    "down_mwh": 392.1,
-    "down_rs": 783769.0,
-    "net_rs": 730532.0
+    "up_mwh": 92.85,
+    "up_rs": 226848.0,
+    "down_mwh": 1712.18,
+    "down_rs": 3422477.0,
+    "net_rs": -3195629.0
    },
    {
     "name": "VSTPS IV",
-    "up_mwh": 545.14,
-    "up_rs": 1315647.0,
-    "down_mwh": 308.26,
-    "down_rs": 608685.0,
-    "net_rs": 706962.0
+    "up_mwh": 145.9,
+    "up_rs": 352115.0,
+    "down_mwh": 997.56,
+    "down_rs": 1969782.0,
+    "net_rs": -1617667.0
    },
    {
     "name": "VSTPS V",
-    "up_mwh": 213.04,
-    "up_rs": 520003.0,
-    "down_mwh": 125.34,
-    "down_rs": 250317.0,
-    "net_rs": 269686.0
+    "up_mwh": 104.21,
+    "up_rs": 254354.0,
+    "down_mwh": 737.58,
+    "down_rs": 1473011.0,
+    "net_rs": -1218657.0
    },
    {
     "name": "ACBIL",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 319.43,
-    "down_rs": 261929.0,
-    "net_rs": -261929.0
+    "down_mwh": 129.64,
+    "down_rs": 106301.0,
+    "net_rs": -106301.0
    },
    {
     "name": "ACL_PSS3_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 148.01,
+    "down_mwh": 265.52,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2140,7 +2115,7 @@
     "name": "ACL_PSS4_KPS1_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 12.09,
+    "down_mwh": 65.42,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2148,7 +2123,7 @@
     "name": "AGE24AL_PSS3_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 301.65,
+    "down_mwh": 533.51,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2156,7 +2131,7 @@
     "name": "AGE24L_PSS4_KPS1_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 10.74,
+    "down_mwh": 19.27,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2164,7 +2139,7 @@
     "name": "AGE25AL_PSS2_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 113.29,
+    "down_mwh": 177.1,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2172,7 +2147,7 @@
     "name": "AGE25BL_PSS2_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 353.53,
+    "down_mwh": 567.75,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2180,7 +2155,7 @@
     "name": "AGE25BL_PSS9_KPS1_HS",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 13.2,
+    "down_mwh": 24.99,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2188,7 +2163,7 @@
     "name": "AGE25BL_PSS9_KPS1_HW",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 0.53,
+    "down_mwh": 3.65,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2196,7 +2171,7 @@
     "name": "AGE26BL_PSS10_KPS1_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 8.89,
+    "down_mwh": 44.7,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2204,7 +2179,7 @@
     "name": "AGE26BL_PSS2_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 99.88,
+    "down_mwh": 222.78,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2212,7 +2187,7 @@
     "name": "AHEJ5L_PSS5_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 388.1,
+    "down_mwh": 720.35,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2220,7 +2195,7 @@
     "name": "AlfanarWind_SECI-III",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 20.46,
+    "down_mwh": 163.3,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2228,7 +2203,7 @@
     "name": "APRAAVA_KHKRDA_JAM_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 18.21,
+    "down_mwh": 59.03,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2236,7 +2211,7 @@
     "name": "APSEZ_PSS3_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 147.49,
+    "down_mwh": 265.52,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2244,7 +2219,7 @@
     "name": "ARE41L_PSS13_KPS1_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 13.37,
+    "down_mwh": 23.79,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2252,7 +2227,7 @@
     "name": "ARE41L_PSS3_KPS1_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 28.95,
+    "down_mwh": 48.91,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2260,7 +2235,7 @@
     "name": "ARE41L_PSS8_KPS3_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 93.44,
+    "down_mwh": 166.52,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2268,7 +2243,7 @@
     "name": "ARE45L_PSS5_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 187.11,
+    "down_mwh": 333.5,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2276,7 +2251,7 @@
     "name": "ARE55L_PSS3_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 121.22,
+    "down_mwh": 216.38,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2284,7 +2259,7 @@
     "name": "ARE56L_PSS10_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 339.94,
+    "down_mwh": 576.49,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2292,7 +2267,7 @@
     "name": "ARE56L_PSS4_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 167.38,
+    "down_mwh": 300.15,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2300,7 +2275,7 @@
     "name": "ARE56L_PSS9_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 52.11,
+    "down_mwh": 79.42,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2308,7 +2283,7 @@
     "name": "ARE57L_PSS13_KPS1_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 652.32,
+    "down_mwh": 1080.86,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2316,7 +2291,7 @@
     "name": "Arinsun_RUMS",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 168.73,
+    "down_mwh": 289.59,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2324,7 +2299,7 @@
     "name": "Athena_RUMS",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 158.58,
+    "down_mwh": 259.57,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2332,7 +2307,7 @@
     "name": "AVAADA_AGAR_RUMS_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 148.79,
+    "down_mwh": 260.96,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2340,7 +2315,7 @@
     "name": "AWEK1L",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 44.54,
+    "down_mwh": 241.0,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2348,7 +2323,7 @@
     "name": "AWEK4L_DEDYA_BHUJ2_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 32.28,
+    "down_mwh": 124.8,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2356,7 +2331,7 @@
     "name": "AWEKFL",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 11.01,
+    "down_mwh": 80.13,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2364,23 +2339,23 @@
     "name": "AWEMP1PL_PTNGR_IDR_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 22.82,
+    "down_mwh": 55.47,
     "down_rs": 0,
     "net_rs": 0
    },
    {
     "name": "BALCO",
-    "up_mwh": 744.07,
-    "up_rs": 1800649.0,
-    "down_mwh": 2170.89,
-    "down_rs": 5253542.0,
-    "net_rs": -3452893.0
+    "up_mwh": 1534.86,
+    "up_rs": 3714361.0,
+    "down_mwh": 253.0,
+    "down_rs": 612260.0,
+    "net_rs": 3102101.0
    },
    {
     "name": "BEEMPOW_AGAR_RUMS_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 257.5,
+    "down_mwh": 449.38,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2388,7 +2363,7 @@
     "name": "BlueLeaf_CP_PCHR_HW",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 23.46,
+    "down_mwh": 42.56,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2396,31 +2371,31 @@
     "name": "CPTTNPL",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 10.81,
+    "down_mwh": 70.34,
     "down_rs": 0,
     "net_rs": 0
    },
    {
     "name": "DBPL",
-    "up_mwh": 558.35,
-    "up_rs": 139587.0,
-    "down_mwh": 2028.4,
-    "down_rs": 507099.0,
-    "net_rs": -367512.0
+    "up_mwh": 87.17,
+    "up_rs": 21792.0,
+    "down_mwh": 950.35,
+    "down_rs": 237587.0,
+    "net_rs": -215795.0
    },
    {
     "name": "DHARIWAL_ISTS",
-    "up_mwh": 65.79,
-    "up_rs": 32894.0,
-    "down_mwh": 269.01,
-    "down_rs": 134506.0,
-    "net_rs": -101612.0
+    "up_mwh": 6.25,
+    "up_rs": 3125.0,
+    "down_mwh": 179.21,
+    "down_rs": 89606.0,
+    "net_rs": -86481.0
    },
    {
     "name": "ESPL_RSP",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 148.92,
+    "down_mwh": 265.68,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2428,7 +2403,7 @@
     "name": "GIPCL_PSS1_KPS2_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 383.32,
+    "down_mwh": 630.22,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2436,7 +2411,7 @@
     "name": "GIPCL_RSP",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 65.43,
+    "down_mwh": 104.64,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2444,7 +2419,7 @@
     "name": "GIWEL_SECI-III_RE",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 11.47,
+    "down_mwh": 100.91,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2452,23 +2427,23 @@
     "name": "GIWEL_SECI-II_RE",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 13.92,
+    "down_mwh": 102.28,
     "down_rs": 0,
     "net_rs": 0
    },
    {
     "name": "GMR WARORA",
-    "up_mwh": 513.51,
-    "up_rs": 154052.0,
-    "down_mwh": 610.95,
-    "down_rs": 183284.0,
-    "net_rs": -29232.0
+    "up_mwh": 49.69,
+    "up_rs": 14906.0,
+    "down_mwh": 403.49,
+    "down_rs": 121046.0,
+    "net_rs": -106140.0
    },
    {
     "name": "GSECL_ph2_RSP_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 46.02,
+    "down_mwh": 82.32,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2476,71 +2451,71 @@
     "name": "GSECL_RSP",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 4.37,
+    "down_mwh": 20.42,
     "down_rs": 0,
     "net_rs": 0
    },
    {
     "name": "JHABUA_IPP",
-    "up_mwh": 274.03,
-    "up_rs": 705340.0,
-    "down_mwh": 371.39,
-    "down_rs": 955964.0,
-    "net_rs": -250624.0
+    "up_mwh": 100.34,
+    "up_rs": 258275.0,
+    "down_mwh": 356.65,
+    "down_rs": 918004.0,
+    "net_rs": -659729.0
    },
    {
     "name": "JPL",
-    "up_mwh": 99.43,
-    "up_rs": 153313.0,
-    "down_mwh": 2177.06,
-    "down_rs": 3357027.0,
-    "net_rs": -3203714.0
+    "up_mwh": 0,
+    "up_rs": 0,
+    "down_mwh": 1523.5,
+    "down_rs": 2349237.0,
+    "net_rs": -2349237.0
    },
    {
     "name": "JPL-2",
-    "up_mwh": 208.14,
-    "up_rs": 272244.0,
-    "down_mwh": 5064.66,
-    "down_rs": 6624569.0,
-    "net_rs": -6352325.0
+    "up_mwh": 0,
+    "up_rs": 0,
+    "down_mwh": 4269.71,
+    "down_rs": 5584784.0,
+    "net_rs": -5584784.0
    },
    {
     "name": "JSPL_DCPP",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 703.67,
-    "down_rs": 1252524.0,
-    "net_rs": -1252524.0
+    "down_mwh": 443.62,
+    "down_rs": 789644.0,
+    "net_rs": -789644.0
    },
    {
     "name": "MASAYA_BWSPRA_KNDW_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 208.67,
+    "down_mwh": 369.62,
     "down_rs": 0,
     "net_rs": 0
    },
    {
     "name": "MBMP",
-    "up_mwh": 0,
-    "up_rs": 0,
-    "down_mwh": 212.66,
-    "down_rs": 469984.0,
-    "net_rs": -469984.0
+    "up_mwh": 9.3,
+    "up_rs": 20553.0,
+    "down_mwh": 182.86,
+    "down_rs": 404115.0,
+    "net_rs": -383562.0
    },
    {
     "name": "MCCPL",
-    "up_mwh": 64.75,
-    "up_rs": 80938.0,
-    "down_mwh": 507.32,
-    "down_rs": 634150.0,
-    "net_rs": -553212.0
+    "up_mwh": 83.75,
+    "up_rs": 104688.0,
+    "down_mwh": 401.61,
+    "down_rs": 502013.0,
+    "net_rs": -397325.0
    },
    {
     "name": "MSRPL_REWA_RUMS_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 151.42,
+    "down_mwh": 249.4,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2548,7 +2523,7 @@
     "name": "NETRA_KOTDA_BHUJ_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 14.58,
+    "down_mwh": 109.03,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2556,7 +2531,7 @@
     "name": "NTPCREL1_SJPR_RUMS_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 66.19,
+    "down_mwh": 129.68,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2564,7 +2539,7 @@
     "name": "NTPCREL_PSS2_KPS2_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 625.59,
+    "down_mwh": 1185.4,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2572,7 +2547,7 @@
     "name": "NTPC_REL_DYPR_BHUJ_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 5.79,
+    "down_mwh": 74.22,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2580,7 +2555,7 @@
     "name": "NTPC_REL_SJPR_RUMS_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 152.37,
+    "down_mwh": 264.02,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2588,7 +2563,7 @@
     "name": "OKWPL_RE",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 12.9,
+    "down_mwh": 80.44,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2596,7 +2571,7 @@
     "name": "RenewGreenTN3_SLPR_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 63.02,
+    "down_mwh": 113.8,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2604,7 +2579,7 @@
     "name": "RenewGreen_SLPR_HS",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 56.93,
+    "down_mwh": 92.39,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2612,7 +2587,7 @@
     "name": "RGMHP1_Patoda_klm_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 8.66,
+    "down_mwh": 13.76,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2620,7 +2595,7 @@
     "name": "RGMHS1_TLJPR_SLPR_HW",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 12.26,
+    "down_mwh": 31.1,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2628,23 +2603,23 @@
     "name": "RGMHS3_PSS5_SLPR_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 127.6,
+    "down_mwh": 230.25,
     "down_rs": 0,
     "net_rs": 0
    },
    {
     "name": "RKM_POWER",
-    "up_mwh": 427.1,
-    "up_rs": 1065602.0,
-    "down_mwh": 3263.4,
-    "down_rs": 8142171.0,
-    "net_rs": -7076569.0
+    "up_mwh": 204.35,
+    "up_rs": 509841.0,
+    "down_mwh": 1387.01,
+    "down_rs": 3460584.0,
+    "net_rs": -2950743.0
    },
    {
     "name": "RPL_SECI-II_RE",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 14.18,
+    "down_mwh": 45.01,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2652,7 +2627,7 @@
     "name": "RSRPL_GHTND_klm_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 7.26,
+    "down_mwh": 8.9,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2660,31 +2635,31 @@
     "name": "RWE_AP2_SECI-III",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 16.2,
+    "down_mwh": 98.2,
     "down_rs": 0,
     "net_rs": 0
    },
    {
     "name": "Sarda_Energy_Raigarh",
-    "up_mwh": 44.53,
-    "up_rs": 44525.0,
-    "down_mwh": 1965.84,
-    "down_rs": 1965835.0,
-    "net_rs": -1921310.0
+    "up_mwh": 0,
+    "up_rs": 0,
+    "down_mwh": 1193.19,
+    "down_rs": 1193188.0,
+    "net_rs": -1193188.0
    },
    {
     "name": "SASAN",
-    "up_mwh": 32.47,
-    "up_rs": 45101.0,
-    "down_mwh": 6361.52,
-    "down_rs": 8836155.0,
-    "net_rs": -8791054.0
+    "up_mwh": 2.08,
+    "up_rs": 2893.0,
+    "down_mwh": 6131.49,
+    "down_rs": 8516643.0,
+    "net_rs": -8513750.0
    },
    {
     "name": "SGEL_RSP_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 73.76,
+    "down_mwh": 128.31,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2692,7 +2667,7 @@
     "name": "SITAC_CHUGGER_BHJ2_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 32.61,
+    "down_mwh": 258.21,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2700,7 +2675,7 @@
     "name": "SRIJAN_MORJAR_BHJ2_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 12.43,
+    "down_mwh": 97.49,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2708,7 +2683,7 @@
     "name": "TALTUTAI_SJPR_RUMS_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 92.11,
+    "down_mwh": 164.28,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2716,23 +2691,23 @@
     "name": "Torrent_Sidpur_Jam_W",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 5.59,
+    "down_mwh": 24.39,
     "down_rs": 0,
     "net_rs": 0
    },
    {
     "name": "TPCL_Mundra",
-    "up_mwh": 1821.18,
-    "up_rs": 9634029.0,
-    "down_mwh": 178.68,
-    "down_rs": 945204.0,
-    "net_rs": 8688825.0
+    "up_mwh": 548.87,
+    "up_rs": 2925490.0,
+    "down_mwh": 263.9,
+    "down_rs": 1406560.0,
+    "net_rs": 1518930.0
    },
    {
     "name": "TPREL_RSP",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 65.37,
+    "down_mwh": 104.52,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2740,7 +2715,7 @@
     "name": "TPSOURY_BRVD_NMCH_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 110.0,
+    "down_mwh": 193.48,
     "down_rs": 0,
     "net_rs": 0
    },
@@ -2748,25 +2723,25 @@
     "name": "TPSOURY_KWAI_NMCH_S",
     "up_mwh": 0,
     "up_rs": 0,
-    "down_mwh": 116.74,
+    "down_mwh": 206.81,
     "down_rs": 0,
     "net_rs": 0
    },
    {
     "name": "TRN_ENERGY",
-    "up_mwh": 11.14,
-    "up_rs": 19509.0,
-    "down_mwh": 1645.58,
-    "down_rs": 2883052.0,
-    "net_rs": -2863543.0
+    "up_mwh": 0,
+    "up_rs": 0,
+    "down_mwh": 285.8,
+    "down_rs": 500717.0,
+    "net_rs": -500717.0
    }
   ],
   "total": {
-   "up_mwh": 29772.3,
-   "up_rs": 374737369.0,
-   "down_mwh": 56646.37,
-   "down_rs": 111826246.0,
-   "net_rs": 262911123.0
+   "up_mwh": 32774.48,
+   "up_rs": 764328996.0,
+   "down_mwh": 54397.27,
+   "down_rs": 79398375.0,
+   "net_rs": 684930621.0
   }
  },
  "blocks": {
