@@ -1,12 +1,12 @@
 {
- "generated": "2026-11-24T02:03+05:30",
+ "generated": "2026-11-25T01:14+05:30",
  "sources": [
   {
    "id": "ERPC",
    "name": "ERPC weekly DSM, SRAS and TRAS accounts",
    "publisher": "Eastern Regional Power Committee",
    "url": "https://www.erpc.gov.in/",
-   "last_checked": "2026-11-24T02:01+05:30",
+   "last_checked": "2026-11-25T01:12+05:30",
    "kind": "rpc",
    "status": "ok",
    "data_through": "2026-11-08",
@@ -17,11 +17,11 @@
    "documents": {
     "account_pdf": {
      "title": "DSM, SRAS, TRAS and SCUC Settlement Account for the period from 02.11.2026 to 08.11.2026 (PDF)",
-     "url": "https://www.erpc.gov.in/commercials/multiple-document/download/eyJpdiI6IjZDcDFTNFFXNXBReWFaMlNreVR6d0E9PSIsInZhbHVlIjoiU3llVVAyTWJHVW9Yd0hBd05TZjdkdz09IiwibWFjIjoiYmUwY2NmY2ExN2ZjYzExMjExYTU0NjM0OThmN2UwNWFmMDE3OGZlYzExZDE4ZGQwMmVlOGUzNTM0OTMyMWUwZiIsInRhZyI6IiJ9.pdf"
+     "url": "https://www.erpc.gov.in/commercials/multiple-document/download/eyJpdiI6IkxMbG1aNk0yVXYvUnQzY2Q5cjQ2MVE9PSIsInZhbHVlIjoiOXJGWUQ3dHNzQ2ZQdERnWWlxLzQ4dz09IiwibWFjIjoiNjA4M2U2MTQzZmM5MjdmMmQxMTgxZDY3YTExMTk4NzhlODhjYTcwZDY4NjI0Mjc5NTU4YTk5Yjc2YWQ5ODQwMiIsInRhZyI6IiJ9.pdf"
     },
     "blocks_xlsx": {
      "title": "DSM, SRAS, TRAS and SCUC Settlement Account for the period from 02.11.2026 to 08.11.2026 – block-wise data",
-     "url": "https://www.erpc.gov.in/commercials/upload-doc/download/eyJpdiI6IklEcnZodi9zTVFROTdNdDFQeXNnS2c9PSIsInZhbHVlIjoiVDdNUE80Q1pJYTFhblVDV1lDVWk3QT09IiwibWFjIjoiNTg4Y2NmYzdjYWUwMTljYmE3Y2QzMzk1ZDZmOTI3ZmE1NDBhNzAxODM0NDdjMzEwYjliZWYwZmU4ZTg3YjVlYSIsInRhZyI6IiJ9/0"
+     "url": "https://www.erpc.gov.in/commercials/upload-doc/download/eyJpdiI6Im05cUpuQmZabTFZY2RjYlM0dkRUZEE9PSIsInZhbHVlIjoiYzB0RFZRUjhLYmVtaUtndVBFSUNvdz09IiwibWFjIjoiMDI5M2I4ZDI4YTUwMmFiMTY3MTIzNmU2MTI5NzZmOTg4NWI5ZDlhMDdhODliMzE0MjllYzJlYWNmMDBiOTdhMiIsInRhZyI6IiJ9/0"
     }
    },
    "message": ""
@@ -31,36 +31,36 @@
    "name": "WRPC weekly DSM, SRAS and TRAS accounts",
    "publisher": "Western Regional Power Committee",
    "url": "https://www.wrpc.gov.in/menu/DSM_342",
-   "last_checked": "2026-11-24T02:01+05:30",
+   "last_checked": "2026-11-25T01:12+05:30",
    "kind": "rpc",
    "status": "partial",
-   "data_through": "2026-11-08",
+   "data_through": "2026-11-15",
    "latest_period": {
-    "from": "2026-11-02",
-    "to": "2026-11-08"
+    "from": "2026-11-09",
+    "to": "2026-11-15"
    },
    "documents": {
     "dsm_pdf": {
-     "title": "WRPC DSM account, Week from 02.11.2026 to 08.11.2026 (Issued on 17.11.2026)",
-     "url": "https://www.wrpc.gov.in/allfile/171120261707555985dsmnov26.1.pdf"
+     "title": "WRPC DSM account, Week from 09.11.2026 to 15.11.2026 (Issued on 24.11.2026)",
+     "url": "https://www.wrpc.gov.in/allfile/241120261619045120DSM 09-15 Nov 26.pdf"
     },
     "blocks_zip": {
-     "title": "WRPC all-member block-wise data, 02.11.2026 to 08.11.2026",
-     "url": "https://www.wrpc.gov.in/allfile/171120261708249644sum1 17.zip"
+     "title": "WRPC all-member block-wise data, 09.11.2026 to 15.11.2026",
+     "url": "https://www.wrpc.gov.in/allfile/2411202616201680452026-11-09_2026-11-15.zip"
     },
     "as_pdf": {
-     "title": "WRPC TRAS SRAS & SCUC for 02.11.2026 to 08.11.2026 (Updated on 17/11/2026)",
-     "url": "https://www.wrpc.gov.in/allfile/171120261714012601trasnov26.1.pdf"
+     "title": "WRPC TRAS SRAS & SCUC for 09.11.2026 to 15.11.2026 (Updated on 24.11.2026)",
+     "url": "https://www.wrpc.gov.in/allfile/241120261601478563TRAS SRAS SCUC 09-15 Nov 26.pdf"
     }
    },
-   "message": "DSM account – totals do not tie (weeks of 02 Nov, 26 Oct, 19 Oct, 12 Oct, 05 Oct, 28 Sep, 21 Sep, 14 Sep). Latest: Each entity row reconciles (payable − receivable = printed net), but WRPC's printed total differs from the sum of its rows by ₹6,049,548 payable and ₹33,475,757 receivable. Rows are shown as printed. Every one of the 115 rows also ties to the RPC's block-wise data, so the gap is in the printed total, not in the rows. block-level DSM – only partly reconciles (weeks of 26 Oct). Latest: 0 entities' block sums differ from the weekly account; 1 account rows have no block data."
+   "message": "DSM account – totals do not tie (weeks of 09 Nov, 02 Nov, 26 Oct, 19 Oct, 12 Oct, 05 Oct, 28 Sep, 21 Sep). Latest: Each entity row reconciles (payable − receivable = printed net), but WRPC's printed total differs from the sum of its rows by ₹2,751,349 payable and ₹2,454,708,850 receivable. Rows are shown as printed. Every one of the 150 rows also ties to the RPC's block-wise data, so the gap is in the printed total, not in the rows. block-level DSM – only partly reconciles (weeks of 26 Oct). Latest: 0 entities' block sums differ from the weekly account; 1 account rows have no block data."
   },
   {
    "id": "NERPC",
    "name": "NERPC weekly DSM, SRAS and TRAS accounts",
    "publisher": "North-Eastern Regional Power Committee",
    "url": "https://nerpc.gov.in/?page_id=5872",
-   "last_checked": "2026-11-24T02:01+05:30",
+   "last_checked": "2026-11-25T01:12+05:30",
    "kind": "rpc",
    "status": "unreachable",
    "message": "listing page failed: giving up on https://nerpc.gov.in/?page_id=5872: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1011)>"
@@ -71,7 +71,7 @@
    "name": "NRPC weekly DSM / SRAS / TRAS accounts",
    "publisher": "Northern Regional Power Committee",
    "url": "https://nrpc.gov.in/",
-   "last_checked": "2026-11-24T02:02+05:30",
+   "last_checked": "2026-11-25T01:13+05:30",
    "status": "blocked",
    "message": "the site's document API answers 401 Unauthorized without a login"
   },
@@ -81,7 +81,7 @@
    "name": "SRPC weekly DSM / SRAS / TRAS accounts",
    "publisher": "Southern Regional Power Committee",
    "url": "https://srpc.kar.nic.in/",
-   "last_checked": "2026-11-24T02:02+05:30",
+   "last_checked": "2026-11-25T01:13+05:30",
    "status": "unreachable",
    "message": "connection reset during TLS handshake from this network"
   },
@@ -91,7 +91,7 @@
    "name": "Grid-India daily frequency profile",
    "publisher": "Grid Controller of India",
    "url": "https://report.grid-india.in/",
-   "last_checked": "2026-11-24T02:02+05:30",
+   "last_checked": "2026-11-25T01:13+05:30",
    "status": "unreachable",
    "message": "host refused the connection from this network"
   },
@@ -101,7 +101,7 @@
    "name": "Grid-India ancillary services dispatch reports",
    "publisher": "Grid Controller of India",
    "url": "https://grid-india.in/",
-   "last_checked": "2026-11-24T02:02+05:30",
+   "last_checked": "2026-11-25T01:13+05:30",
    "status": "unreachable",
    "message": "host refused the connection from this network"
   },
@@ -111,7 +111,7 @@
    "name": "PXIL TRAS market results",
    "publisher": "Power Exchange India",
    "url": "https://www.pxil.co.in/",
-   "last_checked": "2026-11-24T02:03+05:30",
+   "last_checked": "2026-11-25T01:14+05:30",
    "status": "unreachable",
    "message": "connection reset during TLS handshake from this network"
   },
@@ -121,7 +121,7 @@
    "name": "IEX TRAS market results",
    "publisher": "Indian Energy Exchange",
    "url": "https://www.iexindia.com/market-data/day-ahead-market/market-snapshot",
-   "last_checked": "2026-11-24T02:03+05:30",
+   "last_checked": "2026-11-25T01:14+05:30",
    "status": "not_published",
    "message": "no public TRAS segment in IEX's market-data site or API (checked market-data menu and /api/v1)"
   },
@@ -131,7 +131,7 @@
    "name": "HPX TRAS market results",
    "publisher": "Hindustan Power Exchange",
    "url": "https://www.hpxindia.com/",
-   "last_checked": "2026-11-24T02:03+05:30",
+   "last_checked": "2026-11-25T01:14+05:30",
    "status": "not_published",
    "message": "HPX publishes only DAM snapshot and area-price pages publicly; no TRAS results page found"
   }
