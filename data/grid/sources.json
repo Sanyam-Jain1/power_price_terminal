@@ -1,27 +1,27 @@
 {
- "generated": "2026-11-25T01:14+05:30",
+ "generated": "2026-11-26T00:21+05:30",
  "sources": [
   {
    "id": "ERPC",
    "name": "ERPC weekly DSM, SRAS and TRAS accounts",
    "publisher": "Eastern Regional Power Committee",
    "url": "https://www.erpc.gov.in/",
-   "last_checked": "2026-11-25T01:12+05:30",
+   "last_checked": "2026-11-26T00:19+05:30",
    "kind": "rpc",
    "status": "ok",
-   "data_through": "2026-11-08",
+   "data_through": "2026-11-15",
    "latest_period": {
-    "from": "2026-11-02",
-    "to": "2026-11-08"
+    "from": "2026-11-09",
+    "to": "2026-11-15"
    },
    "documents": {
     "account_pdf": {
-     "title": "DSM, SRAS, TRAS and SCUC Settlement Account for the period from 02.11.2026 to 08.11.2026 (PDF)",
-     "url": "https://www.erpc.gov.in/commercials/multiple-document/download/eyJpdiI6IkxMbG1aNk0yVXYvUnQzY2Q5cjQ2MVE9PSIsInZhbHVlIjoiOXJGWUQ3dHNzQ2ZQdERnWWlxLzQ4dz09IiwibWFjIjoiNjA4M2U2MTQzZmM5MjdmMmQxMTgxZDY3YTExMTk4NzhlODhjYTcwZDY4NjI0Mjc5NTU4YTk5Yjc2YWQ5ODQwMiIsInRhZyI6IiJ9.pdf"
+     "title": "DSM, SRAS, TRAS and SCUC Settlement Account for the period from 09.11.2026 to 15.11.2026 (PDF)",
+     "url": "https://www.erpc.gov.in/commercials/multiple-document/download/eyJpdiI6IjU4cXFBZ0JmZUpYOEFLK1JBb0NVSEE9PSIsInZhbHVlIjoiRlQ2bElwSXRPRFRreW1keXFOTGdBQT09IiwibWFjIjoiZjBhYTE1YTgwZjRmY2Q5YWUzMDg0MzNjNGM1ZDJjZDFkZmRkYTI3Njk5MjQ1NWM4ZjRhZDBiYjdmOWU4YzFhNCIsInRhZyI6IiJ9.pdf"
     },
     "blocks_xlsx": {
-     "title": "DSM, SRAS, TRAS and SCUC Settlement Account for the period from 02.11.2026 to 08.11.2026 – block-wise data",
-     "url": "https://www.erpc.gov.in/commercials/upload-doc/download/eyJpdiI6Im05cUpuQmZabTFZY2RjYlM0dkRUZEE9PSIsInZhbHVlIjoiYzB0RFZRUjhLYmVtaUtndVBFSUNvdz09IiwibWFjIjoiMDI5M2I4ZDI4YTUwMmFiMTY3MTIzNmU2MTI5NzZmOTg4NWI5ZDlhMDdhODliMzE0MjllYzJlYWNmMDBiOTdhMiIsInRhZyI6IiJ9/0"
+     "title": "DSM, SRAS, TRAS and SCUC Settlement Account for the period from 09.11.2026 to 15.11.2026 – block-wise data",
+     "url": "https://www.erpc.gov.in/commercials/upload-doc/download/eyJpdiI6Ikg0bkFRRThTM1lpNlpadEJQUURyWXc9PSIsInZhbHVlIjoiWkZNa0VCVGZkbEZIS0RGSUk0NEE5Zz09IiwibWFjIjoiNjljODRmOGY5MDczZWQxZTJjOWYyNWMzMTc5YjVmYmVmYjExMDgxMWQyN2QwZmVmZTUzN2VlMWZiZjRiMTRiNSIsInRhZyI6IiJ9/0"
     }
    },
    "message": ""
@@ -31,7 +31,7 @@
    "name": "WRPC weekly DSM, SRAS and TRAS accounts",
    "publisher": "Western Regional Power Committee",
    "url": "https://www.wrpc.gov.in/menu/DSM_342",
-   "last_checked": "2026-11-25T01:12+05:30",
+   "last_checked": "2026-11-26T00:20+05:30",
    "kind": "rpc",
    "status": "partial",
    "data_through": "2026-11-15",
@@ -60,10 +60,10 @@
    "name": "NERPC weekly DSM, SRAS and TRAS accounts",
    "publisher": "North-Eastern Regional Power Committee",
    "url": "https://nerpc.gov.in/?page_id=5872",
-   "last_checked": "2026-11-25T01:12+05:30",
+   "last_checked": "2026-11-26T00:20+05:30",
    "kind": "rpc",
    "status": "unreachable",
-   "message": "listing page failed: giving up on https://nerpc.gov.in/?page_id=5872: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1011)>"
+   "message": "listing page failed: giving up on https://nerpc.gov.in/?page_id=5872: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1011)>"
   },
   {
    "id": "NRPC",
@@ -71,7 +71,7 @@
    "name": "NRPC weekly DSM / SRAS / TRAS accounts",
    "publisher": "Northern Regional Power Committee",
    "url": "https://nrpc.gov.in/",
-   "last_checked": "2026-11-25T01:13+05:30",
+   "last_checked": "2026-11-26T00:20+05:30",
    "status": "blocked",
    "message": "the site's document API answers 401 Unauthorized without a login"
   },
@@ -81,7 +81,7 @@
    "name": "SRPC weekly DSM / SRAS / TRAS accounts",
    "publisher": "Southern Regional Power Committee",
    "url": "https://srpc.kar.nic.in/",
-   "last_checked": "2026-11-25T01:13+05:30",
+   "last_checked": "2026-11-26T00:21+05:30",
    "status": "unreachable",
    "message": "connection reset during TLS handshake from this network"
   },
@@ -91,7 +91,7 @@
    "name": "Grid-India daily frequency profile",
    "publisher": "Grid Controller of India",
    "url": "https://report.grid-india.in/",
-   "last_checked": "2026-11-25T01:13+05:30",
+   "last_checked": "2026-11-26T00:21+05:30",
    "status": "unreachable",
    "message": "host refused the connection from this network"
   },
@@ -101,7 +101,7 @@
    "name": "Grid-India ancillary services dispatch reports",
    "publisher": "Grid Controller of India",
    "url": "https://grid-india.in/",
-   "last_checked": "2026-11-25T01:13+05:30",
+   "last_checked": "2026-11-26T00:21+05:30",
    "status": "unreachable",
    "message": "host refused the connection from this network"
   },
@@ -111,7 +111,7 @@
    "name": "PXIL TRAS market results",
    "publisher": "Power Exchange India",
    "url": "https://www.pxil.co.in/",
-   "last_checked": "2026-11-25T01:14+05:30",
+   "last_checked": "2026-11-26T00:21+05:30",
    "status": "unreachable",
    "message": "connection reset during TLS handshake from this network"
   },
@@ -121,7 +121,7 @@
    "name": "IEX TRAS market results",
    "publisher": "Indian Energy Exchange",
    "url": "https://www.iexindia.com/market-data/day-ahead-market/market-snapshot",
-   "last_checked": "2026-11-25T01:14+05:30",
+   "last_checked": "2026-11-26T00:21+05:30",
    "status": "not_published",
    "message": "no public TRAS segment in IEX's market-data site or API (checked market-data menu and /api/v1)"
   },
@@ -131,7 +131,7 @@
    "name": "HPX TRAS market results",
    "publisher": "Hindustan Power Exchange",
    "url": "https://www.hpxindia.com/",
-   "last_checked": "2026-11-25T01:14+05:30",
+   "last_checked": "2026-11-26T00:21+05:30",
    "status": "not_published",
    "message": "HPX publishes only DAM snapshot and area-price pages publicly; no TRAS results page found"
   }
